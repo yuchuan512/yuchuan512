@@ -1,0 +1,686 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>java面试题 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John Doe">
+    
+
+    
+    <meta name="description" content="javaJava基础
+String类为什么是final的。
+HashMap的源码，实现原理，底层结构。
+说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
+描述一下ArrayList和LinkedList各自实现和区别
+Java中的队列都有哪些，有什么区别。
+反射中，Class.forName和classloader的区别
+Java7、Java8的新特性(baidu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java面试题">
+<meta property="og:url" content="http://yoursite.com/2015/09/15/java面试题/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="javaJava基础
+String类为什么是final的。
+HashMap的源码，实现原理，底层结构。
+说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
+描述一下ArrayList和LinkedList各自实现和区别
+Java中的队列都有哪些，有什么区别。
+反射中，Class.forName和classloader的区别
+Java7、Java8的新特性(baidu">
+<meta property="og:updated_time" content="2015-09-20T14:49:31.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java面试题">
+<meta name="twitter:description" content="javaJava基础
+String类为什么是final的。
+HashMap的源码，实现原理，底层结构。
+说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
+描述一下ArrayList和LinkedList各自实现和区别
+Java中的队列都有哪些，有什么区别。
+反射中，Class.forName和classloader的区别
+Java7、Java8的新特性(baidu">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/15/java面试题/" title="java面试题" itemprop="url">java面试题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-15T14:19:53.000Z" itemprop="datePublished"> 發表於 2015-09-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#java"><span class="toc-number">1.</span> <span class="toc-text">java</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基础"><span class="toc-number">1.1.</span> <span class="toc-text">Java基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java_IO"><span class="toc-number">1.2.</span> <span class="toc-text">Java IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java_Web"><span class="toc-number">1.3.</span> <span class="toc-text">Java Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM"><span class="toc-number">1.4.</span> <span class="toc-text">JVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源框架"><span class="toc-number">1.5.</span> <span class="toc-text">开源框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络通信"><span class="toc-number">1.6.</span> <span class="toc-text">网络通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库MySql"><span class="toc-number">1.7.</span> <span class="toc-text">数据库MySql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计模式"><span class="toc-number">1.8.</span> <span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.9.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发与性能调优"><span class="toc-number">1.10.</span> <span class="toc-text">并发与性能调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">1.11.</span> <span class="toc-text">其他</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="java">java</h2><h3 id="Java基础">Java基础</h3><ol>
+<li>String类为什么是final的。</li>
+<li>HashMap的源码，实现原理，底层结构。</li>
+<li>说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。</li>
+<li>描述一下ArrayList和LinkedList各自实现和区别</li>
+<li>Java中的队列都有哪些，有什么区别。</li>
+<li>反射中，Class.forName和classloader的区别</li>
+<li>Java7、Java8的新特性(baidu问的,好BT)</li>
+<li>Java数组和链表两种结构的操作效率，在哪些情况下(从开头开始，从结尾开始，从中间开始)，哪些操作(插入，查找，删除)的效率高</li>
+<li>Java内存泄露的问题调查定位：jmap，jstack的使用等等</li>
+<li>string、stringbuilder、stringbuffer区别</li>
+<li>hashtable和hashmap的区别<br>13 .异常的结构，运行时异常和非运行时异常，各举个例子</li>
+<li>String a= “abc” String b = “abc” String c = new String(“abc”) String d = “ab” + “c” .他们之间用 == 比较的结果</li>
+<li>String 类的常用方法</li>
+<li>Java 的引用类型有哪几种</li>
+<li>抽象类和接口的区别</li>
+<li>java的基础类型和字节大小。</li>
+<li>Hashtable,HashMap,ConcurrentHashMap 底层实现原理与线程安全问题（建议熟悉 jdk 源码，才能从容应答）</li>
+<li>如果不让你用Java Jdk提供的工具，你自己实现一个Map，你怎么做。说了好久，说了HashMap源代码，如果我做，就会借鉴HashMap的原理，说了一通HashMap实现</li>
+<li>Hash冲突怎么办？哪些解决散列冲突的方法？</li>
+<li>HashMap冲突很厉害，最差性能，你会怎么解决?从O（n）提升到log（n）咯，用二叉排序树的思路说了一通</li>
+<li>rehash</li>
+<li>hashCode() 与 equals() 生成算法、方法怎么重写</li>
+</ol>
+<h3 id="Java_IO">Java IO</h3><ol>
+<li>讲讲IO里面的常见类，字节流、字符流、接口、实现类、方法阻塞。</li>
+<li>讲讲NIO。</li>
+<li>String 编码UTF-8 和GBK的区别?</li>
+<li>什么时候使用字节流、什么时候使用字符流?</li>
+<li>递归读取文件夹下的文件，代码怎么实现</li>
+</ol>
+<h3 id="Java_Web">Java Web</h3><ol>
+<li>session和cookie的区别和联系，session的生命周期，多个服务部署时session管理。</li>
+<li>servlet的一些相关问题</li>
+<li>webservice相关问题</li>
+<li>jdbc连接，forname方式的步骤，怎么声明使用一个事务。举例并具体代码</li>
+<li>无框架下配置web.xml的主要配置内容</li>
+<li>jsp和servlet的区别</li>
+</ol>
+<h3 id="JVM">JVM</h3><ol>
+<li>Java的内存模型以及GC算法</li>
+<li>jvm性能调优都做了什么</li>
+<li>介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明</li>
+<li>介绍GC 和GC Root不正常引用。</li>
+<li>自己从classload 加载方式，加载机制说开去，从程序运行时数据区，讲到内存分配，讲到String常量池，讲到JVM垃圾回收机制，算法，hotspot。反正就是各种扩展</li>
+<li>jvm 如何分配直接内存， new 对象如何不分配在堆而是栈上，常量池解析</li>
+<li>数组多大放在 JVM 老年代（不只是设置 PretenureSizeThreshold ，问通常多大，没做过一问便知）</li>
+<li>老年代中数组的访问方式</li>
+<li>GC 算法，永久代对象如何 GC ， GC 有环怎么处理</li>
+<li>谁会被 GC ，什么时候 GC</li>
+<li>如果想不被 GC 怎么办</li>
+<li>如果想在 GC 中生存 1 次怎么办</li>
+</ol>
+<h3 id="开源框架">开源框架</h3><ol>
+<li>hibernate和ibatis的区别</li>
+<li>讲讲mybatis的连接池。</li>
+<li>spring框架中需要引用哪些jar包，以及这些jar包的用途</li>
+<li>springMVC的原理</li>
+<li>springMVC注解的意思</li>
+<li>spring中beanFactory和ApplicationContext的联系和区别</li>
+<li>spring注入的几种方式（循环注入）</li>
+<li>spring如何实现事物管理的</li>
+<li>springIOC</li>
+<li>spring AOP的原理</li>
+<li>hibernate中的1级和2级缓存的使用方式以及区别原理（Lazy-Load的理解）</li>
+<li>Hibernate的原理体系架构，五大核心接口，Hibernate对象的三种状态转换，事务管理。<br>六、多线程</li>
+<li>Java创建线程之后，直接调用start()方法和run()的区别</li>
+<li>常用的线程池模式以及不同线程池的使用场景</li>
+<li>newFixedThreadPool此种线程池如果线程数达到最大值后会怎么办，底层原理。</li>
+<li>多线程之间通信的同步问题，synchronized锁的是对象，衍伸出和synchronized相关很多的具体问题，例如同一个类不同方法都有synchronized锁，一个对象是否可以同时访问。或者一个类的static构造方法加上synchronized之后的锁的影响。</li>
+<li>了解可重入锁的含义，以及ReentrantLock 和synchronized的区别</li>
+<li>同步的数据结构，例如concurrentHashMap的源码理解以及内部实现原理，为什么他是同步的且效率高</li>
+<li>atomicinteger和volatile等线程安全操作的关键字的理解和使用</li>
+<li>线程间通信，wait和notify</li>
+<li>定时线程的使用</li>
+<li>场景：在一个主线程中，要求有大量(很多很多)子线程执行完之后，主线程才执行完成。多种方式，考虑效率。</li>
+<li>进程和线程的区别</li>
+<li>什么叫线程安全？举例说明</li>
+<li>线程的几种状态</li>
+<li>并发、同步的接口或方法</li>
+<li>HashMap 是否线程安全，为何不安全。 ConcurrentHashMap，线程安全，为何安全。底层实现是怎么样的。</li>
+<li>J.U.C下的常见类的使用。 ThreadPool的深入考察； BlockingQueue的使用。（take，poll的区别，put，offer的区别）；原子类的实现。</li>
+<li>简单介绍下多线程的情况，从建立一个线程开始。然后怎么控制同步过程，多线程常用的方法和结构</li>
+<li>volatile的理解</li>
+<li>实现多线程有几种方式，多线程同步怎么做，说说几个线程里常用的方法</li>
+</ol>
+<h3 id="网络通信">网络通信</h3><ol>
+<li>http是无状态通信，http的请求方式有哪些，可以自己定义新的请求方式么。</li>
+<li>socket通信，以及长连接，分包，连接异常断开的处理。</li>
+<li>socket通信模型的使用，AIO和NIO。</li>
+<li>socket框架netty的使用，以及NIO的实现原理，为什么是异步非阻塞。</li>
+<li>同步和异步，阻塞和非阻塞。</li>
+<li>OSI七层模型，包括TCP,IP的一些基本知识</li>
+<li>http中，get post的区别</li>
+<li>说说http,tcp,udp之间关系和区别。</li>
+<li>说说浏览器访问www.taobao.com，经历了怎样的过程。</li>
+<li>HTTP协议、  HTTPS协议，SSL协议及完整交互过程；</li>
+<li>tcp的拥塞，快回传，ip的报文丢弃</li>
+<li>https处理的一个过程，对称加密和非对称加密</li>
+<li>head各个特点和区别</li>
+<li>说说浏览器访问www.taobao.com，经历了怎样的过程。</li>
+</ol>
+<h3 id="数据库MySql">数据库MySql</h3><ol>
+<li>MySql的存 储引擎的不同</li>
+<li>单个索引、联合索引、主键索引</li>
+<li>Mysql怎么分表，以及分表后如果想按条件分页查询怎么办(如果不是按分表字段来查询的话，几乎效率低下，无解)</li>
+<li>分表之后想让一个id多个表是自增的，效率实现</li>
+<li>MySql的主从实时备份同步的配置，以及原理(从库读主库的binlog)，读写分离</li>
+<li>写SQL语句。。。</li>
+<li>索引的数据结构，B+树</li>
+<li>事务的四个特性，以及各自的特点（原子、隔离）等等，项目怎么解决这些问题</li>
+<li>数据库的锁：行锁，表锁；乐观锁，悲观锁</li>
+<li>数据库事务的几种粒度；</li>
+<li>关系型和非关系型数据库区别</li>
+</ol>
+<h3 id="设计模式">设计模式</h3><ol>
+<li>单例模式：饱汉、饿汉。以及饿汉中的延迟加载,双重检查</li>
+<li>工厂模式、装饰者模式、观察者模式。</li>
+<li>工厂方法模式的优点（低耦合、高内聚，开放封闭原则）</li>
+</ol>
+<h3 id="算法">算法</h3><ol>
+<li>使用随机算法产生一个数，要求把1-1000W之间这些数全部生成。（考察高效率，解决产生冲突的问题）</li>
+<li>两个有序数组的合并排序</li>
+<li>一个数组的倒序</li>
+<li>计算一个正整数的正平方根</li>
+<li>说白了就是常见的那些查找、排序算法以及各自的时间复杂度</li>
+<li>二叉树的遍历算法</li>
+<li>DFS,BFS算法</li>
+<li>比较重要的数据结构，如链表，队列，栈的基本理解及大致实现。</li>
+<li>排序算法与时空复杂度（快排为什么不稳定，为什么你的项目还在用）</li>
+<li>逆波兰计算器</li>
+<li>Hoffman 编码</li>
+<li>查找树与红黑树</li>
+</ol>
+<h3 id="并发与性能调优">并发与性能调优</h3><ol>
+<li>有个每秒钟5k个请求，查询手机号所属地的笔试题(记得不完整，没列出)，如何设计算法?请求再多，比如5w，如何设计整个系统?</li>
+<li>高并发情况下，我们系统是如何支撑大量的请求的</li>
+<li>集群如何同步会话状态</li>
+<li>负载均衡的原理<br>5 .如果有一个特别大的访问量，到数据库上，怎么做优化（DB设计，DBIO，SQL优化，Java优化）</li>
+<li>如果出现大面积并发，在不增加服务器的基础上，如何解决服务器响应不及时问题“。</li>
+<li>假如你的项目出现性能瓶颈了，你觉得可能会是哪些方面，怎么解决问题。</li>
+<li>如何查找 造成 性能瓶颈出现的位置，是哪个位置照成性能瓶颈。</li>
+<li>你的项目中使用过缓存机制吗？有没用用户非本地缓存</li>
+</ol>
+<h3 id="其他">其他</h3><p>1.常用的linux下的命令</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/interview/">interview</a><a href="/tags/java/">java</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/09/15/java面试题/" data-title="java面试题 | Hexo" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/15/sybase学习小记/" title="sybase学习小记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  sybase学习小记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/15/java集合/"  title="java集合">
+ <strong>下一篇：</strong><br/> 
+ <span>java集合
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#java"><span class="toc-number">1.</span> <span class="toc-text">java</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基础"><span class="toc-number">1.1.</span> <span class="toc-text">Java基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java_IO"><span class="toc-number">1.2.</span> <span class="toc-text">Java IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java_Web"><span class="toc-number">1.3.</span> <span class="toc-text">Java Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM"><span class="toc-number">1.4.</span> <span class="toc-text">JVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源框架"><span class="toc-number">1.5.</span> <span class="toc-text">开源框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络通信"><span class="toc-number">1.6.</span> <span class="toc-text">网络通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库MySql"><span class="toc-number">1.7.</span> <span class="toc-text">数据库MySql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计模式"><span class="toc-number">1.8.</span> <span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.9.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发与性能调优"><span class="toc-number">1.10.</span> <span class="toc-text">并发与性能调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">1.11.</span> <span class="toc-text">其他</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="John Doe">John Doe</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

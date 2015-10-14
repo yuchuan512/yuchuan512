@@ -1,0 +1,541 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>工控 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John Doe">
+    
+
+    
+    <meta name="description" content="工控发展阶段： 分散控制系统(DCS)–》现场总线控制系统(FCS) –》工业以太网最有影响力的有5种，分别为FF、Profibus、HART、CAN、LonWorks工业自动化控制系统网络结构发展越来越分散化，同时系统越来越复杂，内部连接越来越高速化、紧密化，更多的是系统细分成为独立控制孤岛，对驱动器和用户接口需求越来越多。而无论如何传统PLC技术无法满足该要求，现场总线技术也不能提供相关性能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工控">
+<meta property="og:url" content="http://yoursite.com/2015/09/27/工控/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="工控发展阶段： 分散控制系统(DCS)–》现场总线控制系统(FCS) –》工业以太网最有影响力的有5种，分别为FF、Profibus、HART、CAN、LonWorks工业自动化控制系统网络结构发展越来越分散化，同时系统越来越复杂，内部连接越来越高速化、紧密化，更多的是系统细分成为独立控制孤岛，对驱动器和用户接口需求越来越多。而无论如何传统PLC技术无法满足该要求，现场总线技术也不能提供相关性能。">
+<meta property="og:updated_time" content="2015-10-09T14:30:06.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工控">
+<meta name="twitter:description" content="工控发展阶段： 分散控制系统(DCS)–》现场总线控制系统(FCS) –》工业以太网最有影响力的有5种，分别为FF、Profibus、HART、CAN、LonWorks工业自动化控制系统网络结构发展越来越分散化，同时系统越来越复杂，内部连接越来越高速化、紧密化，更多的是系统细分成为独立控制孤岛，对驱动器和用户接口需求越来越多。而无论如何传统PLC技术无法满足该要求，现场总线技术也不能提供相关性能。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/27/工控/" title="工控" itemprop="url">工控</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-27T14:55:46.000Z" itemprop="datePublished"> 發表於 2015-09-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据安全保障"><span class="toc-number">1.</span> <span class="toc-text">数据安全保障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全模型"><span class="toc-number">2.</span> <span class="toc-text">安全模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全威胁"><span class="toc-number">3.</span> <span class="toc-text">安全威胁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组态服务"><span class="toc-number">4.</span> <span class="toc-text">组态服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP/IP协议本身缺陷"><span class="toc-number">5.</span> <span class="toc-text">TCP/IP协议本身缺陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工业控制网络遭受攻击"><span class="toc-number">6.</span> <span class="toc-text">工业控制网络遭受攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创新点在于"><span class="toc-number">7.</span> <span class="toc-text">创新点在于</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的攻击建模技术分析"><span class="toc-number">8.</span> <span class="toc-text">常见的攻击建模技术分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总_结"><span class="toc-number">9.</span> <span class="toc-text">总 结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全性审计"><span class="toc-number">10.</span> <span class="toc-text">安全性审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总体安全策略"><span class="toc-number">11.</span> <span class="toc-text">总体安全策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方向"><span class="toc-number">12.</span> <span class="toc-text">方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#九大误区"><span class="toc-number">13.</span> <span class="toc-text">九大误区</span></a></li></ol>
+		
+		</div>
+		
+		<p>工控<br>发展阶段： 分散控制系统(DCS)–》现场总线控制系统(FCS) –》工业以太网<br>最有影响力的有5种，分别为FF、Profibus、HART、CAN、LonWorks<br>工业自动化控制系统网络结构发展越来越分散化，同时系统越来越复杂，内部连接越来越高速化、紧密化，更多的是系统细分成为独立控制孤岛，对驱动器和用户接口需求越来越多。而无论如何传统PLC技术无法满足该要求，现场总线技术也不能提供相关性能。只有通过网络技术来解决，而在所有网络技术中，以太网技术是最理想的选择。<br>以太网是Byte级网络，只能部分代替现场总线作用，而将以太网用于现场I/O级，这是目前工控领域研究的热点之一。<br>目前以太网还只适合于工业控制网络系统的信息层应用。 </p>
+<ul>
+<li>以太网应用于工业控制具有以下的优势：<br>更高的通信带宽。以太网是一种成熟、快速的网络协议<br>实现现场设备层和企业管理层的无缝连接<br>降低系统成本。<br>更高稳定性</li>
+</ul>
+<p>工业控制系统可以通过“深层防御、 区域隔离、 通讯可控” 的思路进行网络安全设计和改造，<br>采取网络通信加密、 划分网络功能区域、 工业通信协议深度检查、 终端访问控制等措施， 有效<br>避免工业控制系统网络的安全隐患</p>
+<h3 id="数据安全保障">数据安全保障</h3><p>安全性是非常重要的考虑因素之一，需要为企业数据和用户使用产品的安全性提供重要保障。云智易物联平台的安全策略，贯穿了从终端设备到云端平台、云存储以及移动APP和外部接口的访问各个层面：<br>1)端到端的数据加密，云智易<br>2)通讯模块内置了网银级别的端到端加密机制，确保从你的产品传送到云端的数据都是经过也是支持SSL 128位全程加密传输。<br>3)云智易平台提供的APP和外部数据访问接口，也包含对应的加密机制，确保数据不被非法串改或窃取。<br>4)健全的网络安全认证机制，规避你的连接性产品被非法入侵：<br>    a)设备预授权，每个产品会授予一个唯一的密钥，在产生阶段被预置在通讯模块的固件中；<br>    b)设备激活，用户初次使用产品时，内置的模块走自动激活流程，并获取到设备唯一的通讯密钥；<br>    c)设备连接认证，当用户与设备相互连接时，需要获得有效的访问授权。<br>5)云端数据存储服务<br>    a)每台数据服务器拥有两个物理节点进行主从热备主节点发生故障，秒级切换至备节点服务可用性高达99.95%<br>    b)自定义访问IP白名单防DDoS攻击，安全监测；<br>    c)数据多重备份，可靠性高达99.999%</p>
+<h3 id="安全模型">安全模型</h3><p>基于工业以太网的控制网络的安全模型<br>工业控制网络( ICN)作为自动化体系的核心技术，是一种对实时性、可靠性、开放性、设计简洁性要求很高的特定应用网络<br>越来越多的计算机技术和网络通信技术被应用于工业控制网络中<br>工业以太网将各生产环节融为一体，将其他系统纳入到统一的网络平台，实现工业企业的控制与管理一体化，由于控制网络的不同层次网段，不同功能单元具有不同的功能和安全需求，对网络的安全性提出了严峻的要求;以太网协议中身份认证的不完善使<br>得通信易于受到扫描、修改与应答攻击，使得在各个数据通信环节中都可能存在着被未授权的用户入侵和数据被窃取等安全隐<br>患。 这些安全隐患可能带来服务信息的丢失、测量数据的失真、服务提供者经济损失、设备的损坏、甚至危及人的生命，</p>
+<h3 id="安全威胁">安全威胁</h3><p>外部攻击<br>内部攻击非法访问 例如在工业以太网内部加入嗅探器（sniffer），那么生产过程的数据的保密性将收到威胁<br>对策：<br>(1)窃取者对有线的工业控制网络拦截数据往往需要使 用附加的物理设备接入。所以在布置设备和生产过程中,对关键设备要提高警惕,进行实时监控 , 防止附加的物理设备接 入所用的生产设备 。<br>(2)合理的安全的网络拓扑结构。在合适的情况下，使用智能交换设 备取代普通的集线器 , 使信 息数据包不是向所有的网络节点进行广播，降低了风险<br>(3) 选 用和配置具 有端口安全保护功能的交换设<br>备,防止具有 M A C 欺诈和 I P 欺诈功能的嗅探程序 。<br>(4)在能满足工业 控制 网络的 实时性要求的基础上可以考虑对重要数据加密例如使用硬件加密 。<br>(5)如果认为对底层网络安全进行投资是必须的以及成本是可承受的,可以选用较昂贵的硬件设备例如网络拓扑映射工具,它能检测到额外的IP地址</p>
+<p>常用的安全措施：1、防病毒措施（预防病毒，检测病毒，消除病毒） 2、防火墙技术控制访问权限<br>3、入侵检测技术  4、网络隔离  5、信息加密技术  6、安全管理  </p>
+<p>SCADA Supervisory Control And Data Acquisition<br>RTU Remote Terminal Units<br>KDC 密钥管理中心<br>OPC 用于过程控制的OLE,OPC包括一整套接口、属性和方法的标准集，用于过程控制和制造业自动化系统</p>
+<p>信息包括诸如参数测量值 、 开关 和阀门的位置 , 系统组态 , 报警标识 ，生产过程循环进行，所以设计声场过程工艺的总体<br>数据量不大，只要活得一个完整生产运行周期所需的数据即可，不用长时间的监听数据的发送，普通PC就有足够空间储存这些数据</p>
+<p>将无线工业控制网络分为3个层次：企业管理层L3，过程控制层L2，现场设备层L1。</p>
+<h3 id="组态服务">组态服务</h3><p>无线组态服务器提供安全组态服务，对安全设备的组态不仅实现对测控过程的组态，还对安全功能进行配置。一旦完成对网络设备的合法性检查，组态软件即通过变量读服务读取安全管理信息库中的可读参数，并且根据实际需求修改设备的配置信息。可修改的配置信息应当为标准规定的可写的参数。组态时需要监控和配置的参数包括：无线设备涉及安全的各层的参数，设备中应用的安全措施类型、数据加密和数据校验使用的安全算法、访问控制列表、设备密钥和设备鉴别状态。无线组态服务器监控各设备的资源和存储情况，如出现资源耗尽，F1aSh存储读／写周期耗尽，电能耗尽时通过使用日志和报警告知使用者。</p>
+<p>由于工业无线控制网络的特点，其安全措施和安全服务应该易于部署和使用，<br>基于硬件的加密技术</p>
+<p>工业无线控制网络安全威胁分析：<br>窃听和监听（流量分析）<br>欺骗和非授权访问<br>未授权的信息破坏和篡改<br>拒绝Dos服务和洪泛攻击<br>耗能攻击<br>未授权的数据包重放攻击</p>
+<p>ICS安全面临严重威胁:<br>1)采用带有已知脆弱性的标准化协议和技术;<br>2)控制系统与其他网络的连接;<br>3)不安全和无认证的访问;<br>4)控制系统匮乏安全技术等。</p>
+<p>总结给出了 ICS四层网络结构,将研究对象确定为较低层的控制网络。针对控制网络存在的脆弱性和攻击技术,详细分析了工业以太网、现场总线、工控PC和工控软件四个方面的脆弱性,总结了控制网络存在的攻击技术。分析了攻击树和攻击图两种常见的网络攻击建模技术。</p>
+<h3 id="TCP/IP协议本身缺陷">TCP/IP协议本身缺陷</h3><p>1）IP协议根据IP头中的目的地址项来发送IP数据包。也就是说，IP路由IP包时，对IP头中提供的源地址不作任何检查，并且认为IP头中的源地址即为发送该包的机器的IP。攻击者都可以利用IP不检验IP头源地址的特点，自己填入伪造的IP地址来进行攻击，使自己不被发现。许多依靠IP源地址做确认的服务将产生问题并且会被非法入侵。其中最重要的就是利用IP欺骗引起的各种攻击。</p>
+<h3 id="工业控制网络遭受攻击">工业控制网络遭受攻击</h3><p>电力系统事故  北美<br>水利系统事故  澳洲<br>核电站事故  伊朗</p>
+<h3 id="创新点在于">创新点在于</h3><p>针对控制网络中的脆弱性,建立了面向安全分析的控制网络攻击模型,在此基础上,给出了基于攻击目标函数的攻击图生成算法,通过对得到的攻击目标集合所对应的攻击路径计算单位路径收益,找出其中的最大值,可以得到攻击者攻击控制网络的最佳攻击<br>目标及其对应的攻击路径。</p>
+<h3 id="常见的攻击建模技术分析">常见的攻击建模技术分析</h3><p>攻击树<br>攻击图：（攻击者模型、利用规则、状态前一、攻击图生成算法）</p>
+<p>工业控制系统脆弱性分析与建模研究 3.3 面向安全分析的控制网络攻击模型  51/85</p>
+<h3 id="总_结">总 结</h3><p>1.针对ICS脆弱性分析的基本问题,对与企业网集成的ICS网络结构进行<br>了分析,并将与控制领域密切相关的较低层控制网络作为研究对象;分别从控制<br>网络中使用的工业以太网、现场总线、工控PC机和工控软件四个方面,详细分<br>析了控制网络存在的脆弱性和攻击技术;然后对脆騎性的网络攻击建摸技术进行<br>了分析;</p>
+<p>2.针对基于攻击图的控制网络脆弱性攻击建模,首先分析了攻击图的一般<br>构造过程,给出了包含攻击模型、攻击图生成算法和可视化输出三部分的攻击图<br>生成系统框架;然后在分析了信息网络攻击模型对控制网络的适用性基础之上,<br>建立了面向安全分析的控制网络攻击模型,将复杂的网络抽象成只包含与脆弱性<br>分析相关的四要素,即控制组件、组件脆弱性、网络连接和控制权限;并给出了<br>本章算法研究中的有关定义和计算公式,包括网络状态、资产价值、原子攻击收<br>益、攻击收益和单位路径收益,进一步给出了一种基于攻击目标函数的攻击图生<br>成算法,并引入了脆弱性规约来优化击图的生成规模;</p>
+<p>3.针对本文所提模型和算法的有效性,构造了控制网络的实验环境,并进<br>行了相关的实验和实验结果的分析,实验结果验证了本章所提摸型和算法的有效<br>性,并且利用本文给出的单位路径收益等概念,能够获得攻击者的最佳攻击目标<br>和对应的攻击路径。<br>本文关键是分析出控制网络的攻击特征,然后给出控制网络的攻击模型,并<br>首次提出控制网络的攻击收益等概念,并能够分析出攻击者的攻击目标集合中的<br>最佳攻击目标,为控制系统的脆弱性研究和安全防御提供了一种研究思路。</p>
+<p>2011 年 9 月 29 日工业和信息化部印发《关于加强工业控制系统信息安全管理的通知》 ，要求切实加强工业控制系统信息安全<br>管理，以保障工业生产运行安全、国家经济安全和人民生命财产安全。</p>
+<h3 id="安全性审计">安全性审计</h3><p>安全性 是指信息系统在遭受各种人为因素破坏的情况下仍然能正常运行的概率。威胁信息系统安全性的因素可能来自信息系统和<br>企业的外部，也可能来自企业和信息系统的内部。外部如黑客入侵、病毒攻击、线路侦听、木马、非法用户访问等，内部包括授权<br>用户的越权访问、修改、删除等操作<br>安全技术体系包括物理安全，边界安全，网络安全，主机安全，应用安全<br>安全服务体系包括 安全测评，风险评估，安全加固，监控应急<br>安全管理体系包括组织保证，管理制度，技术规范，培训机制</p>
+<h3 id="总体安全策略">总体安全策略</h3><p>1）安全分区，根据系统的安全性、实时性、控制与非控制等方面特点，将安全需求类似的系统、计算机、网络设备划分在同一安全<br>区域，采用不同强度的网络安全设备如硬件防火墙，单向网闸，入侵防护系统进行隔离保护，加强不同安全区域见的访问控制措施。<br>2）专用通道，认证加密。VPN技术构造虚拟专用网形成逻辑隔离的网络，同时进行双向身份认证，和消息数据加密<br>3）动态评估，安全加固。</p>
+<p>工业控制网络区别于信息网络的主要有以下 4 点<br>1)性能和功能需求不同: 信息网络设计以高带宽和可靠<br>响应为目标, 高的延迟和抖动是可以接受的; 控制网络有较高<br>的实时性和较快的时间响应要求, 控制系统和实时操作系统<br>都运行在资源受限的设备上, 不可能提供安全措施。<br>2)人机交互响应时间的不同 : 对于一些控制网络来说, 人<br>机交互的响应时间是很关键的。 比如在一些紧急操作情况<br>下, 不能要求操作员输入密码或其他认证授权信息而阻碍紧<br>急操作的执行。<br>3)安全体系的不同: 对于信息网络, 重要数据都存储在服<br>务器上, 我们主要保护服务器上的数据的安全; 对于控制网<br>络, 正好相反, 主要是保护工作站 、控制器、传感器等节点设备<br>的数据存储和传输的安全。<br>4)可用性和可靠性需求不同: 由于生产制造过程的连续<br>性, 现应用于信息系统的补丁、升级和测试等安全措施不能适<br>用于控制系统。 控制系统对网络的可用性和可靠性有了更高<br>的要求。</p>
+<h3 id="方向">方向</h3><p>控制区域安全模型 基于安全区域的DMZ模型<br>工控无线和有线安全</p>
+<h3 id="九大误区">九大误区</h3><p>误区 1 ：工 业 控 制 系 统（ICS）是与外界隔离的<br>误区 2 ：没有人会袭击我们<br>误区 3 ：黑客不懂我们的协议系统，系统非常安全<br>误区 4 ：ICS 系统不需要防病毒软件，或有了防病毒软件就可以了，我们的防火墙会自动提供保护等<br>误区 5 ：网络安全事件不会影响系统运行<br>误区 6 ：ICS组件（如数据库、应用软件、服务器等）不需要特别的安全防护，供应商会保证产品的安全性<br>误区 7 ：ICS系统的接入点容易控制<br>误区 8 ：系统安全可以一次性解决或是可以等到项目结束后再解决<br>误区 9 ：单向通信100%安全</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/09/27/工控/" data-title="工控 | Hexo" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/10/14/hello-world/" title="Hello World">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Hello World</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/27/title/"  title="工控">
+ <strong>下一篇：</strong><br/> 
+ <span>工控
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据安全保障"><span class="toc-number">1.</span> <span class="toc-text">数据安全保障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全模型"><span class="toc-number">2.</span> <span class="toc-text">安全模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全威胁"><span class="toc-number">3.</span> <span class="toc-text">安全威胁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组态服务"><span class="toc-number">4.</span> <span class="toc-text">组态服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP/IP协议本身缺陷"><span class="toc-number">5.</span> <span class="toc-text">TCP/IP协议本身缺陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工业控制网络遭受攻击"><span class="toc-number">6.</span> <span class="toc-text">工业控制网络遭受攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创新点在于"><span class="toc-number">7.</span> <span class="toc-text">创新点在于</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的攻击建模技术分析"><span class="toc-number">8.</span> <span class="toc-text">常见的攻击建模技术分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总_结"><span class="toc-number">9.</span> <span class="toc-text">总 结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全性审计"><span class="toc-number">10.</span> <span class="toc-text">安全性审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总体安全策略"><span class="toc-number">11.</span> <span class="toc-text">总体安全策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方向"><span class="toc-number">12.</span> <span class="toc-text">方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#九大误区"><span class="toc-number">13.</span> <span class="toc-text">九大误区</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="John Doe">John Doe</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

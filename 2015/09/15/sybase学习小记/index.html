@@ -1,0 +1,541 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>sybase学习小记 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John Doe">
+    
+
+    
+    <meta name="description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sybase学习小记">
+<meta property="og:url" content="http://yoursite.com/2015/09/15/sybase学习小记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
+<meta property="og:updated_time" content="2015-09-20T14:31:22.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sybase学习小记">
+<meta name="twitter:description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/15/sybase学习小记/" title="sybase学习小记" itemprop="url">sybase学习小记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-15T14:19:53.000Z" itemprop="datePublished"> 發表於 2015-09-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sybase_sql"><span class="toc-number">1.</span> <span class="toc-text">Sybase_sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法特点"><span class="toc-number">1.1.</span> <span class="toc-text">语法特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的四个特点ACID"><span class="toc-number">1.2.</span> <span class="toc-text">事务的四个特点ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程功能"><span class="toc-number">1.3.</span> <span class="toc-text">存储过程功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程优点"><span class="toc-number">1.4.</span> <span class="toc-text">存储过程优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接字符串"><span class="toc-number">1.5.</span> <span class="toc-text">连接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#left_截取指定字符串的指定个数字符"><span class="toc-number">1.5.1.</span> <span class="toc-text">left 截取指定字符串的指定个数字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#charIndex()"><span class="toc-number">1.5.2.</span> <span class="toc-text">charIndex()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete_和_truncate"><span class="toc-number">1.6.</span> <span class="toc-text">delete 和 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">1.7.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase常用SQL"><span class="toc-number">1.8.</span> <span class="toc-text">sybase常用SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换函数"><span class="toc-number">1.9.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.10.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.11.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用DDL语句"><span class="toc-number">1.12.</span> <span class="toc-text">常用DDL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL优化"><span class="toc-number">1.13.</span> <span class="toc-text">SQL优化</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="Sybase_sql">Sybase_sql</h2><h3 id="语法特点">语法特点</h3><p>1.没有“ ”，字符串使用‘ ’包含<br>2.没有逻辑相等，赋值和逻辑相等都是=<br>3.类型不再是最严格的。任何数据都可以包含在‘ ’以内<br>4.没有bool值的概念，但是在视图中可以输入true/false<br>5.它也有关系运算符：&gt; &lt; &gt;= &lt;= = &lt;&gt; != ,它返回一个bool值<br>6.它也有逻辑运算符： ！(not) &amp;&amp;(and) ||(or)<br>7.它不区别大小写<br>8.数据库完整性（Database Integrity）是指数据库中数据在逻辑上的一致性、正确性、有效性和相容性。</p>
+<h3 id="事务的四个特点ACID">事务的四个特点ACID</h3><p>A:原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。它是一个整体，不能再拆分<br>C：一致性：事务在完成时，必须使所有的数据都保持一致状态。。某种程度的一致<br>I:隔离性：事务中隔离，每一个事务是单独的请求将单独的处理，与其它事务没有关系，互不影响<br>D：持久性：如果事务一旦提交，就对数据的修改永久保留</p>
+<h3 id="存储过程功能">存储过程功能</h3><p>存储过程为标准SQL增加了如下功能：<br>条件执行、循环控制结构、命名变量、命名过程、语句块（调用存储过程让DBMS执行一系列SQL语句）</p>
+<h3 id="存储过程优点">存储过程优点</h3><p>1）封装  只需要了解过程调用的输入输出就可以安全的使用数据库，防止用户跳过完整性检查<br>2）改善性能  调用存储过程时，DBMS可快速的执行存储过程中的语句，可直接转到语句的执行，无需分析，确认，优化和生成执行计划，这些步骤实现已经完成<br>3）减少网络流量<br>4）减少工作量 编译存储过程之后，许多用户和应用程序都可执行相同的语句序列，而不必重新输入和重新向DBMS提交，当执行需要许多SQL语句或是复杂逻辑的语句时，执行已经调试并测试通过的SQL语句批处理，减少了引入程序错误的风险<br>5）安全性 系统管理员可向单独的用户授予对数据库对象的最小访问权限</p>
+<h3 id="连接字符串">连接字符串</h3><p>SELECT CONCAT(Cname,Tnum) FROM course WHERE Cnum=03</p>
+<h4 id="left_截取指定字符串的指定个数字符">left 截取指定字符串的指定个数字符</h4><p>SELECT LEFT(Cname,5) FROM course WHERE Cnum=01<br>SELECT RIGHT(Cname,5) FROM course WHERE Cnum=01</p>
+<h4 id="charIndex()">charIndex()</h4><p>SELECT LOCATE(‘ne’,cname) FROM course WHERE cnum=01<br>SELECT SUBSTRING(Cname,1,3) FROM course</p>
+<h3 id="delete_和_truncate">delete 和 truncate</h3><p>delete from Teacher where Age&lt;20<br>–特点:<br>–1.删除是一条一条进行删除的<br>–2.每一条记录的删除都需要将操作写入到日志文件中<br>–3.标识列不会从种子值重新计算,以从上次最后一条标识列值往下计算<br>–4.这种删除可以触发delete触发器</p>
+<p>–truncate table 表名 –没有条件，它是一次性删除所有数据<br>–特点：<br>–1.一次性删除所有数据，没有条件，那么日志文件只以最小化的数据写入<br>–2.它可以使用标识列从种子值重新计算<br>–3.它不能触发delete触发器<br>truncate table teacher</p>
+<p>update Teacher set Salary=Salary+500 where ClassId=4 and Age&gt;20<br>–sign:正数==1  负数 ==-1  0=0<br>select SIGN(-100)</p>
+<p>mysql不存在top关键词，使用limit<br>SELECT <em> FROM course WHERE cnum=(SELECT  cnum FROM sc ORDER BY cnum DESC LIMIT 0,1)<br>–使用top分页<br>select top 5 </em> from Student where StudentNo not in(select top 5 studentno from Student)</p>
+<p>视图就是一张虚拟表，可以像使用子查询做为结果集一样使用视图<br>触发器:执行一个可以改变表数据的操作（增加删除和修改），会自动触发另外一系列（类似于存储过程中的模块）的操作。</p>
+<p>SQL语法顺序是：<br>SELECT[DISTINCT]<br>FROM<br>WHERE<br>GROUP BY<br>HAVING<br>UNION<br>ORDER BY<br>执行顺序为：<br>FROM<br>WHERE<br>GROUP BY<br>HAVING<br>SELECT<br>DISTINCT<br>UNION<br>ORDER BY<br>The first thing that happens is loading data from the disk into memory, in order to operate on such data.<br>WITH a AS (<br>  SELECT first_name, last_name, current_date - date_of_birth age<br>  FROM author<br>)<br>SELECT *<br>FROM a<br>WHERE age &gt; 10000</p>
+<h3 id="注意">注意</h3><p>SELECT 语句有很多特殊的规则，至少你应该熟悉以下几条<br>你仅能够使用那些能通过表引用而得来的字段<br>如果你有 GROUP BY 语句，你只能够使用 GROUP BY 语句后面的字段或者聚合函数<br>当你的语句中没有 GROUP BY 的时候，可以使用开窗函数代替聚合函数<br>当你的语句中没有 GROUP BY 的时候，你不能同时使用聚合函数和其它函数<br>有一些方法可以将普通函数封装在聚合函数中<br>存储过程要返回IQ系统错误信息 SQLCODE || ERRORMSG(*) ：(两者都为EXCEPTION后第一条SQL语句才有效果)<br>IQ中若采用 FULL JOIN 连接则不能使用 WHERE 条件，否则FULL JOIN将失效，要筛选条件则用子查询先过滤记录后再FULL JOIN；</p>
+<h3 id="sybase常用SQL">sybase常用SQL</h3><p>FROM后的子查询，要定义别名才可使用<br>IQ中若采用 FULL JOIN 连接则不能使用 WHERE 条件，否则FULL JOIN将失效，要筛选条件则用子查询先过滤记录后再FULL JOIN<br>根据SELECT 语句建立[临时]表的方法（ORACLE的CREATE TABLE）为 SELECT ..[*] INTO [‘#’]table_name FROM ..<br>其中如果在table_name加前缀’#’，则为会话级临时表，否则为实体表；<br>存储过程隐式游标语法：<br>FOR A AS B CURSOR FOR SELECT … FROM …<br>DO….<br>END FOR;<br>需要注意的时，这边的A 和 B 在 过程语句中都不能引用，所以为避免过程语句其他字段名与FOR SELECT 语句的字段名称重复，<br>FOR SELECT 语句的字段最好都定义别名区分<br>因Sybase为列存储模式，在执行上INSERT语句会比UPDATE语句慢，尤其表数据越多INSERT效率就越慢；所以在ETL时建议多用UPDATE而不是INSERT<br>空字符串’’在Sybase中也是个字符而不是null值，这点要注意<br>默认值和规则：Transact-SQL 提供维护实体完整性（确保为要求值得的每一列都提供值）和域完整性（确保列中的每个值都属于该列的合法值集合）的关键字</p>
+<h3 id="转换函数">转换函数</h3><p>CONVERT(datetype,exp[,format-style])<br>CAST(exp AS data-type)</p>
+<h3 id="日期函数">日期函数</h3><p>DAY(date_exp):返回日期天值，DAYS(date_exp,int):返回日期date_exp加int后的日期；MONTH与MONTHS、YEAR与YEARS同理；<br>DATE(exp):将表达式转换为日期，并删除任何小时、分钟或秒；兼容性：IQ<br>DATEPART(date-part,date-exp): 返回日期分量的对应值(整数)<br>GETDATE():返回系统时间<br>DATENAME(datepart,date_expr):以字符串形式返回date_expr指定部分的值,转换成合适的名字<br>DATEDIFF(datepart,date_expr1,date_expr2):返回date_expr2-date_expr1,通过指定的datepart度量<br>DATEADD（date-part,num-exp,date-exp）:返回按指定date-part分量加num-exp值后生成的date-exp值；</p>
+<h3 id="数学函数">数学函数</h3><p>CEIL(num-exp)：返回大于或等于指定表达式的最小整数；兼容性：IQ&amp;ASE<br>FLOOR(numeric_expr):返回小于或等于指定值的最大整数<br>ABS(num-exp):返回数值表达式的绝对值；兼容性：IQ&amp;ASE<br>TRUNCNUM(1231.1251,2)：截取数值；不四舍五入<br>ROUND(numeric_expr,int_expr)：把数值表达式圆整到int_expr指定的精度<br>RAND([int_expr])：返回0-1之间的随机浮点数，可指定基值<br>SIGN(int_expr)：返回正+1，零0或负-1<br>SQRT(float_expr)：返回指定值的平方根<br>PI()：返回常数3.1415926<br>POWER(numeric_expr,power)：返回numeric_expr的值给power的幂<br>EXP(float_expr)：给出指定值的指数值</p>
+<h3 id="常用DDL语句">常用DDL语句</h3><p>1.删除列<br>ALTER TABLE table_name DELETE column_name<br>2.增加列<br>ALTER TABLE table_name ADD (column_name DATA_TYPE [NOT] NULL)<br>3.修改列的空与非空<br>ALTER TABLE table_name MODIFY column_name [NOT] NULL<br>4.修改列名<br>ALTER TABLE table_name RENAME old_column_name TO new_column_name<br>5.快速建立临时表<br>SELECT * INTO [#]table_name FROM …..<br>6、修改表名ALTER TABLE old_table_name RENAME new_table_name<br>7.增加主键约束<br>ALTER TABLE tb_name ADD CONSTRAINT pk_name PRIMARY KEY(col_name,..)<br>8.删除主键约束<br>ALTER TABLE tb_name DROP CONSTRAINT pk_name<br>9.建立自增长字段，与Oracle的SEQUENCE类似<br>CREATE TABLE TMP_001 (RES_ID INTEGER IDENTITY NOT NULL)<br>10.添加表注释<br>COMMENT ON TABLE table_name IS ‘….’<br>11.创建索引<br>CREATE INDEX index_name ON table_name(column_name)</p>
+<h3 id="SQL优化">SQL优化</h3><p>常见瓶颈：<br>绝大多数瓶颈在于I/O子系统<br>若CPU很高，90%以上是因为索引不当<br>发生swap时，可能因为内存分配太小或过大<br>iowait太高时，想办法从索引角度入手优化，以及提高I/O设备性能，增加内存，减少排序，减少SELECT一次性读取数据量。<br>常见优化策略：<br>瞬间并发很高，采用thread pool<br>频繁order by\group by，索引入手<br>适当调整内存，不要太大或太小。一般ibp设置为50% ~ 70%为宜<br>iowait高，加内存，提高iops，减少数据读写。</p>
+<p>SQL优化<br>多用简单SQL<br>少用子查询和复杂查询<br>少用复杂join，注意join驱动表是否最优<br>where不使用函数，避免无法使用索引<br>注意类型隐式转换<br>事务快速提交，但不要频繁反复提交</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/sql/">sql</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/sql/">sql</a><a href="/tags/sybase/">sybase</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/09/15/sybase学习小记/" data-title="sybase学习小记 | Hexo" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/16/internship小记/" title="internship">
+  <strong>上一篇：</strong><br/>
+  <span>
+  internship</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/15/java面试题/"  title="java面试题">
+ <strong>下一篇：</strong><br/> 
+ <span>java面试题
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sybase_sql"><span class="toc-number">1.</span> <span class="toc-text">Sybase_sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法特点"><span class="toc-number">1.1.</span> <span class="toc-text">语法特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的四个特点ACID"><span class="toc-number">1.2.</span> <span class="toc-text">事务的四个特点ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程功能"><span class="toc-number">1.3.</span> <span class="toc-text">存储过程功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程优点"><span class="toc-number">1.4.</span> <span class="toc-text">存储过程优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接字符串"><span class="toc-number">1.5.</span> <span class="toc-text">连接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#left_截取指定字符串的指定个数字符"><span class="toc-number">1.5.1.</span> <span class="toc-text">left 截取指定字符串的指定个数字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#charIndex()"><span class="toc-number">1.5.2.</span> <span class="toc-text">charIndex()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete_和_truncate"><span class="toc-number">1.6.</span> <span class="toc-text">delete 和 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">1.7.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase常用SQL"><span class="toc-number">1.8.</span> <span class="toc-text">sybase常用SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换函数"><span class="toc-number">1.9.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.10.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.11.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用DDL语句"><span class="toc-number">1.12.</span> <span class="toc-text">常用DDL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL优化"><span class="toc-number">1.13.</span> <span class="toc-text">SQL优化</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="John Doe">John Doe</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

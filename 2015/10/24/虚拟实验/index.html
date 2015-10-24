@@ -1,0 +1,595 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>虚拟实验 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="《基于HLA的自行高炮CGG的研究与设计》随着计算机网络技术和军事需求的不断提高，作战模拟逐步由单机环境转向网络环境，分布交互式作战仿真成为研究的重点，各种支撑技术相继出台，最具代表性和发展潜力的是基于高层体系结构(High Level Architecture，HLA)框架下构建的作战仿真系统。它通过一定的协议把分布在模拟器中的个体联入同一个虚拟战场环境中实现综合仿真。通过对人类作战行为足够的建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟实验">
+<meta property="og:url" content="http://yoursite.com/2015/10/24/虚拟实验/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="《基于HLA的自行高炮CGG的研究与设计》随着计算机网络技术和军事需求的不断提高，作战模拟逐步由单机环境转向网络环境，分布交互式作战仿真成为研究的重点，各种支撑技术相继出台，最具代表性和发展潜力的是基于高层体系结构(High Level Architecture，HLA)框架下构建的作战仿真系统。它通过一定的协议把分布在模拟器中的个体联入同一个虚拟战场环境中实现综合仿真。通过对人类作战行为足够的建">
+<meta property="og:updated_time" content="2015-10-24T05:30:48.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="虚拟实验">
+<meta name="twitter:description" content="《基于HLA的自行高炮CGG的研究与设计》随着计算机网络技术和军事需求的不断提高，作战模拟逐步由单机环境转向网络环境，分布交互式作战仿真成为研究的重点，各种支撑技术相继出台，最具代表性和发展潜力的是基于高层体系结构(High Level Architecture，HLA)框架下构建的作战仿真系统。它通过一定的协议把分布在模拟器中的个体联入同一个虚拟战场环境中实现综合仿真。通过对人类作战行为足够的建">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/24/虚拟实验/" title="虚拟实验" itemprop="url">虚拟实验</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-24T05:30:18.000Z" itemprop="datePublished"> 发表于 2015-10-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HLA主要由规则(Rules)、对象模型模板(OMT，Object_Model_Template)和接口规范(Interface_Specification)3部分组成。在HLA中将仿真应用与底层的通信和分布仿真基本功能相分离，由运行时间框架(Run_Time_Infrastructure，RTI)提供的服务来实现底层的通信和基本功能，即在一个联邦的执行过程中，所有的联邦成员按照HLA的接口规范说明所要求的方式同RTI进行数据交换，实现成员间的互操作。"><span class="toc-number">1.</span> <span class="toc-text">HLA主要由规则(Rules)、对象模型模板(OMT，Object Model Template)和接口规范(Interface Specification)3部分组成。在HLA中将仿真应用与底层的通信和分布仿真基本功能相分离，由运行时间框架(Run Time Infrastructure，RTI)提供的服务来实现底层的通信和基本功能，即在一个联邦的执行过程中，所有的联邦成员按照HLA的接口规范说明所要求的方式同RTI进行数据交换，实现成员间的互操作。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDL接口定义语言是不同程序和语言的粘合剂，基于IDL丰富的数据类型集和定义值对象的能力，使用互联网内部对象请求代理协议（Internet_Inter-ORB_Protocol）作为从IDL接口和数据类型到线路上的流数据的形式化映射。使用IIOP和生成IDL的能力使得新模型可以无缝集成到CORBA基础设施中。使用远程方法激活（Remote_Method_Invocation,RMI）接口联合Java和CORBA。"><span class="toc-number">2.</span> <span class="toc-text">IDL接口定义语言是不同程序和语言的粘合剂，基于IDL丰富的数据类型集和定义值对象的能力，使用互联网内部对象请求代理协议（Internet Inter-ORB Protocol）作为从IDL接口和数据类型到线路上的流数据的形式化映射。使用IIOP和生成IDL的能力使得新模型可以无缝集成到CORBA基础设施中。使用远程方法激活（Remote Method Invocation,RMI）接口联合Java和CORBA。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML-RPC(XML_Remote_Procedure_Call)XML远程方法调用，是基于XML格式的跨平台RPC技术,一个XML-RPC消息就是一个用XML描述的http-post_请求，通过XML标签描述过程调用的参数和返回结果，为连接不同系统，不同设备发布的可读信息提供了简单实用的应用层协议，实现系统不同部分的集成。"><span class="toc-number">3.</span> <span class="toc-text">XML-RPC(XML Remote Procedure Call)XML远程方法调用，是基于XML格式的跨平台RPC技术,一个XML-RPC消息就是一个用XML描述的http-post 请求，通过XML标签描述过程调用的参数和返回结果，为连接不同系统，不同设备发布的可读信息提供了简单实用的应用层协议，实现系统不同部分的集成。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络控制及应用层控制，可有效防止内部终端访问网络时被植入病毒，也可防止内部用户将资料传播给非法组织。"><span class="toc-number">4.</span> <span class="toc-text">网络控制及应用层控制，可有效防止内部终端访问网络时被植入病毒，也可防止内部用户将资料传播给非法组织。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绿盟科技发布工控漏洞扫描系统ICSScan"><span class="toc-number">5.</span> <span class="toc-text">绿盟科技发布工控漏洞扫描系统ICSScan</span></a></li></ol>
+		
+		</div>
+		
+		<p>《基于HLA的自行高炮CGG的研究与设计》<br>随着计算机网络技术和军事需求的不断提高，作战模拟逐步由单机环境转向网络环境，分布交互式作战仿真成为研究的重点，各种支撑技术相继出台，最具代表性和发展潜力的是基于高层体系结构(High Level Architecture，HLA)框架下构建的作战仿真系统。<br>它通过一定的协议把分布在模拟器中的个体联入同一个虚拟战场环境中实现综合仿真。通过对人类作战行为足够的建模，这些实体能不需要人为的交互而自动地对仿真战场环境中的事件和状态做出反应。它不仅具有构建各种不同类型和功能的高炮的重用能力，更重要的是通过给定不同的初始化数据可快速重构出高炮作战训练所需要的具有不同层次的指挥决策能力和战术行为的仿真智能高炮。<br>仿真对象模型(Simulation Object Model，SOM)</p>
+<h2 id="HLA主要由规则(Rules)、对象模型模板(OMT，Object_Model_Template)和接口规范(Interface_Specification)3部分组成。在HLA中将仿真应用与底层的通信和分布仿真基本功能相分离，由运行时间框架(Run_Time_Infrastructure，RTI)提供的服务来实现底层的通信和基本功能，即在一个联邦的执行过程中，所有的联邦成员按照HLA的接口规范说明所要求的方式同RTI进行数据交换，实现成员间的互操作。">HLA主要由规则(Rules)、对象模型模板(OMT，Object Model Template)和接口规范(Interface Specification)3部分组成。在HLA中将仿真应用与底层的通信和分布仿真基本功能相分离，由运行时间框架(Run Time Infrastructure，RTI)提供的服务来实现底层的通信和基本功能，即在一个联邦的执行过程中，所有的联邦成员按照HLA的接口规范说明所要求的方式同RTI进行数据交换，实现成员间的互操作。</h2><p>HLA规则<br>RTI规范 按照HLA的接口协议进行开发，提供了一系列用于仿真互联的服务，是HLA仿真系统进行分层管理控制、实现分布仿真可扩充性的基础。<br>TENA 试验与训练时能体系结构，迫切需要一种能克服当前靶场烟囱式设计，能实现靶场资源之间的互操作、重用和可组合的机制，TENA由此产生。一个逻辑靶场行将分布在许多设施中的试验、训练、仿真、高性能的计算技术继承起来，采用公共的体系结构将他们连接在一起互操作。在一个逻辑靶场中，真实的军事装备及其他模拟的武器和兵力之间能彼此交互，无论在什么地方。TENA最重要的技术驱动需求是可互操作、重用和可组合。<br>可互操作是某个独自开发的组件、应用或系统能与其他的元素朝着某个共同目标一起工作的特性，对于TENA来说，最重要的互操作就是语义互操作，他是一种建立在有公共语言和通信上下文组成的基础之上的互操作。重用是在某种不同于某个给定的组件，应用或系统原始设计的上下文下使用它的能力，关注多次使用。可组合是指可重用、可互操作的元素能组成一个集合的特性。</p>
+<h2 id="IDL接口定义语言是不同程序和语言的粘合剂，基于IDL丰富的数据类型集和定义值对象的能力，使用互联网内部对象请求代理协议（Internet_Inter-ORB_Protocol）作为从IDL接口和数据类型到线路上的流数据的形式化映射。使用IIOP和生成IDL的能力使得新模型可以无缝集成到CORBA基础设施中。使用远程方法激活（Remote_Method_Invocation,RMI）接口联合Java和CORBA。">IDL接口定义语言是不同程序和语言的粘合剂，基于IDL丰富的数据类型集和定义值对象的能力，使用互联网内部对象请求代理协议（Internet Inter-ORB Protocol）作为从IDL接口和数据类型到线路上的流数据的形式化映射。使用IIOP和生成IDL的能力使得新模型可以无缝集成到CORBA基础设施中。使用远程方法激活（Remote Method Invocation,RMI）接口联合Java和CORBA。</h2><p>《复杂信息系统网络脆弱性分析与仿真验证技术研究》<br>从复杂网络拓扑结构和行为脆弱性分析技术、关键协议脆弱性分析技术以及仿真验证三方面展开研究<br>提出了基于复杂网络理论的静态和动态结合的分析方法。静态脆弱性研究使用度、介数、紧密度、聚集系数、熵等参数进行仿真计算和比较，动态级联故障研究中，使用容量-负载模型对示例网在不同攻击策略下的级联故障过程进行仿真分析。</p>
+<p>设计实现了一个基于网络靶场技术的脆弱性仿真验证平台，归纳并提出了面向网络脆弱性分析的通用网络靶场架构，设计了一套满足网络靶场可控性安全性要求的控制系统方案，以及基于灰色聚类方法的CTR能力成熟度量化评估模型。</p>
+<p>基于XML-RPC组件间通信技术</p>
+<h2 id="XML-RPC(XML_Remote_Procedure_Call)XML远程方法调用，是基于XML格式的跨平台RPC技术,一个XML-RPC消息就是一个用XML描述的http-post_请求，通过XML标签描述过程调用的参数和返回结果，为连接不同系统，不同设备发布的可读信息提供了简单实用的应用层协议，实现系统不同部分的集成。">XML-RPC(XML Remote Procedure Call)XML远程方法调用，是基于XML格式的跨平台RPC技术,一个XML-RPC消息就是一个用XML描述的http-post 请求，通过XML标签描述过程调用的参数和返回结果，为连接不同系统，不同设备发布的可读信息提供了简单实用的应用层协议，实现系统不同部分的集成。</h2><p>《工控设备的安全保密风险评估时间》<br>工控系统与办公系统不同，系统中使用智能设备、嵌入式操作系统和各种专用协议、尤其是智能设备具有集成度高、行业性强、内核不对外开放、数据交互接口无法进行技术管控等。<br>工控系统的安全风险评估方法、标准还在不断探索中，本文介绍工控设备安全保密风险评估模型和评估流程</p>
+<hr>
+<p>《工控网中的安全应用》<br>工控安全目标：通讯可控  区域隔离   报警追踪<br>入侵检测部署：<br>1.实时性。实时入侵检测可以避免常规情况下，管理员对系统日志进行审计以辨别入侵行为时的低效和延迟。<br>2.可扩展性<br>3.事件记录</p>
+<h2 id="网络控制及应用层控制，可有效防止内部终端访问网络时被植入病毒，也可防止内部用户将资料传播给非法组织。">网络控制及应用层控制，可有效防止内部终端访问网络时被植入病毒，也可防止内部用户将资料传播给非法组织。</h2><p>重点《工业控制系统脆弱性分析与建模研究》<br>使得ICS安全面临严重威胁的因素：1）此阿勇带有已知脆弱性的标准化协议和技术<br>2）控制系统与其他网络的连接 3）不安全和无认证的访问 4） 控制系统缺乏安全技术等<br>攻击树和攻击图<br>把攻击图中边的权值抽象成攻击者网络组建需要付出的服用，攻击者可以通过统计网络组件获得收益，攻击者的目标就是将攻击过程中必须付出的费用最小，同时获取收益最大化</p>
+<p>网络攻击建模可以理解为，通过使用数学的方法来描述整个网络的拓扑结构、组件信息、网络连接、攻击者的知识能力和最终目的等</p>
+<p>信息系统一般提取出一下网络要素：<br>1）主机要素<br>2）网络连接要素<br>3）网络服务要素<br>4）用户权限要素</p>
+<hr>
+<p>赛博靶场六个方面的任务：<br>1.典型的网络环境中对信息保障能力和信息生存工具进行定量、定性评估<br>2.对目前和未来的武器系统，与作战行动中复杂的大规模异构网络和用户进行逼真模拟<br>3.在同一基础设施上，同时进行多项独立实验<br>4.实现针对因特网、全球信息栅格等大规模网络的逼真测试<br>5.开发具有创新性的网络测试能力并部署相应的工具和设备<br>6.通过科学方法对各种网络进行全方位严格测试</p>
+<hr>
+<p>高级持续性威胁（ Advanced Persistent Threat，简称 APT）<br>针对 PLC 的进行编程控制和诊断通常通过下位机软件（即常见的 WINCC、 Unity Pro）来实现，下位机软件存在的<br>安全漏洞将直接导致 PLC 产生安全风险，特定的可编程逻辑控制器（如西门子6ES7-417 、 6ES7-315-2）也面临诸如拒绝服务等风险 。<br>数据采集与监视控制系统（ Supervisory Control And Data Acquisition ，简写为SCADA），国内也称之为组态监控软件</p>
+<p>人机界面（ Human Machine Interface，简称 HMI）<br>因此考虑工业控制系统安全时， 除了重视其核心系统组件的安全属性外，也要了解并重视其网络环境的安全相关属性的影响，如网<br>络开放程度、网络结构、协议安全性等。</p>
+<p>工业控制网络与传统网络区别<br>体系架构（ICS系统由PLC、RTU、SCADA等工控设备系统各组成）<br>操作系统（广泛使用VxWorks、uClinux、Wince等）<br>数据交换协议（OPC、Modbus、DNP3）<br>实时性要求高</p>
+<p>专有通信协议、规约在设计时通常只强调通信的实时性及可用性，对安全性普遍考虑不足：比如缺少足够强度的认证、加密、<br>授权等</p>
+<p>分析任何协议时，区分安全问题的种类是非常有用的：一类是协议自身的设计和描述引起的，另一类是协议的不正确实现引起的<br>本文将与工控协议相关的安全问题分为两类：一类是工控协议自身特点所造成的固有安全问题；另一类是演化到基于通用计算机、通用操作系统和TCP/IP后继承的安全问题。</p>
+<p>利用现场无线网络或企业办公网进行渗透攻击</p>
+<h2 id="绿盟科技发布工控漏洞扫描系统ICSScan">绿盟科技发布工控漏洞扫描系统ICSScan</h2><p>航天靶场打的测量数据库的建设和应用涉及用户在数据录入、处理、管理、交换中的各项活动，统一的标准数据存取接口，是满足数据采集和数据集成应用要求的前提。数据接口技术中采用XML技术，以数据库为存贮手段，以XML为交换载体的数据管理模式。</p>
+<p>基于支持向量机的故障诊断<br>马尔科夫链<br>入侵检测</p>
+<p>IEEE1394是IEEE标准化组织制定的一项具有视频数据传输速度的串行接口标准<br>现有的产品1394协议支持100Mbps、200Mbps、400mbps的数据传输率，将来将达到800Mbps、1600Mbps、3200mbps的数据传输率。<br>因为1394能够处理高速数据传输率，它促使外设向计算机传输更多的数据</p>
+<p>1394a FireWire 400             视频采集卡<br>1394b FireWire 800<br>1394和USB这类串行总线和PCI这类并行总线不一样，1394和USB这类总线，两个设备之间如果必须经过第三个设备，那么数据必须也从第三个设备穿过，也就是说第三个设备也要参与传输. 而PCI这类并行总线，就象一条大马路铺到各家的门口，两个设备如果商量好传输数据，并申请到了总线，就可以直接在两个设备间传输，不用经过第三家. 当然更本质的区别是，1394是串行的，而PCI是并行的.<br>USB与IEEE1394的区别在于USB是一一种主从式架构,IEEE1394则为对等架构<br>相对于模拟视频接口，1394技术在采集和回录过程中没有任何信号的损失，正是由于这个优势，1394更多地是被人们当做视频采集卡来使用 </p>
+<p>【1394特点】<br>多媒体应用的实时数据传输<br>现在数据传输率为100，200，&amp;400Mbits/s；将来达到800Mbits/s或Gbits/s<br>实时连接或断开时数据不丢失或中断<br>支持即插即用自动配置<br>实时应用的宽带宽<br>不同设备和应用的通用连接<br>遵循IEEE1394高性能串行总线标准</p>
+<p>networkworldweixin<br>目前数控系统正朝着开放式、网络化及智能化<br>等方向发展[3-5]，数控总线作为工业通信网络的一<br>种[6]，用于连接数控系统装置间数字式、双向、多<br>点的通信，其采用了同步和异步两种通信机制，在<br>这两种机制下如何保证消息的安全通信是本文研究<br>重点。<br>总线满足周期性、实时性、同步性、可靠性及安全性等要求。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/10/24/虚拟实验/" data-title="虚拟实验 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/10/24/python笔记/" title="python笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  python笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/10/18/paper小记/"  title="paper小记">
+ <strong>下一篇：</strong><br/> 
+ <span>paper小记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/10/24/虚拟实验/" data-title="虚拟实验" data-url="http://yoursite.com/2015/10/24/虚拟实验/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HLA主要由规则(Rules)、对象模型模板(OMT，Object_Model_Template)和接口规范(Interface_Specification)3部分组成。在HLA中将仿真应用与底层的通信和分布仿真基本功能相分离，由运行时间框架(Run_Time_Infrastructure，RTI)提供的服务来实现底层的通信和基本功能，即在一个联邦的执行过程中，所有的联邦成员按照HLA的接口规范说明所要求的方式同RTI进行数据交换，实现成员间的互操作。"><span class="toc-number">1.</span> <span class="toc-text">HLA主要由规则(Rules)、对象模型模板(OMT，Object Model Template)和接口规范(Interface Specification)3部分组成。在HLA中将仿真应用与底层的通信和分布仿真基本功能相分离，由运行时间框架(Run Time Infrastructure，RTI)提供的服务来实现底层的通信和基本功能，即在一个联邦的执行过程中，所有的联邦成员按照HLA的接口规范说明所要求的方式同RTI进行数据交换，实现成员间的互操作。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDL接口定义语言是不同程序和语言的粘合剂，基于IDL丰富的数据类型集和定义值对象的能力，使用互联网内部对象请求代理协议（Internet_Inter-ORB_Protocol）作为从IDL接口和数据类型到线路上的流数据的形式化映射。使用IIOP和生成IDL的能力使得新模型可以无缝集成到CORBA基础设施中。使用远程方法激活（Remote_Method_Invocation,RMI）接口联合Java和CORBA。"><span class="toc-number">2.</span> <span class="toc-text">IDL接口定义语言是不同程序和语言的粘合剂，基于IDL丰富的数据类型集和定义值对象的能力，使用互联网内部对象请求代理协议（Internet Inter-ORB Protocol）作为从IDL接口和数据类型到线路上的流数据的形式化映射。使用IIOP和生成IDL的能力使得新模型可以无缝集成到CORBA基础设施中。使用远程方法激活（Remote Method Invocation,RMI）接口联合Java和CORBA。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML-RPC(XML_Remote_Procedure_Call)XML远程方法调用，是基于XML格式的跨平台RPC技术,一个XML-RPC消息就是一个用XML描述的http-post_请求，通过XML标签描述过程调用的参数和返回结果，为连接不同系统，不同设备发布的可读信息提供了简单实用的应用层协议，实现系统不同部分的集成。"><span class="toc-number">3.</span> <span class="toc-text">XML-RPC(XML Remote Procedure Call)XML远程方法调用，是基于XML格式的跨平台RPC技术,一个XML-RPC消息就是一个用XML描述的http-post 请求，通过XML标签描述过程调用的参数和返回结果，为连接不同系统，不同设备发布的可读信息提供了简单实用的应用层协议，实现系统不同部分的集成。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络控制及应用层控制，可有效防止内部终端访问网络时被植入病毒，也可防止内部用户将资料传播给非法组织。"><span class="toc-number">4.</span> <span class="toc-text">网络控制及应用层控制，可有效防止内部终端访问网络时被植入病毒，也可防止内部用户将资料传播给非法组织。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绿盟科技发布工控漏洞扫描系统ICSScan"><span class="toc-number">5.</span> <span class="toc-text">绿盟科技发布工控漏洞扫描系统ICSScan</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/安全/" title="安全">安全<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

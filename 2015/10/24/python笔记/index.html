@@ -1,0 +1,787 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python笔记 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="import Imagedef test():im = Image.open(‘D:\111.png’)(w,h)= im.sizeim.thumbnail((w//2,h//2))im.save(‘D:\thumbnail.jpg’,’jpeg’)if name == ‘main‘:test()
+round(1.15,2) ===&amp;gt; 1.2ord(‘a’) ===&amp;gt; 97 ####">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python笔记">
+<meta property="og:url" content="http://yoursite.com/2015/10/24/python笔记/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="import Imagedef test():im = Image.open(‘D:\111.png’)(w,h)= im.sizeim.thumbnail((w//2,h//2))im.save(‘D:\thumbnail.jpg’,’jpeg’)if name == ‘main‘:test()
+round(1.15,2) ===&amp;gt; 1.2ord(‘a’) ===&amp;gt; 97 ####">
+<meta property="og:updated_time" content="2015-10-24T05:35:47.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python笔记">
+<meta name="twitter:description" content="import Imagedef test():im = Image.open(‘D:\111.png’)(w,h)= im.sizeim.thumbnail((w//2,h//2))im.save(‘D:\thumbnail.jpg’,’jpeg’)if name == ‘main‘:test()
+round(1.15,2) ===&amp;gt; 1.2ord(‘a’) ===&amp;gt; 97 ####">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/24/python笔记/" title="python笔记" itemprop="url">python笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-24T05:35:17.000Z" itemprop="datePublished"> 发表于 2015-10-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#删掉文件:"><span class="toc-number">1.</span> <span class="toc-text">删掉文件:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#print(man,file=man_file)"><span class="toc-number">1.1.</span> <span class="toc-text">print(man,file=man_file)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#print(other,file=other_file)"><span class="toc-number">1.2.</span> <span class="toc-text">print(other,file=other_file)</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>import Image<br>def test():<br>im = Image.open(‘D:\111.png’)<br>(w,h)= im.size<br>im.thumbnail((w//2,h//2))<br>im.save(‘D:\thumbnail.jpg’,’jpeg’)<br>if name == ‘main‘:<br>test()</p>
+<p>round(1.15,2) ===&gt; 1.2<br>ord(‘a’) ===&gt; 97 #### 字母和数字相互转换<br>chr(65) ===&gt; ‘A’<br>divmod(15,6) ===&gt;(2,3)</p>
+<p>‘-‘*40 ===&gt; ‘———————————————-’<br>‘an’ in ‘Django’ ===&gt;True<br>‘xyz’ not in ‘Django’ ===&gt; True<br>字符串拼接用 join “;”.join[‘list1’,’list2’]<br>列表扩充 list1.extend(list2)</p>
+<p>u’ABC’.encode(‘utf-8’) ####把unicode转为utf-8<br>‘abc’.decode(‘utf-8’) ####把utf-8转为unicode</p>
+<p>保存python文件时，保存为utf-8格式</p>
+<p>！/usr/bin/env python</p>
+<p>–coding:utf-8 –</p>
+<p>List列表 =[‘jack’,’mike’]<br>list.append(‘marry’)<br>list[0] list[1] ####根据下标访问制定元素<br>list.insert(1,’Jack’) ####插入<br>list.pop() ####弹出最后一个元素<br>list.pop(1) ####弹出制定元素<br>list[1]=’Sarah’ ####赋值<br>list 列表 =[‘jack’,’mike’,’marry’]<br>s = [‘python’,’java’,list,’scheme’] ####list元素也可以是另一个list<br>这样如果要取mike的值， s[2][1]</p>
+<p>在序列中循环时，索引位置和对应值可以使用enumerate()函数同时得到<br>for i,v in enumerate([‘tic’,’tac’,’tom’]):<br>print i,v<br>同时循环两个或更多序列，可以使用zip()整体打包<br>questions = [‘name’,’quesst’,’favorite’]<br>answers = [‘lance’,’the’,’only’]<br>for q,a in zip(questions,answers):<br>print ‘what is your {0}?it is {1}’.format(q,a)<br>pass 语句</p>
+<p>def fib(n):<br>result = []<br>a,b = 0,1<br>while a &lt; n:<br>result.append(b)<br>a,b = b,a+b<br>return result #### 返回一个包含数列的链表<br>f100 = fib(100)</p>
+<p>tuple 元组的值不能变，更安全<br>tuple 当只有一个元素的时候定义： t=(1,)<br>当 tuple 中包含list时候，list的值是可以变化的<br>eg: t=(‘a’,’b’,[‘A’,’B’])<br>t[2][0]=’x’ t[2][1]=’y’</p>
+<p>循环 for 语句<br>names = [‘mike’,’marry’,’java’]<br>for name in names:<br>print name<br>for x in [1,2,3,4,5]:<br>sum = sum+x<br>range(5) ===&gt; 0,1,2,3,4<br>1到100的和：<br>for x in range(101):<br>sum = sum+x</p>
+<p>birth = raw_input(‘birth:’)</p>
+<p>dict 和 set<br>d ={‘mick’:98,’Bob’:93,’marry’:88}<br>d[‘mick’]<br>d[‘mick’] = 90<br>d.pop(‘Bob’)</p>
+<p>重复元素在 set 中自动被过滤<br>s = set([1,1,2,2,3,3])<br>s ===&gt; set([1,2,3])<br>s.add(4)<br>s.remove(4)<br>a = set(‘abc’) b = set(‘deab’)<br>a - b<br>a | b<br>a ^ b<br>a &amp; b</p>
+<p>list 内容可变 比如： a = [‘c’,’b’,’a’]<br>a.sort() a===&gt; [‘a’,’b’,’c’] #### 值改变<br>tuple　内容不可变　比如：a = ‘abc’<br>b = a.replace(‘a’,’A’) b===&gt;’Abc’ a===&gt;’abc’ ####值不变</p>
+<p>import math<br>def move(x, y, step, angle=0):<br>nx = x + step <em> math.cos(angle)<br>ny = y - step </em> math.sin(angle)<br>return nx, ny ####返回多个值，实质是返回一个tuple<br>x,y = move(100,100,60,math.pi/6)<br>print x,y</p>
+<p>def add_end(L=None):<br>if L is None:<br>L = []<br>L.append(‘END’)<br>return L #### 默认参数必须指向不变对象</p>
+<p>def calc(<em>numbers):<br>sum = 0<br>for n in numbers:<br>sum = sum + n </em> n<br>return sum #### 把函数参数变为可变参数</p>
+<p>可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。<br>而关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict</p>
+<p>在Python中定义函数，可以用必选参数、默认参数、可变参数和关键字参数<br><em>args是可变参数，args接收的是一个tuple<br>*</em>kw是关键字参数，kw接收的是一个dict</p>
+<p>使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，<br>每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。<br>由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出<br>解决递归调用栈溢出的方法是通过尾递归优化</p>
+<p>切片特性：<br>L=[‘mick’,’java’,’marry’,’hello’]<br>L[:3] L[-3:]<br>L = range(100)<br>L[:10:2] ####到10为止，步长为2<br>eg: ‘ABCDEFG’[::2]</p>
+<p>Python的for循环抽象程度要高于Java的for循环<br>因为Python的for循环不仅可以用在list或tuple上，还可以作用在其他可迭代对象上</p>
+<p>如何判断一个对象是可迭代对象呢？方法是通过collections模块的Iterable类型判断<br>from collections import Iterable<br>isinstance(‘abc’, Iterable) ####str是否可迭代<br>True<br>isinstance([1,2,3], Iterable) #### list是否可迭代<br>True<br>isinstance(123, Iterable) #### 整数是否可迭代<br>False</p>
+<p>Python内置的enumerate函数可以把一个list变成索引-元素对<br>这样就可以在for循环中同时迭代索引和元素本身<br>for i, value in enumerate([‘A’, ‘B’, ‘C’]):<br>print i, value</p>
+<p>列表生成式 ：<br>[x<em>x for x in range(1,11) if x % 2]<br>[m + n for m in ‘ABC’ for n in ‘XYZ’]<br>squares = map(lambda x:x*</em>2,range(10))<br>[(x,y) for x in [1,2,3] for y in [2,3,1] if x != y]</p>
+<p>列出当前目录下的所有文件和目录名<br>import os #### 导入os模块，模块的概念后面讲到<br>[d for d in os.listdir(‘.’)] #### os.listdir可以列出文件和目录</p>
+<p>for循环其实可以同时使用两个甚至多个变量，比如dict的iteritems()可以同时迭代key和value<br>d = {‘x’:’A’,’y’:’B’,’z’:’C’}<br>for k,v in d.iteritems(): #### 或者[k+’=’+v for k,v in d.iteritems()]<br>print k,’=’,v<br>L = [‘Hello’,’World’,’IBM’,’Apple’]<br>[s.lower() for s in L]<br>isinstance(x, str) ####判断是否字符串</p>
+<p>生成器：<br>g = (x * x for x in range(10))</p>
+<p>函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</p>
+<p>Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言<br>变量可以指向函数<br>如 f = abs<br>def add(x,y,f):<br>return f(x)+f(y)</p>
+<p>Python 内建了 map() 和 reduce() 函数 函数式编程工具 filter(),map(),reduce()<br>map()函数接收两个参数，一个是函数，一个是序列，map将传入的函数依次作用到序列的每个元素，并把结果作为新的list返回<br>educe把一个函数作用在一个序列[x1, x2, x3…]上，这个函数必须接收两个参数，<br>reduce把结果继续和序列的下一个元素做累积计算，其效果就是： reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</p>
+<p>str 类型转化成 int 类型：<br>def fn(x, y):<br>return x <em> 10 + y<br>def char2num(s):<br>return {‘0’: 0, ‘1’: 1, ‘2’: 2, ‘3’: 3, ‘4’: 4, ‘5’: 5, ‘6’: 6, ‘7’: 7, ‘8’: 8, ‘9’: 9}[s]<br>reduce(fn, map(char2num, ‘13579’))<br>13579<br>def str2int(s):<br>return reduce(lambda x,y: x</em>10+y, map(char2num, s)) ####编写str–&gt;int 函数</p>
+<p>和map()类似，filter()也接收一个函数和一个序列。和 map()不同的时，filter()把传入的函数依次作用于每个元素<br>eg:<br>def is_odd(n):<br>return n % 2 == 1<br>filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15]) ==&gt;1,5,9,15</p>
+<p>def not_empty(s):<br>return s and s.strip()<br>filter(not_empty, [‘A’, ”, ‘B’, None, ‘C’, ’ ‘])</p>
+<p>[‘A’, ‘B’, ‘C’]</p>
+<p>seq = range(8)<br>def add(x,y):<br>return x+y<br>map(add,seq,seq)<br>reduce(add,ra nge(1,11))</p>
+<p>sorted([12,32,39,45])<br>sorted()函数也是一个高阶函数，它还可以接收一个比较函数来实现自定义的排序<br>eg： sorted([12,34,24,54],reversed_sort)<br>def reversed_sort(x,y):<br>if x &gt;y :<br>return -1<br>if x &lt; y:<br>return 1<br>return 0</p>
+<p>sorted([‘bob’,’about’,’zo’,’bac’],cmp_ignore_cast)</p>
+<p>字典：<br>cleese = {} 或者 palin = dict() 都可以创建字典，第二个属于工厂模式</p>
+<p>默认字典排序<br>def cmp_ignore_case(s1,s2):<br>u1 = s1.upper()<br>u2 = s2.upper()<br>if u1 &lt; u2:<br>return -1<br>if u1 &gt; u2:<br>return 1<br>return 0;</p>
+<p>在函数调用前后自动打印日志，但又不希望修改now()函数的定义，</p>
+<p>这种在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）。</p>
+<p>字典： tel = {‘jack’:3089,’merry’:2309}<br>tel[‘jack’]<br>del tel[‘jack’]<br>tel.keys()<br>‘jack’ in tel</p>
+<p>偏函数就是把某些参数固定<br>import functools<br>int2 = functools.partial(int,base = 2)</p>
+<p>面向对象编程——Object Oriented Programming，简称OOP<br>“测试驱动开发”（TDD：Test-Driven Development）</p>
+<p>我5分钟后到，如果没到，请再读一遍此短信…</p>
+<p>os.path.abspath(‘.’)<br>‘D:\green\python’ ####得到当前目录</p>
+<p>对文件重命名:</p>
+<p>os.rename(‘test.txt’, ‘test.py’) </p>
+<h4 id="删掉文件:">删掉文件:</h4><p>os.remove(‘test.py’)</p>
+<p>os.path.splitext()可以直接让你得到文件扩展名</p>
+<p>os.path.splitext(‘/path/to/file.txt’)<br>(‘/path/to/file’, ‘.txt’)</p>
+<p>把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名</p>
+<p>os.path.split(‘/Users/michael/testdir/file.txt’)<br>(‘/Users/michael/testdir’, ‘file.txt’)</p>
+<p>在某个目录下创建一个新目录，</p>
+<p>首先把新目录的完整路径表示出来:</p>
+<p>os.path.join(‘/Users/michael’, ‘testdir’)<br>‘/Users/michael/testdir’</p>
+<p>然后创建一个目录:</p>
+<p>os.mkdir(‘/Users/michael/testdir’)</p>
+<p>删掉一个目录:</p>
+<p>os.rmdir(‘/Users/michael/testdir’)</p>
+<p>序列化：</p>
+<p>序列化之后，就可以把序列化后的内容写入磁盘，或者通过网络传输到别的机器上。</p>
+<p>反过来，把变量内容从序列化的对象重新读到内存里称之为反序列化，即unpickling。</p>
+<p>区别在于cPickle是C语言写的，速度快</p>
+<p>pickle是纯Python写的，速度慢，跟cStringIO和StringIO一个道理</p>
+<p>先尝试导入cPickle，如果失败，再导入pickle：</p>
+<p>try:<br>import cPickle as pickle<br>except ImportError:<br>import pickle<br>d = dict(name = ‘Bob’,age = 20,score = 80)<br>f = open(‘dump.txt’,’wb’)</p>
+<p>pickle.dump(d,f) 直接把对象序列化后写入一个file-like Object</p>
+<p>pickle.dump(d,f)<br>f.close()</p>
+<p>把任意对象序列化成一个str，然后可以把这个str写入文件</p>
+<p>pickle.dumps(d)</p>
+<p>import pickle<br>with open(‘mydata.pick1’,’wb’) as mysave: #### 以二进制文件打开写入<br>pickle.dump([1,2,’three’],mysave)<br>with open(‘mydata.pick1’,’rb’) as myread: #### 以二进制文件打开读取<br>a_list = pickle.load(myread) #### 腌制数据出现问题PickleError</p>
+<p>with open(‘man.pick1’,’wb’) as mysave:<br>pickle.dump(man,mysave) </p>
+<p>####包含写入内容和文件名<br>except IOError as err:<br>print(‘File error’+str(err))</p>
+<p>with open(‘www.txt’,’rb’) as mysave:<br>data = mysave.readline()<br>dd = data.strip().split(‘,’) ####去除字符串的空格，且以“，”分割，存入列表中</p>
+<p>list.sort() 改变列表<br>sorted(list) 不改变列表</p>
+<p>强烈建议使用Python的r前缀，就不用考虑转义<br>s = r’ABC-001’ 、</p>
+<p>对应的正则表达式字符串不变：</p>
+<p>‘ABC-001’</p>
+<p>正则表达式切分</p>
+<p>如果用户输入了一组标签，下次记得用正则表达式来把不规范的输入转化成正确的数组。</p>
+<p>re.split(r’\s+’, ‘a b c’)<br>[‘a’, ‘b’, ‘c’]<br>re.split(r’[\s,]+’, ‘a,b, c d’)<br>[‘a’, ‘b’, ‘c’, ‘d’]<br>re.split(r’[\s,\;]+’, ‘a,b;; c d’)<br>[‘a’, ‘b’, ‘c’, ‘d’]<br>分组<br>m = re.match(r’^(\d{3})-(\d{3,8})$’, ‘010-12345’)<br>-&gt; m </p>
+<p><_sre.sre_match object="" at="" 0x1026fb3e8=""><br>-&gt; m.group(0)<br>‘010-12345’<br>-&gt; m.group(1)<br>‘010’<br>-&gt; m.group(2)<br>‘12345’</_sre.sre_match></p>
+<p>正则表达式默认采用贪婪匹配</p>
+<p>eg: re.match(r’^(\d+)(0*)′,‘102300′).groups()===&gt;(‘102300′,”)贪婪匹配re.match(r′(\d+?)(0∗)’, ‘102300’).groups() ===&gt; (‘1023’, ‘00’) ####非贪婪匹配</p>
+<p>正则表达式编译优化：</p>
+<p>如果一个正则表达式要重复使用几千次，出于效率的考虑，我们可以预编译该正则表达式</p>
+<p>import re</p>
+<p>编译:</p>
+<p>-&gt; re_telephone = re.compile(r’^(\d{3})-(\d{3,8})$’)</p>
+<p>使用：</p>
+<p>-&gt; re_telephone.match(‘010-12345’).groups()<br>(‘010’, ‘12345’)<br>-&gt; re_telephone.match(‘010-8086’).groups()<br>(‘010’, ‘8086’)<br>re_telephone.match(‘010-8086’).group(i) #### group(1)取得第一个</p>
+<p>内建模块：<br>collections ==&gt; namedtuple deque OrderedDict<br>namedtuple 一个点的二维坐标<br>from collections import namedtuple<br>-&gt; Point = namedtuple(‘Point’, [‘x’, ‘y’])<br>-&gt; p = Point(1, 2)<br>-&gt; p.x<br>1</p>
+<p>isinstance(p, Point)<br>Circle = namedtuple(‘Circle’, [‘x’, ‘y’, ‘r’])</p>
+<p>deque<br>deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈</p>
+<p>from collections import deque ####要用到collection.deque<br>-&gt; q = deque([‘a’, ‘b’, ‘c’])<br>-&gt; q.append(‘x’)<br>-&gt; q.appendleft(‘y’)<br>-&gt; q<br>deque([‘y’, ‘a’, ‘b’, ‘c’, ‘x’])<br>deque除了实现list的append()和pop()外，还支持appendleft()和popleft()<br>这样就可以非常高效地往头部添加或删除元素。</p>
+<p>OrderedDict 在对dict做迭代时，我们无法确定Key的顺序。<br>如果要保持Key的顺序，可以用OrderedDict<br>od = OrderedDict()<br>-&gt; od[‘z’] = 1<br>-&gt; od[‘y’] = 2<br>-&gt; od[‘x’] = 3<br>-&gt; od.keys() #### 按照插入的Key的顺序返回<br>[‘z’, ‘y’, ‘x’]</p>
+<p>hashlib</p>
+<p>摘要算法之所以能指出数据是否被篡改过，就是因为摘要函数是一个单向函数</p>
+<p>计算f(data)很容易，但通过digest反推data却非常困难</p>
+<p>import hashlib<br>md5 = hashlib.md5()<br>md5.update(‘how to use’) ####多次调用md5.update()<br>md5.update(’ python’)<br>a = md5.hexdigest()</p>
+<p>md5 = hashlib.md5()<br>md5.update(‘how to use python’) ####单次调用md5.update()<br>b = md5.hexdigest()<br>print a == b #### 计算出md5的值<br>from math import pi<br>[str(round(pi,i)) for i in range(1,6)]</p>
+<p>sha1 用法类似于md5<br>与 C++ 语言不通，python中没有定义构造函数new的概念。python会为你完成对象构建<br>然后你可以使用init()方法定制对象的初始状态<br>目标标识符赋值至self参数</p>
+<p>好的web应用应当遵循 模型-试图-控制器(Model-View-Controller) 模式</p>
+<p>eg:交换变量<br>x = 6<br>y = 7<br>x, y = y,x</p>
+<p>eg:if语句在行内<br>print ‘hello’ if True else ‘world’<br>eg:连接<br>print str(1) + ‘world’<br>eg:两个列表同时迭代<br>nfc = [‘packet’,’hello’]<br>afc = [‘River’,’world’]<br>for teama,teamb in zip(nfc,afc):<br>print teama,teamb<br>eg:索引迭代<br>for index,team in enumerate(nfc):<br>print index,team<br>eg:筛选出偶数：<br>even=[num for num in nums if num % 2 == 0]<br>eg:字典推导：<br>teams = [‘packet’,’www’,’river’]<br>print {key:value for value,key in enumerate(teams)}<br>{‘www’:1,’river’:2,’packet’:0}<br>eg:将列表转换成字符串：<br>print “,”.join(teams)<br>eg:从字典中获取元素：<br>data = {‘user’:1,’name’:2,’three’:4}<br>print data.get(‘user’,False)<br>eg:<br>若是3的倍数则打印”Fizz”替换3的倍数，5的倍数打印”Buzz”,既是3的倍数又是5的倍数打印”FizzBuzz”<br>for x in range(101):<br>print ‘Fizz’[x%3<em>4:] + ‘Buzz’[x%5</em>4:] or x</p>
+<p>eg：统计次数 Counter库<br>from collections import Counter<br>print Counter(‘hello’)<br>-&gt;Counter({‘l’:2,’h’:1,’e’:1,’o’:1})<br>select top(3) with ties * from tablename order by name desc</p>
+<p>遍历目录方法：<br>import os<br>fileList = []<br>rootdir = “/data”<br>for root, subFolders, files in os.walk(rootdir):<br>if ‘.svn’ in subFolders: subFolders.remove(‘.svn’)<br>for file in files:<br>if file.find(“.t2t”) != -1:#### 查找特定扩展名的文件<br>file_dir_path = os.path.join(root,file)<br>fileList.append(file_dir_path)<br>print fileList<br>print “;”.join(fileList)</p>
+<p>列表按列排序<br>a = [(‘2011-03-17’, ‘2.26’, 6429600, ‘0.0’), (‘2011-03-16’, ‘2.26’, 12036900, ‘-3.0’),<br>(‘2011-03-15’, ‘2.33’, 15615500,’-19.1’)]<br>-&gt; print a[0][0]<br>2011-03-17<br>-&gt; b = sorted(a, key=lambda result: result[1],reverse=True) //第二列排序<br>-&gt; print b<br>[(‘2011-03-15’, ‘2.33’, 15615500, ‘-19.1’), (‘2011-03-17’, ‘2.26’, 6429600, ‘0.0’),<br>(‘2011-03-16’, ‘2.26’, 12036900, ‘-3.0’)]<br>-&gt; c = sorted(a, key=lambda result: result[2],reverse=True) //同理，第三列排序</p>
+<p>列表去重(list uniq)<br>-&gt; lst= [(1,’sss’),(2,’fsdf’),(1,’sss’),(3,’fd’)] //列表里面是元组<br>-&gt; set(lst)<br>set([(2, ‘fsdf’), (3, ‘fd’), (1, ‘sss’)])<br>-&gt; lst = [1, 1, 3, 4, 4, 5, 6, 7, 6] //列表里面是基本类型<br>-&gt; set(lst)<br>set([1, 3, 4, 5, 6, 7])</p>
+<p>字典,列表,字符串互转<br>字典转化为字符串<br>-&gt; params = {“server”:”mpilgrim”, “database”:”master”, “uid”:”sa”, “pwd”:”secret”}<br>-&gt; [“%s=%s” % (k, v) for k, v in params.items()]<br>[‘server=mpilgrim’, ‘uid=sa’, ‘database=master’, ‘pwd=secret’]<br>-&gt; “;”.join([“%s=%s” % (k, v) for k, v in params.items()])<br>‘server=mpilgrim;uid=sa;database=master;pwd=secret’</p>
+<p>字符串转化为字典<br>-&gt; a = ‘server=mpilgrim;uid=sa;database=master;pwd=secret’<br>-&gt; aa = {}<br>-&gt; for i in a.split(‘;’):aa[i.split(‘=’,1)[0]] = i.split(‘=’,1)[1]<br>-&gt; aa<br>{‘pwd’: ‘secret’, ‘database’: ‘master’, ‘uid’: ‘sa’, ‘server’: ‘mpilgrim’}</p>
+<p>Python调用系统命令或者脚本<br>使用 os.system() 调用系统命令 , 程序中无法获得到输出和返回值<br>-&gt; import os<br>-&gt; os.system(‘ls -l /proc/cpuinfo’)<br>-&gt; os.system(“ls -l /proc/cpuinfo”)<br>-r–r–r– 1 root root 0 3月 29 16:53 /proc/cpuinfo<br>使用 os.popen() 调用系统命令, 程序中可以获得命令输出，但是不能得到执行的返回值<br>-&gt; out = os.popen(“ls -l /proc/cpuinfo”)<br>-&gt; print out.read()<br>-r–r–r– 1 root root 0 3月 29 16:59 /proc/cpuinfo<br>使用 commands.getstatusoutput() 调用系统命令, 程序中可以获得命令输出和执行的返回值<br>-&gt; import commands<br>-&gt; commands.getstatusoutput(‘ls /bin/ls’)<br>(0, ‘/bin/ls’)<br>Python读写文件<br>一次性读入文件到列表，速度较快，适用文件比较小的情况下<br>track_file = “track_stock.conf”<br>fd = open(track_file)<br>content_list = fd.readlines()<br>fd.close()<br>for line in content_list:<br>print line<br>逐行读入，速度较慢,适用没有足够内存读取整个文件(文件太大)<br>fd = open(file_path)<br>fd.seek(0)<br>title = fd.readline()<br>keyword = fd.readline()<br>uuid = fd.readline()<br>fd.close()</p>
+<p>写文件 write 与 writelines 的区别<br>Fd.write(str) : 把str写到文件中，write()并不会在str后加上一个换行符<br>Fd.writelines(content) : 把content的内容全部写到文件中,原样写入，不会在每行后面加上任何东西</p>
+<p>import math<br>dir(math) 列出math模块包含的函数<br>dir(builtins)列出python内置函数<br>查询字符串都包含哪些函数 dir(”)<br>print(math.tanh.doc) 打印模块函数的说明文档<br>将整数和字符串转换为浮点数 float(3) float(‘3.3’)<br>将整数和浮点数转换为字符串 str(88) str(9.7)<br>字符串转换为整数 int(‘5’)<br>全局变量 局部变量<br>在函数里面改变全局变量，需要先 global name 声明当前引用的是全局变量</p>
+<p>默认值：<br>def great(name,greeting = ‘hello’)<br>关键字参数<br>def shop(where = ‘store’,what = ‘pasta’,howmuch=’10 pounds’)<br>shop() shop(what = ‘towels’) shop(howmuch = ‘a ton’,what = ‘towels’,where = ‘bakery’)</p>
+<p>模块 引入模块后，import shapes 使用 dir(shapes) 来列出其中的函数</p>
+<p>返回文件名的扩展名：<br>dot = fname.rfind(‘.’)<br>if dot == -1:<br>return ”<br>else:<br>return fname[dot+1:]</p>
+<p>字符串函数<br>ss.find(‘ee’)<br>ss.rfind(‘.’) 从右往左搜索<br>ss.index(‘ee’)<br>ss.rindex(‘ee’)<br>设置格式的函数：<br>‘{0} like {1}’.format(‘Jack’,’Ice Cream’) ==&gt;’Jack like Ice Cream’<br>‘{who} {pet} has fleas’.format(pet=’dog’,who=’my’) ==&gt; ‘my dog has fleas’</p>
+<p>strip函数<br>s.strip(ch) 从s开头和末尾删除在ch中出现的字符<br>s.lstrip(ch) 从左侧<br>s.rstrip(ch) 从右侧<br>name.lstrip()<br>name.strip(‘_- ‘)</p>
+<p>拆分函数：<br>s.partition(t) 将s拆分成3个字符串，head,t,tail<br>s.rpartition(t)<br>url = ‘www.google.com’<br>url.partition(‘.’)<br>(‘www’, ‘.’, ‘google.com’)<br>url.rpartition(‘.’)<br>(‘www.google’, ‘.’, ‘com’)</p>
+<p>s.split() 以t为分隔符，将s划分为一系列字符串，并返回由这些字符串组成的列表。<br>s.rsplit()<br>s.splitlines()<br>url.split(‘.’)<br>[‘www’, ‘google’, ‘com’]<br>ss = ‘a long time ago, princess ate an apple’<br>ss.split </p>
+<p>ss.split()<br>[‘a’, ‘long’, ‘time’, ‘ago,’, ‘princess’, ‘ate’, ‘an’, ‘apple’]</p>
+<p>替换函数：<br>s = ‘up,up and away’<br>s.replace(‘up’,’down’)<br>s.replace(old,new) 将S中的每个old替换为new<br>s.expandtabs(n) 将 s中的每个制表符号替换为n个空格</p>
+<p>正则表达式<br>def is_done(s):<br>return re.match(‘done|quit’,s)!=None<br>re.match(regex,s)不匹配时返回None，否则返回一个特殊的正则表达式匹配对象</p>
+<p>列表函数：<br>s.append(x)<br>s.count(x)<br>s.extend(lst)<br>s.insert(i,x)<br>s.pop(i)<br>s.remove(x)<br>s.reverse() 就地反转<br>s.sort() 就地排序<br>还可以为包含元组的列表进行排序，自然排序<br>pst = [(1,2),(1,-1),(2,5),(4,1)]<br>pst.sort()</p>
+<p>使用列表解析<br>cap_name = [n.capitalize() for n in name]<br>使用列表解析进行筛选<br>result = [n for n in nums if n &gt; 0]</p>
+<p>字典中键是唯一的，否则会产生覆盖</p>
+<p>字典函数：<br>d.items()<br>d.keys()<br>d.values()<br>d.get(key) 获取key对应的value<br>d.pop(key) 删除键key并返回与之相关联的值<br>d.clear()<br>d.copy() d = dict.copy()<br>d.fromkeys(s,t)<br>d.setdefault(key,v) 如果键包含在字典中，则返回其值；否则返回V并将(key,v)添加到字典中<br>d.update(e) 将e中的键值对添加到字典中，e可能是字典，也可能是键值对序列</p>
+<p>设置字符串格式：<br>print(‘value %.2f’ % x) 如果要在字符串中包含%,必须使用%%。<br>格式化字符串<br>‘My {pet} has {prob}’.format(pet=’dog’,prob=’fleas’)<br>‘My{0} has {1}’.format(‘dog’,’fleas’)<br>‘1/81={x}’.format(x=1/81)<br>‘1/81={x:.3f}’.format(x=1/81)</p>
+<p>os.getcwd() 返回当前目录<br>os.lilstdir(p) 返回一个字符串列表，其中包括p指定的文件夹中所有的文件和文件夹的名称<br>os.chdir(p) 将当前工作目录设置为p<br>os.path.isfile(p) 当p指向一个文件名称是，返回True<br>os.path.isdir(p) 目录时，返回True<br>os.stat(fname) 返回有关fname的信息，如大小和最后一次修改时间</p>
+<p>若提示找不到模块 sys.path.append() 将包含py文件的路径加入到path中即可<br>若提示找不到函数 则 使用 模块.函数的方式执行函数<br>调用f.read()之后，文件指针指向文件末尾，通过调用f.seek(0),让文件指针重新指向了文件开头，这样写入f时，从开头开始。</p>
+<p>若输入年龄不符合要求一直循环，符合要求则返回<br>def getAge():<br>while True:<br>try:<br>n = int(raw_input(‘how old are you’))<br>return n<br>except ValueError:<br>print(‘please input an integer’)<br>if name == ‘main‘:<br>getAge()</p>
+<p>注意int()讲一个书转化为整数 int(‘12’,16) –&gt; 18 意思是把16进制的12转换为10进制的数字</p>
+<p>把字符串中单词的出现频次转化为字典####3</p>
+<p>keep = {‘a’,’b’,’c’,’d’,”,’-‘,”’”}<br>def normalize(s):<br>result = ”<br>for c in s.lower():<br>if c in keep:<br>result += c<br>return result</p>
+<p>def make_dict(s):<br>s = normalize(s)<br>words = s.split()<br>d = {}<br>for w in words:<br>if w in d:<br>d[w] += 1<br>else:<br>d[w] = 1<br>return d</p>
+<p>计算字典的value的和<br>num = sum(d[w] for w in d)</p>
+<p>s.swapcase() #####大小写变换<br>s.upper() s.lower()<br>s.capitalize() #####句首大写<br>s.title() #####首字母大写<br>print s1.ljust(20)<br>print s1.rjust(20,’t’) #####以t填充<br>print s1.center(20,’*’)</p>
+<p>s1.find(‘of’) #####返回第一次出现的位置<br>s1.find(‘of’,6,len(s1))</p>
+<p>print s1.rfind(‘of’)<br>print rindex(‘of’)<br>print s1.count(‘of’)<br>print s1.replace(‘of’,’new’)</p>
+<p>print s1.strip() #####去除字符串前后空格<br>print s1.lstrip()<br>print s1.rstrip()</p>
+<p>s1.split() ##### 把字符串分开存到列表中<br>print s1.split()[2] ##### 访问列表中下标为2的项<br>s1.splitlines() #####把一行作为列表中的一个元素</p>
+<p>list = [‘mick’,’jerry’,’hello’]<br>print ‘+’.join(list)</p>
+<p>print s2.startswith(’ ‘) ##### 以某些字符开始<br>print s2.endswith(’ ‘) ##### 以某些字符结束</p>
+<p>help(‘sys’) #####查看sys模块内置函数<br>s4.isalnum() ##### 检查字符串是否由字母和数字组成<br>s4.isalpha() #####检查字符串是否只由字母组成<br>s4.isdigit() #####检查字符串是否只由数字组成<br>s4.isapace()<br>s4.isupper()<br>s4.islower()</p>
+<p>list 不能直接赋值，可以通过列表元素赋值<br>eg: list[1:3]=[22,34]</p>
+<p>n = [(‘tom’,12,170),(‘jerry’,11,180)]<br>for name,age,high in n:<br>print ‘name is:’,name</p>
+<p>for i in ‘happy’:<br>list1.append(ord(i))<br>print list1 &lt;===&gt; list1 = [ord(x) for x in ‘happy’]</p>
+<p>tt = [x*y for x in range(10) for y in range(10)]<br>str1 = [x+y for x in ‘happy’ for y in ‘good’]<br>tuple1 = [(x,y) for x in range(4) for y in range(3)]</p>
+<p>访问字典：<br>print ‘the is %(a)s,%(b)s’ % {‘a’:123,’b’:456}<br>d.clear() #####删除全部元素<br>del d[‘a’] #####根据键删除相应值</p>
+<p>三种方法：<br>for k in d:<br>print ‘d[%s]=’%k,d[k] ##### 访问字典的键值<br>for(k,v) in d.items():<br>print ‘d[%s]=’%k,v ##### 访问字典的键值<br>for (k,v) in zip(d.iterkeys(),d.itervalues()):<br>print ‘d[%s]=’%k,v ##### 访问字典的键值</p>
+<p>复杂的字典</p>
+<p>dict2 = {‘a’:’aa’,’b’:(‘apple’,’orange’),’c’:{‘d’:’dd’,’f’:’ff’}}<br>里面嵌套元组，字典<br>print dict2[‘c’][‘d’]<br>print dict2[‘b’][0]</p>
+<p>dict.keys()<br>dict.values()<br>dict.get(‘a’) #####根据键得到值<br>dict2.get(‘f’,’exitst’) ##### 不存在则返回’exitst’</p>
+<p>dict1 = {‘a’:’bpp’,’b’:’cpp’,’c’:’app’}<br>print sorted(dict1.items(),key = lambda d:d[0]) ##### 以键排序<br>print sorted(dict1.items(),key = lambda d:d[1]) ##### 以值排序</p>
+<p>import copy<br>dict2 = {‘a’:123,’b’:456}<br>dict3 = copy.deepcopy(dict2) ##### dict3改变不改变dict2的值<br>dict4 = copy.copy(dict2) ##### dict4改变会改变dict2的值</p>
+<p>import os<br>os.getcwd() ##### 当前工作目录<br>os.chdir(‘../python’) ##### 改变工作目录</p>
+<p>data = open(‘sketch.txt’)<br>print(data.readline(),end = ’ ‘)<br>data.seek(0) ##### 使用seek方法返回到文件起始位置<br>data.close()</p>
+<p>print x, 在变量后面加逗号可以使得print不换行</p>
+<p>help(s.split) 查询split()的用法，或者help–&gt;python DOCS</p>
+<p>import os<br>if os.path.exitst(‘www.txt’)</p>
+<p>out = open(‘data.out’,’w’)<br>print (‘Norwegian Blues ‘,file = out)<br>out.close() ##### 刷新输出</p>
+<p>w模式会清除已有内容<br>a模式不清除已有内容，追加文件<br>w+ 读写，不清除<br>若文件不存在，则创建，再进行读写</p>
+<p>import os<br>def test():<br>man= []<br>other = []<br>try:<br>data = open(‘www.txt’)<br>for each_line in data:<br>try:<br>(role,line) = each_line.split(‘:’,1)<br>line = line.strip()<br>if role == ‘man’:<br>man.append(line)<br>else:<br>other.append(line)<br>except ValueError:<br>pass<br>data.close()<br>except IOError as err2:<br>print (‘{0}’.format(err2))<br>try:<br>man_file = open(‘man_data.txt’,’w’)<br>other_file = open(‘other_data.txt’,’w’) </p>
+<h5 id="print(man,file=man_file)">print(man,file=man_file)</h5><h5 id="print(other,file=other_file)">print(other,file=other_file)</h5><p>man_file.writelines(‘%s’% x for x in man)<br>other_file.writelines(‘%s’ % y for y in other)<br>except IOError as err:<br>print(‘File open error{0}’ % str(err))<br>finally:<br>man_file.close()<br>other_file.close()<br>if name == ‘main‘:<br>print(os.getcwd())<br>test()</p>
+<p>with语句利用了一种名为上下文管理协议的python技术<br>try:<br>with open(‘its.txt’,’w’) as data:<br>print (‘it\’s ..’,file = data)<br>except IOError as err:<br>print (‘file error’+str(err))</p>
+<p>except IOError as err2:<br>print(‘error’+str(err2))<br>print(‘error{0}’.format(err2))</p>
+<p>def santi(time_string):<br>if ‘:’ in time_string:<br>sep = ‘:’<br>elif ‘-’ in time_string:<br>sep = ‘-’<br>else:<br>return time_string<br>(mins,seconds) = time_string.split(sep)<br>return mins+’.’+seconds<br>def test():<br>data = [‘2.13’,’2:38’,’2-23’]<br>list = [santi(ti) for ti in data]<br>list.sort()<br>print list ##### 对不规则数据进行统一变换</p>
+<p>sorted(list2,reverse=True) ##### 逆序排列<br>sorted(set(list2),reverse = True)[2:7] ##### 去除重复数据，逆序排列，取2-7个数据</p>
+<p>类：<br>def santi(time_string):<br>if ‘:’ in time_string:<br>sep = ‘:’<br>elif ‘-’ in time_string:<br>sep = ‘-’<br>else:<br>return time_string<br>(mins,seconds) = time_string.split(sep)<br>return mins+’,’+seconds<br>def get_coach_data(filename):<br>try:<br>with open(filename) as f:<br>data = f.readline()<br>temp = data.strip().split(‘,’)<br>return Athlete(temp.pop(0),temp.pop(0),temp)<br>except IOError as ioerr:<br>print (‘File error:’+str(ioerr))<br>class Athlete:<br>def init(self,a_name,a_dob=None,a_time=[]):<br>self.name = a_name<br>self.dob = a_dob<br>self.times = a_time<br>def top3(self):<br>return (sorted(set([santi(t) for t in self.times]))[0:3])<br>if name == ‘main‘:<br>james = get_coach_data(‘james.txt’)<br>print(james.name+“‘s fastest times are:”+str(james.top3()))</p>
+<p>.pyc 文件的内容是平台独立的，所以 Python 模块目录可以在不同架构的机器之间共享。</p>
+<p>import sys<br>sys.path.append(‘utf/guido/lib/python’)</p>
+<p>内置函数 dir() 用于按模块名搜索模块定义，返回一个字符串类型的存储列表</p>
+<p>对齐方式，rjust(n) n位右对齐，同理 ljust(n)</p>
+<p>print str(x).rjust(4),repr(x<em>x).rjust(4),repr(x</em>x*x).rjust(4)</p>
+<p>str.zfill(6) 向字符串左侧添加0<br>eg ‘12’.zfill(5) ===&gt; ‘00012’</p>
+<p>str.format() 用法</p>
+<p>print ‘{0} and {1}’ . format(‘spam’ , ‘eggs’ )</p>
+<p>JPEG 或 EXE 这样的二进制文件，在操作这些文件时一定要记得以二进制模式打开</p>
+<p>import os<br>os.getcwd() ##### 返回当前工作目录</p>
+<p>os.chdir(‘../xx’) ##### 改变当前工作目录<br>os.system(‘mkdir today’) ##### 执行命令</p>
+<p>应该用 import os 风格而非 from os import * 。这样可以保证随操作系统不</p>
+<p>同而有所变化的 os.open() 不会覆盖内置函数 open()</p>
+<p>针对日常的文件和目录管理任务， shutil 模块提供了一个易于使用的高级接口</p>
+<p>-&gt; import shutil<br>-&gt; shutil. copyfile(‘data.db’ , ‘archive.db’ )<br>-&gt; shutil. move(‘/build/executables’ , ‘installdir’ )</p>
+<p>glob 模块提供了一个函数用于从目录通配符搜索中生成文件列表</p>
+<p>import glob<br>-&gt; glob. glob(‘*.py’ )<br>[‘primes.py’, ‘random.py’, ‘quote.py’]</p>
+<p>在命令行中执行</p>
+<p>python demo.py one two three 后可以得到以下输出结果<br>-&gt; import sys<br>-&gt; print sys. argv<br>[‘demo.py’, ‘one’, ‘two’, ‘three’]</p>
+<p>import re<br>re. findall(r’ \bf[a-z]*’ , ‘which foot or hand fell fastest’ )<br>[‘foot’, ‘fell’, ‘fastest’]<br>re. sub(r’(\b[a-z]+) \1’ , r’ \1’ , ‘cat in the the hat’ )<br>‘cat in the hat’</p>
+<p>相对于 timeit 的细粒度， profile 和 pstats 模块提供了针对更大代码块的时间度量工具。</p>
+<p>使用元组封装和拆封来交换元素看起来要比使用传统的方法要诱人的多</p>
+<p>def f(a,L= []):<br>L.append(a)<br>return L<br>print f(1)<br>print f(2)<br>print f(3) #####会累积</p>
+<p>python fibo.py 50<br>if name ==’main‘:<br>import sys<br>fib(int(sys.argv[1]))</p>
+<p>以同样的方式，可以使用<strong>操作符分拆关键字参数为字典<br>def parrot(voltage,state=’a stiff’,action=’voom’):<br>print ‘this parrot’,action,<br>print ‘if you put’,voltage,’hello’,<br>print ‘eswe would’,state<br>d={‘voltage’:’four mill’,’state’:’Blues’,’action’:’acc’}<br>parrot(</strong>d)</p>
+<p>python文件操作：<br>chmod+x hello.py 为文件添加执行权限 ./hello.py<br>文件读取方式<br>read([size) 读取size个字节<br>readline([size]) 读取一行<br>readlines([sizes]) 读取完文件（受buffer大小限制），返回每一行组成的列表；一定要读完的话可以用迭代器<br>文件写入方式<br>write(str) 将字符串写入文件<br>writelines(sequence_of_string) 写多行到文件</p>
+<p>mode:<br>r 只读方式，文件必须存在<br>w 只写方式，文件不存在则创建；存在则清空文件内容<br>a 追加方式，文件不存在则创建<br>r+/w+ 读写方式打开<br>a+ 追加和读写方式打开</p>
+<p>type(f) 查看f属性 help(file) 查看file所有方法 help(f.tell) 查看f的tell方法<br>f. tab 补齐命令 查看f可以使用哪些命令<br>vim yy -》 1000p 产生足够大的数据量<br>f = open(‘imooc.txt’)<br>itedr_f = iter(f) //使用迭代器对文件进行操作，不消耗大量内存的情况下对文件进行遍历<br>lines = 0<br>for line in iter_f:<br>lines += 1<br>python写磁盘时机：<br>1.主动调用close()或者flush方法，写缓存同步到磁盘 f.close() f.flush()<br>2.写入数据量大于或者等于写缓存，写缓存同步到磁盘<br>eg:<br>f = open(‘yuchuan.txt’,’w’)<br>for i in range(10000):<br>f.writelines(‘test write’ + str(i) + ‘\n’)<br>此时调到后台执行<br>vim yuchuan.txt<br>f.close()<br>vim yuchuan.txt</p>
+<p>python文件为什么要关闭：<br>1.将写缓存同步到磁盘<br>2.linux系统中每个进程打开文件的个数是有限的<br>3.如果打开文件数到了系统限制，在打开文件就会失败</p>
+<p>linux下，ps得到PID之后， cat /proc/20384(PID) 列出该进程详细信息<br>for i in range(1025):<br>list_f.append(open(‘imooc.txt’,’w’))<br>print “%d:%d” % (i,list_f[i].fileno()) //提示打开文件过多<br>Seek<br>os.SEEK_SET 相对文件起始位置<br>os.SEEK_CUR 相对文件当前位置<br>os.SEEK_END 相对文件结尾位置</p>
+<p>f.read(3) 读入三个字节<br>f.tell() 返回当前相对于文件头的偏移位置<br>f.seek(0.os.SEEK_SET) 返回文件头<br>f.seek(0,os.SEEK_END) 返回文件尾<br>f.seek(-5,os.SEEK_CUR) 从当前位置前5个开始读取</p>
+<p>python标准文件：<br>标准输入： sys.stdin<br>标准输出：sys.stdout<br>标准错误：sys.stderr</p>
+<p>sys模块提供sys.argv属性，通过该属性可以得到命令行参数； sys.argv:字符串组成的列表</p>
+<p>f.encoding //查看文件编码<br>import codec<br>//创建指定编码格式文件<br>f = codec.open(‘test.txt’,’w’,’utf-8’,errors,buffering)</p>
+<p>使用os模块对文件进行操作<br>os.read(fd,buffersize)<br>os.write(fd,string)<br>os.lseek(fd,pos,how) 文件指针操作<br>os.close(fd)</p>
+<p>fd = os.open(‘imooc.txt’,os.O_CREAT | os.O_RDWR)<br>n = os.write(fd,’imooc’)<br>l = os.lseek(fd,0,os.SEEK_SET)<br>str1 = os.read(fd,5)<br>os.close(fd)<br>OS模块常用方法介绍：<br>access(path,mode) 判断该文件权限 eg: os.access(‘imooc.txt’,os.F_OK) os.R_OK os.W_OK os.X_OR<br>listdir(path) 返回当前目录下所有文件组成的列表 eg: os.listdir(‘./’)<br>remove(path) eg: os.remove(‘imooc.txt’)<br>rename(old,new) eg: os.rename(‘test/’,’test1’)<br>mkdir(path[,mode]) 创建目录 eg:<br>mkdirs(path[,mode]) 创建多级目录<br>removedirs(path)<br>rmdir(path)</p>
+<p>os.path 模块方法介绍：<br>exists(path) 当前路径是否存在<br>isdir(s) 是否是一个目录<br>isfile(path) 是否是一个文件<br>getsize(filename) 返回文件大小<br>dirname(p) 返回路径的目录<br>basename(p) 返回路径的文件名</p>
+<p>练习<br>import ConfigParser<br>cfg = ConfigParser.ConfigParser()<br>help(cfg.read)<br>cfg.read(‘study.txt’)<br>help(cfg.sections)<br>cfg.sections()<br>help(cfg.items)<br>for se in cfg.sections():<br>print se<br>print cfg.items(se)<br>cfg.set(‘userinfo’,’email’,’user@163.com’)<br>cfg.set(‘userinfo’,’pwd’,’123456’)<br>cfg.remove_option(‘userinfo’,’email’)</p>
+<p>Case:<br>import os<br>import os.path<br>import ConfigParser<br>”’<br>dump ini<br>del section<br>del item<br>modify item<br>add section<br>save modify<br>”’<br>class student_info(object):<br>def init(self,recordfile):<br>self.logfile = recordfile<br>self.cfg = ConfigParser.ConfigParser()<br>def cfg_load(self):<br>self.cfg.read(self.logfile)<br>def cfg_dump(self):<br>se_list = self.cfg.sections()<br>print “—-&gt;”<br>for se in se_list:<br>print se<br>print self.cfg.items(se)<br>print “&lt;—-”<br>def delete_item(self,section,key):<br>self.cfg.remove_option(section,key)<br>def delete_section(self,section):<br>self.cfg.remove_section(section)<br>def add_section(self,section):<br>self.cfg.add_section(section)<br>def set_item(self,section,key,value):<br>self.cfg.set(section,key,value)<br>def save(self):<br>fp = open(logfile,’w’)<br>self.cfg.write(fp)<br>fp.close()<br>if name ==’main‘:<br>info = student_info(‘study.txt’)<br>info.cfg_load()<br>info.cfg_dump()<br>info.set_item(‘userinfo’,’pwd’,’123456’)<br>info.cfg_dump()<br>info.add_section(‘login’)<br>info.set_item(‘login’,’2015-7-14’,’20’)<br>info.cfg_dump()<br>info.save()</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python/">python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/10/24/python笔记/" data-title="python笔记 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/10/24/虚拟实验/"  title="虚拟实验">
+ <strong>下一篇：</strong><br/> 
+ <span>虚拟实验
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/10/24/python笔记/" data-title="python笔记" data-url="http://yoursite.com/2015/10/24/python笔记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#删掉文件:"><span class="toc-number">1.</span> <span class="toc-text">删掉文件:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#print(man,file=man_file)"><span class="toc-number">1.1.</span> <span class="toc-text">print(man,file=man_file)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#print(other,file=other_file)"><span class="toc-number">1.2.</span> <span class="toc-text">print(other,file=other_file)</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/安全/" title="安全">安全<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

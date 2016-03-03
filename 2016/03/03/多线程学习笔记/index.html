@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>markdown语法 | Flow</title>
+    <title>多线程学习笔记 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839* hello world           *代表项目编号``` System.out.println()```                      代码风格[on GitHub](https://github.com/jbt/markdown-edi">
+    <meta name="description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="markdown语法">
-<meta property="og:url" content="http://yoursite.com/2016/01/17/markdown语法/index.html">
+<meta property="og:title" content="多线程学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/03/03/多线程学习笔记/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839* hello world           *代表项目编号``` System.out.println()```                      代码风格[on GitHub](https://github.com/jbt/markdown-edi">
-<meta property="og:updated_time" content="2016-01-17T14:38:14.918Z">
+<meta property="og:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
+<meta property="og:updated_time" content="2016-03-03T14:14:39.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="markdown语法">
-<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839* hello world           *代表项目编号``` System.out.println()```                      代码风格[on GitHub](https://github.com/jbt/markdown-edi">
+<meta name="twitter:title" content="多线程学习笔记">
+<meta name="twitter:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -80,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/17/markdown语法/" title="markdown语法" itemprop="url">markdown语法</a>
+      <a href="/2016/03/03/多线程学习笔记/" title="多线程学习笔记" itemprop="url">多线程学习笔记</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-17T14:37:19.000Z" itemprop="datePublished"> 发表于 2016-01-17</time>
+    <time datetime="2016-03-03T14:14:22.000Z" itemprop="datePublished"> 发表于 2016-03-03</time>
     
   </p>
 </header>
@@ -100,24 +100,19 @@
 		
 		</div>
 		
-		<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>hello world           *代表项目编号</span><br><span class="line"><span class="code">```</span> System.out.println()</span><br><span class="line"><span class="code">```</span>                      代码风格</span><br><span class="line">[<span class="link_label">on GitHub</span>](<span class="link_url">https://github.com/jbt/markdown-editor</span>)  超链接</span><br><span class="line">[<span class="link_label">StackEdit</span>][<span class="link_reference">6</span>]   [6]: https://github.com/benweet/stackedit    超链接</span><br><span class="line"><span class="bullet">- </span><span class="strong">**hello world**</span>   <span class="strong">**xxx**</span> 加粗 等同于 ctrl+B,斜体 ctrl+I</span><br><span class="line"> - 加粗    <span class="code">`Ctrl + B`</span></span><br><span class="line"> - 斜体    <span class="code">`Ctrl + I`</span></span><br><span class="line"> - 引用    <span class="code">`Ctrl + Q`</span></span><br><span class="line"> - 插入链接    <span class="code">`Ctrl + L`</span></span><br><span class="line"> - 插入代码    <span class="code">`Ctrl + K`</span></span><br><span class="line"> - 插入图片    <span class="code">`Ctrl + G`</span></span><br><span class="line"> - 提升标题    <span class="code">`Ctrl + H`</span></span><br><span class="line"> - 有序列表    <span class="code">`Ctrl + O`</span></span><br><span class="line"> - 无序列表    <span class="code">`Ctrl + U`</span></span><br><span class="line"> - 横线    <span class="code">`Ctrl + R`</span></span><br><span class="line"> - 撤销    <span class="code">`Ctrl + Z`</span></span><br><span class="line"> - 重做    <span class="code">`Ctrl + Y`</span></span><br><span class="line"></span><br><span class="line">表格</span><br><span class="line">项目  |  价格  | 总结</span><br><span class="line"><span class="horizontal_rule">------|--------| -------</span></span><br><span class="line">使用冒号对齐</span><br><span class="line">| :-------- | --------:| :--: |</span><br><span class="line">项目1</span><br><span class="line"><span class="code">	定义A     : 定义A</span></span><br><span class="line">hello world [^footnote]  生成脚注</span><br><span class="line">[TOC]  生成目录</span><br><span class="line">公式 $$E=mc^2$$</span><br><span class="line"></span><br><span class="line"><span class="code">```</span>flow                 --流程图</span><br><span class="line">st=&gt;start: Start</span><br><span class="line">op=&gt;operation: Your Operation</span><br><span class="line">cond=&gt;condition: Yes or No?</span><br><span class="line">e=&gt;end</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
-<p><del>helloworld</del> 删除线</p>
-<p>```</p>
+		<p>查询CPU核数和线程数<br>grep ‘processor’ /proc/cpuinfo | sort -u | wc -l<br>grep ‘core id’ /proc/cpuinfo | sort -u | wc -l<br>线程的生命周期一共有5个状态： new runnable  running blocked dead<br>线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少穿件销毁线程的开销。<br>守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束。JVM的垃圾回收，内存管理等都是守护线程。<br>调用线程对象的setDaemon(true)则可以将其设置为守护线程<br>注意：JRE 判断程序是否执行结束的标准是所有的前台执行线程执行完毕了，而不管后台线程的状态。<br>当使用Threadlocal维护变量时，ThreadLocal 为每个使用该变量的线程提供独立的变量副本。<br>JMM(Java Memory Model) 内存管理模型<br>隐式锁的应用<br>public synchronized void methodA();<br>public void methodA(); synchronized(this);</p>
+<p>Lock 与 synchronized 区别：<br>Lock 使用起来比较灵活，但是必须有释放锁的动作配合<br>Lock 必须手动释放和开启锁，而 synchronized 不需要手动释放和开启锁<br>Lock  只适用于代码块锁，而 synchronized 对象之间是互斥关系</p>
+<p>ConcurrentHashMap<string, integer=""> map = new ConcurrentHashMap<string,integer>();<br>for (Map.Entry<string,integer> entry : map.entrySet()) {<br>            System.out.println(entry.getKey() + “ = “ +entry.getValue());<br>        }<br>Java 线程池实现了一个Java高并发的、java多线程的、可管理的统一调度器<br>Executors是个线程的工厂类，提供了一些静态方法，生成线程池常用方法三种：</string,integer></string,integer></string,></p>
+<ol>
+<li>newSingleThreadExecutor  创建一个单线程的线程池</li>
+<li>newFieedThreadPool 创建固定大小的线程池</li>
+<li>newCachedThreadPool 创建一个可缓存的线程池<br>线程安全的集合类 ：<br>Set : CopyOnWriteArraySet<br>List : CopyOnWriteArrayList   Vector<br>Map : Hashtable   ConcurrentMap -&gt; ConcurrentHashMap</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/markdown/">markdown</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/markdown/">markdown</a>
-  </div>
 
 </div>
 
@@ -125,7 +120,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/01/17/markdown语法/" data-title="markdown语法 | Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/03/03/多线程学习笔记/" data-title="多线程学习笔记 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -139,18 +134,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/02/java面试基础/" title="java面试基础">
+ <a href="/2016/03/03/单例模式/" title="单例模式">
   <strong>上一篇：</strong><br/>
   <span>
-  java面试基础</span>
+  单例模式</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/01/17/DesignPattern/"  title="DesignPattern">
+<a href="/2016/03/03/安卓面试/"  title="安卓面试">
  <strong>下一篇：</strong><br/> 
- <span>DesignPattern
+ <span>安卓面试
 </span>
 </a>
 </div>
@@ -159,7 +154,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/17/markdown语法/" data-title="markdown语法" data-url="http://yoursite.com/2016/01/17/markdown语法/"></div>
+	<div class="ds-thread" data-thread-key="2016/03/03/多线程学习笔记/" data-title="多线程学习笔记" data-url="http://yoursite.com/2016/03/03/多线程学习笔记/"></div>
 </section>
 
 

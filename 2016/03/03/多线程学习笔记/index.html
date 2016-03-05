@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/03/多线程学习笔记/index.html">
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
-<meta property="og:updated_time" content="2016-03-03T14:14:39.491Z">
+<meta property="og:updated_time" content="2016-03-05T14:23:45.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程学习笔记">
 <meta name="twitter:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
@@ -96,7 +96,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">1.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
 		
 		</div>
 		
@@ -108,6 +108,7 @@
 <li>newFieedThreadPool 创建固定大小的线程池</li>
 <li>newCachedThreadPool 创建一个可缓存的线程池<br>线程安全的集合类 ：<br>Set : CopyOnWriteArraySet<br>List : CopyOnWriteArrayList   Vector<br>Map : Hashtable   ConcurrentMap -&gt; ConcurrentHashMap</li>
 </ol>
+<h3 id="Runnable和Thread的区别">Runnable和Thread的区别</h3><p>只要是多线程肯定永远以实现Runnable接口为主，因为实现Runnable接口相比继承Thread类有如下好处<br>1.避免单继承的局限，一个类可以实现多个接口<br>2.适合资源的共享</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -164,7 +165,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">1.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
  
   </div>
 
@@ -179,6 +180,10 @@
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
@@ -197,7 +202,11 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>5</sup></a></li>
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>6</sup></a></li>
 		  
 		
 		  
@@ -205,7 +214,7 @@
 		  
 		
 		  
-			<li><a href="/categories/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
 		  
 		
 		  
@@ -218,6 +227,14 @@
 		
 		  
 			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
 		  
 		
 		  

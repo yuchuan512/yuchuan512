@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/09/15/sybase学习小记/index.html">
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
-<meta property="og:updated_time" content="2015-12-13T13:38:22.997Z">
+<meta property="og:updated_time" content="2016-03-05T12:59:07.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sybase学习小记">
 <meta name="twitter:description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
@@ -103,7 +103,7 @@
 		<h2 id="Sybase_sql">Sybase_sql</h2><h3 id="语法特点">语法特点</h3><p>1.没有“ ”，字符串使用‘ ’包含<br>2.没有逻辑相等，赋值和逻辑相等都是=<br>3.类型不再是最严格的。任何数据都可以包含在‘ ’以内<br>4.没有bool值的概念，但是在视图中可以输入true/false<br>5.它也有关系运算符：&gt; &lt; &gt;= &lt;= = &lt;&gt; != ,它返回一个bool值<br>6.它也有逻辑运算符： ！(not) &amp;&amp;(and) ||(or)<br>7.它不区别大小写<br>8.数据库完整性（Database Integrity）是指数据库中数据在逻辑上的一致性、正确性、有效性和相容性。</p>
 <h3 id="事务的四个特点ACID">事务的四个特点ACID</h3><p>A:原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。它是一个整体，不能再拆分<br>C：一致性：事务在完成时，必须使所有的数据都保持一致状态。。某种程度的一致<br>I:隔离性：事务中隔离，每一个事务是单独的请求将单独的处理，与其它事务没有关系，互不影响<br>D：持久性：如果事务一旦提交，就对数据的修改永久保留</p>
 <h3 id="存储过程功能">存储过程功能</h3><p>存储过程为标准SQL增加了如下功能：<br>条件执行、循环控制结构、命名变量、命名过程、语句块（调用存储过程让DBMS执行一系列SQL语句）</p>
-<h3 id="存储过程优点">存储过程优点</h3><p>1）封装  只需要了解过程调用的输入输出就可以安全的使用数据库，防止用户跳过完整性检查<br>2）改善性能  调用存储过程时，DBMS可快速的执行存储过程中的语句，可直接转到语句的执行，无需分析，确认，优化和生成执行计划，这些步骤实现已经完成<br>3）减少网络流量<br>4）减少工作量 编译存储过程之后，许多用户和应用程序都可执行相同的语句序列，而不必重新输入和重新向DBMS提交，当执行需要许多SQL语句或是复杂逻辑的语句时，执行已经调试并测试通过的SQL语句批处理，减少了引入程序错误的风险<br>5）安全性 系统管理员可向单独的用户授予对数据库对象的最小访问权限</p>
+<h3 id="存储过程优点">存储过程优点</h3><p>1）封装  只需要了解过程调用的输入输出就可以安全的使用数据库，防止用户跳过完整性检查<br>2）改善性能  调用存储过程时，DBMS可快速的执行存储过程中的语句，可直接转到语句的执行，无需分析，确认，优化和生成执行计划，这些步骤在预编译已经完成<br>3）减少网络流量，降低网络负载<br>4）标准组件化编程，极大的提高了程序的可移植性<br>5）安全性 系统管理员可向单独的用户授予对数据库对象的最小访问权限</p>
 <h3 id="连接字符串">连接字符串</h3><p>SELECT CONCAT(Cname,Tnum) FROM course WHERE Cnum=03</p>
 <h4 id="left_截取指定字符串的指定个数字符">left 截取指定字符串的指定个数字符</h4><p>SELECT LEFT(Cname,5) FROM course WHERE Cnum=01<br>SELECT RIGHT(Cname,5) FROM course WHERE Cnum=01</p>
 <h4 id="charIndex()">charIndex()</h4><p>SELECT LOCATE(‘ne’,cname) FROM course WHERE cnum=01<br>SELECT SUBSTRING(Cname,1,3) FROM course</p>
@@ -125,7 +125,7 @@
 <p>查看存储过程执行计划：<br>set showplan on<br>go</p>
 <p>exec sp_name<br>go<br>set showplan off<br>go</p>
 <p>dbcc traceon(3604)是把dbcc的结果输出到屏幕上。<br>dbcc sqltext(spid)是看指定的sybase进程的操作语句。<br>查看其查询计划，可以用sp_showplan spid,null,null,null</p>
-<h3 id="sybase系统函数">sybase系统函数</h3><p>sp_iqtablesize ‘T1_table’  查看表的大小空间<br>select tablewidth(‘ConditionStyle’)   查看表的行宽<br>sp_iqcolumn  ‘ConditionData’  查看表中每一列的信息<br>select * from sp_table_size_statics();   此存储过程会输出所有用户表的大小 </p>
+<h3 id="sybase系统函数">sybase系统函数</h3><p>sp_iqtablesize ‘T1_table’  查看表的大小空间<br>select tablewidth(‘ConditionStyle’)   查看表的行宽<br>sp_iqcolumn  ‘ConditionData’  查看表中每一列的信息<br>select * from sp_table_size_statics();   此存储过程会输出所有用户表的大小</p>
 <h3 id="bat启动">bat启动</h3><p>dbisql -c “uid=netmax;pwd=SOPinUETZ” -host 10.89.160.6 -port 3000 -oneerror continue   -&gt; bat启动</p>
 <p>###sql基础用法<br>drop table if exists tableA;</p>
   
@@ -164,18 +164,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/16/internship小记/" title="internship">
+ <a href="/2015/09/15/java集合/" title="java集合">
   <strong>上一篇：</strong><br/>
   <span>
-  internship</span>
+  java集合</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/15/java面试题/"  title="java面试题">
+<a href="/2015/09/08/java习惯用法/"  title="java习惯用法">
  <strong>下一篇：</strong><br/> 
- <span>java面试题
+ <span>java习惯用法
 </span>
 </a>
 </div>
@@ -211,6 +211,10 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
 		  
 		
@@ -227,7 +231,11 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>5</sup></a></li>
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>6</sup></a></li>
 		  
 		
 		  
@@ -235,7 +243,7 @@
 		  
 		
 		  
-			<li><a href="/categories/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
 		  
 		
 		  
@@ -248,6 +256,14 @@
 		
 		  
 			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
 		  
 		
 		  

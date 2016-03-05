@@ -11,37 +11,16 @@
     
 
     
-    <meta name="description" content="package com.yu;/**
-
-写出一个死锁
-@author flyyc
-/public class DeadLock { public static void main(String[] args) {DeadThread d1 = new DeadThread(0);
-DeadThread d2 = new DeadThread(1);
-d1.start();
-d2.start();">
+    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950/** * 写出一个死锁例子 * @author flyyc */public class DeadLock &amp;#123;	public static void main(String[] args) &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="死锁简单例子">
 <meta property="og:url" content="http://yoursite.com/2016/03/05/死锁简单例子/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="package com.yu;/**
-
-写出一个死锁
-@author flyyc
-/public class DeadLock { public static void main(String[] args) {DeadThread d1 = new DeadThread(0);
-DeadThread d2 = new DeadThread(1);
-d1.start();
-d2.start();">
-<meta property="og:updated_time" content="2016-03-05T14:27:21.272Z">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950/** * 写出一个死锁例子 * @author flyyc */public class DeadLock &amp;#123;	public static void main(String[] args) &amp;#123;">
+<meta property="og:updated_time" content="2016-03-05T14:30:46.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="死锁简单例子">
-<meta name="twitter:description" content="package com.yu;/**
-
-写出一个死锁
-@author flyyc
-/public class DeadLock { public static void main(String[] args) {DeadThread d1 = new DeadThread(0);
-DeadThread d2 = new DeadThread(1);
-d1.start();
-d2.start();">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950/** * 写出一个死锁例子 * @author flyyc */public class DeadLock &amp;#123;	public static void main(String[] args) &amp;#123;">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -121,25 +100,7 @@ d2.start();">
 		
 		</div>
 		
-		<p>package com.yu;<br>/**</p>
-<ul>
-<li>写出一个死锁</li>
-<li>@author flyyc<br><em>
-</em>/<br>public class DeadLock {<br> public static void main(String[] args) {<pre><code>DeadThread d1 = <span class="keyword">new</span> DeadThread(<span class="number">0</span>);
-DeadThread d2 = <span class="keyword">new</span> DeadThread(<span class="number">1</span>);
-d1.start();
-d2.start();
-</code></pre> }<br>}</li>
-</ul>
-<p>class DeadThread extends Thread{<br>    private int flag;<br>    Object x1 = new Object();<br>    Object x2 = new Object();<br>    public DeadThread(int flag){<br>        this.flag = flag;<br>    }<br>    @Override<br>    public void run() {<br>        try {<br>            if(flag == 0){<br>                synchronized (x1) {<br>                    System.out.println(“锁住了x1”);<br>                    Thread.sleep(3000);<br>                }<br>                synchronized (x2) {<br>                    System.out.println(“锁住了x2”);<br>                }<br>                System.out.println(“释放了x1和x2”);<br>            }<br>            if(flag == 1){<br>                synchronized (x2) {<br>                    System.out.println(“锁住了x2”);<br>                    Thread.sleep(3000);<br>                }<br>                synchronized (x1) {<br>                    System.out.println(“锁住了x1”);<br>                }</p>
-<pre><code>            System.<span class="keyword">out</span>.println(<span class="string">"释放了x1和x2"</span>);
-
-        }
-    } catch (Exception <span class="keyword">e</span>) {
-        <span class="keyword">e</span>.printStackTrace();
-    }
-}
-</code></pre><p>}</p>
+		<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 写出一个死锁例子</span><br><span class="line"> * @author flyyc</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> class DeadLock &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		DeadThread d1 = <span class="keyword">new</span> DeadThread(<span class="number">0</span>);</span><br><span class="line">		DeadThread d2 = <span class="keyword">new</span> DeadThread(<span class="number">1</span>);</span><br><span class="line">		d1.start();</span><br><span class="line">		d2.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DeadThread extends Thread&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">int</span> flag;</span><br><span class="line">	<span class="keyword">Object</span> x1 = <span class="keyword">new</span> <span class="keyword">Object</span>();</span><br><span class="line">	<span class="keyword">Object</span> x2 = <span class="keyword">new</span> <span class="keyword">Object</span>();</span><br><span class="line">	<span class="keyword">public</span> DeadThread(<span class="built_in">int</span> flag)&#123;</span><br><span class="line">		<span class="keyword">this</span>.flag = flag;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(flag == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">synchronized</span> (x1) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"锁住了x1"</span>);</span><br><span class="line">					Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">synchronized</span> (x2) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"锁住了x2"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">"释放了x1和x2"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(flag == <span class="number">1</span>)&#123;</span><br><span class="line">				<span class="keyword">synchronized</span> (x2) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"锁住了x2"</span>);</span><br><span class="line">					Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">synchronized</span> (x1) &#123;</span><br><span class="line">					System.out.<span class="built_in">println</span>(<span class="string">"锁住了x1"</span>);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">"释放了x1和x2"</span>);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">

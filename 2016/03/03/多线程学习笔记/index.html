@@ -11,16 +11,25 @@
     
 
     
-    <meta name="description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
+    <meta name="description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
+线程的生命周期一共有5个状态： new runnable  running blocked dead
+
+线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程学习笔记">
 <meta property="og:url" content="http://yoursite.com/2016/03/03/多线程学习笔记/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
-<meta property="og:updated_time" content="2016-03-05T14:23:45.973Z">
+<meta property="og:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
+线程的生命周期一共有5个状态： new runnable  running blocked dead
+
+线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
+<meta property="og:updated_time" content="2016-03-05T14:32:39.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程学习笔记">
-<meta name="twitter:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l线程的生命周期一共有5个状态： new runnable  running blocked dead线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线">
+<meta name="twitter:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
+线程的生命周期一共有5个状态： new runnable  running blocked dead
+
+线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -96,18 +105,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">1.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
 		
 		</div>
 		
-		<p>查询CPU核数和线程数<br>grep ‘processor’ /proc/cpuinfo | sort -u | wc -l<br>grep ‘core id’ /proc/cpuinfo | sort -u | wc -l<br>线程的生命周期一共有5个状态： new runnable  running blocked dead<br>线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少穿件销毁线程的开销。<br>守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束。JVM的垃圾回收，内存管理等都是守护线程。<br>调用线程对象的setDaemon(true)则可以将其设置为守护线程<br>注意：JRE 判断程序是否执行结束的标准是所有的前台执行线程执行完毕了，而不管后台线程的状态。<br>当使用Threadlocal维护变量时，ThreadLocal 为每个使用该变量的线程提供独立的变量副本。<br>JMM(Java Memory Model) 内存管理模型<br>隐式锁的应用<br>public synchronized void methodA();<br>public void methodA(); synchronized(this);</p>
-<p>Lock 与 synchronized 区别：<br>Lock 使用起来比较灵活，但是必须有释放锁的动作配合<br>Lock 必须手动释放和开启锁，而 synchronized 不需要手动释放和开启锁<br>Lock  只适用于代码块锁，而 synchronized 对象之间是互斥关系</p>
-<p>ConcurrentHashMap<string, integer=""> map = new ConcurrentHashMap<string,integer>();<br>for (Map.Entry<string,integer> entry : map.entrySet()) {<br>            System.out.println(entry.getKey() + “ = “ +entry.getValue());<br>        }<br>Java 线程池实现了一个Java高并发的、java多线程的、可管理的统一调度器<br>Executors是个线程的工厂类，提供了一些静态方法，生成线程池常用方法三种：</string,integer></string,integer></string,></p>
+		<h3 id="查询CPU核数和线程数">查询CPU核数和线程数</h3><p>grep ‘processor’ /proc/cpuinfo | sort -u | wc -l<br>grep ‘core id’ /proc/cpuinfo | sort -u | wc -l</p>
+<h3 id="线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead">线程的生命周期一共有5个状态： new runnable  running blocked dead</h3><blockquote>
+<ul>
+<li>线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少穿件销毁线程的开销。<br>守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束。JVM的垃圾回收，内存管理等都是守护线程。<br>调用线程对象的setDaemon(true)则可以将其设置为守护线程<br>注意：JRE 判断程序是否执行结束的标准是所有的前台执行线程执行完毕了，而不管后台线程的状态。<br>当使用Threadlocal维护变量时，ThreadLocal 为每个使用该变量的线程提供独立的变量副本。<br>JMM(Java Memory Model) 内存管理模型<br>隐式锁的应用<br>public synchronized void methodA();<br>public void methodA(); synchronized(this);</li>
+</ul>
+</blockquote>
+<h3 id="Lock_与_synchronized_区别：">Lock 与 synchronized 区别：</h3><p>Lock 使用起来比较灵活，但是必须有释放锁的动作配合<br>Lock 必须手动释放和开启锁，而 synchronized 不需要手动释放和开启锁<br>Lock  只适用于代码块锁，而 synchronized 对象之间是互斥关系</p>
+<p>ConcurrentHashMap<string, integer=""> map = new ConcurrentHashMap<string,integer>();<br>for (Map.Entry<string,integer> entry : map.entrySet()) {<br>            System.out.println(entry.getKey() + “ = “ +entry.getValue());<br>        }</string,integer></string,integer></string,></p>
+<blockquote>
+<ul>
+<li>Java 线程池实现了一个Java高并发的、java多线程的、可管理的统一调度器<br>Executors是个线程的工厂类，提供了一些静态方法，生成线程池常用方法三种：</li>
+</ul>
 <ol>
 <li>newSingleThreadExecutor  创建一个单线程的线程池</li>
 <li>newFieedThreadPool 创建固定大小的线程池</li>
-<li>newCachedThreadPool 创建一个可缓存的线程池<br>线程安全的集合类 ：<br>Set : CopyOnWriteArraySet<br>List : CopyOnWriteArrayList   Vector<br>Map : Hashtable   ConcurrentMap -&gt; ConcurrentHashMap</li>
+<li>newCachedThreadPool 创建一个可缓存的线程池</li>
 </ol>
+<ul>
+<li>线程安全的集合类 ：<br>Set : CopyOnWriteArraySet<br>List : CopyOnWriteArrayList   Vector<br>Map : Hashtable   ConcurrentMap -&gt; ConcurrentHashMap</li>
+</ul>
+</blockquote>
 <h3 id="Runnable和Thread的区别">Runnable和Thread的区别</h3><p>只要是多线程肯定永远以实现Runnable接口为主，因为实现Runnable接口相比继承Thread类有如下好处<br>1.避免单继承的局限，一个类可以实现多个接口<br>2.适合资源的共享</p>
   
 	</div>
@@ -165,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">1.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
  
   </div>
 

@@ -23,7 +23,7 @@
 线程的生命周期一共有5个状态： new runnable  running blocked dead
 
 线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
-<meta property="og:updated_time" content="2016-03-05T14:32:39.004Z">
+<meta property="og:updated_time" content="2016-03-08T13:32:10.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程学习笔记">
 <meta name="twitter:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
@@ -105,7 +105,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted_方法和isInterrupted方法有什么区别？"><span class="toc-number">5.</span> <span class="toc-text">interrupted 方法和isInterrupted方法有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized和volatile区别"><span class="toc-number">6.</span> <span class="toc-text">synchronized和volatile区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游标的使用"><span class="toc-number">7.</span> <span class="toc-text">游标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP和UDP区别"><span class="toc-number">8.</span> <span class="toc-text">TCP和UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写Socket套接字"><span class="toc-number">9.</span> <span class="toc-text">编写Socket套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">10.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库四范式"><span class="toc-number">11.</span> <span class="toc-text">数据库四范式</span></a></li></ol>
 		
 		</div>
 		
@@ -131,6 +131,27 @@
 </ul>
 </blockquote>
 <h3 id="Runnable和Thread的区别">Runnable和Thread的区别</h3><p>只要是多线程肯定永远以实现Runnable接口为主，因为实现Runnable接口相比继承Thread类有如下好处<br>1.避免单继承的局限，一个类可以实现多个接口<br>2.适合资源的共享</p>
+<p>synchronized 可以在任意对象及方法上加锁<br>虽然println() 在内部是同步的，但i–的操作是在进入println()之前发生的，所以有发生非线程安全问题的概率。<br>MyThread.java 类的构造函数是被main线程调用的，而run方法是被名为Thread-0 的县城调用的，run方法是自动调用的方法。</p>
+<p>java中有3中方法可以终止正在运行的线程：<br>1.使用退出标志，使线程正常退出，也就是当run方法完成后线程终止<br>2.使用stop方法强行终止线程，不推荐，使用它们可能产生不可预料的结果<br>3.使用interrupt方法中断线程</p>
+<p>调用interrupte() 方法仅仅是在当前线程中打了一个停止的标记。</p>
+<h3 id="interrupted_方法和isInterrupted方法有什么区别？">interrupted 方法和isInterrupted方法有什么区别？</h3><p>1.this.interrupted() 测试当前线程是否已经是中断状态，执行后具有将状态标志清除为false功能<br>2.this.isInterrupted()  测试线程Thread对象是否已经是中断状态，但不清楚状态标识。</p>
+<p>当进程中不存在非守护线程了，则守护线程自动销毁。典型的守护线程就是垃圾回收线程。<br>只有当最后一个非守护线程结束时，守护线程才随着JVM一同结束工作。<br>调用synchronized方法一定是排队运行的; 另外，只有共享资源的读写访问才需要同步化，如果不是共享资源，那么根本没有同步的必要。</p>
+<p>当A线程调用anyObject对象调用synchronized方法修饰的X方法时，A线程就获得了X方法所在<strong>对象的锁</strong>，所以其他线程必须等A线程执行完毕才可以调用<br>X方法，但B线程可以调用其他的非synchronized同步方法。<br>而B线程如果调用了synchronized修饰的<strong>非X方法</strong>时，必须等到A线程将X方法执行完，也就是释放对象锁之后才可以调用。</p>
+<p>synchronized锁重入（自己可以再次获取自己的内部锁）<br>当一个线程得到一个对象锁后，再次请求此对象锁时时可以再次得到该对象的锁。<br>这也证明在一个synchronized方法/块的内部调用本类的其他synchronized方法时，是永远可以得到锁的。</p>
+<p>当存在父子类继承关系时，子类是完全可以通过“可重入锁”调用父类的同步方法的。<br>出现异常的锁被自动释放了。<br>同步不能继承。所以还得在子类的方法中添加synchronized关键字<br>同步synchronized是锁定当前对象的。</p>
+<p>锁非this对象具有一定的优点：如果在一个类中有很多个 synchronized 方法，这时虽然能实现同步，但会受到阻塞，影响运行效率；但如果使用同步代码块<br>锁非this对象，则 synchronized(非this)代码块中的程序与同步方法是异步的，不与其他锁this同步方法争抢this锁，可以大大提高运行效率。</p>
+<p>synchronized 关键字加到static静态方法上是给Class上锁(加锁之后若其他线程只需要对象锁也不能获取到必须等待)，而 synchronized加到非static<br>静态方法上是给对象上锁。</p>
+<p>若字符串作为锁，涉及到常量池，导致两个线程持有相同的锁，其中一个线程不能运行<br>volatile 的作用是强制从公共堆栈中取得变量的值，而不是从线程私有数据栈中取得变量的值<br>volatile 关键字增加了实例变量在多个线程之间的可见性。但缺点是不支持原子性。</p>
+<h3 id="synchronized和volatile区别">synchronized和volatile区别</h3><p>1.volatile属于线程同步逇轻量级实现，性能好。只能修饰变量，synchroinzed可以修饰方法及代码块。<br>2.多线程访问volatile不会阻塞，而synchronized会发生阻塞<br>3.volatile能保证数据的可见性，但不能保证原子性；而synchronized可以保证原子性，也可以间接保证可见性，因为它会将私有内存和公共内存数据同步</p>
+<p>线程安全包含原子性和可见性两个方面，java的同步机制都是围绕这两个方面来确保线程安全的。<br>除了在i++操作时使用synchronized关键字实现同步，还可以使用 AtomicInteger 原子类进行实现（java.util.concurrent.atomic.AtomicInteger）。</p>
+<p>join的使用？<br>方法 boolean hasQueuedThread(Thread thread) 查询指定的线程是否正在等待获取此锁定<br>方法 boolean hasQueuedThreads()  查询是否有线程正在等待获取此锁定<br>方法 boolean hasWaiters(Condition condition)  查询是否有线程正在等待与此锁定有关的condition条件<br>eg： service.lock.hasQuuedThread(threadA)    lock.hasWaiters(newCondition)   lock.getWaitQueueLength(newCondition)</p>
+<p>ReentrantReadWriteLock 读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取<br>操作，但是同一时刻只允许一个Thread进行写入操作。</p>
+<h3 id="游标的使用">游标的使用</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">Declare</span> <span class="keyword">cursor</span> <span class="keyword">CURSOR</span> <span class="keyword">for</span></span><br><span class="line"><span class="keyword">select</span> stuID <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">open</span> <span class="keyword">cursor</span></span><br><span class="line"><span class="keyword">fetch</span> <span class="keyword">next</span> <span class="keyword">from</span> <span class="keyword">cursor</span></span><br><span class="line"><span class="keyword">while</span> @@fetch_status =<span class="number">0</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (@<span class="keyword">ID</span>=<span class="number">15</span>)</span><br><span class="line">	<span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span>=@<span class="keyword">ID</span></span><br><span class="line">	<span class="keyword">fetch</span> <span class="keyword">next</span> <span class="keyword">from</span> <span class="keyword">cursor</span> <span class="keyword">into</span> @<span class="keyword">ID</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">close</span> <span class="keyword">cursor</span></span><br><span class="line"><span class="keyword">deallocate</span> <span class="keyword">cursor</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="TCP和UDP区别">TCP和UDP区别</h3><p>TCP是传输控制协议，提供的面向连接、可靠的字节流服务。当客户和服务器彼此交换数据前，必须现在双方之间建立一个TCP连接，之后才能传输数据。TCP<br>提供超时重发、丢弃重复数据、校验数据、流量控制等功能，保证数据能从一端传到另一端。<br>UDP是用户数据报协议，无连接的面向数据包的传输层协议。UDP不提供可靠性，它只是把应用程序传给IP层的数据包发送出去，但是并不保证他们<br>能到达目的地。由于UDP在传输数据前不需要建立链接，且没有超时重发机制，所以传输速度快。</p>
+<h3 id="编写Socket套接字">编写Socket套接字</h3><p>调用socket()创建一个套接字，调用bind()绑定IP地址和端口，然后启动一个死循环，循环中调用accept接受链接。对于每个接受的连接，可以启动多线程<br>方式进行处理，在线程中调用send(),recv()发送和接受数据。客户端只需要调用socket()创建套接字，连接服务器，就可以发送和接受数据了。</p>
+<h3 id="SQL注入攻击">SQL注入攻击</h3><p>SQL注入攻击 就是攻击者把SQL命令插入到Web表单的输入域或页面请求的查询字符串中，欺骗服务器执行恶意的SQL命令。在某些表单中，用户输入的内容<br>直接用来构造动态SQL命令，或作为存储过程的输入参数。<br>防范SQL注入攻击：替换单引号，连字符   检查用户输入的合法性    将用户登录名称密码等数据加密保存   存储过程执行所有的查询</p>
+<h3 id="数据库四范式">数据库四范式</h3><p>1NF  所有属性值域中每一个值都是不可再分解的值<br>2NF  如果关系模式R为第一范式，并且R中每一个非主属性完全函数依赖于R的某个候选键<br>3NF  如果关系模式R是第二范式，且每个非主属性都不传递依赖于R的候选键<br>BCNF 如果关系模式R是第一范式，且每个属性都不传递依赖于R的候选键，那么成R为BCNF的模式</p>
+<p>死锁的4个必要条件是： 互斥 请求与保持  不剥夺条件  循环等待条件</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -187,7 +208,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted_方法和isInterrupted方法有什么区别？"><span class="toc-number">5.</span> <span class="toc-text">interrupted 方法和isInterrupted方法有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized和volatile区别"><span class="toc-number">6.</span> <span class="toc-text">synchronized和volatile区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游标的使用"><span class="toc-number">7.</span> <span class="toc-text">游标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP和UDP区别"><span class="toc-number">8.</span> <span class="toc-text">TCP和UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写Socket套接字"><span class="toc-number">9.</span> <span class="toc-text">编写Socket套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">10.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库四范式"><span class="toc-number">11.</span> <span class="toc-text">数据库四范式</span></a></li></ol>
  
   </div>
 
@@ -224,7 +245,7 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>8</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>9</sup></a></li>
 		  
 		
 		  
@@ -268,6 +289,10 @@
 		  
 		
 		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
 		  
 		
@@ -285,7 +310,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>7</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>8</sup></a></li>
 			
 		
 			
@@ -342,6 +367,10 @@
 		
 			
 				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
 			
 		
 			

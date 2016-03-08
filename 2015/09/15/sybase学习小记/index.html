@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/09/15/sybase学习小记/index.html">
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
-<meta property="og:updated_time" content="2016-03-05T12:59:07.768Z">
+<meta property="og:updated_time" content="2016-03-08T02:44:57.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sybase学习小记">
 <meta name="twitter:description" content="Sybase_sql语法特点1.没有“ ”，字符串使用‘ ’包含2.没有逻辑相等，赋值和逻辑相等都是=3.类型不再是最严格的。任何数据都可以包含在‘ ’以内4.没有bool值的概念，但是在视图中可以输入true/false5.它也有关系运算符：&amp;gt; &amp;lt; &amp;gt;= &amp;lt;= = &amp;lt;&amp;gt; != ,它返回一个bool值6.它也有逻辑运算符： ！(not) &amp;amp;&amp;amp;(a">
@@ -96,14 +96,30 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sybase_sql"><span class="toc-number">1.</span> <span class="toc-text">Sybase_sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法特点"><span class="toc-number">1.1.</span> <span class="toc-text">语法特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的四个特点ACID"><span class="toc-number">1.2.</span> <span class="toc-text">事务的四个特点ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程功能"><span class="toc-number">1.3.</span> <span class="toc-text">存储过程功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程优点"><span class="toc-number">1.4.</span> <span class="toc-text">存储过程优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接字符串"><span class="toc-number">1.5.</span> <span class="toc-text">连接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#left_截取指定字符串的指定个数字符"><span class="toc-number">1.5.1.</span> <span class="toc-text">left 截取指定字符串的指定个数字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#charIndex()"><span class="toc-number">1.5.2.</span> <span class="toc-text">charIndex()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete_和_truncate"><span class="toc-number">1.6.</span> <span class="toc-text">delete 和 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">1.7.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase常用SQL"><span class="toc-number">1.8.</span> <span class="toc-text">sybase常用SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换函数"><span class="toc-number">1.9.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.10.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.11.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用DDL语句"><span class="toc-number">1.12.</span> <span class="toc-text">常用DDL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL优化"><span class="toc-number">1.13.</span> <span class="toc-text">SQL优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看执行计划"><span class="toc-number">1.14.</span> <span class="toc-text">查看执行计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase系统函数"><span class="toc-number">1.15.</span> <span class="toc-text">sybase系统函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bat启动"><span class="toc-number">1.16.</span> <span class="toc-text">bat启动</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sybase_sql"><span class="toc-number">1.</span> <span class="toc-text">Sybase_sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法特点"><span class="toc-number">1.1.</span> <span class="toc-text">语法特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的四个特点ACID"><span class="toc-number">1.2.</span> <span class="toc-text">事务的四个特点ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程功能"><span class="toc-number">1.3.</span> <span class="toc-text">存储过程功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程优点"><span class="toc-number">1.4.</span> <span class="toc-text">存储过程优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库索引"><span class="toc-number">1.5.</span> <span class="toc-text">数据库索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引优点/缺点"><span class="toc-number">1.6.</span> <span class="toc-text">索引优点/缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">1.6.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-number">1.6.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程_VS_函数"><span class="toc-number">1.7.</span> <span class="toc-text">存储过程 VS 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程的执行过程"><span class="toc-number">1.8.</span> <span class="toc-text">存储过程的执行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接字符串"><span class="toc-number">1.9.</span> <span class="toc-text">连接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#left_截取指定字符串的指定个数字符"><span class="toc-number">1.9.1.</span> <span class="toc-text">left 截取指定字符串的指定个数字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#charIndex()"><span class="toc-number">1.9.2.</span> <span class="toc-text">charIndex()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete_和_truncate"><span class="toc-number">1.10.</span> <span class="toc-text">delete 和 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">1.11.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase常用SQL"><span class="toc-number">1.12.</span> <span class="toc-text">sybase常用SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换函数"><span class="toc-number">1.13.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.14.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.15.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用DDL语句"><span class="toc-number">1.16.</span> <span class="toc-text">常用DDL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL优化"><span class="toc-number">1.17.</span> <span class="toc-text">SQL优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看执行计划"><span class="toc-number">1.18.</span> <span class="toc-text">查看执行计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase系统函数"><span class="toc-number">1.19.</span> <span class="toc-text">sybase系统函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bat启动"><span class="toc-number">1.20.</span> <span class="toc-text">bat启动</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<h2 id="Sybase_sql">Sybase_sql</h2><h3 id="语法特点">语法特点</h3><p>1.没有“ ”，字符串使用‘ ’包含<br>2.没有逻辑相等，赋值和逻辑相等都是=<br>3.类型不再是最严格的。任何数据都可以包含在‘ ’以内<br>4.没有bool值的概念，但是在视图中可以输入true/false<br>5.它也有关系运算符：&gt; &lt; &gt;= &lt;= = &lt;&gt; != ,它返回一个bool值<br>6.它也有逻辑运算符： ！(not) &amp;&amp;(and) ||(or)<br>7.它不区别大小写<br>8.数据库完整性（Database Integrity）是指数据库中数据在逻辑上的一致性、正确性、有效性和相容性。</p>
-<h3 id="事务的四个特点ACID">事务的四个特点ACID</h3><p>A:原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。它是一个整体，不能再拆分<br>C：一致性：事务在完成时，必须使所有的数据都保持一致状态。。某种程度的一致<br>I:隔离性：事务中隔离，每一个事务是单独的请求将单独的处理，与其它事务没有关系，互不影响<br>D：持久性：如果事务一旦提交，就对数据的修改永久保留</p>
+<h3 id="事务的四个特点ACID">事务的四个特点ACID</h3><p>A:原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。它是一个整体，不能再拆分<br>C：一致性：事务在完成时，必须使所有的数据都保持一致状态<br>I:隔离性：事务中隔离，每一个事务是单独的请求将单独的处理，与其它事务没有关系，互不影响<br>D：持久性：如果事务一旦提交，就对数据的修改永久保留</p>
 <h3 id="存储过程功能">存储过程功能</h3><p>存储过程为标准SQL增加了如下功能：<br>条件执行、循环控制结构、命名变量、命名过程、语句块（调用存储过程让DBMS执行一系列SQL语句）</p>
 <h3 id="存储过程优点">存储过程优点</h3><p>1）封装  只需要了解过程调用的输入输出就可以安全的使用数据库，防止用户跳过完整性检查<br>2）改善性能  调用存储过程时，DBMS可快速的执行存储过程中的语句，可直接转到语句的执行，无需分析，确认，优化和生成执行计划，这些步骤在预编译已经完成<br>3）减少网络流量，降低网络负载<br>4）标准组件化编程，极大的提高了程序的可移植性<br>5）安全性 系统管理员可向单独的用户授予对数据库对象的最小访问权限</p>
+<h3 id="数据库索引">数据库索引</h3><h3 id="索引优点/缺点">索引优点/缺点</h3><h4 id="优点">优点</h4><p>1.创建系统唯一性索引，可以保证每一行数据的唯一性<br>2.提高数据检索速度<br>3.加快表与表之间的连接，特别是具有主键外键关系的表之间<br>4.在针对order by 和 group by子句进行数据检索时，可以减少分组和排序的时间<br>5.查询优化器提高系统性能</p>
+<h4 id="缺点">缺点</h4><p>1.创建索引和维护索引要耗费时间<br>2.索引需要占用物理空间<br>3.当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护</p>
+<p>###索引的类型</p>
+<blockquote>
+<ul>
+<li>聚集索引：数据表的物理顺序与索引顺序相同</li>
+<li>非聚集索引：数据表的物理顺序与索引顺序不同</li>
+</ul>
+</blockquote>
+<h3 id="存储过程_VS_函数">存储过程 VS 函数</h3><p>1.存储过程需要使用execute单独执行，而函数可以随处调用<br>2.用户自定义函数不能修改表中的数据，但是存储过程可以</p>
+<h3 id="存储过程的执行过程">存储过程的执行过程</h3><p>1.语法分析阶段，保证语法的正确性<br>2.解析阶段，检查该存储过程引用的对象名称是否存在<br>3.分析存储过程和生成存储过程执行计划的过程<br>4.执行阶段，执行主流在高速缓冲存储区的过程执行计划</p>
+<blockquote>
+<ul>
+<li>注意,当存储过程引用的基础表发生结构变化时，该存储过程的执行计划将会自动优化。但是如果在表中添加了索引或者更改了索引列中<br>的数据之后，该执行计划不会自动优化，这时候应该重新编译存储过程，更新原有的执行计划。</li>
+</ul>
+</blockquote>
 <h3 id="连接字符串">连接字符串</h3><p>SELECT CONCAT(Cname,Tnum) FROM course WHERE Cnum=03</p>
 <h4 id="left_截取指定字符串的指定个数字符">left 截取指定字符串的指定个数字符</h4><p>SELECT LEFT(Cname,5) FROM course WHERE Cnum=01<br>SELECT RIGHT(Cname,5) FROM course WHERE Cnum=01</p>
 <h4 id="charIndex()">charIndex()</h4><p>SELECT LOCATE(‘ne’,cname) FROM course WHERE cnum=01<br>SELECT SUBSTRING(Cname,1,3) FROM course</p>
@@ -164,10 +180,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/15/java面试题/" title="java面试题">
+ <a href="/2015/09/15/java集合/" title="java集合">
   <strong>上一篇：</strong><br/>
   <span>
-  java面试题</span>
+  java集合</span>
 </a>
 </div>
 
@@ -194,7 +210,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sybase_sql"><span class="toc-number">1.</span> <span class="toc-text">Sybase_sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法特点"><span class="toc-number">1.1.</span> <span class="toc-text">语法特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的四个特点ACID"><span class="toc-number">1.2.</span> <span class="toc-text">事务的四个特点ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程功能"><span class="toc-number">1.3.</span> <span class="toc-text">存储过程功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程优点"><span class="toc-number">1.4.</span> <span class="toc-text">存储过程优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接字符串"><span class="toc-number">1.5.</span> <span class="toc-text">连接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#left_截取指定字符串的指定个数字符"><span class="toc-number">1.5.1.</span> <span class="toc-text">left 截取指定字符串的指定个数字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#charIndex()"><span class="toc-number">1.5.2.</span> <span class="toc-text">charIndex()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete_和_truncate"><span class="toc-number">1.6.</span> <span class="toc-text">delete 和 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">1.7.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase常用SQL"><span class="toc-number">1.8.</span> <span class="toc-text">sybase常用SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换函数"><span class="toc-number">1.9.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.10.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.11.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用DDL语句"><span class="toc-number">1.12.</span> <span class="toc-text">常用DDL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL优化"><span class="toc-number">1.13.</span> <span class="toc-text">SQL优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看执行计划"><span class="toc-number">1.14.</span> <span class="toc-text">查看执行计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase系统函数"><span class="toc-number">1.15.</span> <span class="toc-text">sybase系统函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bat启动"><span class="toc-number">1.16.</span> <span class="toc-text">bat启动</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sybase_sql"><span class="toc-number">1.</span> <span class="toc-text">Sybase_sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法特点"><span class="toc-number">1.1.</span> <span class="toc-text">语法特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的四个特点ACID"><span class="toc-number">1.2.</span> <span class="toc-text">事务的四个特点ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程功能"><span class="toc-number">1.3.</span> <span class="toc-text">存储过程功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程优点"><span class="toc-number">1.4.</span> <span class="toc-text">存储过程优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库索引"><span class="toc-number">1.5.</span> <span class="toc-text">数据库索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引优点/缺点"><span class="toc-number">1.6.</span> <span class="toc-text">索引优点/缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">1.6.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-number">1.6.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程_VS_函数"><span class="toc-number">1.7.</span> <span class="toc-text">存储过程 VS 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程的执行过程"><span class="toc-number">1.8.</span> <span class="toc-text">存储过程的执行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接字符串"><span class="toc-number">1.9.</span> <span class="toc-text">连接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#left_截取指定字符串的指定个数字符"><span class="toc-number">1.9.1.</span> <span class="toc-text">left 截取指定字符串的指定个数字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#charIndex()"><span class="toc-number">1.9.2.</span> <span class="toc-text">charIndex()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete_和_truncate"><span class="toc-number">1.10.</span> <span class="toc-text">delete 和 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">1.11.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase常用SQL"><span class="toc-number">1.12.</span> <span class="toc-text">sybase常用SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换函数"><span class="toc-number">1.13.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.14.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.15.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用DDL语句"><span class="toc-number">1.16.</span> <span class="toc-text">常用DDL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL优化"><span class="toc-number">1.17.</span> <span class="toc-text">SQL优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看执行计划"><span class="toc-number">1.18.</span> <span class="toc-text">查看执行计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sybase系统函数"><span class="toc-number">1.19.</span> <span class="toc-text">sybase系统函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bat启动"><span class="toc-number">1.20.</span> <span class="toc-text">bat启动</span></a></li></ol></li></ol>
  
   </div>
 
@@ -231,7 +247,7 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>8</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>9</sup></a></li>
 		  
 		
 		  
@@ -275,6 +291,10 @@
 		  
 		
 		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
 		  
 		
@@ -292,7 +312,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>7</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>8</sup></a></li>
 			
 		
 			
@@ -349,6 +369,10 @@
 		
 			
 				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
 			
 		
 			

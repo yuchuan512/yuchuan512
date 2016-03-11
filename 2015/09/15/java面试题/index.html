@@ -12,36 +12,27 @@
 
     
     <meta name="description" content="javaJava基础
-String类为什么是final的。
+String类为什么是final的。效率和安全，性能
 HashMap的源码，实现原理，底层结构。
-说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
-描述一下ArrayList和LinkedList各自实现和区别
-Java中的队列都有哪些，有什么区别。
-反射中，Class.forName和classloader的区别
-Java7、Java8的新特性(baidu">
+
+说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。List: ArrayList  LinkedList  Vector  StackSet : TreeSet  HashSetQueur: BlockingQueue   DequeMap :">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java面试题">
 <meta property="og:url" content="http://yoursite.com/2015/09/15/java面试题/index.html">
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="javaJava基础
-String类为什么是final的。
+String类为什么是final的。效率和安全，性能
 HashMap的源码，实现原理，底层结构。
-说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
-描述一下ArrayList和LinkedList各自实现和区别
-Java中的队列都有哪些，有什么区别。
-反射中，Class.forName和classloader的区别
-Java7、Java8的新特性(baidu">
-<meta property="og:updated_time" content="2015-09-20T14:49:31.330Z">
+
+说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。List: ArrayList  LinkedList  Vector  StackSet : TreeSet  HashSetQueur: BlockingQueue   DequeMap :">
+<meta property="og:updated_time" content="2016-03-10T14:13:49.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java面试题">
 <meta name="twitter:description" content="javaJava基础
-String类为什么是final的。
+String类为什么是final的。效率和安全，性能
 HashMap的源码，实现原理，底层结构。
-说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
-描述一下ArrayList和LinkedList各自实现和区别
-Java中的队列都有哪些，有什么区别。
-反射中，Class.forName和classloader的区别
-Java7、Java8的新特性(baidu">
+
+说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。List: ArrayList  LinkedList  Vector  StackSet : TreeSet  HashSetQueur: BlockingQueue   DequeMap :">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -122,39 +113,51 @@ Java7、Java8的新特性(baidu">
 		</div>
 		
 		<h2 id="java">java</h2><h3 id="Java基础">Java基础</h3><ol>
-<li>String类为什么是final的。</li>
-<li>HashMap的源码，实现原理，底层结构。</li>
-<li>说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。</li>
-<li>描述一下ArrayList和LinkedList各自实现和区别</li>
-<li>Java中的队列都有哪些，有什么区别。</li>
-<li>反射中，Class.forName和classloader的区别</li>
-<li>Java7、Java8的新特性(baidu问的,好BT)</li>
+<li>String类为什么是final的。<br>效率和安全，性能</li>
+<li><p>HashMap的源码，实现原理，底层结构。</p>
+</li>
+<li><p>说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。<br>List: ArrayList  LinkedList  Vector  Stack<br>Set : TreeSet  HashSet<br>Queur: BlockingQueue   Deque<br>Map : HashMap  Hashtable</p>
+</li>
+<li>描述一下ArrayList和LinkedList各自实现和区别<br>ArrayList 是一个数组队列，相当于动态数组。它由数组实现，随机访问效率高，随机插入、随机删除效率低。<br>LinkedList 是一个双向链表。它也可以被当作堆栈、队列或双端队列进行操作。LinkedList随机访问效率低，但随机插入、随机删除效率低。</li>
+<li><p>Java中的队列都有哪些，有什么区别。</p>
+</li>
+<li><p>反射中，Class.forName和classloader的区别<br>Class.forName(className)装载的class已经被初始化，而ClassLoader.loadClass(className)装载的class还没有被link。<br>一般情况下，这两个方法效果一样，都能装载Class。但如果程序依赖于Class是否被初始化，就必须用Class.forName(name)了。</p>
+</li>
+<li>Java7、Java8的新特性(baidu问的,好BT)<br>lambda 流式编程  函数式接口</li>
 <li>Java数组和链表两种结构的操作效率，在哪些情况下(从开头开始，从结尾开始，从中间开始)，哪些操作(插入，查找，删除)的效率高</li>
-<li>Java内存泄露的问题调查定位：jmap，jstack的使用等等</li>
-<li>string、stringbuilder、stringbuffer区别</li>
-<li>hashtable和hashmap的区别<br>13 .异常的结构，运行时异常和非运行时异常，各举个例子</li>
+<li><p>Java内存泄露的问题调查定位：jmap，jstack的使用等等</p>
+</li>
+<li><p>string、stringbuilder、stringbuffer区别<br>StringBuilder &gt; StringBuffer &gt; String  速度<br>StringBuffer 线程安全的</p>
+</li>
+<li>hashtable和hashmap的区别<br>线程安全 &amp;&amp; null值两方面<br>13 .异常的结构，运行时异常和非运行时异常，各举个例子<br>1)非受检的：NullPointerException,ClassCastException,ArrayIndexsOutOfBoundsException,ArithmeticException(算术异常，除0溢出)<br>2)受检：Exception,FileNotFoundException,IOException,SQLException.</li>
 <li>String a= “abc” String b = “abc” String c = new String(“abc”) String d = “ab” + “c” .他们之间用 == 比较的结果</li>
-<li>String 类的常用方法</li>
+<li>String 类的常用方法<br>String.toCharArray()  String.getBytes()  String.length()   String.indexOf(String str)   String.subString()<br>String.split()    toUpperCase()   replace()</li>
 <li>Java 的引用类型有哪几种</li>
-<li>抽象类和接口的区别</li>
-<li>java的基础类型和字节大小。</li>
-<li>Hashtable,HashMap,ConcurrentHashMap 底层实现原理与线程安全问题（建议熟悉 jdk 源码，才能从容应答）</li>
-<li>如果不让你用Java Jdk提供的工具，你自己实现一个Map，你怎么做。说了好久，说了HashMap源代码，如果我做，就会借鉴HashMap的原理，说了一通HashMap实现</li>
-<li>Hash冲突怎么办？哪些解决散列冲突的方法？</li>
-<li>HashMap冲突很厉害，最差性能，你会怎么解决?从O（n）提升到log（n）咯，用二叉排序树的思路说了一通</li>
+<li><p>抽象类和接口的区别</p>
+</li>
+<li><p>java的基础类型和字节大小。<br>char  16bit  |   short   16bit  |   byte    8bit | int  32bit   |   long   64bit  |  floag   32bit  |  double  64bit</p>
+</li>
+<li>Hashtable,HashMap,ConcurrentHashMap 底层实现原理与线程安全问题</li>
+<li>自己实现一个Map。</li>
+<li><p>Hash冲突怎么办？哪些解决散列冲突的方法？</p>
+</li>
+<li><p>HashMap冲突很厉害，最差性能，你会怎么解决?从O（n）提升到log（n）咯，用二叉排序树的思路说了一通</p>
+</li>
 <li>rehash</li>
 <li>hashCode() 与 equals() 生成算法、方法怎么重写</li>
 </ol>
 <h3 id="Java_IO">Java IO</h3><ol>
 <li>讲讲IO里面的常见类，字节流、字符流、接口、实现类、方法阻塞。</li>
-<li>讲讲NIO。</li>
-<li>String 编码UTF-8 和GBK的区别?</li>
-<li>什么时候使用字节流、什么时候使用字符流?</li>
+<li>讲讲NIO。<br>Channels and Buffers（通道和缓冲区）：标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓冲区（Buffer）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中</li>
+<li>String 编码UTF-8 和GBK的区别?<br>GBK占用两个字节；UTF8对于英文占用一个字节，对于中文占用两个字节</li>
+<li>什么时候使用字节流、什么时候使用字符流?<br>字节流在操作时本身不会用到缓冲区；而字符流在操作时用到了缓冲区，通过缓冲区再操作文件<br>所有的文件在硬盘或在传输时都是以字节的方式进行的，包括图片等都是按字节的方式存储的，而字符是只有在内存中才会形成，所以在开发中，字节流使用较为广泛。<br>程序中的输入输出都是以流的形式保存的，流中保存的实际上全都是字节文件。<br>如果要java程序实现一个拷贝功能，应该选用字节流进行操作（可能拷贝的是图片），并且采用边读边写的方式（节省内存）</li>
 <li>递归读取文件夹下的文件，代码怎么实现</li>
 </ol>
 <h3 id="Java_Web">Java Web</h3><ol>
-<li>session和cookie的区别和联系，session的生命周期，多个服务部署时session管理。</li>
-<li>servlet的一些相关问题</li>
+<li><p>session和cookie的区别和联系，session的生命周期，多个服务部署时session管理。</p>
+</li>
+<li><p>servlet的一些相关问题</p>
+</li>
 <li>webservice相关问题</li>
 <li>jdbc连接，forname方式的步骤，怎么声明使用一个事务。举例并具体代码</li>
 <li>无框架下配置web.xml的主要配置内容</li>
@@ -212,16 +215,15 @@ Java7、Java8的新特性(baidu">
 <li>socket通信，以及长连接，分包，连接异常断开的处理。</li>
 <li>socket通信模型的使用，AIO和NIO。</li>
 <li>socket框架netty的使用，以及NIO的实现原理，为什么是异步非阻塞。</li>
-<li>同步和异步，阻塞和非阻塞。</li>
+<li>同步和异步，阻塞和非阻塞。<br>异步的概念和同步相对。当一个异步过程调用发出后，调用者不会立刻得到结果。实际处理这个调用的部件是在调用发出后，通过状态、通知来通知<br>调用者，或通过回调函数处理这个调用。<br>阻塞调用是指调用结果返回之前，当前线程会被挂起。函数只有在得到结果之后才会返回。<br>非阻塞和阻塞的概念相对应，指在不能立刻得到结果之前，该函数不会阻塞当前线程，而会立刻返回。<br>有同步阻塞、异步阻塞、同步非阻塞、异步非阻塞</li>
 <li>OSI七层模型，包括TCP,IP的一些基本知识</li>
 <li>http中，get post的区别</li>
 <li>说说http,tcp,udp之间关系和区别。</li>
-<li>说说浏览器访问www.taobao.com，经历了怎样的过程。</li>
+<li>说说浏览器访问www.taobao.com，经历了怎样的过程。<br>本地缓存   DNS缓存  迭代查询和递归查询</li>
 <li>HTTP协议、  HTTPS协议，SSL协议及完整交互过程；</li>
 <li>tcp的拥塞，快回传，ip的报文丢弃</li>
 <li>https处理的一个过程，对称加密和非对称加密</li>
 <li>head各个特点和区别</li>
-<li>说说浏览器访问www.taobao.com，经历了怎样的过程。</li>
 </ol>
 <h3 id="数据库MySql">数据库MySql</h3><ol>
 <li>MySql的存 储引擎的不同</li>
@@ -230,14 +232,33 @@ Java7、Java8的新特性(baidu">
 <li>分表之后想让一个id多个表是自增的，效率实现</li>
 <li>MySql的主从实时备份同步的配置，以及原理(从库读主库的binlog)，读写分离</li>
 <li>写SQL语句。。。</li>
-<li>索引的数据结构，B+树</li>
-<li>事务的四个特性，以及各自的特点（原子、隔离）等等，项目怎么解决这些问题</li>
-<li>数据库的锁：行锁，表锁；乐观锁，悲观锁</li>
-<li>数据库事务的几种粒度；</li>
-<li>关系型和非关系型数据库区别</li>
-</ol>
-<h3 id="设计模式">设计模式</h3><ol>
-<li>单例模式：饱汉、饿汉。以及饿汉中的延迟加载,双重检查</li>
+<li><p>索引的数据结构，B+树</p>
+</li>
+<li><p>事务的四个特性，以及各自的特点（原子、隔离）等等，项目怎么解决这些问题</p>
+</li>
+<li><p>数据库的锁：行锁，表锁；乐观锁，悲观锁</p>
+</li>
+<li><p>数据库事务的几种粒度；<br>事务四个特性 ： 原子性  一致性  隔离性   持久性</p>
+</li>
+<li><p>关系型和非关系型数据库区别</p>
+<blockquote>
+<ul>
+<li>非关系型数据库的优势：</li>
+</ul>
+</blockquote>
+</li>
+<li>性能<br>NOSQL是基于键值对的，可以想象成表中的主键和值的对应关系，而且不需要经过SQL层的解析，所以性能非常高。</li>
+<li>可扩展性<br>同样也是因为基于键值对，数据之间没有耦合性，所以非常容易水平扩展。<blockquote>
+<ul>
+<li>关系型数据库的优势：</li>
+</ul>
+</blockquote>
+</li>
+<li>复杂查询<br>可以用SQL语句方便的在一个表以及多个表之间做非常复杂的数据查询。</li>
+<li><p>事务支持<br>使得对于安全性能很高的数据访问要求得以实现。</p>
+<h3 id="设计模式">设计模式</h3></li>
+<li><p>单例模式：饱汉、饿汉。以及饿汉中的延迟加载,双重检查</p>
+</li>
 <li>工厂模式、装饰者模式、观察者模式。</li>
 <li>工厂方法模式的优点（低耦合、高内聚，开放封闭原则）</li>
 </ol>
@@ -311,9 +332,9 @@ Java7、Java8的新特性(baidu">
 
 
 <div class="next">
-<a href="/2015/09/15/java集合/"  title="java集合">
+<a href="/2015/09/15/sybase学习小记/"  title="sybase学习小记">
  <strong>下一篇：</strong><br/> 
- <span>java集合
+ <span>sybase学习小记
 </span>
 </a>
 </div>
@@ -369,7 +390,7 @@ Java7、Java8的新特性(baidu">
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>9</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>11</sup></a></li>
 		  
 		
 		  
@@ -421,7 +442,7 @@ Java7、Java8的新特性(baidu">
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		</ul>

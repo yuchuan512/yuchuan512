@@ -4,29 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>paper小记 | Flow</title>
+    <title>堆排序 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="基于Xen的虚拟机实例之间的通信以及共享数据的交换宿主操作系统  客户操作系统虚拟机监控器的作用就是提供一种抽象，使得多个虚拟实例运行在一个硬件平台上。
-“国家网络靶场”项目源于2008年1月8日由美国总统布什签署的“国家网络安全综合计划”该靶场的建设目标是，模拟真实的网络攻防作战提供虚拟环境，针对敌对电子攻击和网络攻击等电子作战手段进行试验，以实现网络战能力的重大变革，打赢网络战争。
-大规模异构">
+    <meta name="description" content="###堆排序
+
+
+堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="paper小记">
-<meta property="og:url" content="http://yoursite.com/2015/10/18/paper小记/index.html">
+<meta property="og:title" content="堆排序">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/堆排序/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="基于Xen的虚拟机实例之间的通信以及共享数据的交换宿主操作系统  客户操作系统虚拟机监控器的作用就是提供一种抽象，使得多个虚拟实例运行在一个硬件平台上。
-“国家网络靶场”项目源于2008年1月8日由美国总统布什签署的“国家网络安全综合计划”该靶场的建设目标是，模拟真实的网络攻防作战提供虚拟环境，针对敌对电子攻击和网络攻击等电子作战手段进行试验，以实现网络战能力的重大变革，打赢网络战争。
-大规模异构">
-<meta property="og:updated_time" content="2015-11-04T08:23:07.626Z">
+<meta property="og:description" content="###堆排序
+
+
+堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
+<meta property="og:updated_time" content="2016-03-11T06:50:35.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="paper小记">
-<meta name="twitter:description" content="基于Xen的虚拟机实例之间的通信以及共享数据的交换宿主操作系统  客户操作系统虚拟机监控器的作用就是提供一种抽象，使得多个虚拟实例运行在一个硬件平台上。
-“国家网络靶场”项目源于2008年1月8日由美国总统布什签署的“国家网络安全综合计划”该靶场的建设目标是，模拟真实的网络攻防作战提供虚拟环境，针对敌对电子攻击和网络攻击等电子作战手段进行试验，以实现网络战能力的重大变革，打赢网络战争。
-大规模异构">
+<meta name="twitter:title" content="堆排序">
+<meta name="twitter:description" content="###堆排序
+
+
+堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -86,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/18/paper小记/" title="paper小记" itemprop="url">paper小记</a>
+      <a href="/2016/03/11/堆排序/" title="堆排序" itemprop="url">堆排序</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-18T14:14:18.000Z" itemprop="datePublished"> 发表于 2015-10-18</time>
+    <time datetime="2016-03-11T06:48:07.000Z" itemprop="datePublished"> 发表于 2016-03-11</time>
     
   </p>
 </header>
@@ -102,28 +105,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol>
 		
 		</div>
 		
-		<p>基于Xen的虚拟机实例之间的通信以及共享数据的交换<br>宿主操作系统  客户操作系统<br>虚拟机监控器的作用就是提供一种抽象，使得多个虚拟实例运行在一个硬件平台上。</p>
-<p>“国家网络靶场”项目源于2008年1月8日由美国总统布什签署的“国家网络安全综合计划”<br>该靶场的建设目标是，模拟真实的网络攻防作战提供虚拟环境，针对敌对电子攻击和网络攻击等电子作战手段进行试验，以实现网络战能力的重大变革，打赢网络战争。</p>
-<p>大规模异构系统（节点），并可快速集成新加节点。<br>用于论证的高质量数据采集、分析与演示。<br>快速生成与集成新设备复件的能力。<br>集成最新标准与协议的能力。<br>攻击软件工具集。<br>战术网络：可能包括移动自组织分组无线网络（adhoc）</p>
-<p>VMI：即VirtualMachineIntrospection,VMI虚拟机自省技术，是一种用于在外部监测系统级虚拟机运行状态的技术<br>paper–网络攻击流量信息熵特征研究<br>paper–信息熵在入侵检测中的应用<br>基于相对熵理论的网络DoS攻击检测算法<br>基于熵权的传感反应网络任务分派算法<br>基于故障检测的无线传感器反应网络故障恢复策略<br>BP神经网络matlab实现和matlab工具箱使用实例</p>
-<p>熵是用来对一个系统可以达到的状态数的一个度量，能达到的状态数越多熵越大。<br>只考虑字频的话英文是4.46比特/字符的信息熵，汉字是9.6比特/字符，直观上很容易理解，英文字母只有26个，所以描述一个字母所需要的信息表示不多，而中文字却很多，就需要更多的信息量才能表示<br>信息熵衡量了一个系统的复杂度,信息熵大的就说明那门课的信息量大，更加复杂。<br>——-最大熵原理(保留尽可能大的不确定性而作出最佳的尽量无偏差的决定)<br>在香农1948年的那篇文章里就可以看到，这个公式是推导出来的<br>信息是用来消除随机不定性的东西<br>平均信息熵(<a href="http://wenku.baidu.com/link?url=cYS9vIJkNnZEo8xm_8Q09JiC7GaGM9Zdhe9npIUWTjL3okk9lDM0t-hUccHrec_5OyKrtMxO3uPmJHBXdROJON26HcOoMFkeH4YWYXN1JV7" target="_blank" rel="external">http://wenku.baidu.com/link?url=cYS9vIJkNnZEo8xm_8Q09JiC7GaGM9Zdhe9npIUWTjL3okk9lDM0t-hUccHrec_5OyKrtMxO3uPmJHBXdROJON26HcOoMFkeH4YWYXN1JV7</a>)</p>
-<p>BP神经网络是通过输入和输出的样本集（即网络的阈值和权值）对网络进行训练，从而使网络完成给定的输入/输出映射关系</p>
-<p>在信息论中，熵被定义为一种不确定性的度量或是与随机变量相关的随机性。一个大小为n的样本的熵的阈值范围是[0，logn]。数据项没有变化时值为0，当所有的数据项都不相同或变化最大时值为logn。</p>
-<p>熵值的规律是：流量特征值的微小变化产生低熵值，而流量特征值的显著变化则导致较高的熵值。</p>
-<p>蜜网流量不同于其他类型的网络流量，因为流入或流出蜜网的每个数据包都被认为是恶意的；<br>语义重构模块的作用是对捕获到的数据进行语义重构，由于VMM处于客户虚拟机的底层，只能识别低级语义，两种之间存在语义鸿沟</p>
-<p>系统采用VMI反省机制，将数据捕获模块部署在虚拟机监控器VMM内，实现了检测工具和蜜网系统的隔离，增强了数据捕获模块的安全性,提高了数据的可信度；</p>
-<p>信息熵–&gt;BP神经网络（样本训练-&gt;映射）–&gt;K-Means算法–&gt; …</p>
-<p>paper—&gt;无线传感器网络流量分析 无线传感器网络流量分析  (难点：工程实际、数据、仿真)<br>paper—&gt;项目–&gt; 工具开发<br>paper—&gt;信息熵 BP神经网络 （样本训练-&gt;映射） 模式识别  分类算法（K-Means）<br>paper—&gt; 原子攻击收益、单位路径收益 建模—-》攻击图生成算法—-》<br>paper—&gt; 已经发现CAN总线有  高错帧漏检  和  长的等效离线与真正离线的<br>paper–&gt;<br>基于系统仿真的飞行安全评估理论与方法/徐浩军, 刘东亮, 孟捷等编著<br>飞行风险的概率模型；飞行风险定量评估方法；基于支持向量机的飞行事故率预测<br>paper–&gt; 评估<br>安全指标 –&gt;攻击建模 – [可靠性与安全性模型的构建] – 网络拓扑、协议、实时性。身份认证、秘钥、篡改窃听、传输加密、容错)–&gt;仿真<br>paper –&gt; Petri –&gt; 马尔科夫链的转换<br>AFDX 航空总线仿真测试 </p>
-<p>渗透测试–Reid创建了一套安全测试工具 eg:snort </p>
-<p>AHP 层次分析法 结合了定性与定量，是一种多目标的决策分析法。包含三个阶段—分解系统个，判断安全性和综合进行判断，层次分析法提供了对系统的分层次、拟定量和规范化的处理。<br>OCTAVE评估 也是一种信息安全风险评估方法<br>攻击树模型</p>
+		<p>###堆排序</p>
+<blockquote>
+<ul>
+<li>堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这种数据结构来对数组排序，我们使用的是最大堆。处理的思想和冒泡排序，选择排序非常的类似，一层层封顶，只是最大元素的选取使用了最大堆。最大堆的最大元素一定在第0位置，构建好堆之后，交换0位置元素与顶即可。堆排序为原位排序(空间小), 且最坏运行时间是O(n2)，是渐进最优的比较排序算法。</li>
+</ul>
+</blockquote>
+<h4 id="工具类">工具类</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ArrayUtils &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>)</span></span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"&#123; "</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">array</span>.length;i++)&#123;</span><br><span class="line">			System.out.print(<span class="built_in">array</span>[i]);</span><br><span class="line">			<span class="keyword">if</span>(i&lt;<span class="built_in">array</span>.length-<span class="number">1</span>)&#123;</span><br><span class="line">				System.out.print(<span class="string">","</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">" &#125; "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>,<span class="keyword">int</span> index1,<span class="keyword">int</span> index2)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> temp = <span class="built_in">array</span>[index1];</span><br><span class="line">		<span class="built_in">array</span>[index1] = <span class="built_in">array</span>[index2];</span><br><span class="line">		<span class="built_in">array</span>[index2] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="堆排序核心算法">堆排序核心算法</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package com.Arr;</span><br><span class="line"></span><br><span class="line">import org.junit.experimental.max.MaxHistory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> HeapSort &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>&#125;;</span><br><span class="line">		heapSort(arr);</span><br><span class="line">		ArrayUtils.printArray(arr);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == null || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		buildMaxHeap(arr);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=arr.length-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			ArrayUtils.swap(arr, <span class="number">0</span>, i);</span><br><span class="line">			maxHeap(arr, i, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == null || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> half = (arr.length-<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=half;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			maxHeap(arr,arr.length,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maxHeap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> length, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">int</span> left = <span class="number">2</span>*index+<span class="number">1</span>;</span><br><span class="line">		 <span class="keyword">int</span> right = <span class="number">2</span>*index+<span class="number">2</span>;</span><br><span class="line">		 <span class="keyword">int</span> largestIndex = index;</span><br><span class="line">		<span class="keyword">if</span>(left &lt; length &amp;&amp; arr[left] &gt; arr[largestIndex])</span><br><span class="line">			largestIndex = left;</span><br><span class="line">		<span class="keyword">if</span>(right &lt; length &amp;&amp; arr[right] &gt; arr[largestIndex])</span><br><span class="line">			largestIndex = right;</span><br><span class="line">		<span class="keyword">if</span>(largestIndex!=index)&#123;</span><br><span class="line">			ArrayUtils.swap(arr, index, largestIndex);</span><br><span class="line">			maxHeap(arr, length, largestIndex);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>
+</div>
 
 
 </div>
@@ -132,7 +134,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/10/18/paper小记/" data-title="paper小记 | Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/03/11/堆排序/" data-title="堆排序 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -146,18 +148,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/24/虚拟实验/" title="虚拟实验">
+ <a href="/2016/03/11/java面试/" title="java面试">
   <strong>上一篇：</strong><br/>
   <span>
-  虚拟实验</span>
+  java面试</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/27/工控/"  title="工控">
+<a href="/2016/03/08/java线程池/"  title="java线程池">
  <strong>下一篇：</strong><br/> 
- <span>工控
+ <span>java线程池
 </span>
 </a>
 </div>
@@ -166,7 +168,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/10/18/paper小记/" data-title="paper小记" data-url="http://yoursite.com/2015/10/18/paper小记/"></div>
+	<div class="ds-thread" data-thread-key="2016/03/11/堆排序/" data-title="堆排序" data-url="http://yoursite.com/2016/03/11/堆排序/"></div>
 </section>
 
 
@@ -176,7 +178,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol>
  
   </div>
 

@@ -3,14 +3,14 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  
+
     <title>hexo 搭建小记 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Yuchuan">
-    
 
-    
+    <meta name="author" content="Yuchuan">
+
+
+
     <meta name="description" content="hexo安装git bash、ssh 、node.jsnpm install -g hexomkdir /g/hexocd /g/hexohexo inithexo generatehexo server 可以开启服务hexo deploy
 若出现deployer not found 则把type改为git执行 npm install hexo-deployer-git –save修改_confi">
 <meta property="og:type" content="article">
@@ -25,28 +25,28 @@
 <meta name="twitter:description" content="hexo安装git bash、ssh 、node.jsnpm install -g hexomkdir /g/hexocd /g/hexohexo inithexo generatehexo server 可以开启服务hexo deploy
 若出现deployer not found 则把type改为git执行 npm install hexo-deployer-git –save修改_confi">
 
-    
+
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
-    
-    
+
+
     <link rel="icon" href="/img/favicon.ico">
-    
-    
+
+
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
+
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
     <header>
-      
+
 <div>
-		
+
 			<div id="imglogo">
 				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
 			</div>
-			
+
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
 				<h2 class="blog-motto"></h2>
@@ -56,53 +56,53 @@
 			<nav class="animated">
 				<ul>
 					<ul>
-					 
+
 						<li><a href="/">Home</a></li>
-					
+
 						<li><a href="/archives">Archives</a></li>
-					
+
 						<li><a href="/about">About</a></li>
-					
+
 					<li>
- 					
+
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
 						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
-					
+
 					</li>
 				</ul>
-			</nav>			
+			</nav>
 </div>
     </header>
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
+
+	<article itemprop="articleBody">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
-    
+
       <a href="/2015/09/04/hexo-搭建小记/" title="hexo 搭建小记" itemprop="url">hexo 搭建小记</a>
   </h1>
   <p class="article-author">By
-       
+
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
-		
+
   <p class="article-time">
     <time datetime="2015-09-04T14:26:18.000Z" itemprop="datePublished"> 发表于 2015-09-04</time>
-    
+
   </p>
 </header>
 	<div class="article-content">
-		
+
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+
 			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo"><span class="toc-number">1.</span> <span class="toc-text">hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git_bash、ssh_、node-js"><span class="toc-number">1.1.</span> <span class="toc-text">安装git bash、ssh 、node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导航栏添加自定义页面"><span class="toc-number">1.2.</span> <span class="toc-text">导航栏添加自定义页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模板修改_hexo\scaffolds_中_的_post-md"><span class="toc-number">1.3.</span> <span class="toc-text">模板修改 hexo\scaffolds 中 的 post.md</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git操作"><span class="toc-number">2.</span> <span class="toc-text">git操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用命令"><span class="toc-number">2.1.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置文章摘要"><span class="toc-number">2.2.</span> <span class="toc-text">设置文章摘要</span></a></li></ol></li></ol>
-		
+
 		</div>
-		
+
 		<h3 id="hexo">hexo</h3><h4 id="安装git_bash、ssh_、node-js">安装git bash、ssh 、node.js</h4><p>npm install -g hexo<br>mkdir /g/hexo<br>cd /g/hexo<br>hexo init<br>hexo generate<br>hexo server 可以开启服务<br>hexo deploy</p>
 <p>若出现deployer not found 则把type改为git<br>执行 npm install hexo-deployer-git –save<br>修改_config.yml<br>deploy:<br>  type: git<br>  repository: git@github.com:yuchuan512/yuchuan512.github.io.git<br>  branch: master<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/A-limon/pacman.git themes/pacman</span><br></pre></td></tr></table></figure></p>
 <p>修改你的博客根目录下的config.yml配置文件中的theme属性，将其设置为pacman</p>
@@ -112,11 +112,11 @@
 <h4 id="常用命令">常用命令</h4><p>npm install hexo -g #安装<br>npm update hexo -g #升级<br>hexo init #初始化</p>
 <p>hexo n “我的博客” == hexo new “我的博客” #新建文章<br>hexo p == hexo publish<br>hexo g == hexo generate#生成<br>hexo s == hexo server #启动服务预览<br>hexo d == hexo deploy#部署</p>
 <p>hexo server #Hexo 会监视文件变动并自动更新， 无须重启服务器。<br>hexo server -s #静态模式<br>hexo server -p 5000 #更改端口<br>hexo server -i 192.168.1.1 #自定义 IP</p>
-<p>hexo clean #清除缓存<br>hexo g #生成静态网页<br>hexo d #开始部署</p>
+<p>hexo clean #清除缓存<br>hexo g #生成静态网页<br>hexo d #开始部署</p><br>hexo d -g #开始生成并且部署</p>
 <p>hexo new “postName” #新建文章<br>hexo new page “pageName” #新建页面<br>hexo generate #生成静态页面至public目录<br>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>hexo deploy #将.deploy目录部署到GitHub</p>
 <p>hexo new [layout] <title><br>hexo new photo “My Gallery”<br>hexo new “Hello World” –lang tw</title></p>
 <h4 id="设置文章摘要">设置文章摘要</h4><p>以上是文章摘要 <a id="more"></a> 以下是余下全文</p>
-  
+
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -127,20 +127,20 @@
 
 
 	<div class="article-share" id="share">
-	
+
 	  <div data-url="http://yoursite.com/2015/09/04/hexo-搭建小记/" data-title="hexo 搭建小记 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
-	
+
 	</div>
 
 
 </footer>
 
-   	       
+
 	</article>
-	
+
 <nav class="article-nav clearfix">
- 
+
  <div class="prev" >
  <a href="/2015/09/05/linux进阶/" title="linux进阶">
   <strong>上一篇：</strong><br/>
@@ -152,187 +152,187 @@
 
 </nav>
 
-	
+
 <section id="comments" class="comment">
 	<div class="ds-thread" data-thread-key="2015/09/04/hexo-搭建小记/" data-title="hexo 搭建小记" data-url="http://yoursite.com/2015/09/04/hexo-搭建小记/"></div>
 </section>
 
 
-</div>  
+</div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
- 
+
  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo"><span class="toc-number">1.</span> <span class="toc-text">hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装git_bash、ssh_、node-js"><span class="toc-number">1.1.</span> <span class="toc-text">安装git bash、ssh 、node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导航栏添加自定义页面"><span class="toc-number">1.2.</span> <span class="toc-text">导航栏添加自定义页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模板修改_hexo\scaffolds_中_的_post-md"><span class="toc-number">1.3.</span> <span class="toc-text">模板修改 hexo\scaffolds 中 的 post.md</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git操作"><span class="toc-number">2.</span> <span class="toc-text">git操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用命令"><span class="toc-number">2.1.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置文章摘要"><span class="toc-number">2.2.</span> <span class="toc-text">设置文章摘要</span></a></li></ol></li></ol>
- 
+
   </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
-  
 
 
-  
+
+
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
-		
-		  
+
+
 			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/java/" title="java">java<sup>13</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/算法/" title="算法">算法<sup>5</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
-		  
-		
-		  
+
+
+
 			<li><a href="/categories/java/面试/" title="面试">面试<sup>1</sup></a></li>
-		  
-		
+
+
 		</ul>
 </div>
 
 
-  
+
 <div class="tagslist">
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
-		
-			
+
+
 				<li><a href="/tags/java/" title="java">java<sup>8</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
-			
-		
-			
+
+
+
 				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
-			
-		
+
+
 		</ul>
 </div>
 
@@ -340,23 +340,23 @@
   <div class="linkslist">
   <p class="asidetitle">友情链接</p>
     <ul>
-        
+
           <li>
-            
+
             	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
-            
+
           </li>
-        
+
           <li>
-            
+
             	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
-            
+
           </li>
-        
+
     </ul>
 </div>
 
-  
+
 
 
   <div class="rsspart">
@@ -394,43 +394,43 @@
 </div>
     </div>
     <footer><div id="footer" >
-	
+
 	<div class="line">
 		<span></span>
 		<div class="author"></div>
 	</div>
-	
-	
+
+
 	<section class="info">
 		<p> Hello ,I Am An IT Dog <br/>
 			Welcome to you</p>
 	</section>
-	 
+
 	<div class="social-font" class="clearfix">
-		
+
 		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
 		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
+
 	</div>
-			
-		
+
+
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
+
 		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
-		
-		
+
+
 		</p>
 </div>
 </footer>
@@ -440,7 +440,7 @@
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });
@@ -463,31 +463,31 @@ $(document).ready(function(){
   });
   o.click(function(){
     o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
     m.removeClass('moveMain');
   });
   $(window).scroll(function(){
     o.css("top",Math.max(80,260-$(this).scrollTop()));
   });
-  
+
   $(window).resize(function(){
-    getSize(); 
+    getSize();
     if (myWidth >= 1024) {
       $('header nav').removeClass('shownav');
     }else{
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
+
       $('#toc.toc-aside').css('display', 'none');
-        
+
     }
   });
 });
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   var ai = $('.article-content>iframe'),
       ae = $('.article-content>embed'),
       t  = $('#toc'),
@@ -514,7 +514,7 @@ $(document).ready(function(){
 
 
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -559,7 +559,7 @@ $(document).ready(function(){
   $('.article-share-qrcode').hover(function(){}, function(){
       $('.hoverqrcode').hide();
   });
-});   
+});
 </script>
 
 
@@ -571,10 +571,10 @@ $(document).ready(function(){
     ds.type = 'text/javascript';ds.async = true;
     ds.src = '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
+    (document.getElementsByTagName('head')[0]
     || document.getElementsByTagName('body')[0]).appendChild(ds);
   })();
-</script> 
+</script>
 
 
 
@@ -585,7 +585,7 @@ $(document).ready(function(){
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
   $('.article-content').each(function(i){
     $(this).find('img').each(function(){
       if ($(this).parent().hasClass('fancybox')) return;
@@ -600,7 +600,7 @@ $(document).ready(function(){
   if($.fancybox){
     $('.fancybox').fancybox();
   }
-}); 
+});
 </script>
 
 

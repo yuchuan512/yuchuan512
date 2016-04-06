@@ -23,7 +23,7 @@
 
 
 堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
-<meta property="og:updated_time" content="2016-03-11T06:50:35.222Z">
+<meta property="og:updated_time" content="2016-04-06T11:57:43.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆排序">
 <meta name="twitter:description" content="###堆排序
@@ -105,7 +105,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number"></span> <span class="toc-text">归并排序</span></a>
 		
 		</div>
 		
@@ -117,6 +117,7 @@
 </blockquote>
 <h4 id="工具类">工具类</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ArrayUtils &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>)</span></span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"&#123; "</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">array</span>.length;i++)&#123;</span><br><span class="line">			System.out.print(<span class="built_in">array</span>[i]);</span><br><span class="line">			<span class="keyword">if</span>(i&lt;<span class="built_in">array</span>.length-<span class="number">1</span>)&#123;</span><br><span class="line">				System.out.print(<span class="string">","</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">" &#125; "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>,<span class="keyword">int</span> index1,<span class="keyword">int</span> index2)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> temp = <span class="built_in">array</span>[index1];</span><br><span class="line">		<span class="built_in">array</span>[index1] = <span class="built_in">array</span>[index2];</span><br><span class="line">		<span class="built_in">array</span>[index2] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="堆排序核心算法">堆排序核心算法</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package com.Arr;</span><br><span class="line"></span><br><span class="line">import org.junit.experimental.max.MaxHistory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> HeapSort &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>&#125;;</span><br><span class="line">		heapSort(arr);</span><br><span class="line">		ArrayUtils.printArray(arr);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == null || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		buildMaxHeap(arr);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=arr.length-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			ArrayUtils.swap(arr, <span class="number">0</span>, i);</span><br><span class="line">			maxHeap(arr, i, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == null || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> half = (arr.length-<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=half;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			maxHeap(arr,arr.length,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maxHeap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> length, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">int</span> left = <span class="number">2</span>*index+<span class="number">1</span>;</span><br><span class="line">		 <span class="keyword">int</span> right = <span class="number">2</span>*index+<span class="number">2</span>;</span><br><span class="line">		 <span class="keyword">int</span> largestIndex = index;</span><br><span class="line">		<span class="keyword">if</span>(left &lt; length &amp;&amp; arr[left] &gt; arr[largestIndex])</span><br><span class="line">			largestIndex = left;</span><br><span class="line">		<span class="keyword">if</span>(right &lt; length &amp;&amp; arr[right] &gt; arr[largestIndex])</span><br><span class="line">			largestIndex = right;</span><br><span class="line">		<span class="keyword">if</span>(largestIndex!=index)&#123;</span><br><span class="line">			ArrayUtils.swap(arr, index, largestIndex);</span><br><span class="line">			maxHeap(arr, length, largestIndex);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="归并排序">归并排序</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MergeSort &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] sort(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">			<span class="comment">// 左边</span></span><br><span class="line">			sort(nums, low, mid);</span><br><span class="line">			<span class="comment">// 右边</span></span><br><span class="line">			sort(nums, mid + <span class="number">1</span>, high);</span><br><span class="line">			<span class="comment">// 左右归并</span></span><br><span class="line">			merge(nums, low, mid, high);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> nums;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> mid, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[high - low + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> i = low;<span class="comment">// 左指针</span></span><br><span class="line">		<span class="keyword">int</span> j = mid + <span class="number">1</span>;<span class="comment">// 右指针</span></span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 把较小的数先移到新数组中</span></span><br><span class="line">		<span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= high) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nums[i] &lt; nums[j]) &#123;</span><br><span class="line">				temp[k++] = nums[i++];</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				temp[k++] = nums[j++];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 把左边剩余的数移入数组</span></span><br><span class="line">		<span class="keyword">while</span> (i &lt;= mid) &#123;</span><br><span class="line">			temp[k++] = nums[i++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 把右边边剩余的数移入数组</span></span><br><span class="line">		<span class="keyword">while</span> (j &lt;= high) &#123;</span><br><span class="line">			temp[k++] = nums[j++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 把新数组中的数覆盖nums数组</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k2 = <span class="number">0</span>; k2 &lt; temp.length; k2++) &#123;</span><br><span class="line">			nums[k2 + low] = temp[k2];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 归并排序的实现</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span>[] nums = &#123; <span class="number">2</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">4</span> &#125;;</span><br><span class="line">		MergeSort.sort(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">		System.out.println(Arrays.toString(nums));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,6 +128,11 @@
   <a class="article-category-link" href="/categories/java/">java</a>
 </div>
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java/">java</a>
+  </div>
 
 </div>
 
@@ -157,9 +163,9 @@
 
 
 <div class="next">
-<a href="/2016/03/08/java线程池/"  title="java线程池">
+<a href="/2016/03/11/排序总结/"  title="堆排序">
  <strong>下一篇：</strong><br/> 
- <span>java线程池
+ <span>堆排序
 </span>
 </a>
 </div>
@@ -178,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number"></span> <span class="toc-text">归并排序</span></a>
  
   </div>
 
@@ -193,6 +199,10 @@
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
@@ -215,11 +225,11 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>13</sup></a></li>
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>14</sup></a></li>
 		  
 		
 		  
@@ -228,6 +238,10 @@
 		
 		  
 			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
 		  
 		
 		  
@@ -251,11 +265,11 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>5</sup></a></li>
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>5</sup></a></li>
 		  
 		
 		  
@@ -280,7 +294,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>8</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>13</sup></a></li>
 			
 		
 			

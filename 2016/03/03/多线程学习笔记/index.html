@@ -12,24 +12,18 @@
 
     
     <meta name="description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
-线程的生命周期一共有5个状态： new runnable  running blocked dead
-
-线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
+线程组和线程池的区别线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少创建、销毁线程的开销。守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程学习笔记">
 <meta property="og:url" content="http://yoursite.com/2016/03/03/多线程学习笔记/index.html">
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
-线程的生命周期一共有5个状态： new runnable  running blocked dead
-
-线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
-<meta property="og:updated_time" content="2016-03-08T13:32:10.139Z">
+线程组和线程池的区别线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少创建、销毁线程的开销。守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束">
+<meta property="og:updated_time" content="2016-04-06T07:42:10.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程学习笔记">
 <meta name="twitter:description" content="查询CPU核数和线程数grep ‘processor’ /proc/cpuinfo | sort -u | wc -lgrep ‘core id’ /proc/cpuinfo | sort -u | wc -l
-线程的生命周期一共有5个状态： new runnable  running blocked dead
-
-线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，">
+线程组和线程池的区别线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少创建、销毁线程的开销。守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -105,21 +99,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted_方法和isInterrupted方法有什么区别？"><span class="toc-number">5.</span> <span class="toc-text">interrupted 方法和isInterrupted方法有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized和volatile区别"><span class="toc-number">6.</span> <span class="toc-text">synchronized和volatile区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游标的使用"><span class="toc-number">7.</span> <span class="toc-text">游标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP和UDP区别"><span class="toc-number">8.</span> <span class="toc-text">TCP和UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写Socket套接字"><span class="toc-number">9.</span> <span class="toc-text">编写Socket套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">10.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库四范式"><span class="toc-number">11.</span> <span class="toc-text">数据库四范式</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程组和线程池的区别"><span class="toc-number">2.</span> <span class="toc-text">线程组和线程池的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-number">4.</span> <span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">5.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted_&&_isInterrupted？"><span class="toc-number">6.</span> <span class="toc-text">interrupted && isInterrupted？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized和volatile区别"><span class="toc-number">7.</span> <span class="toc-text">synchronized和volatile区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的中断"><span class="toc-number">8.</span> <span class="toc-text">线程的中断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal类"><span class="toc-number">9.</span> <span class="toc-text">ThreadLocal类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的异常处理"><span class="toc-number">10.</span> <span class="toc-text">线程的异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CopyOnWriteArrayList"><span class="toc-number">11.</span> <span class="toc-text">CopyOnWriteArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程阀"><span class="toc-number">12.</span> <span class="toc-text">线程阀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#阻塞队列_BlockingQueue"><span class="toc-number">12.1.</span> <span class="toc-text">阻塞队列 BlockingQueue</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡"><span class="toc-number">13.</span> <span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程监控工具"><span class="toc-number">14.</span> <span class="toc-text">线程监控工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux线程分析监控"><span class="toc-number">15.</span> <span class="toc-text">linux线程分析监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eclipse_里面调试并发程序"><span class="toc-number">16.</span> <span class="toc-text">Eclipse 里面调试并发程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存溢出三种情况"><span class="toc-number">17.</span> <span class="toc-text">内存溢出三种情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantReadWriteLock_读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取"><span class="toc-number">18.</span> <span class="toc-text">ReentrantReadWriteLock 读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游标的使用"><span class="toc-number">19.</span> <span class="toc-text">游标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP和UDP区别"><span class="toc-number">20.</span> <span class="toc-text">TCP和UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写Socket套接字"><span class="toc-number">21.</span> <span class="toc-text">编写Socket套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">22.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库四范式"><span class="toc-number">23.</span> <span class="toc-text">数据库四范式</span></a></li></ol>
 		
 		</div>
 		
 		<h3 id="查询CPU核数和线程数">查询CPU核数和线程数</h3><p>grep ‘processor’ /proc/cpuinfo | sort -u | wc -l<br>grep ‘core id’ /proc/cpuinfo | sort -u | wc -l</p>
-<h3 id="线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead">线程的生命周期一共有5个状态： new runnable  running blocked dead</h3><blockquote>
-<ul>
-<li>线程组和线程池的区别： 线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少穿件销毁线程的开销。<br>守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束。JVM的垃圾回收，内存管理等都是守护线程。<br>调用线程对象的setDaemon(true)则可以将其设置为守护线程<br>注意：JRE 判断程序是否执行结束的标准是所有的前台执行线程执行完毕了，而不管后台线程的状态。<br>当使用Threadlocal维护变量时，ThreadLocal 为每个使用该变量的线程提供独立的变量副本。<br>JMM(Java Memory Model) 内存管理模型<br>隐式锁的应用<br>public synchronized void methodA();<br>public void methodA(); synchronized(this);</li>
-</ul>
-</blockquote>
+<h3 id="线程组和线程池的区别">线程组和线程池的区别</h3><p>线程组是为了方便线程的管理，线程池是为了管理线程的生命周期，复用线程，减少创建、销毁线程的开销。<br>守护线程，可以简单理解为后台运行线程，进程结束，守护线程自然而然就会结束。JVM的垃圾回收，内存管理等都是守护线程。<br>调用线程对象的setDaemon(true)则可以将其设置为守护线程<br>注意：JRE 判断程序是否执行结束的标准是所有的前台执行线程执行完毕了，而不管后台线程的状态。<br>当使用Threadlocal维护变量时，ThreadLocal 为每个使用该变量的线程提供独立的变量副本。<br>JMM(Java Memory Model) 内存管理模型<br>隐式锁的应用<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span></span>;   <span class="comment">// 同步方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span></span>; <span class="keyword">synchronized</span>(<span class="keyword">this</span>);  <span class="comment">// 同步代码块</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="Lock_与_synchronized_区别：">Lock 与 synchronized 区别：</h3><p>Lock 使用起来比较灵活，但是必须有释放锁的动作配合<br>Lock 必须手动释放和开启锁，而 synchronized 不需要手动释放和开启锁<br>Lock  只适用于代码块锁，而 synchronized 对象之间是互斥关系</p>
-<p>ConcurrentHashMap<string, integer=""> map = new ConcurrentHashMap<string,integer>();<br>for (Map.Entry<string,integer> entry : map.entrySet()) {<br>            System.out.println(entry.getKey() + “ = “ +entry.getValue());<br>        }</string,integer></string,integer></string,></p>
+<h3 id="ConcurrentHashMap">ConcurrentHashMap</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ConcurrentHashMap&lt;<span class="built_in">String</span>, <span class="built_in">Integer</span>&gt; <span class="built_in">map</span> = <span class="literal">new</span> ConcurrentHashMap&lt;<span class="built_in">String</span>,<span class="built_in">Integer</span>&gt;();</span><br><span class="line">f<span class="subst">or</span> (<span class="built_in">Map</span><span class="built_in">.</span>Entry&lt;<span class="built_in">String</span>,<span class="built_in">Integer</span>&gt; entry : <span class="built_in">map</span><span class="built_in">.</span>entrySet()) &#123;</span><br><span class="line">			System<span class="built_in">.</span>out<span class="built_in">.</span>println(entry<span class="built_in">.</span>getKey() + <span class="string">" = "</span> +entry<span class="built_in">.</span>getValue());</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
-<li>Java 线程池实现了一个Java高并发的、java多线程的、可管理的统一调度器<br>Executors是个线程的工厂类，提供了一些静态方法，生成线程池常用方法三种：</li>
+<li>Java 线程池实现了一个Java高并发的、java多线程的、可管理的统一调度器Executors是个线程的工厂类，提供了一些静态方法，生成线程池常用方法三种：</li>
 </ul>
 <ol>
 <li>newSingleThreadExecutor  创建一个单线程的线程池</li>
@@ -127,27 +117,53 @@
 <li>newCachedThreadPool 创建一个可缓存的线程池</li>
 </ol>
 <ul>
-<li>线程安全的集合类 ：<br>Set : CopyOnWriteArraySet<br>List : CopyOnWriteArrayList   Vector<br>Map : Hashtable   ConcurrentMap -&gt; ConcurrentHashMap</li>
+<li>线程安全的集合类 ：<br>Set : CopyOnWriteArraySet<br>List : CopyOnWriteArrayList   Vector(synchronized方法修饰)<br>Map : Hashtable(synchronized方法修饰)   ConcurrentMap -&gt; ConcurrentHashMap</li>
 </ul>
 </blockquote>
 <h3 id="Runnable和Thread的区别">Runnable和Thread的区别</h3><p>只要是多线程肯定永远以实现Runnable接口为主，因为实现Runnable接口相比继承Thread类有如下好处<br>1.避免单继承的局限，一个类可以实现多个接口<br>2.适合资源的共享</p>
-<p>synchronized 可以在任意对象及方法上加锁<br>虽然println() 在内部是同步的，但i–的操作是在进入println()之前发生的，所以有发生非线程安全问题的概率。<br>MyThread.java 类的构造函数是被main线程调用的，而run方法是被名为Thread-0 的县城调用的，run方法是自动调用的方法。</p>
-<p>java中有3中方法可以终止正在运行的线程：<br>1.使用退出标志，使线程正常退出，也就是当run方法完成后线程终止<br>2.使用stop方法强行终止线程，不推荐，使用它们可能产生不可预料的结果<br>3.使用interrupt方法中断线程</p>
+<p>synchronized 可以在任意对象及方法上加锁<br>虽然println() 在内部是同步的，但i–的操作是在进入println()之前发生的，所以有发生非线程安全问题的概率。<br>MyThread.java 类的构造函数是被main线程调用的，而run方法是被名为Thread-0 的线程调用的，run方法是自动调用的方法。</p>
+<p>java中有3种方法可以终止正在运行的线程：<br>1.使用退出标志，使线程正常退出，也就是当run方法完成后线程终止<br>2.使用stop方法强行终止线程，不推荐，使用它们可能产生不可预料的结果<br>3.使用interrupt方法中断线程</p>
 <p>调用interrupte() 方法仅仅是在当前线程中打了一个停止的标记。</p>
-<h3 id="interrupted_方法和isInterrupted方法有什么区别？">interrupted 方法和isInterrupted方法有什么区别？</h3><p>1.this.interrupted() 测试当前线程是否已经是中断状态，执行后具有将状态标志清除为false功能<br>2.this.isInterrupted()  测试线程Thread对象是否已经是中断状态，但不清楚状态标识。</p>
+<h3 id="interrupted_&amp;&amp;_isInterrupted？">interrupted &amp;&amp; isInterrupted？</h3><p>1.this.interrupted() 测试当前线程是否已经是中断状态，执行后具有将状态标志清除为false功能<br>2.this.isInterrupted()  测试线程Thread对象是否已经是中断状态，但不清楚状态标识。</p>
 <p>当进程中不存在非守护线程了，则守护线程自动销毁。典型的守护线程就是垃圾回收线程。<br>只有当最后一个非守护线程结束时，守护线程才随着JVM一同结束工作。<br>调用synchronized方法一定是排队运行的; 另外，只有共享资源的读写访问才需要同步化，如果不是共享资源，那么根本没有同步的必要。</p>
-<p>当A线程调用anyObject对象调用synchronized方法修饰的X方法时，A线程就获得了X方法所在<strong>对象的锁</strong>，所以其他线程必须等A线程执行完毕才可以调用<br>X方法，但B线程可以调用其他的非synchronized同步方法。<br>而B线程如果调用了synchronized修饰的<strong>非X方法</strong>时，必须等到A线程将X方法执行完，也就是释放对象锁之后才可以调用。</p>
-<p>synchronized锁重入（自己可以再次获取自己的内部锁）<br>当一个线程得到一个对象锁后，再次请求此对象锁时时可以再次得到该对象的锁。<br>这也证明在一个synchronized方法/块的内部调用本类的其他synchronized方法时，是永远可以得到锁的。</p>
+<p>当A线程调用anyObject对象调用synchronized方法修饰的X方法时，A线程就获得了X方法所在<strong>对象的锁</strong>，所以其他线程必须等A线程执行完毕才可以调用X方法，但B线程可以调用其他的非synchronized同步方法。<br>而B线程如果调用了synchronized修饰的<strong>非X方法</strong>时，必须等到A线程将X方法执行完，也就是释放对象锁之后才可以调用。</p>
+<p>synchronized锁重入（自己可以再次获取自己的内部锁）<br>当一个线程得到一个对象锁后，再次请求此对象锁时可以再次得到该对象的锁。<br>这也证明在一个synchronized方法/块的内部调用本类的其他synchronized方法时，是永远可以得到锁的。</p>
 <p>当存在父子类继承关系时，子类是完全可以通过“可重入锁”调用父类的同步方法的。<br>出现异常的锁被自动释放了。<br>同步不能继承。所以还得在子类的方法中添加synchronized关键字<br>同步synchronized是锁定当前对象的。</p>
 <p>锁非this对象具有一定的优点：如果在一个类中有很多个 synchronized 方法，这时虽然能实现同步，但会受到阻塞，影响运行效率；但如果使用同步代码块<br>锁非this对象，则 synchronized(非this)代码块中的程序与同步方法是异步的，不与其他锁this同步方法争抢this锁，可以大大提高运行效率。</p>
 <p>synchronized 关键字加到static静态方法上是给Class上锁(加锁之后若其他线程只需要对象锁也不能获取到必须等待)，而 synchronized加到非static<br>静态方法上是给对象上锁。</p>
 <p>若字符串作为锁，涉及到常量池，导致两个线程持有相同的锁，其中一个线程不能运行<br>volatile 的作用是强制从公共堆栈中取得变量的值，而不是从线程私有数据栈中取得变量的值<br>volatile 关键字增加了实例变量在多个线程之间的可见性。但缺点是不支持原子性。</p>
 <h3 id="synchronized和volatile区别">synchronized和volatile区别</h3><p>1.volatile属于线程同步逇轻量级实现，性能好。只能修饰变量，synchroinzed可以修饰方法及代码块。<br>2.多线程访问volatile不会阻塞，而synchronized会发生阻塞<br>3.volatile能保证数据的可见性，但不能保证原子性；而synchronized可以保证原子性，也可以间接保证可见性，因为它会将私有内存和公共内存数据同步</p>
 <p>线程安全包含原子性和可见性两个方面，java的同步机制都是围绕这两个方面来确保线程安全的。<br>除了在i++操作时使用synchronized关键字实现同步，还可以使用 AtomicInteger 原子类进行实现（java.util.concurrent.atomic.AtomicInteger）。</p>
-<p>join的使用？<br>方法 boolean hasQueuedThread(Thread thread) 查询指定的线程是否正在等待获取此锁定<br>方法 boolean hasQueuedThreads()  查询是否有线程正在等待获取此锁定<br>方法 boolean hasWaiters(Condition condition)  查询是否有线程正在等待与此锁定有关的condition条件<br>eg： service.lock.hasQuuedThread(threadA)    lock.hasWaiters(newCondition)   lock.getWaitQueueLength(newCondition)</p>
-<p>ReentrantReadWriteLock 读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取<br>操作，但是同一时刻只允许一个Thread进行写入操作。</p>
+<p>方法 boolean hasQueuedThread(Thread thread) 查询指定的线程是否正在等待获取此锁定<br>方法 boolean hasQueuedThreads()  查询是否有线程正在等待获取此锁定<br>方法 boolean hasWaiters(Condition condition)  查询是否有线程正在等待与此锁定有关的condition条件<br>eg： service.lock.hasQuedThread(threadA)    lock.hasWaiters(newCondition)   lock.getWaitQueueLength(newCondition)</p>
+<h3 id="线程的中断">线程的中断</h3><p>t1想中断t2的话只需要在线程t1中将线程t2对象的中断标志设置为true,然后线程2可以选择在合适的时候处理该中断请求，甚至可以不理会该请求。</p>
+<h3 id="ThreadLocal类">ThreadLocal类</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="literal">void</span> <span class="built_in">set</span>(T value) &#123;</span><br><span class="line">        <span class="keyword">Thread</span> t = <span class="keyword">Thread</span><span class="built_in">.</span>currentThread();</span><br><span class="line">        <span class="comment">// 获得一个和当前线程相关的ThreadLocalMap</span></span><br><span class="line">        ThreadLocalMap <span class="built_in">map</span> = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">map</span> != <span class="built_in">null</span>)</span><br><span class="line">        	<span class="comment">// ThreadLocalMap 是ThreadLocal类的一个静态内部类，实现了键值对的获取</span></span><br><span class="line">        	<span class="comment">// 键是this对象指向的ThreadLocal对象</span></span><br><span class="line">            <span class="built_in">map</span><span class="built_in">.</span><span class="built_in">set</span>(this, value);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            createMap(t, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> T get() &#123;</span><br><span class="line"><span class="keyword">Thread</span> t = <span class="keyword">Thread</span><span class="built_in">.</span>currentThread();</span><br><span class="line">ThreadLocalMap <span class="built_in">map</span> = getMap(t);</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">map</span> != <span class="built_in">null</span>) &#123;</span><br><span class="line">    ThreadLocalMap<span class="built_in">.</span>Entry e = <span class="built_in">map</span><span class="built_in">.</span>getEntry(this);</span><br><span class="line">    <span class="keyword">if</span> (e != <span class="built_in">null</span>)</span><br><span class="line">        <span class="keyword">return</span> (T)e<span class="built_in">.</span>value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> setInitialValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进一步的，我们可以创建不同的ThreadLocal实例来实现多个变量在不同线程间的访问隔离，因为不同的ThreadLocal对象作为不同键，当然也可以在线程的ThreadLocalMap对象中设置不同的值了。</p>
+<blockquote>
+<p>ThreadLocal在处理线程的局部变量的时候比synchronized同步机制解决线程安全问题更简单，更方便，且结果程序拥有更高的并发性<br>注意： 使用ThreadLocal，一般都是声明在静态变量中，如果不断的创建ThreadLocal而且没有调用其remove方法，将会导致内存泄漏，特别实在高并发的web容器中。</p>
+</blockquote>
+<h3 id="线程的异常处理">线程的异常处理</h3><p>thread.setUncaughtExceptionHandler 语句来实现逻辑的注册<br>UncaughtExceptionHandler是一个接口，异常处理对象需要实现这个接口才能处理异常<br>对于checked exception 推荐try/catch 块来处理；对于unchecked exception,注册一个实现UncaughtExceptionHandler接口对象该实例来处理。</p>
+<h3 id="CopyOnWriteArrayList">CopyOnWriteArrayList</h3><p>CopyOnWriteArrayList 中的set,add,remove等方法，都使用了ReentrantLock的lock来加锁，unlock来解锁。当增加元素的时候用Arrays.copyOf()拷贝副本，在副本上增加元素，然后改变原引用指向副本。读操作不需要加锁，而写操作类实现中对其进行了加锁。因此CopyOnWriteArrayList是一个线程安全的List接口的实现，可以提供高并发读取。<br>CopyOnWrite 机制也是一种读写分离的思想<br><strong>CopyOnWrite缺点：1）内存占用问题，回收。   2）数据一致性问题，只能保证最终一致性，不能保证实时一致性</strong></p>
+<h3 id="线程阀">线程阀</h3><h4 id="阻塞队列_BlockingQueue">阻塞队列 BlockingQueue</h4><p>支持两个附加操作的队列，在队列为空时，获取元素的线程会等待队列变为非空；当队列满时，存储元素的线程会等待队列可用。<br>包括 DelayQueue/ArrayBlockingQueue/LinkedBlockingQueue/LinkedBlockingQueue/SynchronousQueue/PriorityBlockingQueue/LinkedBlockingDeque<br>ArrayBlockingQueue 是一个由数组支持的有界的阻塞队列。<br>LinkedBlockingQueue是基于链表的阻塞队列，对于生产者和消费者分别采用了独立的锁来控制数据同步。若构造对象的时候没有指定初始化大小，默认一个类似无限大小的容量。<br>PriorityBlockingQueue 是一个支持优先级排序的无界阻塞队列，它并不会阻塞数据生产者只会在没有可消费的数据时，阻塞数据的消费者</p>
+<p>SynchronousQueue 同步队列是一个不存储元素的阻塞队列，每一个put操作必须等待一个take操作，否则不能继续添加元素。<br>CountDownLatch同步计数器：在完成一组正在其他线程中执行的操作之前，允许一个或多个线程一直等待，用给定的计数初始化CountDownLatch，由于调用了countDown方法，所以在当前计数器到达零之前，await方法会一直受阻塞，之后，会释放所有等待的线程，await的所有后续调用都立即返回。<br>使用场景： 同时当线程都完成后触发事件事件。比如：开5个多线程去下载，当5个线程都执行完了才算下载成功。</p>
+<blockquote>
+<p>ReentrantLock、CountDownLatch、Semaphore、FutureTask、ThreadPoolExecutor都会发现有个叫Sync的静态内部类，继承自AbstractQueuedSynchronizer。AbstractQueuedSynchronizer是java.util.concurrent的核心组件之一，它为并发包中的其他synchronizers提供了一组公共的基础设施。<br>Semaphore 是一个计数信号量，信号量维护了一个许可集合，在许可可用前会阻塞每一个acquire，然后再获取该许可，每个release添加一个许可，从而可能释放一个正在阻塞的获取者。</p>
+</blockquote>
+<p>线程池任务拒绝策略： 直接丢弃任务 不用线程池线程运行  丢弃队列中最旧任务 抛出异常<br>线程池一定要在合理的单例模式下才有效。<br>在某些情况情况下，可以简单的抛弃请求，依靠更高级别的协议稍后重试请求，也可以指出服务器暂时很忙的响应来拒绝请求。</p>
+<h3 id="冒泡">冒泡</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr.length-i-<span class="number">1</span>;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(compareArr(arr[j],arr[j+<span class="number">1</span>]) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">					swap(arr,j,j+<span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="线程监控工具">线程监控工具</h3><p>VisualVM 是JDK的一个集成的分析工具，监控应用程序的性能和内存占用情况、监控线程进行线程转储(Thread Dump)或堆转储(Heap Dump)<br>在线程一栏中，四种状态，其中监视(Monitor)表示线程想执行一端synchronized中的代码，但是发现其他线程正在执行，被block等待<br>有时候需要生产线程Dump进行那个时刻的线程分析，点击线程Dump即可生产Dump文件。可以在java VisualVM工具里面安装JTA插件，分析线程dump文件。正常阶段的dump文件与非正常的dump文件比较更容易分析问题。<br>使用JConsole进行应用程序性能监控<br>jmc(Oracle Java Mission Console)提供监控和分析</p>
+<h3 id="linux线程分析监控">linux线程分析监控</h3><p>获取进程ID之后(top -p 8442 -H) 用jstack打印出给定的java进程ID或core file或远程调试服务的java堆栈信息<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack <span class="number">8442</span> &gt; ./<span class="number">8442</span>_dump.txt</span><br></pre></td></tr></table></figure></p>
+<h3 id="Eclipse_里面调试并发程序">Eclipse 里面调试并发程序</h3><p>默认情况下，Eclipse调试的时候debugger找到断点，只是把有断点的线程停止，其他线程都在继续他们的运行。<br>Window-&gt;preference 把 Default suspend policy for new breakpoints 改为 Suspend VM ,这样遇到断点就会暂停所有线程的运行</p>
+<blockquote>
+<p>利用Badboy或者Jmeter进行服务器抗压能力的测试</p>
+</blockquote>
+<h3 id="内存溢出三种情况">内存溢出三种情况</h3><ol>
+<li>堆溢出。解决：手动设置JVM Heap 的大小</li>
+<li>永久代溢出。 设置永久代大小</li>
+<li>栈溢出。优化程序，或者通过-Xss来设置每个线程的栈大小</li>
+</ol>
+<h3 id="ReentrantReadWriteLock_读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取">ReentrantReadWriteLock 读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取</h3><p>操作，但是同一时刻只允许一个Thread进行写入操作。</p>
 <h3 id="游标的使用">游标的使用</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">Declare</span> <span class="keyword">cursor</span> <span class="keyword">CURSOR</span> <span class="keyword">for</span></span><br><span class="line"><span class="keyword">select</span> stuID <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">open</span> <span class="keyword">cursor</span></span><br><span class="line"><span class="keyword">fetch</span> <span class="keyword">next</span> <span class="keyword">from</span> <span class="keyword">cursor</span></span><br><span class="line"><span class="keyword">while</span> @@fetch_status =<span class="number">0</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (@<span class="keyword">ID</span>=<span class="number">15</span>)</span><br><span class="line">	<span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span>=@<span class="keyword">ID</span></span><br><span class="line">	<span class="keyword">fetch</span> <span class="keyword">next</span> <span class="keyword">from</span> <span class="keyword">cursor</span> <span class="keyword">into</span> @<span class="keyword">ID</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">close</span> <span class="keyword">cursor</span></span><br><span class="line"><span class="keyword">deallocate</span> <span class="keyword">cursor</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="TCP和UDP区别">TCP和UDP区别</h3><p>TCP是传输控制协议，提供的面向连接、可靠的字节流服务。当客户和服务器彼此交换数据前，必须现在双方之间建立一个TCP连接，之后才能传输数据。TCP<br>提供超时重发、丢弃重复数据、校验数据、流量控制等功能，保证数据能从一端传到另一端。<br>UDP是用户数据报协议，无连接的面向数据包的传输层协议。UDP不提供可靠性，它只是把应用程序传给IP层的数据包发送出去，但是并不保证他们<br>能到达目的地。由于UDP在传输数据前不需要建立链接，且没有超时重发机制，所以传输速度快。</p>
+<h3 id="TCP和UDP区别">TCP和UDP区别</h3><p>TCP是传输控制协议，提供的面向连接、可靠的字节流服务。当客户和服务器彼此交换数据前，必须现在双方之间建立一个TCP连接，之后才能传输数据。<br>TCP提供超时重发、丢弃重复数据、校验数据、流量控制等功能，保证数据能从一端传到另一端。<br>UDP是用户数据报协议，无连接的面向数据包的传输层协议。UDP不提供可靠性，它只是把应用程序传给IP层的数据包发送出去，但是并不保证他们能到达目的地。由于UDP在传输数据前不需要建立链接，且没有超时重发机制，所以传输速度快。</p>
 <h3 id="编写Socket套接字">编写Socket套接字</h3><p>调用socket()创建一个套接字，调用bind()绑定IP地址和端口，然后启动一个死循环，循环中调用accept接受链接。对于每个接受的连接，可以启动多线程<br>方式进行处理，在线程中调用send(),recv()发送和接受数据。客户端只需要调用socket()创建套接字，连接服务器，就可以发送和接受数据了。</p>
 <h3 id="SQL注入攻击">SQL注入攻击</h3><p>SQL注入攻击 就是攻击者把SQL命令插入到Web表单的输入域或页面请求的查询字符串中，欺骗服务器执行恶意的SQL命令。在某些表单中，用户输入的内容<br>直接用来构造动态SQL命令，或作为存储过程的输入参数。<br>防范SQL注入攻击：替换单引号，连字符   检查用户输入的合法性    将用户登录名称密码等数据加密保存   存储过程执行所有的查询</p>
 <h3 id="数据库四范式">数据库四范式</h3><p>1NF  所有属性值域中每一个值都是不可再分解的值<br>2NF  如果关系模式R为第一范式，并且R中每一个非主属性完全函数依赖于R的某个候选键<br>3NF  如果关系模式R是第二范式，且每个非主属性都不传递依赖于R的候选键<br>BCNF 如果关系模式R是第一范式，且每个属性都不传递依赖于R的候选键，那么成R为BCNF的模式</p>
@@ -208,7 +224,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期一共有5个状态：_new_runnable_running_blocked_dead"><span class="toc-number">2.</span> <span class="toc-text">线程的生命周期一共有5个状态： new runnable  running blocked dead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">4.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted_方法和isInterrupted方法有什么区别？"><span class="toc-number">5.</span> <span class="toc-text">interrupted 方法和isInterrupted方法有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized和volatile区别"><span class="toc-number">6.</span> <span class="toc-text">synchronized和volatile区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游标的使用"><span class="toc-number">7.</span> <span class="toc-text">游标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP和UDP区别"><span class="toc-number">8.</span> <span class="toc-text">TCP和UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写Socket套接字"><span class="toc-number">9.</span> <span class="toc-text">编写Socket套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">10.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库四范式"><span class="toc-number">11.</span> <span class="toc-text">数据库四范式</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询CPU核数和线程数"><span class="toc-number">1.</span> <span class="toc-text">查询CPU核数和线程数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程组和线程池的区别"><span class="toc-number">2.</span> <span class="toc-text">线程组和线程池的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock_与_synchronized_区别："><span class="toc-number">3.</span> <span class="toc-text">Lock 与 synchronized 区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-number">4.</span> <span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable和Thread的区别"><span class="toc-number">5.</span> <span class="toc-text">Runnable和Thread的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupted_&&_isInterrupted？"><span class="toc-number">6.</span> <span class="toc-text">interrupted && isInterrupted？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized和volatile区别"><span class="toc-number">7.</span> <span class="toc-text">synchronized和volatile区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的中断"><span class="toc-number">8.</span> <span class="toc-text">线程的中断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal类"><span class="toc-number">9.</span> <span class="toc-text">ThreadLocal类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的异常处理"><span class="toc-number">10.</span> <span class="toc-text">线程的异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CopyOnWriteArrayList"><span class="toc-number">11.</span> <span class="toc-text">CopyOnWriteArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程阀"><span class="toc-number">12.</span> <span class="toc-text">线程阀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#阻塞队列_BlockingQueue"><span class="toc-number">12.1.</span> <span class="toc-text">阻塞队列 BlockingQueue</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡"><span class="toc-number">13.</span> <span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程监控工具"><span class="toc-number">14.</span> <span class="toc-text">线程监控工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux线程分析监控"><span class="toc-number">15.</span> <span class="toc-text">linux线程分析监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eclipse_里面调试并发程序"><span class="toc-number">16.</span> <span class="toc-text">Eclipse 里面调试并发程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存溢出三种情况"><span class="toc-number">17.</span> <span class="toc-text">内存溢出三种情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantReadWriteLock_读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取"><span class="toc-number">18.</span> <span class="toc-text">ReentrantReadWriteLock 读写锁有两个锁，一个是读操作相关的锁，也成为共享锁;另一个是写操作相关的锁，也叫排它锁。多个Thread可以同时进行读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游标的使用"><span class="toc-number">19.</span> <span class="toc-text">游标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP和UDP区别"><span class="toc-number">20.</span> <span class="toc-text">TCP和UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写Socket套接字"><span class="toc-number">21.</span> <span class="toc-text">编写Socket套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">22.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库四范式"><span class="toc-number">23.</span> <span class="toc-text">数据库四范式</span></a></li></ol>
  
   </div>
 
@@ -223,6 +239,10 @@
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
@@ -245,11 +265,11 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>13</sup></a></li>
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>14</sup></a></li>
 		  
 		
 		  
@@ -258,6 +278,10 @@
 		
 		  
 			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
 		  
 		
 		  
@@ -281,11 +305,11 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>5</sup></a></li>
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>5</sup></a></li>
 		  
 		
 		  
@@ -310,7 +334,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>8</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>13</sup></a></li>
 			
 		
 			

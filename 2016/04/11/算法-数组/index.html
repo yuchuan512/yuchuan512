@@ -1,0 +1,660 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>算法-数组 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="奇数全部放在偶数前面12345678910111213141516171819202122232425262728/** * 把数组中的奇数全部放到偶数之前 * 注意：面试官期待我们提供的不仅仅是解决一个问题的办法，而是解决一系列问题的通用办法 */public class OrderArray &amp;#123;	public static void main(String[] args) &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法-数组">
+<meta property="og:url" content="http://yoursite.com/2016/04/11/算法-数组/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="奇数全部放在偶数前面12345678910111213141516171819202122232425262728/** * 把数组中的奇数全部放到偶数之前 * 注意：面试官期待我们提供的不仅仅是解决一个问题的办法，而是解决一系列问题的通用办法 */public class OrderArray &amp;#123;	public static void main(String[] args) &amp;#123">
+<meta property="og:updated_time" content="2016-04-11T13:49:58.802Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法-数组">
+<meta name="twitter:description" content="奇数全部放在偶数前面12345678910111213141516171819202122232425262728/** * 把数组中的奇数全部放到偶数之前 * 注意：面试官期待我们提供的不仅仅是解决一个问题的办法，而是解决一系列问题的通用办法 */public class OrderArray &amp;#123;	public static void main(String[] args) &amp;#123">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/11/算法-数组/" title="算法-数组" itemprop="url">算法-数组</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-11T13:42:26.000Z" itemprop="datePublished"> 发表于 2016-04-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#奇数全部放在偶数前面"><span class="toc-number">1.</span> <span class="toc-text">奇数全部放在偶数前面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行列均递增的二维数组查找指定值"><span class="toc-number">2.</span> <span class="toc-text">行列均递增的二维数组查找指定值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未排序正数数组中累加和为给定值的最长子数组长度"><span class="toc-number">3.</span> <span class="toc-text">未排序正数数组中累加和为给定值的最长子数组长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最少需要排序的数组元素个数"><span class="toc-number">4.</span> <span class="toc-text">最少需要排序的数组元素个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组中最小的K个数"><span class="toc-number">5.</span> <span class="toc-text">数组中最小的K个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求给定数字包含1的个数"><span class="toc-number">6.</span> <span class="toc-text">求给定数字包含1的个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个数出现了奇数次"><span class="toc-number">7.</span> <span class="toc-text">一个数出现了奇数次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两个数出现了奇数次"><span class="toc-number">8.</span> <span class="toc-text">两个数出现了奇数次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他数出现K次"><span class="toc-number">9.</span> <span class="toc-text">其他数出现K次</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="奇数全部放在偶数前面">奇数全部放在偶数前面</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 把数组中的奇数全部放到偶数之前</span><br><span class="line"> * 注意：面试官期待我们提供的不仅仅是解决一个问题的办法，而是解决一系列问题的通用办法</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderArray</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line">		orderModify(arr);</span><br><span class="line">		ArrayUtils.printArray(arr);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">orderModify</span>(<span class="params"><span class="keyword">int</span>[] arr</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i=<span class="number">0</span>,j=arr.length-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">			<span class="keyword">while</span>(i&lt;j &amp;&amp; !isEven(arr[i]))</span><br><span class="line">				i++;</span><br><span class="line">			<span class="keyword">while</span>(i&lt;j &amp;&amp; isEven(arr[j]))</span><br><span class="line">				j--;</span><br><span class="line">			<span class="keyword">if</span>(i &lt; j)&#123;</span><br><span class="line">				<span class="keyword">int</span> temp = arr[i];</span><br><span class="line">				arr[i] = arr[j];</span><br><span class="line">				arr[j] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> boolean <span class="title">isEven</span>(<span class="params"><span class="keyword">int</span> n</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (n&amp;<span class="number">1</span>)==<span class="number">0</span> ? <span class="keyword">true</span>:<span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="行列均递增的二维数组查找指定值">行列均递增的二维数组查找指定值</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 行列都是递增的二维数组，根据给定的数判断是否在在二维数组中</span><br><span class="line"> * eg:</span><br><span class="line"> * 1 2 8  9</span><br><span class="line"> * 2 4 9  12</span><br><span class="line"> * 4 7 10 13</span><br><span class="line"> * 6 8 11 15</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> FindMatrix &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][] arr = &#123;</span><br><span class="line">			&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>&#125;,&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">12</span>&#125;,&#123;<span class="number">4</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">13</span>&#125;,&#123;<span class="number">6</span>,<span class="number">8</span>,<span class="number">11</span>,<span class="number">15</span>&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		boolean flag = Find(arr,<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>);</span><br><span class="line">		System.out.println(flag);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> boolean <span class="title">Find</span><span class="params">(<span class="keyword">int</span>[][] arr, <span class="keyword">int</span> rows, <span class="keyword">int</span> columns,<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		boolean found = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">int</span> row=<span class="number">0</span>,col=columns-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(row&lt;rows &amp;&amp; col &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[row][col] == num)&#123;</span><br><span class="line">				found = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(arr[row][col] &gt; num)</span><br><span class="line">				col--;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				row++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> found;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="未排序正数数组中累加和为给定值的最长子数组长度">未排序正数数组中累加和为给定值的最长子数组长度</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * eg : arr=[1,2,1,1,1]  k=3</span><br><span class="line"> * 返回最长子数组为[1,1,1]</span><br><span class="line"> * @flyzyc</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> LongestArr &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> k= <span class="number">3</span>;</span><br><span class="line">		<span class="keyword">int</span> len = getLongestArr(arr,k);</span><br><span class="line">		System.out.println(len);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getLongestArr</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> left = <span class="number">0</span>,right = <span class="number">0</span>,len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> sum=arr[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">while</span>(right &lt; arr.length)&#123;</span><br><span class="line">			<span class="keyword">if</span>(sum==k)&#123;</span><br><span class="line">				System.out.println(<span class="string">"right="</span>+right+<span class="string">" left="</span>+left);</span><br><span class="line">				len = Math.max(len,right-left+<span class="number">1</span>);</span><br><span class="line">				sum-=arr[left++];</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum &lt; k)&#123;</span><br><span class="line">				right++;</span><br><span class="line">				<span class="keyword">if</span>(right == arr.length)</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				sum+=arr[right];</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				sum-=arr[left++];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> len;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最少需要排序的数组元素个数">最少需要排序的数组元素个数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 最少需要修改的数组元素个数</span><br><span class="line"> * eg: &#123;1,5,3,-1,4,2,6,7&#125; 需要修改6个</span><br><span class="line"> * @flyzyc</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ZuiDuanZiShuZuLength &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span>[] arr =&#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,-<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> result = getShorestLength(arr);</span><br><span class="line">		System.out.println(result);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getShorestLength</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// maxIndex 从左往右找到最右侧小于左边最大值的位置</span></span><br><span class="line">		<span class="keyword">int</span> maxIndex = -<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//  minIndex 从右往左找到最左侧大于右边最小值的位置</span></span><br><span class="line">		<span class="keyword">int</span> minIndex = arr.length-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">int</span> min=arr[arr.length-<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i] &lt; max)&#123;</span><br><span class="line">				maxIndex = i;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				max = Math.max(max,arr[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(maxIndex==-<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=arr.length-<span class="number">2</span>;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[j] &gt; min)&#123;</span><br><span class="line">				minIndex = j;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				min = Math.min(min, arr[j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(minIndex==-<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> maxIndex-minIndex+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数组中最小的K个数">数组中最小的K个数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 最小的K个数</span><br><span class="line"> * 思路：建立个数为K的数组，构造大顶堆，然后维护这K个元素的大顶堆，</span><br><span class="line"> * 若数组后续值比大顶堆的第一个值小，则替换并重新调整大顶堆</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ZuiXiaoKShu &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">2</span>,-<span class="number">1</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,-<span class="number">2</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> k=<span class="number">4</span>;</span><br><span class="line">		heapSort(arr);</span><br><span class="line">		<span class="keyword">int</span>[] arrCopy = Arrays.copyOfRange(arr, <span class="number">0</span>, k);</span><br><span class="line">		heapSort(arrCopy);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=k;i&lt;arr.length;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i] &lt; arrCopy[<span class="number">0</span>])&#123;</span><br><span class="line">				arrCopy[<span class="number">0</span>] =arr[i];</span><br><span class="line">				heapSort(arrCopy);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ArrayUtils.printArray(arrCopy);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == null || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		buildMaxHeap(arr);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=arr.length-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			ArrayUtils.swap(arr, <span class="number">0</span>, i);</span><br><span class="line">			maxHeap(arr, i, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == null || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> half = (arr.length-<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=half;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			maxHeap(arr,arr.length,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maxHeap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> length, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">int</span> left = <span class="number">2</span>*index+<span class="number">1</span>;</span><br><span class="line">		 <span class="keyword">int</span> right = <span class="number">2</span>*index+<span class="number">2</span>;</span><br><span class="line">		 <span class="keyword">int</span> largestIndex = index;</span><br><span class="line">		<span class="keyword">if</span>(left &lt; length &amp;&amp; arr[left] &lt; arr[largestIndex])</span><br><span class="line">			largestIndex = left;</span><br><span class="line">		<span class="keyword">if</span>(right &lt; length &amp;&amp; arr[right] &lt; arr[largestIndex])</span><br><span class="line">			largestIndex = right;</span><br><span class="line">		<span class="keyword">if</span>(largestIndex!=index)&#123;</span><br><span class="line">			ArrayUtils.swap(arr, index, largestIndex);</span><br><span class="line">			maxHeap(arr, length, largestIndex);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求给定数字包含1的个数">求给定数字包含1的个数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求给定数字包含1的个数</span><br><span class="line"> * @author flyyc</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestOne &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(CountOne(<span class="number">56</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">CountOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(n!=<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="comment">//相当于抹去最右边的1</span></span><br><span class="line">			n &amp;= (n-<span class="number">1</span>);</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="一个数出现了奇数次">一个数出现了奇数次</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 给定一个整型数组arr，其中只有一个数出现了奇数次，其他的数都出现了偶数次，求此数</span><br><span class="line"> * @author flyyc</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestOld &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 数组中出现一次的一个数</span></span><br><span class="line">		getFromEvenArray();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getFromEvenArray</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] <span class="built_in">array</span> = &#123;<span class="number">3</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">4</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> e0=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> cur : <span class="built_in">array</span>)&#123;</span><br><span class="line">			e0 ^= cur;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(e0);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="两个数出现了奇数次">两个数出现了奇数次</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 出现奇数次的数</span><br><span class="line"> * 给定一个整型数组arr，其中只有两个数出现了奇数次，其他的数都出现了偶数次，求此数</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestOneTwo &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//数组中只出现一次的两个数</span></span><br><span class="line">		getFromEvenArray2();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getFromEvenArray2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">char</span>[] result;</span><br><span class="line">		<span class="keyword">int</span>[] <span class="built_in">array</span> = &#123;<span class="number">3</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">12</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> e0=<span class="number">0</span>,e2=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> cur : <span class="built_in">array</span>)&#123;</span><br><span class="line">			e0 ^= cur;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 求出最低位为1的位置</span></span><br><span class="line">		<span class="keyword">int</span> pri = e0 &amp; (~e0+<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> cur : <span class="built_in">array</span>)&#123;</span><br><span class="line">			<span class="comment">// 若第K位为1，则进行异或，这样可以确定异或结果中不受另一个出现一次的数的影响</span></span><br><span class="line">			<span class="keyword">if</span>((cur &amp; pri)!=<span class="number">0</span>)&#123;</span><br><span class="line">				e2 ^= cur;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(e2+<span class="string">" "</span> + (e2 ^ e0));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他数出现K次">其他数出现K次</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 给定一个整型数组arr和一个大于1的整数k。已知arr中只有1个数出现了1次，其他的数都出现了k次，请返回只出现了1次的数。</span><br><span class="line"> * 时间复杂度为O(N),额外空间复杂度为O(1).</span><br><span class="line"> * 仿照无进位相加思想。即忽略进位的相加。</span><br><span class="line"> * eg: 两个7进制的a和b，在i位上无进位相加的结果就是(a[i]+b[i])%7。出现K次使用K进制相加为0,则最后数组中结果即为所求 。</span><br><span class="line"> * @author flyyc</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> KInOne &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] e0 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">32</span>];</span><br><span class="line">		<span class="keyword">int</span>[] arr = &#123;<span class="number">3</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">6</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">			<span class="comment">// 对数组中每一个数进行无进位相加</span></span><br><span class="line">			setExclusive(e0,arr[i],k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> res = getNumFromKSysNum(e0,k);</span><br><span class="line">		System.out.println(res);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setExclusive</span><span class="params">(<span class="keyword">int</span>[] e0, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] cur = getKNum(n,k);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span> ; i&lt;cur.length;i++)&#123;</span><br><span class="line">			e0[i] = (e0[i] + cur[i])%k;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getKNum(<span class="keyword">int</span> n, <span class="keyword">int</span> k) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">32</span>];</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 把n转化为K进制，此处转化结果与后面从数组中读取顺序要一致。</span></span><br><span class="line">		<span class="comment">// 注意：此处是按从0开始保存余数。</span></span><br><span class="line">		<span class="keyword">while</span>(n!=<span class="number">0</span>)&#123;</span><br><span class="line">			res[index++] = n%k;</span><br><span class="line">			n = n/k;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNumFromKSysNum</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; arr.length;i++)&#123;</span><br><span class="line">			<span class="comment">// 从结果数组中还原K进制数为十进制。因为上面保存的时候是从前往后保存，所以此处读取顺序一致</span></span><br><span class="line">			result+=arr[i]*Math.<span class="built_in">pow</span>(k, i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/algorithm/">algorithm</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/algorithm/">algorithm</a><a href="/tags/java/">java</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/04/11/算法-数组/" data-title="算法-数组 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/04/10/算法-数组查找/"  title="算法-数组查找">
+ <strong>下一篇：</strong><br/> 
+ <span>算法-数组查找
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/04/11/算法-数组/" data-title="算法-数组" data-url="http://yoursite.com/2016/04/11/算法-数组/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#奇数全部放在偶数前面"><span class="toc-number">1.</span> <span class="toc-text">奇数全部放在偶数前面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行列均递增的二维数组查找指定值"><span class="toc-number">2.</span> <span class="toc-text">行列均递增的二维数组查找指定值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未排序正数数组中累加和为给定值的最长子数组长度"><span class="toc-number">3.</span> <span class="toc-text">未排序正数数组中累加和为给定值的最长子数组长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最少需要排序的数组元素个数"><span class="toc-number">4.</span> <span class="toc-text">最少需要排序的数组元素个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组中最小的K个数"><span class="toc-number">5.</span> <span class="toc-text">数组中最小的K个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求给定数字包含1的个数"><span class="toc-number">6.</span> <span class="toc-text">求给定数字包含1的个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个数出现了奇数次"><span class="toc-number">7.</span> <span class="toc-text">一个数出现了奇数次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两个数出现了奇数次"><span class="toc-number">8.</span> <span class="toc-text">两个数出现了奇数次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他数出现K次"><span class="toc-number">9.</span> <span class="toc-text">其他数出现K次</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

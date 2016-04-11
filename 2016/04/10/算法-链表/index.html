@@ -4,23 +4,50 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>单链表算法 | Flow</title>
+    <title>算法-链表 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    <meta name="description" content="单链表整体逆置/相邻元素逆置/**
+
+单链表整体逆置 &amp;amp;&amp;amp;  单链表相邻元素逆置*/public class LinkList { static class Node{
+public int data;
+public Node next;
+public Node(int data){
+    this.data = data;
+}
+public Node(){}
+ } public">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单链表算法">
-<meta property="og:url" content="http://yoursite.com/2016/03/04/单链表算法/index.html">
+<meta property="og:title" content="算法-链表">
+<meta property="og:url" content="http://yoursite.com/2016/04/10/算法-链表/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:updated_time" content="2016-04-06T10:39:28.152Z">
+<meta property="og:description" content="单链表整体逆置/相邻元素逆置/**
+
+单链表整体逆置 &amp;amp;&amp;amp;  单链表相邻元素逆置*/public class LinkList { static class Node{
+public int data;
+public Node next;
+public Node(int data){
+    this.data = data;
+}
+public Node(){}
+ } public">
+<meta property="og:updated_time" content="2016-04-11T13:51:44.186Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单链表算法">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="twitter:title" content="算法-链表">
+<meta name="twitter:description" content="单链表整体逆置/相邻元素逆置/**
+
+单链表整体逆置 &amp;amp;&amp;amp;  单链表相邻元素逆置*/public class LinkList { static class Node{
+public int data;
+public Node next;
+public Node(int data){
+    this.data = data;
+}
+public Node(){}
+ } public">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -80,14 +107,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/04/单链表算法/" title="单链表算法" itemprop="url">单链表算法</a>
+      <a href="/2016/04/10/算法-链表/" title="算法-链表" itemprop="url">算法-链表</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-04T06:02:02.000Z" itemprop="datePublished"> 发表于 2016-03-04</time>
+    <time datetime="2016-04-10T13:58:22.000Z" itemprop="datePublished"> 发表于 2016-04-10</time>
     
   </p>
 </header>
@@ -96,20 +123,105 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#单链表整体逆置/相邻元素逆置"><span class="toc-number">1.</span> <span class="toc-text">单链表整体逆置/相邻元素逆置</span></a></li></ol>
 		
 		</div>
 		
-		<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 单链表整体逆置 &amp;&amp;  单链表相邻元素逆置</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> LinkList &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> Node&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> data;</span><br><span class="line">		<span class="keyword">public</span> Node <span class="keyword">next</span>;</span><br><span class="line">		<span class="keyword">public</span> Node(<span class="keyword">int</span> data)&#123;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> Node()&#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		<span class="comment">//带头结点的链表</span></span><br><span class="line">		Node head = <span class="keyword">new</span> Node();</span><br><span class="line">		head.<span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line">		Node p = head;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">			Node temp = <span class="keyword">new</span> Node(i);</span><br><span class="line">			temp.<span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line">			p.<span class="keyword">next</span> = temp;</span><br><span class="line">			p = p.<span class="keyword">next</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//单链表整体逆置</span></span><br><span class="line">		reverseLinkedList(head);</span><br><span class="line">		printLinkedList(head);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//单链表相邻元素逆置</span></span><br><span class="line">		neighbourReverse(head);</span><br><span class="line">		printLinkedList(head);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//反转相邻元素，交换相邻元素的值，然后令next指向后两个节点，若有一个不存在则结束</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> neighbourReverse(Node head) &#123;</span><br><span class="line">		<span class="keyword">int</span> temp;</span><br><span class="line">		Node p=head.<span class="keyword">next</span>;</span><br><span class="line">		Node q=p.<span class="keyword">next</span>;</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="keyword">null</span> &amp;&amp; q!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			temp = p.data;</span><br><span class="line">			p.data = q.data;</span><br><span class="line">			q.data = temp;</span><br><span class="line">			p = q.<span class="keyword">next</span>;</span><br><span class="line">			q = p.<span class="keyword">next</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//反转单链表</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Node reverseLinkedList(Node head) &#123;</span><br><span class="line">		Node p,q,r;</span><br><span class="line">		p = head.<span class="keyword">next</span>;</span><br><span class="line">		q = p.<span class="keyword">next</span>;</span><br><span class="line">		p.<span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">while</span>(q!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			 r=q.<span class="keyword">next</span>;</span><br><span class="line">			 q.<span class="keyword">next</span>=head.<span class="keyword">next</span>;</span><br><span class="line">			 head.<span class="keyword">next</span>=q;</span><br><span class="line">			 q=r;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	反转链表(没有头结点)</span></span><br><span class="line">	<span class="comment">// 将结点保存至pNext，然后将当前结点的next重新设置为prev，将prev指向当前结点，再将指针后移一个结点</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Node reverseLink(Node head) &#123;</span><br><span class="line">		Node prev = <span class="keyword">null</span>;</span><br><span class="line">		Node newHead = <span class="keyword">null</span>;</span><br><span class="line">		Node p = head;</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			Node pNext = p.<span class="keyword">next</span>;</span><br><span class="line">			<span class="keyword">if</span>(pNext==<span class="keyword">null</span>)</span><br><span class="line">				newHead = p;</span><br><span class="line">			p.<span class="keyword">next</span> = prev;</span><br><span class="line">			prev = p;</span><br><span class="line">			p = pNext;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> newHead;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 递归反转链表(没有头结点)</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Node reverseRecursively(Node head)&#123;</span><br><span class="line">		<span class="keyword">if</span>(head == <span class="keyword">null</span> || head.<span class="keyword">next</span> == <span class="keyword">null</span>)</span><br><span class="line">			<span class="keyword">return</span> head;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			Node newHead = reverseRecursively(head.<span class="keyword">next</span>);</span><br><span class="line">			head.<span class="keyword">next</span>.<span class="keyword">next</span> = head;</span><br><span class="line">			head.<span class="keyword">next</span> = <span class="keyword">null</span>;</span><br><span class="line">			<span class="keyword">return</span> newHead;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//顺序打印输出(带头结点的链表输出)</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> printLinkedList(Node p) &#123;</span><br><span class="line">		p = p.<span class="keyword">next</span>;</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			System.out.<span class="keyword">println</span>(p.data);</span><br><span class="line">			p = p.<span class="keyword">next</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 逆序打印结点(不带头结点)</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> printReverse(Node head) &#123;</span><br><span class="line">		Node p = head;</span><br><span class="line">		<span class="keyword">if</span>(p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(p.<span class="keyword">next</span>!=<span class="keyword">null</span>)</span><br><span class="line">				printReverse(p.<span class="keyword">next</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.<span class="keyword">print</span>(p.value+<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		<h3 id="单链表整体逆置/相邻元素逆置">单链表整体逆置/相邻元素逆置</h3><p>/**</p>
+<ul>
+<li><p>单链表整体逆置 &amp;&amp;  单链表相邻元素逆置<br>*/<br>public class LinkList {<br> static class Node{</p>
+<pre><code><span class="keyword">public</span> <span class="built_in">int</span> <span class="type">data</span>;
+<span class="keyword">public</span> Node next;
+<span class="keyword">public</span> Node(<span class="built_in">int</span> <span class="type">data</span>){
+    this.<span class="type">data</span> = <span class="type">data</span>;
+}
+<span class="keyword">public</span> Node(){}
+</code></pre><p> }<br> public static void main(String[] args) {</p>
+<pre><code><span class="comment">//带头结点的链表</span>
+Node head = <span class="keyword">new</span> Node();
+head.<span class="keyword">next</span> = <span class="keyword">null</span>;
+Node p = head;
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;<span class="number">10</span>;i++){
+    Node temp = <span class="keyword">new</span> Node(i);
+    temp.<span class="keyword">next</span> = <span class="keyword">null</span>;
+    p.<span class="keyword">next</span> = temp;
+    p = p.<span class="keyword">next</span>;
+}
+<span class="comment">//单链表整体逆置</span>
+reverseLinkedList(head);
+printLinkedList(head);
+
+<span class="comment">//单链表相邻元素逆置</span>
+neighbourReverse(head);
+printLinkedList(head);
+</code></pre><p> }<br> //反转相邻元素，交换相邻元素的值，然后令next指向后两个节点，若有一个不存在则结束<br> private static void neighbourReverse(Node head) {</p>
+<pre><code><span class="built_in">int</span> temp<span class="comment">;</span>
+Node p=head.<span class="keyword">next</span><span class="comment">;</span>
+Node q=p.<span class="keyword">next</span><span class="comment">;</span>
+<span class="keyword">while</span>(p!=<span class="literal">null</span> &amp;&amp; q!=<span class="literal">null</span>){
+    temp = p.data<span class="comment">;</span>
+    p.data = q.data<span class="comment">;</span>
+    q.data = temp<span class="comment">;</span>
+    p = q.<span class="keyword">next</span><span class="comment">;</span>
+    q = p.<span class="keyword">next</span><span class="comment">;</span>
+}
+</code></pre><p> }</p>
+<p> //反转单链表<br> private static Node reverseLinkedList(Node head) {</p>
+<pre><code>Node p,q,r<span class="comment">;</span>
+p = head.<span class="keyword">next</span><span class="comment">;</span>
+q = p.<span class="keyword">next</span><span class="comment">;</span>
+p.<span class="keyword">next</span> = <span class="literal">null</span><span class="comment">;</span>
+<span class="keyword">while</span>(q!=<span class="literal">null</span>){
+     r=q.<span class="keyword">next</span><span class="comment">;</span>
+     q.<span class="keyword">next</span>=head.<span class="keyword">next</span><span class="comment">;</span>
+     head.<span class="keyword">next</span>=q<span class="comment">;</span>
+     q=r<span class="comment">;</span>
+}
+<span class="keyword">return</span> head<span class="comment">;</span>
+</code></pre><p> }</p>
+<p> //    反转链表(没有头结点)<br> // 将结点保存至pNext，然后将当前结点的next重新设置为prev，将prev指向当前结点，再将指针后移一个结点<br> private static Node reverseLink(Node head) {</p>
+<pre><code>Node <span class="built_in">prev</span> = <span class="built_in">null</span>;
+Node newHead = <span class="built_in">null</span>;
+Node p = head;
+<span class="keyword">while</span>(p!=<span class="built_in">null</span>){
+    Node pNext = p.<span class="built_in">next</span>;
+    if(pNext==<span class="built_in">null</span>)
+        newHead = p;
+    p.<span class="built_in">next</span> = <span class="built_in">prev</span>;
+    <span class="built_in">prev</span> = p;
+    p = pNext;
+}
+return newHead;
+</code></pre><p> }</p>
+<p> // 递归反转链表(没有头结点)<br> private static Node reverseRecursively(Node head){</p>
+<pre><code><span class="keyword">if</span>(head == <span class="literal">null</span> || head.<span class="keyword">next</span> == <span class="literal">null</span>)
+    <span class="keyword">return</span> head<span class="comment">;</span>
+<span class="keyword">else</span>{
+    Node newHead = reverseRecursively(head.<span class="keyword">next</span>)<span class="comment">;</span>
+    head.<span class="keyword">next</span>.<span class="keyword">next</span> = head<span class="comment">;</span>
+    head.<span class="keyword">next</span> = <span class="literal">null</span><span class="comment">;</span>
+    <span class="keyword">return</span> newHead<span class="comment">;</span>
+}
+</code></pre><p> }<br> //顺序打印输出(带头结点的链表输出)<br> private static void printLinkedList(Node p) {</p>
+<pre><code>p = p.<span class="keyword">next</span>;
+<span class="keyword">while</span>(p!=<span class="keyword">null</span>){
+    System.out.<span class="keyword">println</span>(p.data);
+    p = p.<span class="keyword">next</span>;
+}
+</code></pre><p> }<br> // 逆序打印结点(不带头结点)<br> private static void printReverse(Node head) {</p>
+<pre><code>Node p = head;
+<span class="keyword">if</span>(p!=<span class="keyword">null</span>){
+    <span class="keyword">if</span>(p.<span class="keyword">next</span>!=<span class="keyword">null</span>)
+        printReverse(p.<span class="keyword">next</span>);
+}
+System.out.<span class="keyword">print</span>(p.value+<span class="string">" "</span>);
+</code></pre><p> }<br>}<br>```</p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
-</div>
 
 
 </div>
@@ -118,7 +230,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/03/04/单链表算法/" data-title="单链表算法 | Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/04/10/算法-链表/" data-title="算法-链表 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -132,18 +244,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/04/约瑟夫两种解法-数组和链表/" title="约瑟夫两种解法(数组和链表)">
+ <a href="/2016/04/10/算法-树/" title="算法-树">
   <strong>上一篇：</strong><br/>
   <span>
-  约瑟夫两种解法(数组和链表)</span>
+  算法-树</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/03/03/单例模式/"  title="单例模式">
+<a href="/2016/04/10/算法-动态规划/"  title="算法-动态规划">
  <strong>下一篇：</strong><br/> 
- <span>单例模式
+ <span>算法-动态规划
 </span>
 </a>
 </div>
@@ -152,7 +264,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/03/04/单链表算法/" data-title="单链表算法" data-url="http://yoursite.com/2016/03/04/单链表算法/"></div>
+	<div class="ds-thread" data-thread-key="2016/04/10/算法-链表/" data-title="算法-链表" data-url="http://yoursite.com/2016/04/10/算法-链表/"></div>
 </section>
 
 
@@ -162,7 +274,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#单链表整体逆置/相邻元素逆置"><span class="toc-number">1.</span> <span class="toc-text">单链表整体逆置/相邻元素逆置</span></a></li></ol>
  
   </div>
 
@@ -187,6 +299,10 @@
 		  
 		
 		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
 		  
 		
@@ -207,7 +323,7 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>14</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>16</sup></a></li>
 		  
 		
 		  
@@ -247,7 +363,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>5</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
 		  
 		
 		  
@@ -272,11 +388,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>13</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>15</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
 			
 		
 			

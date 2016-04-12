@@ -22,7 +22,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两次Hash操作，第�
 ConcurrentHashMap可以做到读取数据不加锁，并且其内部的结构可以让其在进行写操作的时候能够将锁的粒度保持地尽量地小，不用对整个ConcurrentHashMap加锁。
 ConcurrentHashMap定位一个元素的过程需要进行两次Hash操作，第一次Hash定位到Segment，第二次Hash定位到元素所在的链表的头部，因此，这一种结构的带来的副">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/nuEZ0.png">
-<meta property="og:updated_time" content="2016-04-06T01:45:04.571Z">
+<meta property="og:updated_time" content="2016-04-12T12:21:21.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocurrentHashMap源码理解">
 <meta name="twitter:description" content="CurrentHashMap 笔记
@@ -117,9 +117,8 @@ ConcurrentHashMap定位一个元素的过程需要进行两次Hash操作，第�
 <p><strong>HashEntry</strong><br>Segment中的元素是以HashEntry的形式存放在链表数组中的<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> HashEntry&lt;K,V&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> K key;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">    <span class="keyword">volatile</span> V value;</span><br><span class="line">    <span class="keyword">final</span> HashEntry&lt;K,V&gt; <span class="keyword">next</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>除了value以外，其他的几个变量都是final的，这样做是为了防止链表结构被破坏，出现ConcurrentModification的情况。</p>
 <blockquote>
-<p>注意： 初始化中的concurrentLevel，代表ConcurrentHashMap内部的Segment的数量，ConcurrentLevel一经指定，不可改变，后续如果ConcurrentHashMap的元素数量增加导致ConrruentHashMap需要扩容，ConcurrentHashMap不会增加Segment的数量，而只会增加Segment中链表数组的容量大小，这样的好处是扩容过程不需要对整个ConcurrentHashMap做rehash，而只需要对Segment里面的元素做一次rehash就可以了。</p>
+<p>注意： 初始化中的concurrentLevel，代表ConcurrentHashMap内部的Segment的数量，ConcurrentLevel一经指定，不可改变，后续如果ConcurrentHashMap的元素数量增加导致ConrruentHashMap需要扩容，ConcurrentHashMap不会增加Segment的数量，而只会增加Segment中链表数组的容量大小，这样的好处是扩容过程不需要对整个ConcurrentHashMap做rehash，而只需要对Segment里面的元素做一次rehash就可以了。<br>之所以进行再散列，目的是减少三列冲突，使元素能够均匀的分别在不同的Segment上，从而提高容器的存取效率。<br><strong>ConcurrentHashMap的get操作</strong><br>get操作不加锁因为get方法里将要使用的共享变量都定义成volatile类型。</p>
 </blockquote>
-<p><strong>ConcurrentHashMap的get操作</strong></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -235,7 +234,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两次Hash操作，第�
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>16</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>17</sup></a></li>
 		  
 		
 		  
@@ -300,7 +299,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两次Hash操作，第�
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>15</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>16</sup></a></li>
 			
 		
 			

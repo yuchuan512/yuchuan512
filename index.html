@@ -78,6 +78,111 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2016/04/15/java锁类型/" title="java锁类型" itemprop="url">
+  
+    <h1 itemprop="name">java锁类型</h1>
+    
+     
+           <p itemprop="description" >自旋锁自旋锁适用于锁竞争不那么激烈的情况，和同步块比较小的情况，由于线程的阻塞和释放都是基于信号量（操作系统课本的汇编示例代码还记得不），并且有用户态和内核态的频繁切换以及线程上下文切换开销比较大，对于前述的两种情况阻塞和释放竞争锁的线程显得没那么的必要，所以引入了自旋锁，但是自</p>
+        
+    
+    <time datetime="2016-04-15T14:46:28.000Z" itemprop="datePublished">2016-04-15</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/04/15/架构思想小记/" title="架构思想小记" itemprop="url">
+  
+    <h1 itemprop="name">架构思想小记</h1>
+    
+     
+           <p itemprop="description" >优先使用对象组合，而不是类继承类继承也有一些不足之处。首先，因为继承在编译时刻就定义了，所以无法在运行时刻改变从父类继承的实现。更糟的是，父类通常至少定义了部分子类的具体表示。因为继承对子类揭示了其父类的实现细节，所以继承常被认为“破坏了封装性” 。子类中的实现与它的父类有如此紧</p>
+        
+    
+    <time datetime="2016-04-15T14:31:38.000Z" itemprop="datePublished">2016-04-15</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/04/15/java开发常用程序库/" title="java开发常用程序库" itemprop="url">
+  
+    <h1 itemprop="name">java开发常用程序库</h1>
+    
+     
+           <p itemprop="description" >摘自：http://www.blogbus.com/dreamhead-logs/226738702.html
+在很多人眼中，Java已经是一门垂垂老矣的语言，但并不妨碍Java世界依然在前进。如果你曾离开Java，云游于其它世界，或是每日只在遗留代码中挣扎，或许是时候抬起头，看</p>
+        
+    
+    <time datetime="2016-04-15T14:22:10.000Z" itemprop="datePublished">2016-04-15</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/04/15/java里面的设计模式/" title="java里面的设计模式" itemprop="url">
+  
+    <h1 itemprop="name">java里面的设计模式</h1>
+    
+     
+           <p itemprop="description" >###Structural（结构模式）
+Adapter:把一个接口或是类变成另外一种。java.util.Arrays#asList()javax.swing.JTable(TableModel)java.io.InputStreamReader(InputStream)java</p>
+        
+    
+    <time datetime="2016-04-15T14:08:33.000Z" itemprop="datePublished">2016-04-15</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/04/15/java内存模型/" title="java内存模型" itemprop="url">
+  
+    <h1 itemprop="name">java内存模型</h1>
+    
+     
+           <p itemprop="description" >模型
+
+主内存包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法参数，后者是线程私有的，不会被共享。
+Java内存模型中规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存。线程的工作内存中保存了该线程使用到的变量到主内存副本拷贝，线程对变量的所有操作</p>
+        
+    
+    <time datetime="2016-04-15T13:00:51.000Z" itemprop="datePublished">2016-04-15</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2016/04/12/JDK并发工具类/" title="JDK并发工具类" itemprop="url">
   
     <h1 itemprop="name">JDK并发工具类</h1>
@@ -175,111 +280,9 @@
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/10/算法-字符串/" title="算法-字符串相关" itemprop="url">
-  
-    <h1 itemprop="name">算法-字符串相关</h1>
-    
-     
-           <p itemprop="description" >句子逆序输出123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** 句子逆序 * 将一个英文语句以单词为单位逆序排放。例如“I am a boy”，逆序排</p>
-        
-    
-    <time datetime="2016-04-10T13:57:35.000Z" itemprop="datePublished">2016-04-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/06/CocurrentHashMap源码理解/" title="CocurrentHashMap源码理解" itemprop="url">
-  
-    <h1 itemprop="name">CocurrentHashMap源码理解</h1>
-    
-     
-           <p itemprop="description" >CurrentHashMap 笔记
-ConcurrentHashMap可以做到读取数据不加锁，并且其内部的结构可以让其在进行写操作的时候能够将锁的粒度保持地尽量地小，不用对整个ConcurrentHashMap加锁。
-ConcurrentHashMap定位一个元素的过程需要进行两</p>
-        
-    
-    <time datetime="2016-04-06T01:44:17.000Z" itemprop="datePublished">2016-04-06</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/15/计算机网络/" title="计算机网络" itemprop="url">
-  
-    <h1 itemprop="name">计算机网络</h1>
-    
-     
-           <p itemprop="description" >分组交换的要点分组交换采用存储转发技术，路由器每收到一个分组，先临时存储下来，再检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去，把这个分组转交给下一个路由器。这样一步一步的经过若干个或几十个不同的路由器，以存储转发的方式，把分组交付最终的目的主机。各路由器之</p>
-        
-    
-    <time datetime="2016-03-15T00:51:05.000Z" itemprop="datePublished">2016-03-15</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/14/java面试0312/" title="java面试0312" itemprop="url">
-  
-    <h1 itemprop="name">java面试0312</h1>
-    
-     
-           <p itemprop="description" >利用StringBuilder 重写toString()方法123456789101112131415161718public String toString() &amp;#123;        StringBuilder sb = new StringBuilder(&quot;[&quot;);  </p>
-        
-    
-    <time datetime="2016-03-14T13:26:32.000Z" itemprop="datePublished">2016-03-14</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/11/多线程笔记/" title="多线程笔记" itemprop="url">
-  
-    <h1 itemprop="name">多线程笔记</h1>
-    
-     
-           <p itemprop="description" >ThreadLocal12345678910111213141516171819202122232425262728293031323334353637383940414243public class ThreadLocalTest &amp;#123;	private static T</p>
-        
-    
-    <time datetime="2016-03-11T14:20:00.000Z" itemprop="datePublished">2016-03-11</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -330,7 +333,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>17</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>22</sup></a></li>
 		  
 		
 		  
@@ -358,7 +361,19 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 		  
 		
 		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
 		  
 		
 		  
@@ -366,7 +381,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 		  
 		
 		  
-			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
 		  
 		
 		  
@@ -374,7 +389,19 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 		  
 		
 		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
 		  
 		
 		  
@@ -395,7 +422,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>16</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
 			
 		
 			
@@ -415,7 +442,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
 			
 		
 			
@@ -431,7 +458,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 			
 		
 			
-				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -439,7 +466,7 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
 			
 		
 			
@@ -459,11 +486,19 @@ ConcurrentHashMap定位一个元素的过程需要进行两</p>
 			
 		
 			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/程序库/" title="程序库">程序库<sup>1</sup></a></li>
 			
 		
 		</ul>

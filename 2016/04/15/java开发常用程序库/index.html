@@ -1,0 +1,727 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>java开发常用程序库 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="摘自：http://www.blogbus.com/dreamhead-logs/226738702.html
+在很多人眼中，Java已经是一门垂垂老矣的语言，但并不妨碍Java世界依然在前进。如果你曾离开Java，云游于其它世界，或是每日只在遗留代码中挣扎，或许是时候抬起头，看看老Java中的新东西。
+Guava一句话，只要你做Java项目，就应该用Guava。guava是Google出品的一套">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java开发常用程序库">
+<meta property="og:url" content="http://yoursite.com/2016/04/15/java开发常用程序库/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="摘自：http://www.blogbus.com/dreamhead-logs/226738702.html
+在很多人眼中，Java已经是一门垂垂老矣的语言，但并不妨碍Java世界依然在前进。如果你曾离开Java，云游于其它世界，或是每日只在遗留代码中挣扎，或许是时候抬起头，看看老Java中的新东西。
+Guava一句话，只要你做Java项目，就应该用Guava。guava是Google出品的一套">
+<meta property="og:updated_time" content="2016-04-15T14:26:10.560Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java开发常用程序库">
+<meta name="twitter:description" content="摘自：http://www.blogbus.com/dreamhead-logs/226738702.html
+在很多人眼中，Java已经是一门垂垂老矣的语言，但并不妨碍Java世界依然在前进。如果你曾离开Java，云游于其它世界，或是每日只在遗留代码中挣扎，或许是时候抬起头，看看老Java中的新东西。
+Guava一句话，只要你做Java项目，就应该用Guava。guava是Google出品的一套">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/15/java开发常用程序库/" title="java开发常用程序库" itemprop="url">java开发常用程序库</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-15T14:22:10.000Z" itemprop="datePublished"> 发表于 2016-04-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Guava"><span class="toc-number">1.</span> <span class="toc-text">Guava</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Joda_Time"><span class="toc-number">2.</span> <span class="toc-text">Joda Time</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hamcrest"><span class="toc-number">3.</span> <span class="toc-text">Hamcrest</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mockito"><span class="toc-number">4.</span> <span class="toc-text">Mockito</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SLF4J和Logback"><span class="toc-number">5.</span> <span class="toc-text">SLF4J和Logback</span></a></li></ol>
+		
+		</div>
+		
+		<p>摘自：<a href="http://www.blogbus.com/dreamhead-logs/226738702.html" target="_blank" rel="external">http://www.blogbus.com/dreamhead-logs/226738702.html</a></p>
+<p>在很多人眼中，Java已经是一门垂垂老矣的语言，但并不妨碍Java世界依然在前进。如果你曾离开Java，云游于其它世界，或是每日只在遗留代码中挣扎，或许是时候抬起头，看看老Java中的新东西。</p>
+<h4 id="Guava">Guava</h4><p>一句话，只要你做Java项目，就应该用Guava。<br>guava是Google出品的一套Java核心库，在我看来，它甚至应该是JDK的一部分。作为一个Java程序员，如果你没抱怨过JDK的设计，只能说明一点，你写得程序还是太少。正是JDK设计不彰，才有了一些项目来补充JDK的不足。如果说老Java程序员应该听说过Apache Commons Lang，那新Java程序员该知道的就是Guava了。<br>下面以一个统计单词出现个数的小程序作为这个段落的结尾，虽然无法与许多其它语言的实现相提并论，但作为一个Java程序员，你不妨想一下按照传统方式，这段代码应该是什么样子。<br>  String content = Files.toString(new File(args[0]), Charset.defaultCharset());<br>  Iterable texts = Splitter.on(CharMatcher.WHITESPACE)<br>                                                 .omitEmptyStrings()<br>                                                 .trimResults()<br>                                                 .split(content);<br>  Multiset collection = HashMultiset.create(texts);</p>
+<h4 id="Joda_Time">Joda Time</h4><p>Date firstDayOf2013 = new Date(113, 0, 1);<br>如果你是个Java新手，你能猜出113是从哪来的吗？（好吧，它是2013-1900，至于为什么是1900，这真得问API的设计者了）。<br>Joda Time就是人们实在无法忍受这样东西的产物。同样的代码用Joda Time实现：<br>  DateTime firstDayOf2013 = new DateTime().withDate(2013, 1, 1);<br>无论如何，你知道这能看出这些参数的含义了。不只如此，你还可以计算两天后是什么日子：<br>  firstDate.plusDays(2);<br>日期格式化，也是JDK Date系列API里一大特色，你必须把代码写成下面这样：<br>  new SimpleDateFormat(“yyyy.MM.dd”).format(firstDayOf2013)<br>作为一个初始化很慢的构造函数，你还必须每次调用，因为它不是线程安全的。同样的代码，在Joda Time里，我们可以用DateTimeFormatter：</p>
+<p>  DateTimeFormatter formatter = DateTimeFormat.forPattern(“yyyy.MM.dd”);</p>
+<p>  …</p>
+<p>  formatter.print(dateTime);</p>
+<p>请尽管放心大胆把formatter声明成一个字段，因为它是线程安全的。</p>
+<p>当然，Joda Time的强大远不止于此。当然，JDK也并不是那么完全的自暴自弃，于是，有了一个JSR 310专门设计新的Date API。JSR 310的spec lead是Steven Colebourne，此人正是Joda Time的作者。不过，虽然JSR 310为我们描绘了Date的全新景象，但Java 8出来之前就先别打它的主意了，乖乖地用Joda Time吧。</p>
+<h4 id="Hamcrest">Hamcrest</h4><p>一句话，如果你写单元测试，就应该用Hamcrest。<br>如今不写单元测试，你都不好意思说自己在做工程项目了。但你一般这么写断言呢？如果你还写成下面这样，我只能说你落伍了：</p>
+<p>  assertEquals(a, b);</p>
+<p>请告诉我，哪个是执行结果，哪个是预期结果，不管你是怎样，反正大多数情况下，我是记不住的。所以，这个在只重功能不重可读性年代产生的API该更新了。于是，Hamcrest就是为了解决这样的问题而生的。</p>
+<p>  assertThat(a, is(b));</p>
+<p>很明显，前面一个是执行结果，后面一个是预期结果，当然这只是一个简单的例子。由于Hamcrest引入了matcher的概念（就是你看到的is部分），我们可以进行更多的组合：</p>
+<p>  assertThat(number, greaterThan(5));<br>  assertThat(text, startsWith(“Hello”));<br>  assertThat(array, hasItem(“World”));</p>
+<p>Hamcrest如此好用，以至于JUnit已经将其吸纳进去。如果你现在用的JUnit是4.4之后的版本，那你已经有了Hamcrest。无需额外的配置，就可以拿过来用。</p>
+<h4 id="Mockito">Mockito</h4><p>写单元测试不用Mock框架几乎是一件不可能的事，我是说Mock框架，不是Mock模式哦！对于老Java程序员来说，提起Mock框架，率先在脑海中撞线的多半是JMock或EasyMock。</p>
+<p>使用Mockito，只要有一个理由就够了，简单。相比于JMock，它不用写checking，相比于EasyMock，它省去了replay。下面是个例子：</p>
+<p>  List mockedList = mock(List.class);<br>  when(mockedList.get(0)).thenReturn(“first”);<br>  System.out.println(mockedList.get(0));</p>
+<p>当然，Mockito还是非常强大的。<br>最后再强调一遍，无论使用哪个框架，请尽量不要使用verify，也就是传说中的Mock模式，那是把代码拉入泥潭的开始。</p>
+<h4 id="SLF4J和Logback">SLF4J和Logback</h4><p>日志几乎是稍微有点规模的项目躲不开的一个东西，如果你是个老Java程序员，你必然知道Log4J，多半也知道Commons Logging。是时候把它们扔掉了，因为有SLF4J和Logback了。SLF4J要替代Commons Logging，而Logback的目标是Log4J。<br>只凭一点就足以让我们对SLF4J义无反顾了，你还记得用Commons Logging写出这样的代码吗？</p>
+<p>  if (logger.debugEnable()) {<br>    logger.debug(“Hello, “, name);<br>  }</p>
+<p>而SLF4J的写法只有一句话：</p>
+<p>  logger.debug(“Hello, {}”, name);</p>
+<p>从根源来说，这是时代造成的，Commons Logging是Java 5之前产生的，那时候还没有变参，所以，我们不得不说，它老了。</p>
+<p>至于Logback，性能是最重要的噱头，当然，还有一些其它的理由。理由里有一点并未提及，但对于开发人员很贴心的改进，就是日志模式的改进，还记得Log4J那密码一样的日志模式吗？</p>
+<p>  %d{dd MMM yyyy HH:mm:ss} [%t] %-5p %m%n</p>
+<p>下面是Logback的版本，不用查文档，我也看出每段表示的都是什么：</p>
+<p>  %d{dd MMM yyyy HH:mm:ss} [%thread] %-5level %msg%n</p>
+<p>这里介绍的几个程序库都是很通用的，无论是你做怎样的开发，应该都或多或少给你一些帮助。时间未曾停步，Java开发也未曾停留，如果你是个老Java程序员，是时候更新一下自己的知识了。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/程序库/">程序库</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java/">java</a><a href="/tags/程序库/">程序库</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/04/15/java开发常用程序库/" data-title="java开发常用程序库 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/15/架构思想小记/" title="架构思想小记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  架构思想小记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/04/15/java里面的设计模式/"  title="java里面的设计模式">
+ <strong>下一篇：</strong><br/> 
+ <span>java里面的设计模式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/04/15/java开发常用程序库/" data-title="java开发常用程序库" data-url="http://yoursite.com/2016/04/15/java开发常用程序库/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Guava"><span class="toc-number">1.</span> <span class="toc-text">Guava</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Joda_Time"><span class="toc-number">2.</span> <span class="toc-text">Joda Time</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hamcrest"><span class="toc-number">3.</span> <span class="toc-text">Hamcrest</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mockito"><span class="toc-number">4.</span> <span class="toc-text">Mockito</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SLF4J和Logback"><span class="toc-number">5.</span> <span class="toc-text">SLF4J和Logback</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

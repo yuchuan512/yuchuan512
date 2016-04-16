@@ -11,25 +11,22 @@
     
 
     
-    <meta name="description" content="###堆排序
+    <meta name="description" content="堆排序
 
-
-堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
+堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这种数据结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="堆排序">
 <meta property="og:url" content="http://yoursite.com/2016/03/11/排序总结/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="###堆排序
+<meta property="og:description" content="堆排序
 
-
-堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
-<meta property="og:updated_time" content="2016-04-06T11:59:58.558Z">
+堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这种数据结">
+<meta property="og:updated_time" content="2016-04-16T03:25:22.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆排序">
-<meta name="twitter:description" content="###堆排序
+<meta name="twitter:description" content="堆排序
 
-
-堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这">
+堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这种数据结">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -105,12 +102,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number"></span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序"><span class="toc-number"></span> <span class="toc-text">快速排序</span></a>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆排序"><span class="toc-number">1.</span> <span class="toc-text">堆排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">1.2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number">2.</span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序"><span class="toc-number">3.</span> <span class="toc-text">快速排序</span></a></li></ol>
 		
 		</div>
 		
-		<p>###堆排序</p>
-<blockquote>
+		<h3 id="堆排序">堆排序</h3><blockquote>
 <ul>
 <li>堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分为最大堆和最小堆，最大堆的任意子树根节点不小于任意子结点，最小堆的根节点不大于任意子结点。所谓堆排序就是利用堆这种数据结构来对数组排序，我们使用的是最大堆。处理的思想和冒泡排序，选择排序非常的类似，一层层封顶，只是最大元素的选取使用了最大堆。最大堆的最大元素一定在第0位置，构建好堆之后，交换0位置元素与顶即可。堆排序为原位排序(空间小), 且最坏运行时间是O(n2)，是渐进最优的比较排序算法。</li>
 </ul>
@@ -155,10 +151,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/11/堆排序/" title="堆排序">
+ <a href="/2016/03/11/java面试/" title="java面试">
   <strong>上一篇：</strong><br/>
   <span>
-  堆排序</span>
+  java面试</span>
 </a>
 </div>
 
@@ -185,7 +181,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number"></span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序"><span class="toc-number"></span> <span class="toc-text">快速排序</span></a>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆排序"><span class="toc-number">1.</span> <span class="toc-text">堆排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工具类"><span class="toc-number">1.1.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序核心算法"><span class="toc-number">1.2.</span> <span class="toc-text">堆排序核心算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number">2.</span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序"><span class="toc-number">3.</span> <span class="toc-text">快速排序</span></a></li></ol>
  
   </div>
 
@@ -310,7 +306,7 @@
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		</ul>
@@ -343,11 +339,11 @@
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
 			
 		
 			
@@ -379,7 +375,7 @@
 			
 		
 			
-				<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
 			
 		
 			

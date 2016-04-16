@@ -30,7 +30,7 @@ Thread t = new Thread()，初始化一个线程，实际上就是一个普通对
 
 t.start(); 线程处于就绪状态（可运行状态），也就是随时等待着运行， 不要小看这个start，这个start决定了他是否是一个真正的线程实例，因为start为其准备了线程环境，你若只是普通调用run方法，那么这就是 一个普通的">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/java%E5%A4%9A%E7%BA%BF%E7%A8%8B.png">
-<meta property="og:updated_time" content="2016-03-05T14:24:29.308Z">
+<meta property="og:updated_time" content="2016-04-16T04:04:54.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一张图看懂Java多线程">
 <meta name="twitter:description" content="一张图看懂Java多线程
@@ -129,9 +129,9 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 </li>
 <li><p>当线程获取到了CPU资源时，线程就从可运行状态到真正运行状态，也就是Running，不用怀疑，他现在正在运行。</p>
 </li>
-<li><p>如果这个线程正在等待客户输入学习，也就是IO异常，等各种阻塞事件，也有可能是自己调用了sleep等阻塞事件，线程就会从运行状态转为阻塞状态，这个状态是不会发生任何事情的！</p>
+<li><p>如果这个线程正在等待客户输入学习，也就是IO异常，等各种阻塞事件，也有可能是自己调用了sleep或者join方法等阻塞事件，线程就会从运行状态转为阻塞状态，这个状态是不会发生任何事情的！</p>
 </li>
-<li><p>一旦阻塞事件被清除，比如用户已经输入完成，IO流已经关闭，sleep也已经超时等，线程从阻塞状态变为就绪状态，又一次回到了可运行状态，随时与别的线程竞争资源，等待运行！</p>
+<li><p>一旦阻塞事件被清除，比如用户已经输入完成，IO流已经关闭，sleep也已经超时，join()结束等，线程从阻塞状态变为就绪状态，又一次回到了可运行状态，随时与别的线程竞争资源，等待运行！</p>
 </li>
 <li><p>处于运行状态的线程可能会在运行当中遇到了同步方法或同步块，也就是synchronized标记的方法或块，这个时候该线程获到了对象的锁， 其他线程就无法进入该同步方法，那么这些无法执行的线程怎么办呢？他们就都阻塞在这里，等待锁的释放，从新去竞争锁资源，因为只有拥有锁的线程才有资格继 续往下运行，那么这里这些线程就阻塞在锁池（Lock Pool）。</p>
 </li>
@@ -331,7 +331,7 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		</ul>
@@ -364,11 +364,11 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
 			
 		
 			
@@ -400,7 +400,7 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 			
 		
 			
-				<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
 			
 		
 			

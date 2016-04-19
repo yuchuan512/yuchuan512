@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="分组交换的要点分组交换采用存储转发技术，路由器每收到一个分组，先临时存储下来，再检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去，把这个分组转交给下一个路由器。这样一步一步的经过若干个或几十个不同的路由器，以存储转发的方式，把分组交付最终的目的主机。各路由器之间必须经常交换彼此掌握的路由信息，以便创建和维持在路由器中的转发表，使得转发表能在整个网络拓扑得到及时更新。
 五层协议的">
-<meta property="og:updated_time" content="2016-03-15T01:30:57.607Z">
+<meta property="og:updated_time" content="2016-04-19T12:54:25.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络">
 <meta name="twitter:description" content="分组交换的要点分组交换采用存储转发技术，路由器每收到一个分组，先临时存储下来，再检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去，把这个分组转交给下一个路由器。这样一步一步的经过若干个或几十个不同的路由器，以存储转发的方式，把分组交付最终的目的主机。各路由器之间必须经常交换彼此掌握的路由信息，以便创建和维持在路由器中的转发表，使得转发表能在整个网络拓扑得到及时更新。
@@ -99,13 +99,25 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#分组交换的要点"><span class="toc-number">1.</span> <span class="toc-text">分组交换的要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五层协议的网络体系结构"><span class="toc-number">2.</span> <span class="toc-text">五层协议的网络体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转发器、网桥、路由器、网关"><span class="toc-number">3.</span> <span class="toc-text">转发器、网桥、路由器、网关</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#分组交换的要点"><span class="toc-number">1.</span> <span class="toc-text">分组交换的要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五层协议的网络体系结构"><span class="toc-number">2.</span> <span class="toc-text">五层协议的网络体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转发器、网桥、路由器、网关"><span class="toc-number">3.</span> <span class="toc-text">转发器、网桥、路由器、网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信"><span class="toc-number">4.</span> <span class="toc-text">进程间通信</span></a></li></ol>
 		
 		</div>
 		
 		<h3 id="分组交换的要点">分组交换的要点</h3><p>分组交换采用存储转发技术，路由器每收到一个分组，先临时存储下来，再检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去，把这个分组转交给下一个路由器。这样一步一步的经过若干个或几十个不同的路由器，以存储转发的方式，把分组交付最终的目的主机。各路由器之间必须经常交换彼此掌握的路由信息，以便创建和维持在路由器中的转发表，使得转发表能在整个网络拓扑得到及时更新。</p>
 <h3 id="五层协议的网络体系结构">五层协议的网络体系结构</h3><p>1.物理层，物理层任务是透明传输比特流。<br>2.数据链路层，将网络层交下来的IP数据包组装成帧，在两个相邻节点间的链路上透明的传输帧中的数据，每一帧包括数据和必要的控制信息（如同步信息、地址信息、差错控制等）<br>3.网络层，把运输层产生的报文段封装成分组或包进行传送<br>4.运输层，负责向两个主机中进程之间的通信提供服务，运输层有复用和分用的功能。复用就是多个应用层进程可同时使用下面运输层的服务，分用则是运输层把收到的信息分别交付上面应用层中的相应进程。<br>5.应用层，直接为用户的应用进程提供服务。</p>
 <h3 id="转发器、网桥、路由器、网关">转发器、网桥、路由器、网关</h3><p>物理层使用的中间设备叫转发器<br>数据链路层使用的中间设备叫网桥<br>网络层使用的中间设备叫路由器<br>在网络层以上使用的中间设备叫做网关，用网关连接两个不兼容的系统需要在高层进行协议的转换</p>
+<h3 id="进程间通信">进程间通信</h3><ul>
+<li>管道<br>管道是单向的，先进先出的，无结构的、固定大小的字节流，它把一个进程的标准输出和另一个进程的标准输入连接在一起。写进程在管道的尾端写入数据，读进程在管道的头端读出数据。数据读出后将从管道中移走，其他读进程都不能再读到这些数据。管道提供了简单的流控制机制。进程试图读空管道时，在有数据写入管道前进程将一直阻塞。同样，管道已经满时进程再试图写管道，在其他进程从管道中移走数据之前写进程将一直阻塞。<ol>
+<li>无名管道：管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系（通常是指父子进程）的进程间使用</li>
+<li>命名管道：命名管道也是一种半双工的通信方式，在文件系统中作为一个特殊的设备文件而存在，但是它允许无亲缘关系的进程间的通信。当共享管道的进程执行完所有的I/O操作以后，命名管道将继续保存在文件系统中以便以后使用。</li>
+</ol>
+</li>
+<li>信号量<br>信号量是一个计数器，可以用来控制多个进程对共享资源的访问，它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源，因此，主要作为进程间以及同一进程内不同线程之间的同步手段</li>
+<li>消息队列<br>消息队列是由消息组成的链表，存放在内核中并由消息队列标志符标识。消息队列克服了信号传递信息少，管道只能承载无格式字节流以及缓冲区大小受限等特点。</li>
+<li>信号<br>信号是一种比较复杂的通信方式，用于通知接受进程某个事件已经发生。</li>
+<li>共享内存<br>共享内存就是映射一端能被其他进程访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的IPC方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制（如信号量）配合使用，来实现进程间的通信和使用。</li>
+<li>套接字<br>套接字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -167,7 +179,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#分组交换的要点"><span class="toc-number">1.</span> <span class="toc-text">分组交换的要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五层协议的网络体系结构"><span class="toc-number">2.</span> <span class="toc-text">五层协议的网络体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转发器、网桥、路由器、网关"><span class="toc-number">3.</span> <span class="toc-text">转发器、网桥、路由器、网关</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#分组交换的要点"><span class="toc-number">1.</span> <span class="toc-text">分组交换的要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五层协议的网络体系结构"><span class="toc-number">2.</span> <span class="toc-text">五层协议的网络体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转发器、网桥、路由器、网关"><span class="toc-number">3.</span> <span class="toc-text">转发器、网桥、路由器、网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信"><span class="toc-number">4.</span> <span class="toc-text">进程间通信</span></a></li></ol>
  
   </div>
 
@@ -244,6 +256,10 @@
 		  
 		
 		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
 		  
 		
@@ -272,11 +288,11 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
 		  
 		
 		  
@@ -337,7 +353,15 @@
 			
 		
 			
-				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
 			
 		
 			
@@ -349,7 +373,7 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
@@ -357,7 +381,7 @@
 			
 		
 			
-				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
 			
 		
 			
@@ -369,7 +393,7 @@
 			
 		
 			
-				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
 			
 		
 			
@@ -382,14 +406,6 @@
 		
 			
 				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/线程/" title="线程">线程<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/程序库/" title="程序库">程序库<sup>1</sup></a></li>
 			
 		
 		</ul>

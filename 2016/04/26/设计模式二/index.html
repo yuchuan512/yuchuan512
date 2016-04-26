@@ -1,0 +1,754 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>设计模式二 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="建造者模式建造模式是将复杂的内部创建封装在内部，对于外部调用的人来说，只需要传入建造者和建造工具，对于内部是如何建造成成品的，调用者无需关心。在Java的应用中JavaMail使用到了该模式。
+原型模式1234567891011121314151617/* 浅复制 */public Object clone() throws CloneNotSupportedException &amp;#123;	Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式二">
+<meta property="og:url" content="http://yoursite.com/2016/04/26/设计模式二/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="建造者模式建造模式是将复杂的内部创建封装在内部，对于外部调用的人来说，只需要传入建造者和建造工具，对于内部是如何建造成成品的，调用者无需关心。在Java的应用中JavaMail使用到了该模式。
+原型模式1234567891011121314151617/* 浅复制 */public Object clone() throws CloneNotSupportedException &amp;#123;	Pr">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/21783106.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/52927626-640.webp">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/25514382-640.webp">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/25514382-640.webp">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/70870796-640.webp">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/95852650.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/65731774.jpg">
+<meta property="og:updated_time" content="2016-04-26T14:08:45.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式二">
+<meta name="twitter:description" content="建造者模式建造模式是将复杂的内部创建封装在内部，对于外部调用的人来说，只需要传入建造者和建造工具，对于内部是如何建造成成品的，调用者无需关心。在Java的应用中JavaMail使用到了该模式。
+原型模式1234567891011121314151617/* 浅复制 */public Object clone() throws CloneNotSupportedException &amp;#123;	Pr">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/26/设计模式二/" title="设计模式二" itemprop="url">设计模式二</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-26T14:06:40.000Z" itemprop="datePublished"> 发表于 2016-04-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#建造者模式"><span class="toc-number">1.</span> <span class="toc-text">建造者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">2.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适配器模式"><span class="toc-number">3.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰模式"><span class="toc-number">4.</span> <span class="toc-text">装饰模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代理模式"><span class="toc-number">5.</span> <span class="toc-text">代理模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外观模式"><span class="toc-number">6.</span> <span class="toc-text">外观模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略模式"><span class="toc-number">7.</span> <span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板方法模式"><span class="toc-number">8.</span> <span class="toc-text">模板方法模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者模式"><span class="toc-number">9.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代器模式"><span class="toc-number">10.</span> <span class="toc-text">迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#责任链模式"><span class="toc-number">11.</span> <span class="toc-text">责任链模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令模式"><span class="toc-number">12.</span> <span class="toc-text">命令模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#享元模式"><span class="toc-number">13.</span> <span class="toc-text">享元模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中介者模式"><span class="toc-number">14.</span> <span class="toc-text">中介者模式</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="建造者模式">建造者模式</h3><p>建造模式是将复杂的内部创建封装在内部，对于外部调用的人来说，只需要传入建造者和建造工具，对于内部是如何建造成成品的，调用者无需关心。<br>在Java的应用中JavaMail使用到了该模式。<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/21783106.jpg" alt="建造者模式"></p>
+<h3 id="原型模式">原型模式</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 浅复制 */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function">Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">	Prototype proto = (Prototype) <span class="keyword">super</span>.clone();</span><br><span class="line">	<span class="keyword">return</span> proto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 深复制 */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function">Object <span class="title">deepClone</span><span class="params">()</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">	<span class="comment">/* 写入当前对象的二进制流 */</span></span><br><span class="line">	ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">	ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(bos);</span><br><span class="line">	oos.writeObject(<span class="keyword">this</span>);</span><br><span class="line">	<span class="comment">/* 读出二进制流产生的新对象 */</span></span><br><span class="line">	ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(bos.toByteArray());</span><br><span class="line">	ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(bis);</span><br><span class="line">	<span class="function"><span class="keyword">return</span> ois.<span class="title">readObject</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="适配器模式">适配器模式</h3><p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/52927626-640.webp" alt="类的适配器模式"><br>核心思想就是：有一个Source类，拥有一个方法，待适配，目标接口时Targetable，通过Adapter类，将Source的功能扩展到Targetable里<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"method1"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Targetable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">extends</span> <span class="title">Source</span> <span class="keyword">implements</span> <span class="title">Targetable</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"method2"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Targetable target = <span class="keyword">new</span> Adapter();</span><br><span class="line">		target.method1();</span><br><span class="line">		target.method2();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/25514382-640.webp" alt="对象的适配器模式"><br>基本思路和类的适配器模式相同，只是将Adapter类作修改，这次不继承Source类，而是持有Source类的实例，以达到解决兼容性的问题。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Wrapper <span class="keyword">implements</span> Targetable &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">Source</span> <span class="keyword">source</span>;</span><br><span class="line">	<span class="keyword">public</span> Wrapper(<span class="keyword">Source</span> <span class="keyword">source</span>)&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	<span class="keyword">this</span>.<span class="keyword">source</span> = <span class="keyword">source</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> method2() &#123;</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"this is the targetable method!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> method1() &#123;</span><br><span class="line">		<span class="keyword">source</span>.method1();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/25514382-640.webp" alt="接口的适配器模式"><br>接口的适配器是这样的：有时我们写的一个接口中有多个抽象方法，当我们写该接口的实现类时，必须实现该接口的所有方法，这明显有时比较浪费，因为并不是所有的方法都是我们需要的，有时只需要某一些，此处为了解决这个问题，我们引入了接口的适配器模式，借助于一个抽象类，该抽象类实现了该接口，实现了所有的方法，而我们不和原始的接口打交道，只和该抽象类取得联系，所以我们写一个类，继承该抽象类，重写我们需要的方法就行。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sourceable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Wrapper</span> <span class="keyword">implements</span> <span class="title">Sourceable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SourceSub1</span> <span class="keyword">extends</span> <span class="title">Wrapper</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"SourceSub1"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SourceSub2</span> <span class="keyword">extends</span> <span class="title">Wrapper</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"SourceSub3"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Sourceable source1 = <span class="keyword">new</span> SourceSub1();</span><br><span class="line">		Sourceable source2 = <span class="keyword">new</span> SourceSub2();</span><br><span class="line">		source1.method1();</span><br><span class="line">		source1.method2();</span><br><span class="line">		source1.method3();</span><br><span class="line"></span><br><span class="line">		source2.method1();</span><br><span class="line">		source2.method2();</span><br><span class="line">		source2.method3();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>适配器模式总结</p>
+<ul>
+<li>类的适配器模式：当希望将一个类转换成满足另一个新接口的类时，可以使用类的适配器模式，创建一个新类，继承原有的类，实现新的接口即可。</li>
+<li>对象的适配器模式：当希望将一个对象转换成满足另一个新接口的对象时，可以创建一个Wrapper类，持有原类的一个实例，在Wrapper类的方法中，调用实例的方法就行。</li>
+<li>接口的适配器模式：当不希望实现一个接口中所有的方法时，可以创建一个抽象类Wrapper，实现所有方法，我们写别的类的时候，继承抽象类即可。</li>
+</ul>
+<h3 id="装饰模式">装饰模式</h3><p>装饰模式就是给一个对象增加一些新的功能，而且是动态的，要求装饰对象和被装饰对象实现同一个接口，装饰对象持有被装饰对象的实例<br>简单的装饰模式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IComponent</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> <span class="keyword">implements</span> <span class="title">IComponent</span> </span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"开车"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">implements</span> <span class="title">IComponent</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> IComponent component;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(IComponent component)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.component = component;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		component.operation();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecorator</span> <span class="keyword">extends</span> <span class="title">Decorator</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecorator</span><span class="params">(IComponent component)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(component);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.addOperation();</span><br><span class="line">		<span class="keyword">super</span>.operation();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"晚上"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ConcreteComponent component = <span class="keyword">new</span> ConcreteComponent();</span><br><span class="line">		ConcreteDecorator decorator = <span class="keyword">new</span> ConcreteDecorator(component);</span><br><span class="line">		decorator.operation();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>复杂的装饰模式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IComponent</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">showCoffee</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">showPrice</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> <span class="keyword">implements</span> <span class="title">IComponent</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Coffee</span><span class="params">(String name,<span class="keyword">double</span> price)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">	...get...set</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showCoffee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"的"</span>+<span class="keyword">this</span>.getName()+<span class="string">"咖啡"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">showPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.getPrice();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 装饰类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">implements</span> <span class="title">IComponent</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> IComponent componet;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setComponent</span><span class="params">(IComponent component)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.componet = component;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showCoffee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		componet.showCoffee();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">showPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> componet.showPrice();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">extends</span> <span class="title">Decorator</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showCoffee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"加奶"</span>);</span><br><span class="line">		<span class="keyword">super</span>.showCoffee();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">showPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">15.0</span>+<span class="keyword">super</span>.showPrice();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sugar</span> <span class="keyword">extends</span> <span class="title">Decorator</span> </span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showCoffee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"加糖"</span>);</span><br><span class="line">		<span class="keyword">super</span>.showCoffee();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">showPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">10</span>+<span class="keyword">super</span>.showPrice();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Coffee coffee = <span class="keyword">new</span> Coffee(<span class="string">"拿铁"</span>,<span class="number">55.0</span>);</span><br><span class="line">		Decorator sugar = <span class="keyword">new</span> Sugar();</span><br><span class="line">		Decorator milk = <span class="keyword">new</span> Milk();</span><br><span class="line">		sugar.setComponent(coffee);</span><br><span class="line">		milk.setComponent(sugar);</span><br><span class="line">		milk.showCoffee();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>装饰器模式的应用场景：<br>1、需要扩展一个类的功能。<br>2、动态的为一个对象增加功能，而且还能动态撤销。（继承不能做到这一点，继承的功能是静态的，不能动态增删。）<br>缺点：产生过多相似的对象，不易排错！</p>
+<h3 id="代理模式">代理模式</h3><p>代理持有一个真实实现类的引用<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">interface</span> <span class="type">Sourceable</span> &#123;</span><br><span class="line">    public <span class="type">void</span> <span class="keyword">method</span>();</span><br><span class="line">&#125;</span><br><span class="line">public class <span class="type">Source</span> implements <span class="type">Sourceable</span> &#123;</span><br><span class="line"></span><br><span class="line">    @<span class="type">Override</span></span><br><span class="line">    public <span class="type">void</span> <span class="keyword">method</span>() &#123;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"the original method!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class <span class="type">Proxy</span> implements <span class="type">Sourceable</span> &#123;</span><br><span class="line"></span><br><span class="line">    private <span class="type">Source</span> source;</span><br><span class="line">    public <span class="type">Proxy</span>()&#123;</span><br><span class="line">        super();</span><br><span class="line">        this.source = new <span class="type">Source</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    @<span class="type">Override</span></span><br><span class="line">    public <span class="type">void</span> <span class="keyword">method</span>() &#123;</span><br><span class="line">        before();</span><br><span class="line">        source.<span class="keyword">method</span>();</span><br><span class="line">        atfer();</span><br><span class="line">    &#125;</span><br><span class="line">    private <span class="type">void</span> atfer() &#123;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"after proxy!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    private <span class="type">void</span> before() &#123;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"before proxy!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="外观模式">外观模式</h3><p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/70870796-640.webp" alt="外观模式"><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Computer</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> CPU cpu;</span><br><span class="line">	<span class="keyword">private</span> Memory memory;</span><br><span class="line">	<span class="keyword">private</span> Disk disk;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Computer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		cpu = <span class="keyword">new</span> CPU();</span><br><span class="line">		memory = <span class="keyword">new</span> Memory();</span><br><span class="line">		disk = <span class="keyword">new</span> Disk();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startUp</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		cpu.startUp();</span><br><span class="line">		memory.startUp();</span><br><span class="line">		disk.startUp();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutDown</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		cpu.shutDown();</span><br><span class="line">		memory.shutDown();</span><br><span class="line">		disk.shutDown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="策略模式">策略模式</h3><p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/95852650.jpg" alt="策略模式"></p>
+<ol>
+<li><p>加减法计算表达式-策略模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICalculator</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCalculator</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] split(String exp,String delimeter)&#123;</span><br><span class="line">		String[] arr = exp.split(delimeter);</span><br><span class="line">		<span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">		result[<span class="number">0</span>] = Integer.parseInt(arr[<span class="number">0</span>]);</span><br><span class="line">		result[<span class="number">1</span>] = Integer.parseInt(arr[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Minus</span> <span class="keyword">extends</span> <span class="title">AbstractCalculator</span> <span class="keyword">implements</span> <span class="title">ICalculator</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = split(exp, <span class="string">"-"</span>);</span><br><span class="line">		<span class="keyword">return</span> arr[<span class="number">0</span>]-arr[<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Plus</span> <span class="keyword">extends</span> <span class="title">AbstractCalculator</span> <span class="keyword">implements</span> <span class="title">ICalculator</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = split(exp, <span class="string">"\\+"</span>);</span><br><span class="line">		<span class="keyword">return</span> arr[<span class="number">0</span>]+arr[<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Multiply</span> <span class="keyword">extends</span> <span class="title">AbstractCalculator</span> <span class="keyword">implements</span> <span class="title">ICalculator</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] arr = split(exp, <span class="string">"\\*"</span>);</span><br><span class="line">		<span class="keyword">return</span> arr[<span class="number">0</span>]*arr[<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ICalculator cal = <span class="keyword">new</span> Plus();</span><br><span class="line">		<span class="keyword">int</span> res = cal.calculate(<span class="string">"8+2"</span>);</span><br><span class="line">		System.out.println(res);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>客户打折-策略模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calcPrice</span><span class="params">(<span class="keyword">double</span> goodsPrice)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LargeCustomerStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calcPrice</span><span class="params">(<span class="keyword">double</span> goodsPrice)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"大客户10%"</span>);</span><br><span class="line">		<span class="keyword">return</span> goodsPrice*(<span class="number">1</span>-<span class="number">0.1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OldCustomerStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calcPrice</span><span class="params">(<span class="keyword">double</span> goodsPrice)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"老客户5%"</span>);</span><br><span class="line">		<span class="keyword">return</span> goodsPrice*(<span class="number">1</span>-<span class="number">0.05</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NormalCustomerStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calcPrice</span><span class="params">(<span class="keyword">double</span> goodsPrice)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"新客户或普通客户没有折扣"</span>);</span><br><span class="line">		<span class="keyword">return</span> goodsPrice;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Strategy strategy = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Price</span><span class="params">(Strategy strategy)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">quote</span><span class="params">(<span class="keyword">double</span> goodsPrice)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.strategy.calcPrice(goodsPrice);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Strategy strategy = <span class="keyword">new</span> LargeCustomerStrategy();</span><br><span class="line">		Price ctx = <span class="keyword">new</span> Price(strategy);</span><br><span class="line">		<span class="keyword">double</span> quote = ctx.quote(<span class="number">1000</span>);</span><br><span class="line">		System.out.println(<span class="string">"报价:"</span>+quote);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保存日志到数据库/文件-策略模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LogStrategy</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DbLog</span> <span class="keyword">implements</span> <span class="title">LogStrategy</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(msg!=<span class="keyword">null</span> &amp;&amp; msg.trim().length()&gt;<span class="number">5</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> a = <span class="number">5</span>/<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"现在把'"</span>+msg+<span class="string">"'记录到数据库中"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileLog</span> <span class="keyword">implements</span> <span class="title">LogStrategy</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"现在把'"</span>+msg+<span class="string">"'记录到文件中"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogContext</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">		LogStrategy strategy = <span class="keyword">new</span> DbLog();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			strategy.log(msg);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			strategy = <span class="keyword">new</span> FileLog();</span><br><span class="line">			strategy.log(msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		LogContext log = <span class="keyword">new</span> LogContext();</span><br><span class="line">		<span class="comment">// 正常记录到数据库中</span></span><br><span class="line">		log.log(<span class="string">"记录日志"</span>);</span><br><span class="line">		<span class="comment">// 发生异常，此时策略切换为文件记录日志</span></span><br><span class="line">		log.log(<span class="string">"再次记录日志"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">现在把<span class="string">'记录日志'</span>记录到数据库中</span><br><span class="line">现在把<span class="string">'再次记录日志'</span>记录到文件中</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给某个动作前面加上一个动作-策略模式结合模板模式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> interface LogStrategy &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> abstract <span class="keyword">class</span> LogStrategyTemplate implements LogStrategy&#123;</span><br><span class="line">	<span class="comment">//给各个策略前面加上时间，可以通过结合模板模式，在父类中设定好执行顺序，由子类执行</span></span><br><span class="line">	@<span class="function">Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">		msg = sdf.format(<span class="keyword">new</span> Date())+<span class="string">"内容是"</span>+msg;</span><br><span class="line">		doLog(msg);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> abstract <span class="keyword">void</span> <span class="title">doLog</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> DbLog extends LogStrategyTemplate&#123;</span><br><span class="line">	@<span class="function">Override</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doLog</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(msg!=null &amp;&amp; msg.trim().length()&gt;<span class="number">5</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> a = <span class="number">5</span>/<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"记录到数据库中："</span>+msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> FileLog extends LogStrategyTemplate&#123;</span><br><span class="line">	@<span class="function">Override</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doLog</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"现在把"</span>+msg+<span class="string">"记录到数据库中"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> LogContext &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">		LogStrategy strategy = <span class="keyword">new</span> DbLog();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			strategy.<span class="built_in">log</span>(msg);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			strategy = <span class="keyword">new</span> FileLog();</span><br><span class="line">			strategy.<span class="built_in">log</span>(msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Client &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		LogContext <span class="built_in">log</span> = <span class="keyword">new</span> LogContext();</span><br><span class="line">		<span class="built_in">log</span>.<span class="built_in">log</span>(<span class="string">"记录日志"</span>);</span><br><span class="line">		<span class="built_in">log</span>.<span class="built_in">log</span>(<span class="string">"再次记录日志"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line">现在把<span class="number">2016</span>-<span class="number">04</span>-<span class="number">26</span> <span class="number">18</span>:<span class="number">11</span>:<span class="number">32</span>内容是  记录日志  记录到数据库中</span><br><span class="line">现在把<span class="number">2016</span>-<span class="number">04</span>-<span class="number">26</span> <span class="number">18</span>:<span class="number">11</span>:<span class="number">32</span>内容是  再次记录日志  记录到数据库中</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="模板方法模式">模板方法模式</h3><p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-26/65731774.jpg" alt="模板方式模式"><br>就是在AbstractCalculator类中定义一个主方法calculate，calculate()调用spilt()等，Plus和Minus分别继承AbstractCalculator类，通过对AbstractCalculator的调用实现对子类的调用<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public abstract class <span class="type">AbstractCalculator</span> &#123;</span><br><span class="line">	public final <span class="type">int</span> calculate(<span class="type">String</span> exp,<span class="type">String</span> delimeter)&#123;</span><br><span class="line">		<span class="type">int</span> <span class="type">array</span>[] = split(exp, delimeter);</span><br><span class="line">		<span class="keyword">return</span> calculate(<span class="type">array</span>[<span class="number">0</span>],<span class="type">array</span>[<span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public abstract <span class="type">int</span> calculate(<span class="type">int</span> num1,<span class="type">int</span> num2);</span><br><span class="line"></span><br><span class="line">	public <span class="type">int</span>[] split(<span class="type">String</span> exp,<span class="type">String</span> delimeter)&#123;</span><br><span class="line">		<span class="type">String</span>[] arr = exp.split(delimeter);</span><br><span class="line">		<span class="type">int</span>[] <span class="literal">result</span> = new <span class="type">int</span>[<span class="number">2</span>];</span><br><span class="line">		<span class="literal">result</span>[<span class="number">0</span>] = <span class="type">Integer</span>.parseInt(arr[<span class="number">0</span>]);</span><br><span class="line">		<span class="literal">result</span>[<span class="number">1</span>] = <span class="type">Integer</span>.parseInt(arr[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="type">Plus</span> extends <span class="type">AbstractCalculator</span>&#123;</span><br><span class="line">	@<span class="type">Override</span></span><br><span class="line">	public <span class="type">int</span> calculate(<span class="type">int</span> num1, <span class="type">int</span> num2) &#123;</span><br><span class="line">		<span class="keyword">return</span> num1+num2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="type">Test</span> &#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">		<span class="type">AbstractCalculator</span> cal = new <span class="type">Plus</span>();</span><br><span class="line">		<span class="type">int</span> res = cal.calculate(<span class="string">"8+2"</span>,<span class="string">"\\+"</span>);</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(res);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="观察者模式">观察者模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Watcher</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Watcher</span><span class="params">(Watched w)</span> </span>&#123;</span><br><span class="line">		w.addObserver(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable o, Object arg)</span> </span>&#123;</span><br><span class="line">		System.out.println(((Watched)o).retriveData());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Watched</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String data=<span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">retriveData</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> data;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changeData</span><span class="params">(String data)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!<span class="keyword">this</span>.data.equals(data))&#123;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">			setChanged();</span><br><span class="line">			notifyObservers();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Watched watched = <span class="keyword">new</span> Watched();</span><br><span class="line">		Watcher watcher = <span class="keyword">new</span> Watcher(watched);</span><br><span class="line">		watched.changeData(<span class="string">"A"</span>);</span><br><span class="line">		watched.changeData(<span class="string">"B"</span>);</span><br><span class="line">		watched.changeData(<span class="string">"C"</span>);</span><br><span class="line">		watched.changeData(<span class="string">"D"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="迭代器模式">迭代器模式</h3><p>又被称为游标模式。这种模式提供一种方法访问一个容器对象中的各个元素，而又不需要暴露该对象的内部细节。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IIterator</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">previous</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">first</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 持有一个迭代器对象的引用</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> IIterator <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCollection</span> <span class="keyword">implements</span> <span class="title">Collection</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> String[] string = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyCollection</span><span class="params">(String[] str)</span></span>&#123;</span><br><span class="line">		string = str;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> IIterator <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MyIterator(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> string[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> string.length;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyIterator</span> <span class="keyword">implements</span> <span class="title">IIterator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Collection collection;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> pos=-<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyIterator</span><span class="params">(Collection collection)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.collection = collection;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">previous</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos&gt;<span class="number">0</span>)</span><br><span class="line">			pos--;</span><br><span class="line">		<span class="keyword">return</span> collection.get(pos);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos&lt;collection.size()-<span class="number">1</span>)</span><br><span class="line">			pos++;</span><br><span class="line">		<span class="keyword">return</span> collection.get(pos);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(pos&lt;collection.size()-<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">first</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		pos=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> collection.get(pos);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String[] str = &#123;<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>&#125;;</span><br><span class="line">		Collection myCollection = <span class="keyword">new</span> MyCollection(str);</span><br><span class="line">		IIterator it = myCollection.iterator();</span><br><span class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">			System.out.println(it.next());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="责任链模式">责任链模式</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 责任链上各个对象执行的方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Handler <span class="keyword">handler</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function">Handler <span class="title">getHandler</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">handler</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">setHandler</span><span class="params">(Handler <span class="keyword">handler</span>)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">handler</span> = <span class="keyword">handler</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyHandler</span> <span class="keyword">extends</span> <span class="title">AbstractHandler</span> <span class="keyword">implements</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyHandler</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(name+<span class="string">" deal!"</span>);</span><br><span class="line">		<span class="keyword">if</span>(getHandler()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			getHandler().operator();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 此处只能用具体类，不能用抽象类，因为后面需要设置实现了接口的对象为下一个handler</span></span><br><span class="line">		MyHandler h1 = <span class="keyword">new</span> MyHandler(<span class="string">"h1"</span>);</span><br><span class="line">		MyHandler h2 = <span class="keyword">new</span> MyHandler(<span class="string">"h2"</span>);</span><br><span class="line">		MyHandler h3 = <span class="keyword">new</span> MyHandler(<span class="string">"h3"</span>);</span><br><span class="line"></span><br><span class="line">		h1.setHandler(h2);</span><br><span class="line">		h2.setHandler(h3);</span><br><span class="line">		h1.operator();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="命令模式">命令模式</h3><p>命令模式的目的就是达到命令的发出者和执行者之间解耦<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OpenCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> MainBoard mainBoard;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">OpenCommand</span><span class="params">(MainBoard mainBoard)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.mainBoard = mainBoard;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		mainBoard.open();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MainBoard</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">open</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GigaMainBoard</span> <span class="keyword">implements</span> <span class="title">MainBoard</span> </span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">open</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"华硕主板开机"</span>);</span><br><span class="line">		System.out.println(<span class="string">"接通电源"</span>);</span><br><span class="line">		System.out.println(<span class="string">"正常运转"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Box</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Command openCommand;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOpenCommand</span><span class="params">(Command command)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.openCommand = command;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">openButtonPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		openCommand.execute();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		MainBoard mainBoard = <span class="keyword">new</span> GigaMainBoard();</span><br><span class="line">		Command openCommand = <span class="keyword">new</span> OpenCommand(mainBoard);</span><br><span class="line">		Box box = <span class="keyword">new</span> Box();</span><br><span class="line">		box.setOpenCommand(openCommand);</span><br><span class="line">		box.openButtonPressed();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="享元模式">享元模式</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Order</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">sell</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlavorOrder</span> <span class="title">extends</span> <span class="title">Order</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> String flavor;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">FlavorOrder</span>(<span class="params">String flavor</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.flavor = flavor;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@<span class="function">Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sell</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"卖出"</span>+flavor+<span class="string">"一份"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 枚举写出的单例，利用HashMap来实现享元模式</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> FlavorFactory &#123;</span><br><span class="line">	instance;</span><br><span class="line">	<span class="keyword">private</span> Map&lt;String,Order&gt; flavorPool = <span class="keyword">new</span> HashMap&lt;String,Order&gt;();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Order <span class="title">getOrder</span>(<span class="params">String flavor</span>)</span>&#123;</span><br><span class="line">		Order order = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">if</span>(flavorPool.containsKey(flavor))&#123;</span><br><span class="line">			order = flavorPool.<span class="keyword">get</span>(flavor);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			order = <span class="keyword">new</span> FlavorOrder(flavor);</span><br><span class="line">			flavorPool.put(flavor, order);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> order;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotalSize</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> flavorPool.size();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;</span><br><span class="line">	<span class="keyword">static</span> ArrayList&lt;Order&gt; orders = <span class="keyword">new</span> ArrayList&lt;Order&gt;();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addOrder</span>(<span class="params">String flavor</span>) </span>&#123;</span><br><span class="line">		orders.add(FlavorFactory.instance.getOrder(flavor));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		FlavorFactory factory = FlavorFactory.instance;</span><br><span class="line">		addOrder(<span class="string">"one"</span>);</span><br><span class="line">		addOrder(<span class="string">"two"</span>);</span><br><span class="line">		addOrder(<span class="string">"three"</span>);</span><br><span class="line">		addOrder(<span class="string">"three"</span>);</span><br><span class="line">		addOrder(<span class="string">"three"</span>);</span><br><span class="line">		addOrder(<span class="string">"one"</span>);</span><br><span class="line">		addOrder(<span class="string">"two"</span>);</span><br><span class="line">		addOrder(<span class="string">"three"</span>);</span><br><span class="line">		addOrder(<span class="string">"two"</span>);</span><br><span class="line">		addOrder(<span class="string">"two"</span>);</span><br><span class="line">		<span class="keyword">for</span> (Order order : orders) &#123;</span><br><span class="line">			order.sell();</span><br><span class="line">		&#125;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"一共"</span> + orders.size());</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"生成"</span> + factory.instance.getTotalSize() + <span class="string">"个对象"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="中介者模式">中介者模式</h3><p>浅复制：将一个对象复制后，基本数据类型的变量都会重新创建，而引用类型，指向的还是原对象所指向的。<br>深复制：将一个对象复制后，不论是基本数据类型还有引用类型，都是重新创建的。简单来说，就是深复制进行了完全彻底的复制，而浅复制不彻底</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/04/26/设计模式二/" data-title="设计模式二 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/26/六大原则/" title="六大原则">
+  <strong>上一篇：</strong><br/>
+  <span>
+  六大原则</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/04/26/设计模式一/"  title="设计模式一">
+ <strong>下一篇：</strong><br/> 
+ <span>设计模式一
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/04/26/设计模式二/" data-title="设计模式二" data-url="http://yoursite.com/2016/04/26/设计模式二/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#建造者模式"><span class="toc-number">1.</span> <span class="toc-text">建造者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">2.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适配器模式"><span class="toc-number">3.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰模式"><span class="toc-number">4.</span> <span class="toc-text">装饰模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代理模式"><span class="toc-number">5.</span> <span class="toc-text">代理模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外观模式"><span class="toc-number">6.</span> <span class="toc-text">外观模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略模式"><span class="toc-number">7.</span> <span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板方法模式"><span class="toc-number">8.</span> <span class="toc-text">模板方法模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者模式"><span class="toc-number">9.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代器模式"><span class="toc-number">10.</span> <span class="toc-text">迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#责任链模式"><span class="toc-number">11.</span> <span class="toc-text">责任链模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令模式"><span class="toc-number">12.</span> <span class="toc-text">命令模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#享元模式"><span class="toc-number">13.</span> <span class="toc-text">享元模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中介者模式"><span class="toc-number">14.</span> <span class="toc-text">中介者模式</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

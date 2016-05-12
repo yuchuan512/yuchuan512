@@ -1,0 +1,769 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>云计算与大数据 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="http是比TCP更高层次的应用层协议，只有底层协议建立之后才能建立更高层协议的连接，因此需要建立TCP连接Web服务器以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
+HTTPS和HTTP区别：
+HTTPS协议需要到CA申请证书，免费证书较少，一般需要交费
+HTTP的信息是明文传输的，HTTPS则是具有安全性的SSL加密传输协议
+HTTP和HTTPS使用完全不同的连接方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云计算与大数据">
+<meta property="og:url" content="http://yoursite.com/2016/05/04/云计算与大数据/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="http是比TCP更高层次的应用层协议，只有底层协议建立之后才能建立更高层协议的连接，因此需要建立TCP连接Web服务器以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
+HTTPS和HTTP区别：
+HTTPS协议需要到CA申请证书，免费证书较少，一般需要交费
+HTTP的信息是明文传输的，HTTPS则是具有安全性的SSL加密传输协议
+HTTP和HTTPS使用完全不同的连接方">
+<meta property="og:updated_time" content="2016-05-12T07:35:40.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="云计算与大数据">
+<meta name="twitter:description" content="http是比TCP更高层次的应用层协议，只有底层协议建立之后才能建立更高层协议的连接，因此需要建立TCP连接Web服务器以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
+HTTPS和HTTP区别：
+HTTPS协议需要到CA申请证书，免费证书较少，一般需要交费
+HTTP的信息是明文传输的，HTTPS则是具有安全性的SSL加密传输协议
+HTTP和HTTPS使用完全不同的连接方">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/04/云计算与大数据/" title="云计算与大数据" itemprop="url">云计算与大数据</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-04T10:29:14.000Z" itemprop="datePublished"> 发表于 2016-05-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS和HTTP区别："><span class="toc-number">1.</span> <span class="toc-text">HTTPS和HTTP区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie属性"><span class="toc-number">2.</span> <span class="toc-text">Cookie属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session属性"><span class="toc-number">3.</span> <span class="toc-text">Session属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAP理论"><span class="toc-number">4.</span> <span class="toc-text">CAP理论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信(Interprocess_Communication,IPC)"><span class="toc-number">5.</span> <span class="toc-text">进程间通信(Interprocess Communication,IPC)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络服务泛型"><span class="toc-number">6.</span> <span class="toc-text">网络服务泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java_Socket编程"><span class="toc-number">7.</span> <span class="toc-text">java Socket编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web_Service优点"><span class="toc-number">8.</span> <span class="toc-text">Web Service优点</span></a></li></ol>
+		
+		</div>
+		
+		<p>http是比TCP更高层次的应用层协议，只有底层协议建立之后才能建立更高层协议的连接，因此需要建立TCP连接<br>Web服务器以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。</p>
+<h3 id="HTTPS和HTTP区别：">HTTPS和HTTP区别：</h3><ol>
+<li>HTTPS协议需要到CA申请证书，免费证书较少，一般需要交费</li>
+<li>HTTP的信息是明文传输的，HTTPS则是具有安全性的SSL加密传输协议</li>
+<li>HTTP和HTTPS使用完全不同的连接方式，用的端口也不一样，HTTP是80，HTTPS是443</li>
+<li>HTTPS是由SSL+HTTP构建的可进行加密传输，身份认证的网络协议，比HTTP安全</li>
+</ol>
+<h3 id="Cookie属性">Cookie属性</h3><p>String name 该Cookie的名称，一旦创建，不可更改<br>Object value 该Cookie的值，如果为Unicode字符，需要为字符编码；若为二进制，则用BASE64编码<br>int maxAge  失效时间，单位秒。如果为证书，则在maxAge秒后失效；若为负数，则为临时Cookie，关闭浏览器即失效，若为0，表示删除该Cookie<br>boolean secure  是否仅被使用安全协议传输。安全协议有HTTPS、SSL等，在网络传输前，先将数据加密，默认false<br>String domain   可以访问该Cookie的域名，如果设置为“.google.com”,则所有以“google.com”结尾的域名都可以访问该Cookie<br>String comment   该Cookie的用处说明。浏览器显示Cookie信息的时候显示该说明<br>int version   版本号</p>
+<p>客户端访问服务器时，服务器吧客户端信息以某种形式记录在服务器上。客户端浏览器再次访问时只需要从该Session中查找该用户的状态<br>如果说Cookie机制是通过检查客户身上的通行证来确定客户身份的话，那么Session机制就是通过检查服务器上的客户明细表来确认客户身份的。<br>如果客户端浏览器将Cookie功能禁用或者不支持Cookie，可以通过URL地址重写来解决，将该用户Session的ID信息重写到URL地址中，服务器能够解析重写后的URL获取Session的ID，这样即使客户端不支持Cookie，也可以使用Session来记录用户状态。</p>
+<h3 id="Session属性">Session属性</h3><p>void setAttribute(String attribute,Object value)<br>String getAttribute(String attribute)<br>long getCreateTime()<br>boolean isNew()<br>void invalidate() 使该Session失效</p>
+<h3 id="CAP理论">CAP理论</h3><p>CAP理论指出对于一个分布式计算系统来说，不可能同时满足以下三点：</p>
+<ol>
+<li>一致性(Consistency,C):所有节点访问同一份最新的数据副本。在分布式系统中的所有数据备份，在同一时刻是否同样的值</li>
+<li>可用性(Availability,A):对数据更新具备高可用性。在集群中一部分节点故障后，集群整体是否还能响应客户端的读写请求</li>
+<li>分区容忍性(Partition  tolerance,P):当集群中的某些节点无法联系时，仍能正常提供服务。以实际效果而言，分区相当于对通信的时限要求，系统如果不能再时限内达成数据一致性，意味着发生了分区的情况，必须就当前操作在一致性和可用性之间做出选择。<br>CAP理论告诉我们，在大规模的分布式系统中，分区容忍性是基本要求，所以要对可用性和一致性有所权衡。</li>
+</ol>
+<h3 id="进程间通信(Interprocess_Communication,IPC)">进程间通信(Interprocess Communication,IPC)</h3><h3 id="网络服务泛型">网络服务泛型</h3><p>java的JINI(Java Intelligent Network Infrastructure)和web service 都是属于该泛型的网络设施。Web服务使用XML和XSD标准来自我描述，用简单对象访问协议(Simple Object Access Protocol,SOAP)交换数据。使用Web服务技术，能使运行与不同机器上的不同应用无需借助其他的支持就可以相互通信。Web服务向外提供一个能够通过Web进行调用的API，即目录服务。</p>
+<h3 id="java_Socket编程">java Socket编程</h3><h3 id="Web_Service优点">Web Service优点</h3><ol>
+<li>良好的封装性，服务使用者只能看到对象提供的通用接口和功能列表，不用关心服务的细节</li>
+<li>松耦合，只要调用接口不变，内部变更对于调用者透明</li>
+<li>使用标准协议规范。基于XML的消息交换机制，其所有公共的协约都采用Internet开放标准协议进行描述、传输和交换</li>
+<li>高度可继承性，屏蔽了不同软件、平台差异</li>
+<li>易于构建</li>
+</ol>
+<p>服务描述(WSDL)位于SOAP的上一层，也是基于XML的，用以描述服务端口访问方式和使用协议的细节，通常用来辅助生成服务器和客户端代码及配置信息。<br>UDDI是一个公开的目录，服务提供中将WebService注册并发布到此目录中，而服务使用者也是通过此目录来发现能满足自己需求的服务</p>
+<p>WebService角色包括服务提供者、服务注册中心和服务使用者</p>
+<p>吴培君(榕舒)：peijun.wpj@alibaba-inc.com</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/云计算/">云计算</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/04/云计算与大数据/" data-title="云计算与大数据 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/04/Sing-Dance/" title="Sing &amp;&amp; Dance">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Sing &amp;&amp; Dance</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/04/java反射/"  title="java反射">
+ <strong>下一篇：</strong><br/> 
+ <span>java反射
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/04/云计算与大数据/" data-title="云计算与大数据" data-url="http://yoursite.com/2016/05/04/云计算与大数据/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS和HTTP区别："><span class="toc-number">1.</span> <span class="toc-text">HTTPS和HTTP区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie属性"><span class="toc-number">2.</span> <span class="toc-text">Cookie属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session属性"><span class="toc-number">3.</span> <span class="toc-text">Session属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAP理论"><span class="toc-number">4.</span> <span class="toc-text">CAP理论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信(Interprocess_Communication,IPC)"><span class="toc-number">5.</span> <span class="toc-text">进程间通信(Interprocess Communication,IPC)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络服务泛型"><span class="toc-number">6.</span> <span class="toc-text">网络服务泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java_Socket编程"><span class="toc-number">7.</span> <span class="toc-text">java Socket编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web_Service优点"><span class="toc-number">8.</span> <span class="toc-text">Web Service优点</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

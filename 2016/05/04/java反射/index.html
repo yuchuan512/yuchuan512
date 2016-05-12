@@ -1,0 +1,734 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>java反射 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="1、Java反射的概念    反射含义：可以获取正在运行的Java对象。2、Java反射的功能    1)可以判断运行时对象所属的类    2)可以判断运行时对象所具有的成员变量和方法    3)通过反射甚至可以调用到private的方法    4)生成动态代理3、实现Java反射的类    1)Class：它表示正在运行的Java应用程序中的类和接口    2)Field：提供有关类或接口的属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java反射">
+<meta property="og:url" content="http://yoursite.com/2016/05/04/java反射/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="1、Java反射的概念    反射含义：可以获取正在运行的Java对象。2、Java反射的功能    1)可以判断运行时对象所属的类    2)可以判断运行时对象所具有的成员变量和方法    3)通过反射甚至可以调用到private的方法    4)生成动态代理3、实现Java反射的类    1)Class：它表示正在运行的Java应用程序中的类和接口    2)Field：提供有关类或接口的属性">
+<meta property="og:updated_time" content="2016-05-08T03:19:47.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java反射">
+<meta name="twitter:description" content="1、Java反射的概念    反射含义：可以获取正在运行的Java对象。2、Java反射的功能    1)可以判断运行时对象所属的类    2)可以判断运行时对象所具有的成员变量和方法    3)通过反射甚至可以调用到private的方法    4)生成动态代理3、实现Java反射的类    1)Class：它表示正在运行的Java应用程序中的类和接口    2)Field：提供有关类或接口的属性">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/04/java反射/" title="java反射" itemprop="url">java反射</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-04T10:25:02.000Z" itemprop="datePublished"> 发表于 2016-05-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>1、Java反射的概念<br>    反射含义：可以获取正在运行的Java对象。<br>2、Java反射的功能<br>    1)可以判断运行时对象所属的类<br>    2)可以判断运行时对象所具有的成员变量和方法<br>    3)通过反射甚至可以调用到private的方法<br>    4)生成动态代理<br>3、实现Java反射的类<br>    1)Class：它表示正在运行的Java应用程序中的类和接口<br>    2)Field：提供有关类或接口的属性信息，以及对它的动态访问权限<br>    3)Constructor：提供关于类的单个构造方法的信息以及对它的访问权限<br>    4)Method：提供关于类或接口中某个方法信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">POJO</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[] arr;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name, <span class="keyword">int</span> age, <span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.arr = arr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] getArr() &#123;</span><br><span class="line">		<span class="keyword">return</span> arr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArr</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.arr = arr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"name="</span>+name+<span class="string">" ;age="</span>+age);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">		System.out.println(message);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Employee [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Test &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException &#123;</span><br><span class="line"></span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"------------反射机制获取类的三种方法---------------"</span>);</span><br><span class="line">		<span class="keyword">Class</span>&lt;?&gt; c1 = <span class="keyword">Class</span>.forName(<span class="string">"com.reflect.Employee"</span>); <span class="comment">// 注意全类名</span></span><br><span class="line">		<span class="keyword">Class</span>&lt;?&gt; c2 = Employee.<span class="keyword">class</span>;</span><br><span class="line">		Employee e = <span class="keyword">new</span> Employee(<span class="string">"lisan"</span>, <span class="number">18</span>, <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">12</span>,<span class="number">13</span>&#125;);</span><br><span class="line">		<span class="keyword">Class</span>&lt;?&gt; c3 = e.getClass();</span><br><span class="line">		<span class="comment">// 创建对象</span></span><br><span class="line">		Object o = c1.newInstance();</span><br><span class="line">		<span class="comment">// 获取属性 ，分为所有的属性和指定的属性</span></span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"---------------获取全部属性---------------"</span>);</span><br><span class="line">		<span class="keyword">Class</span>&lt;?&gt; c = <span class="keyword">Class</span>.forName(<span class="string">"java.lang.Integer"</span>);</span><br><span class="line">		Field[] fs = c.getDeclaredFields();</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		sb.<span class="keyword">append</span>(Modifier.toString(c.getModifiers())+<span class="string">" class "</span>+c.getSimpleName()+<span class="string">"&#123;\n"</span>);</span><br><span class="line">		<span class="keyword">for</span>(Field field : fs)&#123;</span><br><span class="line">			sb.<span class="keyword">append</span>(<span class="string">"\t"</span>);</span><br><span class="line">			sb.<span class="keyword">append</span>(Modifier.toString(field.getModifiers())+<span class="string">" "</span>);  <span class="comment">//获得属性的修饰符，例如public，static</span></span><br><span class="line">			sb.<span class="keyword">append</span>(field.getType().getSimpleName()+<span class="string">" "</span>);  <span class="comment">//属性的类型的名字</span></span><br><span class="line">			sb.<span class="keyword">append</span>(field.getName()+<span class="string">";\n"</span>);  <span class="comment">//属性的名字+回车</span></span><br><span class="line">		&#125;</span><br><span class="line">		sb.<span class="keyword">append</span>(<span class="string">"&#125;"</span>);</span><br><span class="line">		System.out.<span class="keyword">println</span>(sb);</span><br><span class="line">		System.out.<span class="keyword">println</span>(<span class="string">"---------------获取部分属性-----------------"</span>);</span><br><span class="line">		Field nameF = c1.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">		Field ageF = c1.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line">		Object oo = c1.newInstance();</span><br><span class="line">		nameF.setAccessible(<span class="keyword">true</span>); <span class="comment">// 使用反射机制可以打破封装性，导致了java对象的属性不安全。</span></span><br><span class="line">		ageF.setAccessible(<span class="keyword">true</span>);  <span class="comment">// 使用反射机制可以打破封装性，导致了java对象的属性不安全。</span></span><br><span class="line">		nameF.set(oo, <span class="string">"lisan"</span>);  <span class="comment">// 给oo对象的name属性赋值"lisan"</span></span><br><span class="line">		ageF.set(oo,<span class="number">18</span>);   <span class="comment">// 给oo对象的age属性赋值"11"</span></span><br><span class="line">		System.out.<span class="keyword">println</span>(nameF.get(oo));  <span class="comment">// 得到oo对象的name属性的值</span></span><br><span class="line">		System.out.<span class="keyword">println</span>(ageF.get(oo));   <span class="comment">// 得到oo对象的age属性的值</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">输出--&gt;</span><br><span class="line">------------反射机制获取类的三种方法---------------</span><br><span class="line">---------------获取全部属性---------------</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> Integer&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_VALUE;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_VALUE;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">Class</span> TYPE;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span>[] digits;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span>[] DigitTens;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span>[] DigitOnes;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] sizeTable;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="keyword">SIZE</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> $assertionsDisabled;</span><br><span class="line">&#125;</span><br><span class="line">---------------获取部分属性-----------------</span><br><span class="line">lisan</span><br><span class="line"><span class="number">18</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">TestReflect</span> &#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) throws <span class="type">ClassNotFoundException</span> &#123;</span><br><span class="line">		<span class="type">Class</span>&lt;<span class="type">Employee</span>&gt; c1 = <span class="type">Employee</span>.class;</span><br><span class="line">		<span class="type">Class</span>&lt;?&gt; c2 = <span class="type">Class</span>.forName(<span class="string">"com.reflect.Employee"</span>);</span><br><span class="line">		// 获取类的修饰符</span><br><span class="line">		<span class="type">int</span> <span class="keyword">mod</span> = c1.getModifiers();</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="keyword">mod</span>);</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="type">Modifier</span>.toString(<span class="keyword">mod</span>));</span><br><span class="line">		// 获得类全名</span><br><span class="line">		<span class="type">String</span> name = c1.getName();</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(name);</span><br><span class="line">		// 获得父类</span><br><span class="line">		<span class="type">Class</span> superClass = c1.getSuperclass();</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(superClass);</span><br><span class="line">		// 获取c1实现的接口</span><br><span class="line">		<span class="type">Class</span>[] interfaces = c1.getInterfaces();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">Class</span> t : interfaces) &#123;</span><br><span class="line">			<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"interfacesName = "</span> + t.getName());</span><br><span class="line">		&#125;</span><br><span class="line">		//获取指定类的成员变量</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"-----------获取指定类的成员变量-----------"</span>);</span><br><span class="line">		<span class="type">Field</span>[] fields = c1.getDeclaredFields();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">Field</span> field : fields) &#123;</span><br><span class="line">			<span class="type">String</span> modifier = <span class="type">Modifier</span>.toString(field.getModifiers());</span><br><span class="line">			<span class="type">Class</span>&lt;?&gt; <span class="keyword">type</span> = field.getType();</span><br><span class="line">			<span class="type">String</span> name2 = field.getName();</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">type</span>.isArray())&#123;</span><br><span class="line">				<span class="type">String</span> arrType = <span class="keyword">type</span>.getComponentType().getName()+<span class="string">"[]"</span>;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">""</span>+modifier+<span class="string">" "</span>+arrType+<span class="string">" "</span>+name2+<span class="string">";"</span>);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">""</span>+modifier+<span class="string">" "</span>+<span class="keyword">type</span>+<span class="string">" "</span>+name2+<span class="string">";"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		// 获取类的构造方法</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"------------获取类的构造方法--------------"</span>);</span><br><span class="line">		<span class="type">Constructor</span>[] constructors = c1.getDeclaredConstructors();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">Constructor</span> constructor : constructors) &#123;</span><br><span class="line">			<span class="type">String</span> name3 = constructor.getName(); //构造方法名</span><br><span class="line">			<span class="type">String</span> modi = <span class="type">Modifier</span>.toString(constructor.getModifiers()); //获取访问修饰符</span><br><span class="line">			<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">""</span> + modi +<span class="string">" "</span> + name3 + <span class="string">"("</span>);</span><br><span class="line">			<span class="type">Class</span>[] paramTypes = constructor.getParameterTypes(); //获取构造方法中的参数</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; paramTypes.length; i++) &#123;</span><br><span class="line">			// 从第二个参数开始加符号</span><br><span class="line">			<span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">","</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (paramTypes[i].isArray()) &#123;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.print(paramTypes[i].getComponentType().getName()+<span class="string">"[]"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.print(paramTypes[i].getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">");"</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		// 获取成员方法</span><br><span class="line">		<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"---------获取成员方法----------"</span>);</span><br><span class="line">		<span class="type">Method</span>[] methods = c1.getDeclaredMethods();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">Method</span> <span class="keyword">method</span> : methods) &#123;</span><br><span class="line">			<span class="type">String</span> modif = <span class="type">Modifier</span>.toString(<span class="keyword">method</span>.getModifiers());</span><br><span class="line">			<span class="type">Class</span> returnType = <span class="keyword">method</span>.getReturnType();</span><br><span class="line">			<span class="keyword">if</span>(returnType.isArray())&#123;</span><br><span class="line">				<span class="type">String</span> arrType = returnType.getComponentType().getName()+<span class="string">"[]"</span>;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">""</span>+modif+<span class="string">" "</span>+arrType+<span class="string">" "</span>+<span class="keyword">method</span>.getName()+<span class="string">"("</span>);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">""</span>+modif+<span class="string">" "</span>+returnType.getName()+<span class="string">" "</span>+<span class="keyword">method</span>.getName()+<span class="string">"("</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="type">Class</span>&lt;?&gt;[] paramTypes = <span class="keyword">method</span>.getParameterTypes();</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;paramTypes.length;i++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">					<span class="type">System</span>.<span class="keyword">out</span>.print(<span class="string">","</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(paramTypes[i].isArray())&#123;</span><br><span class="line">					<span class="type">System</span>.<span class="keyword">out</span>.print(paramTypes[i].getComponentType().getName()+<span class="string">"[]"</span>);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					<span class="type">System</span>.<span class="keyword">out</span>.print(paramTypes[i].getName());</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">");"</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		// java动态绑定</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">输出---&gt;</span><br><span class="line"><span class="number">1</span></span><br><span class="line">public</span><br><span class="line">com.reflect.<span class="type">Employee</span></span><br><span class="line">class java.lang.<span class="type">Object</span></span><br><span class="line">interfacesName = java.lang.<span class="type">Cloneable</span></span><br><span class="line">-----------获取指定类的成员变量-----------</span><br><span class="line">private class java.lang.<span class="type">String</span> name;</span><br><span class="line">private <span class="type">int</span> age;</span><br><span class="line">private <span class="type">int</span>[] arr;</span><br><span class="line">------------获取类的构造方法--------------</span><br><span class="line">public com.reflect.<span class="type">Employee</span>();</span><br><span class="line">public com.reflect.<span class="type">Employee</span>(java.lang.<span class="type">String</span>,<span class="type">int</span>,<span class="type">int</span>[]);</span><br><span class="line">---------获取成员方法----------</span><br><span class="line">public java.lang.<span class="type">String</span> toString();</span><br><span class="line">public java.lang.<span class="type">String</span> getName();</span><br><span class="line">public <span class="type">void</span> setName(java.lang.<span class="type">String</span>);</span><br><span class="line">public <span class="type">int</span>[] getArr();</span><br><span class="line">public <span class="type">void</span> setArr(<span class="type">int</span>[]);</span><br><span class="line">public <span class="type">void</span> setAge(<span class="type">int</span>);</span><br><span class="line">public <span class="type">void</span> send(java.lang.<span class="type">String</span>);</span><br><span class="line">public <span class="type">void</span> display();</span><br><span class="line">public <span class="type">int</span> getAge();</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/反射/">反射</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/04/java反射/" data-title="java反射 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/04/云计算与大数据/" title="云计算与大数据">
+  <strong>上一篇：</strong><br/>
+  <span>
+  云计算与大数据</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/04/29/AFDX/"  title="AFDX">
+ <strong>下一篇：</strong><br/> 
+ <span>AFDX
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/04/java反射/" data-title="java反射" data-url="http://yoursite.com/2016/05/04/java反射/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

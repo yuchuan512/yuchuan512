@@ -1,0 +1,853 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>mysql学习笔记 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="Linux平台安装Mysql失败是因为/etc/my.cnf 的设置是系统的错误路径，可以将$MySQL_HOME/support_files/目录下面的配置文件复制到/etc/my.cnf
+ 1cp ./support_files/my_medium.cnf  /etc/my.cnf
+
+myslq忘记登录密码
+1mysqladmin -u root -p password &quot;newpwd&quot;
+
+m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/12/mysql学习笔记/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="Linux平台安装Mysql失败是因为/etc/my.cnf 的设置是系统的错误路径，可以将$MySQL_HOME/support_files/目录下面的配置文件复制到/etc/my.cnf
+ 1cp ./support_files/my_medium.cnf  /etc/my.cnf
+
+myslq忘记登录密码
+1mysqladmin -u root -p password &quot;newpwd&quot;
+
+m">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/38631395.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/69687340.jpg">
+<meta property="og:updated_time" content="2016-05-12T07:35:15.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql学习笔记">
+<meta name="twitter:description" content="Linux平台安装Mysql失败是因为/etc/my.cnf 的设置是系统的错误路径，可以将$MySQL_HOME/support_files/目录下面的配置文件复制到/etc/my.cnf
+ 1cp ./support_files/my_medium.cnf  /etc/my.cnf
+
+myslq忘记登录密码
+1mysqladmin -u root -p password &quot;newpwd&quot;
+
+m">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/12/mysql学习笔记/" title="mysql学习笔记" itemprop="url">mysql学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-12T07:34:19.000Z" itemprop="datePublished"> 发表于 2016-05-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ol>
+<li><p>Linux平台安装Mysql失败是因为/etc/my.cnf 的设置是系统的错误路径，可以将$MySQL_HOME/support_files/目录下面的配置文件复制到/etc/my.cnf</p>
+ <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cp</span> ./support_files/my_medium.<span class="keyword">cnf</span>  /etc/my.<span class="keyword">cnf</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>myslq忘记登录密码</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -<span class="tag">p</span> password <span class="string">"newpwd"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mysql丢失密码</p>
+<ul>
+<li><p>windows平台</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">net <span class="operator"><span class="keyword">stop</span> mysql</span><br><span class="line">mysqld <span class="comment">--skip-grant-tables</span></span><br><span class="line">打开另一个命令行窗口</span><br><span class="line">mysql -u root</span><br><span class="line"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpwd'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span></span><br><span class="line">		<span class="keyword">and</span> host=<span class="string">'localhost'</span></span><br><span class="line">加载权限表</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>linux平台</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysqld_safe <span class="comment">--skip-grant-tables user=mysql</span></span><br><span class="line">mysql -u root</span><br><span class="line"><span class="operator"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpwd'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span></span><br><span class="line">		<span class="keyword">and</span> host=<span class="string">'localhost'</span></span><br><span class="line">加载权限表</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p>4.InnoDB 和 MyISAM区别<br>InnoDB 支持事务安全，行锁；空间使用比较高，内存使用高，批量插入速度低<br>MyISAM不支持事务安全，表锁；空间使用比较低，内存使用低，批量插入速度高</p>
+<ul>
+<li><p>使用mysqldump备份数据库中的某个表</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -<span class="tag">p</span> chuan test &gt; C:/aa<span class="class">.sql</span></span><br><span class="line">备份数据库chuan中的test数据表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用mysqldump备份多个数据库中的表</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -<span class="tag">p</span> --databases chuan mysql &gt; C:/aa<span class="class">.sql</span></span><br><span class="line">备份数据库chuan 和数据库mysql</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#36824;&#21407;&#25968;&#25454;&#24211;</span><br></pre></td></tr></table></figure></p>
+<p>mysql -uroot -p [dbname] &lt; file.sql<br>指明数据库名称和sql文件位置<br>或者<br>use dbname<br>source file.sql<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">常用</span><br><span class="line"><span class="operator"><span class="keyword">SHOW</span> <span class="keyword">ENGINES</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'have%'</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">account</span> <span class="keyword">ENGINE</span>=<span class="keyword">INNODB</span></span><br><span class="line"><span class="keyword">DESC</span>  <span class="keyword">account</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USE</span> mysql</span><br><span class="line"><span class="keyword">SELECT</span> HOST,<span class="keyword">USER</span>,<span class="keyword">PASSWORD</span> <span class="keyword">FROM</span> <span class="keyword">USER</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MD5</span>(<span class="string">'root'</span>)</span><br><span class="line"></span><br><span class="line">### 数据导入导出</span></span><br></pre></td></tr></table></figure></p>
+<p>SELECT * FROM test INTO OUTFILE “C:/dd.txt”<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; 注意： 在windows上默认换行符号为"<span class="command">\r</span><span class="command">\n</span>",而命令默认换行符为"<span class="command">\n</span>",改为</span><br></pre></td></tr></table></figure></p>
+<p>SELECT * FROM test INTO OUTFILE “C:/dc.txt”  LINES TERMINATED BY ‘\r\n’<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">* </span>使用select命令生成文本文件</span><br></pre></td></tr></table></figure></p>
+<p>SELECT * FROM test INTO OUTFILE “C:/test.txt”<br>FIELDS<br>TERMINATED BY ‘,’     – 设置字段之间的分割符<br>ENCLOSED BY ‘\”‘      – 设置字段的包围符号<br>ESCAPED BY ‘\’’       – 设置如何写入或读取特殊字符，默认为“\”<br>LINES TERMINATED BY ‘\r\n’   – 设置每行结尾的字符，默认为”\n”<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>使用mysqldump命令同时生成sql文件和文本文件</span><br></pre></td></tr></table></figure></p>
+<p>mysqldump -T C:/soft chuan test -uroot -p<br>–fields-terminated-by=,<br>–fields-optionally-enclosed-by=\”<br>–fields-escaped-by=?<br>–lines-terminated-by=\r\n<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输出 =<span class="function">=&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>“1”,”one”<br>“2”,”two”<br>“3”,”three”<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">* </span>使用load命令导入文本文件</span><br></pre></td></tr></table></figure></p>
+<p>LOAD DATA INFILE ‘C:/soft/test.txt’ INTO TABLE chuan.test<br>FIELDS<br>TERMINATED BY ‘,’<br>ENCLOSED BY ‘\”‘<br>ESCAPED BY ‘\’’<br>LINES TERMINATED BY ‘\r\n’<br>```</p>
+<p>MySQL 的高级特性</p>
+<ol>
+<li>查询缓存<br>SET SESSION QUERY_CACHE_TYPE=  ON;   ##开启缓存功能<br>SET SESSION QUERY_CACHE_TYPE = OFF<br>SELECT @@QUERY_CACHE_TYPE AS result  ## 查看是否开启缓存功能</li>
+</ol>
+<p>SHOW VARIABLES LIKE ‘have_query_cache’   ## 查看缓存大小<br>SELECT @@global.query_cache_size     ## 为0 表示缓存内存大小为0，查询缓存功能不起作用，默认为0</p>
+<p>SET @@global.query_cache_size = 1000000  ## 将缓存大小设为1MB<br>COMMIT;</p>
+<p>SELECT @@global.query_cache_limit;   ## 查看缓存的上限</p>
+<p>SHOW VARIABLES LIKE ‘%query_cache%’   ## 查看缓存的相关参数情况<br>各变量如下：<br>have_query_cache    YES    设置是否支持查询缓存区<br>query_cache_limit    1000000   可以缓存的最大结果集<br>query_cache_min_res_unit    4096   用来设置分配内存块的最小体积，单位 字节<br>query_cache_size      0    设置查询缓存使用的总内存字节数，必须是1024字节的倍数<br>query_cache_type     ON    设置是否启用查询缓存。OFF 不进行缓存；ON 表示出了SQL_NO_CACHE的查询以外，缓存所有结果；DEMAND 仅缓存SQL_CACHE<br>query_cache_wlock_invalidate     OFF  设置是否允许在其他连接处于lock状态时，使用缓存结果，默认OFF</p>
+<p>SHOW STATUS LIKE ‘Qcache_hits’  查看缓存命中次数<br>增加一条记录，跟该表相关的查询缓存会被清空，然后重新查询，命中次数不发生变化，说明本次查询没有直接从缓存中取到数据</p>
+<p>可以修改 /etc/my.cnf 配置文件<br>[mysqld]<br>query_cache_size = 1000000<br>query_cache_limit = 2000000</p>
+<p>show  variables like ‘Qcache%’<br>Qcache_queries_in_cache   在缓存中已注册的查询数目<br>Qcache_inserts       被加入到缓存中的查询数目<br>Qcache_hits      缓存采样数的数目<br>Qcache_lowmem_pruns     因为缺少内存而被从缓存中删除的查询数目<br>Qcache_not_cached      没有被缓存的查询数目<br>Qcache_free_memory     查询缓存的空闲内存总数<br>Qcache_free_blocks     查询缓存的空闲内存块总数<br>Qcache_total_blocks   查询缓存中的块的总数目<br>如果空闲内存块总是总内存块的一半左右，表示存在严重的内部碎片，通常使用flush query cache命令整理碎片，然后 采用reset query cache清理查询缓存<br>如果碎片很少，但是缓存命中率低，说明设置的缓存内存空间小，服务器频繁删除旧的查询缓存，腾出空间，保证新的查询缓存，参数Qcache_lowmem_prunes增加，如果此值增长过快，可能 1.如果存在大量空闲块，则是因为碎片的存在引起的   2. 空闲内存较少，可以适当增加缓存大小。</p>
+<p>分区表<br>SHOW VARIABLES LIKE ‘%partition%’  查看是否支持分区</p>
+<ol>
+<li>range分区<br>CREATE TABLE emp(<br> empNo VARCHAR(20) NOT NULL,<br> empName VARCHAR(20),<br> deptNo INT,<br> birthdate DATE,<br> salary INT<br>)<br>PARTITION BY RANGE(salary)<br>(<br> PARTITION p1 VALUES LESS THAN(1000),<br> PARTITION p2 VALUES LESS THAN(2000),<br> PARTITION p3 VALUES LESS THAN(3000)<br>)<br>INSERT INTO emp VALUES(1000,’kobe’,12,’1888-08-08’,1500);<br>INSERT INTO emp VALUES(1000,’kobe’,12,’1888-08-08’,3500);<br>第二条插入失败，因为分区找不到符合条件的表让其插入 。<br>改为如下：<br>CREATE TABLE emp(<br> empNo VARCHAR(20) NOT NULL,<br> empName VARCHAR(20),<br> deptNo INT,<br> birthdate DATE,<br> salary INT<br>)<br>PARTITION BY RANGE(salary)<br>(<br> PARTITION p1 VALUES LESS THAN(1000),<br> PARTITION p2 VALUES LESS THAN(2000),<br> PARTITION p3 VALUES LESS THAN(3000),<br> PARTITION p4 VALUES LESS THAN(4000)     //也可以使用表达式   eg: less than maxValue<br>)<br>INSERT INTO emp VALUES(1000,’kobe’,12,’1888-08-08’,1500);<br>INSERT INTO emp VALUES(1000,’kobe’,12,’1888-08-08’,3500);<br>插入成功<br>range分区常常使用在以下几种情况：</li>
+<li>如果要删除某个时间段的数据，只需要删除分区即可。alter table emp drop partion p0 的效率高于 delete from emp where 子句</li>
+<li>如果使用包含日期或者时间的列可以考虑使用Range分区</li>
+<li><p>经常行运行直接依赖于分割表的列的查询。比如where year(birth) = 1999 group by empno 此时mysql数据库可以很迅速的确定只有分区P2需要扫描</p>
+</li>
+<li><p>LIST分区<br>list分区类似range分区，区别在于，list分区中每个分区的定义和选择是基于某列的值从属于一个集合，而range分区是从属于一个连续区间值的集合<br>PARTITION BY LIST(deptNo)<br>(<br>PARTITION p1 VALUES IN (10,20),<br>PARTITION p2 VALUES IN (30),<br>PARTITION p3 VALUES IN (40)<br>)<br>INSERT INTO emp VALUES(1000,’kobe’,10,’1888-08-08’,1500);<br>INSERT INTO emp VALUES(1000,’kobe’,30,’1888-08-08’,3500);<br>插入数据的部门编号不在分区值列表中时，那么执行失败<br>INSERT INTO emp VALUES(1000,’kobe’,15,’1888-08-08’,3500);</p>
+</li>
+<li><p>HASH分区<br>用户索要做的就是基于将要被哈希的列值指定一个列值或表达式，以及指定被分区的表将要被分割的分区数量<br>CREATE TABLE emp(<br>empNo VARCHAR(20) NOT NULL,<br>empName VARCHAR(20),<br>deptNo INT,<br>birthdate DATE,<br>salary INT<br>)<br>PARTITION BY HASH(YEAR(birthdate)) PARTITIONS  4</p>
+</li>
+<li><p>线性HASH分区</p>
+</li>
+<li>KEY分区<br>partition by key(birthdate) partitions 4</li>
+<li>复合分区<br>复合分区是分区表中每个分区的再次分割，子分区既可以使用HASH分区，也可以使用KEY分区<br>CREATE TABLE emp(<br> empNo VARCHAR(20) NOT NULL,<br> empName VARCHAR(20),<br> deptNo INT,<br> birthdate DATE,<br> salary INT<br>)<br>PARTITION BY RANGE(salary)<br>SUBPARTITION BY HASH(YEAR(birthdate))<br>SUBPARTITIONS 3<br>(<br> PARTITION p1 VALUES LESS THAN(2000),<br> PARTITION p2 VALUES LESS THAN(5000)<br>)</li>
+</ol>
+<p>SQL性能优化<br>case 1:<br>CREATE TABLE emp(<br>    id INTEGER PRIMARY KEY AUTO_INCREMENT,<br>    deptNo INTEGER,<br>    col3 INTEGER,<br>    col4 INTEGER<br>)<br>INSERT INTO emp VALUES(1,1,2,3);<br>INSERT INTO emp VALUES(2,3,4,5);<br>INSERT INTO emp VALUES(3,4,5,6);</p>
+<p>EXPLAIN SELECT id FROM emp WHERE deptno=2 AND col3 &gt; 1 ORDER BY col4 DESC<br>ALTER TABLE emp ADD INDEX index_1(deptno,col3,col4)<br>// 因为按照BTree索引的原理，先排序deptno,如果遇到相同的deptno就会进行对col3进行排序<br>// 如果遇到相同的col3就会对 col4排序<br>DROP INDEX index_1 ON emp<br>ALTER TABLE emp ADD INDEX index_1(deptno,col4)</p>
+<p>case 2: 多表查询优化的例子<br>CREATE TABLE table1(<br>    id INTEGER PRIMARY KEY,<br>    tid INTEGER NOT NULL<br>);<br>CREATE TABLE table2(<br>    id INTEGER PRIMARY KEY     AUTO_INCREMENT,<br>    tid INTEGER NOT NULL<br>);<br>INSERT INTO table1 VALUES(1,1);<br>INSERT INTO table1 VALUES(2,2);<br>INSERT INTO table1 VALUES(3,3);<br>INSERT INTO table1 VALUES(4,4);</p>
+<p>INSERT INTO table2 VALUES(1,5);<br>INSERT INTO table2 VALUES(2,6);<br>INSERT INTO table2 VALUES(3,7);<br>INSERT INTO table2 VALUES(4,8);<br>优化前：第二张表检索4行数据，且extra没有使用索引<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/38631395.jpg" alt=""><br>添加索引 alter table table2 add index(tid)<br>优化后:第二张表检索1行数据，且extra使用索引<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/69687340.jpg" alt=""></p>
+<p>利用Profiling分析查询语句<br>set profiling = 1 开启profiling<br>show profiles<br>show profile for query 8;<br>show profile cpu for query 8;<br>show profile block io for query 8;</p>
+<ul>
+<li>索引<br>使用like关键词，只有”%”不在第一个位置，索引才会起作用<br>使用多列索引的查询语句，只有查询语句使用了索引的第一个字段时，索引才会被使用<br>使用OR关键词前后两个条件中的列都是索引时，查询中才使用索引，否则不使用索引。</li>
+<li>优化Insert语句<ol>
+<li>一次性插入多值<br>eg: insert into books values(1,’book’),(2,’book2’),(3,’book3’)</li>
+<li>通常可以锁定表以加速插入数据<br>lock tables test write; insert …; unlock tables;<br>如果不加锁定表，每一次执行insert语句完成后，索引缓冲区都会被写到磁盘上，而加入锁定后索引缓冲区仅被写到磁盘上1次</li>
+</ol>
+</li>
+<li>优化Order By<br>建立索引，使用索引字段order by</li>
+<li>优化group by<br>使用order by null 的group by语句减少了文件排序的步骤</li>
+<li>优化嵌套查询<br>使用连接查询不需要建立临时表，其速度比子查询要快。</li>
+<li>优化数据库结构<ol>
+<li>将字段很多的表分解成多个表，可以按照重要性和使用频率分开</li>
+<li>增加中间表，把需要经常联合查询的数据插入到中间表中。类似于视图</li>
+<li>增加冗余字段</li>
+</ol>
+</li>
+</ul>
+<p>彻底删除mysql<br>yum remove mysql mysql-server mysql-libs compat-mysql51<br>rm -rf /var/lib/mysql<br>rm /etc/my.cnf<br>查看是否还有mysql软件：<br>rpm -qa|grep mysql<br>有的话继续删除</p>
+<p>MySQL源码安装</p>
+<ol>
+<li>首先下载mysql-5.5.24.tar.gz 和 cmake-2.8.4.tar.gz 两个源文件</li>
+<li>安装MySQL源文件包是采用cmake安装的，首先安装cmake</li>
+<li>tar -zxvf cmake-2.8.4.tar.gz , cd cmake-2.8.4</li>
+<li>./configure -&gt; make -&gt; make install</li>
+<li>mkdir -p /usr/local/mysql    mkdir -p /usr/local/mysql/data</li>
+<li>tar zxvf mysql-5.5.24.tar.gz</li>
+<li>cmake -DCMAKE_INSTALL_PREFIX=/usr/loca/mysql -DMYSQL_DATADIR=/usr/loca/mysql/data -DDEFAULT_CHARSET=utf8<br>-DDEFAULT_COLLATION=utf8_general_ci   -DEXTRA_CHARSET=all</li>
+<li>make -&gt; make install</li>
+<li>cp ./support_files/my-medium.cnf /etc/my.cnf</li>
+<li>./scripts/mysql_install_db –user=mysql</li>
+<li>vim .bash_profile<br>PATH=$PATH:$HOME/bin:/usr/local/mysql/bin:/usr/local/mysql/lib<br>source .bash_profile</li>
+<li>echo $PATH 检查路径是否生效</li>
+<li>./bin/mysqld_safe –user=mysql &amp; 启动mysql服务</li>
+</ol>
+<p>安装apache服务器<br>./configure –prefix=/usr/local/apache<br>make<br>make install<br>然后  cd /usr/local/apache/bin    ./apachectl -t 检查配置文件语法是否正确<br>vim /etc/profile 添加环境变量   source  profile  使之生效<br>apachetl start  启动服务</p>
+<p>Sysstat软件包集成如下工具<br><a href="http://sebastien.godard.pagesperso-orange.fr/" target="_blank" rel="external">http://sebastien.godard.pagesperso-orange.fr/</a><br>iostat 提供CPU和使用率及硬盘吞吐效率的数据<br>mpstat 提供单个处理器或多个处理器相关数据<br>sar  负责收集、报告并存储系统活跃的信息<br>sar1  负责收集并存储每天系统动态信息到一个二进制的文件中<br>sar2  负责把每天的系统活跃信息写入总结性的报告中<br>sadc  系统动态数据收集工具，收集的数据被写入一个二进制的文件中<br>sadf  显示被sar工具通过多种格式收集的数据</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>►<a class="article-category-link" href="/categories/mysql/数据库/">数据库</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/12/mysql学习笔记/" data-title="mysql学习笔记 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/12/python学习笔记/" title="python学习笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  python学习笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/04/Sing-Dance/"  title="Sing &amp;&amp; Dance">
+ <strong>下一篇：</strong><br/> 
+ <span>Sing &amp;&amp; Dance
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/12/mysql学习笔记/" data-title="mysql学习笔记" data-url="http://yoursite.com/2016/05/12/mysql学习笔记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,889 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>大型网站技术架构核心原理与案例分析 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="打造一个高可用、高性能、易扩展、可伸缩且安全的网站大型网站特点：高并发大流量、高可用、海量数据、用户分布广泛网络情况复杂、需求快速变更、渐进式发展
+使用缓存改善网站性能，80%的业务访问几种在20%的数据上，把这一小部分的数据缓存在内存中，可以减少数据库的压力，提高整个网站的数据访问速度，改善数据库的写入性能。缓存分两种：应用服务器上的本地缓存和缓存在专门的分布式缓存服务器上的远程缓存，部署大内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大型网站技术架构核心原理与案例分析">
+<meta property="og:url" content="http://yoursite.com/2016/05/12/大型网站技术架构核心原理与案例分析/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="打造一个高可用、高性能、易扩展、可伸缩且安全的网站大型网站特点：高并发大流量、高可用、海量数据、用户分布广泛网络情况复杂、需求快速变更、渐进式发展
+使用缓存改善网站性能，80%的业务访问几种在20%的数据上，把这一小部分的数据缓存在内存中，可以减少数据库的压力，提高整个网站的数据访问速度，改善数据库的写入性能。缓存分两种：应用服务器上的本地缓存和缓存在专门的分布式缓存服务器上的远程缓存，部署大内存">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-11/20476640.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-11/12633389.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-12/76643763.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-12/78440186.jpg">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-12/46986723.jpg">
+<meta property="og:updated_time" content="2016-05-12T07:39:21.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大型网站技术架构核心原理与案例分析">
+<meta name="twitter:description" content="打造一个高可用、高性能、易扩展、可伸缩且安全的网站大型网站特点：高并发大流量、高可用、海量数据、用户分布广泛网络情况复杂、需求快速变更、渐进式发展
+使用缓存改善网站性能，80%的业务访问几种在20%的数据上，把这一小部分的数据缓存在内存中，可以减少数据库的压力，提高整个网站的数据访问速度，改善数据库的写入性能。缓存分两种：应用服务器上的本地缓存和缓存在专门的分布式缓存服务器上的远程缓存，部署大内存">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/12/大型网站技术架构核心原理与案例分析/" title="大型网站技术架构核心原理与案例分析" itemprop="url">大型网站技术架构核心原理与案例分析</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-12T07:38:19.000Z" itemprop="datePublished"> 发表于 2016-05-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#网站的高性能架构"><span class="toc-number">1.</span> <span class="toc-text">网站的高性能架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五章_网站高可用架构"><span class="toc-number">2.</span> <span class="toc-text">第五章 网站高可用架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第六章_网站的伸缩性架构"><span class="toc-number">3.</span> <span class="toc-text">第六章 网站的伸缩性架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网站的可扩展架构"><span class="toc-number">4.</span> <span class="toc-text">网站的可扩展架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网站的安全架构"><span class="toc-number">5.</span> <span class="toc-text">网站的安全架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附录"><span class="toc-number">6.</span> <span class="toc-text">附录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">7.</span> <span class="toc-text">后记</span></a></li></ol>
+		
+		</div>
+		
+		<p>打造一个高可用、高性能、易扩展、可伸缩且安全的网站<br>大型网站特点：高并发大流量、高可用、海量数据、用户分布广泛网络情况复杂、需求快速变更、渐进式发展</p>
+<p>使用缓存改善网站性能，80%的业务访问几种在20%的数据上，把这一小部分的数据缓存在内存中，可以减少数据库的压力，提高整个网站的数据访问速度，改善数据库的写入性能。<br>缓存分两种：应用服务器上的本地缓存和缓存在专门的分布式缓存服务器上的远程缓存，部署大内存的服务器作为专门的缓存服务器<br>此时，数据访问压力缓解，瓶颈在于应用服务器的请求连接有限，可以通过负载均衡调度服务器，将访问请求分发到应用服务器集群中的任何一台服务器上<br>采用缓存后，缓存访问不命中，魂村过期和全部的写操作需要访问数据库，当用户达到一定规模时，数据库因为负载压力过高成为瓶颈，目前大多数数据库提供主从热备功能，实现数据库读写分离，改善数据库负载压力。为了加速网站访问速度，使用CDN和反向代理。CDN和反向代理的原理都是缓存，区别在与CDN部署在网络提供商的机房，使用户在请求网站服务时，可以从距离最近的网络提供商机房获取数据；而反向代理则部署在网站的中心机房，当用户请求到达中心机房时，首先访问的服务器时反向代理服务器，如果反向代理服务器缓存着用户请求的资源，就将其直接返回给用户。<br>数据库读写分离后，进一步就是拆分数据，业务分库，将不同业务的数据库部署在不同的物理服务器上，进而分布式数据库，还可以采用NoSQL和非数据库查询技术如搜索引擎。继而业务拆分，将网站业务分成不同的产品线。最后是分布式服务，既然每一个应用系统都需要执行许多相同的业务操作，比如用户管理，商品管理，那么可以将这些共用的业务提取出来，独立部署，同构分布式服务调用共用业务服务完成具体业务操作。<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-11/20476640.jpg" alt="网站分布式服务架构图"></p>
+<p>分布式可能带来的问题</p>
+<ol>
+<li>分布式服务调用必须通过网络，可能会对性能造成比较严重的影响</li>
+<li>服务器越多，服务宕机的概率也就越大，使网站可用性降低</li>
+<li>保持数据一致性也非常困难</li>
+<li>分布式事务也难以保证，开发管理维护困难</li>
+</ol>
+<p>大型网站的架构模式</p>
+<ol>
+<li>分层，分成应用层，服务层，数据层等</li>
+<li>分割，业务分割，由不同团队维护</li>
+<li>分布式<br>3.1 分布式应用和服务  不同应用复用共同的服务，便于业务功能扩展<br>3.2 分布式静态资源   动静分离，静态资源分布式部署可以减轻应用服务器负载压力，使用独立域名加快浏览器并发加载的速度<br>3.3 分布式数据和存储   对传统的关系数据库分布式部署，也使用NoSQL<br>3.4 分布式计算<br>还有支持网站线上服务器配置实时更新的分布式配置；分布式环境下实现并发和协同的分布式锁，支持云存储的分布式文件系统等</li>
+<li>集群，提高可用性</li>
+<li>缓存<br>5.1 CDN，如视频网站和门户网站会将用户访问量大的热点内容缓存在CDN<br>5.2 反向代理，缓存网站静态资源，无需将请求继续转发给应用服务器就能返回给用户<br>5.3 本地缓存<br>5.4 分布式缓存</li>
+<li>异步<br>降低软件耦合性，除了分层、分割、分布还有一个重要手段就是异步，在单一服务器内部通过多线程共享内存队列的方式实现异步；在分布式系统中，多个服务器集群同构分布式消息队列实现异步，可以提高系统可用性、加快网站响应速度、消除并发访问高峰</li>
+<li>冗余 冷备份、热备份</li>
+<li>自动化<br>自动化代码管理、自动化测试、自动化安全检测、自动化部署、自动化监控、自动化报警、自动化失效转移、自动化失效恢复、自动化降低、自动化分配资源</li>
+<li>安全<br>通过手机校验码和密码进行身份认证<br>登录、交易等操作需要对网络通信进行加密，网站服务器上存储的敏感数据也进行加密处理<br>防止机器人程序滥用网络资源攻击，使用验证码进行识别<br>对于XSS攻击，SQL注入，进行编码转换等<br>对于垃圾信息、敏感信息进行过滤<br>对交易转账等重要操作根据交易模式和交易信息进行风险控制</li>
+</ol>
+<p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-11/12633389.jpg" alt="微博架构"><br>在早期，用户发表微博后将这条微博插入到数据库所有粉丝的订阅列表中，当用户量比较大时，发布微博会引起大量的数据库写操作，性能急剧下降；后来微博改用异步推拉结合的模式，用户发表微博后，系统将微博写入消息放入消息队列后立即返回，用户响应迅速，消息队列消费者任务将微博推送给所有当前在线粉丝的订阅列表中，非在线用户登录后再根据关注列表拉取微博订阅列表。由于刷新频繁，采用多级缓存策略，在线用户的微博和近期微博缓存在分布式缓存急群众，对于微博中最常见的刷微博，几乎全部都是缓存访问操作，可以获得很好的性能。</p>
+<p>可用性：衡量一个系统架构设计是否满足高可用性，就是假设系统中任何一台或者多台服务器宕机时，以及出现各种不可预期的问题时，系统整体是否依然可用<br>伸缩性：是指通过不断向集群中加入服务器的手段来缓解不断上升的用户并发访问压力和不断增长的数据存储需求。<br>扩展性：衡量架构扩展性好坏的标准就是在网站增加新的业务产品时，是否可以实现对现有产品透明无影响，不需要任何改动或很少改动既有业务功能就可以上线新产品</p>
+<h3 id="网站的高性能架构">网站的高性能架构</h3><p>网站性能测试主要指标有响应时间、并发数、吞吐量、性能计数器等<br>并发数： 网站系统用户数&gt;&gt;网站在线用户数&gt;&gt;网站并发用户数<br>测试程序通过多线程模拟并发用户的办法来测试系统的并发处理能力，在两次请求之间加一个随机等待时间，这个时间被称为思考时间<br>吞吐量：TPS(每秒事务数) HPS(每秒HTTP请求数)、QPS(每秒查询数)<br>性能计数器：System Load，对象与线程数、内存使用、CPU使用、磁盘与网络I/O等指标<br>性能测试方法：<br>性能是一个总称，具体细分为：性能测试、负载测试、压力测试、稳定性测试<br>为了更好的模拟生产环境，稳定性测试也应不均匀的读系统施加压力。</p>
+<p>Web前端性能优化</p>
+<ol>
+<li>减少http请求<br>合并CSS,合并javascript，合并图片将浏览器一次请求需要的javascript，css合并成一个文件，图片也可以合并，多张图片合并成一张，可通过css偏移响应鼠标点击操作，构造不同的url</li>
+<li>使用浏览器缓存<br>通过设置HTTP头中cache-control和expires的属性，设定浏览器缓存</li>
+<li>启用压缩<br>可有效减少通信传输的数据量。文本文件的压缩效率可达80%以上</li>
+<li>减少Cookie传输<br>减少Cookie中传输的数据量，可以考虑静态资源使用独立域名访问，避免请求资源时发送Cookie，减少Cookie传输的次数。<br>还有CDN加速，反向代理</li>
+</ol>
+<p>应用服务器性能优化<br>可以对数据缓存，也可以对文件缓存，还可以对页面片段缓存<br>网站性能优化第一定律：优先考虑使用缓存优化性能</p>
+<ol>
+<li>缓存的基本原理：<br>一方面缓存访问速度快，可以减少数据访问的时间；另一方面如果缓存的数据是经过计算处理得到的，那被缓存的数据无需重复计算即可使用，减少计算量。<br>缓存本质是一个内存Hash表数据缓存以key,value形式存储在内存中，读写时间复杂度为O(1)。缓存主要用来存放那些读写比很高，很少变化的数据，如商品的类目信息，热门词的搜索列表信息，热门商品信息等，应用程序读取数据时，先到缓存中读取，读不到或数据已失效，再访问数据库，并将数据写入缓存。<br>二八定律：即80%的访问落在20%的数据上，因此利用Hash表和内存的告诉访问特性，将这20%的数据缓存起来，可很好的改善系统性能，提高数据读取速度，降低存储访问压力。</li>
+<li>异步处理</li>
+<li>使用集群</li>
+<li>代码优化<br>4.1 多线程<br>解决线程安全的手段有：</li>
+<li>将对象设计为无状态对象，java web开发中常用的Servlet对象就设计为无状态对象</li>
+<li>使用局部对象</li>
+<li>并发访问资源上锁<br>3.资源复用 ：单例和对象池</li>
+</ol>
+<p>存储性能优化<br>B+树是一种专门针对磁盘存储而优化的N叉排序树，目前NoSQL都采用LSM树作为主要数据结构，LSM树可以看做是一个N阶合并树。当数据访问以写操作为主，而读操作集中在最近写入的数据上时，使用LSM树可以极大程度减少磁盘的访问次数，加快访问速度。<br>RAID磁盘阵列 、 HDFS</p>
+<h3 id="第五章_网站高可用架构">第五章 网站高可用架构</h3><p>应用层：会通过负载均衡将一组服务器组成一个集群共同对外提供服务，当负载均衡器通过心跳检测等手段监控到某台应用服务器不可用时，就将其从集群列表中剔除，并将请求分发到集群中其他可用的服务器上。<br>服务层：分布式服务调用框架会在应用层客户端程序中实现软件负载均衡，并通过服务注册中心对提供服务的服务器进行心跳检测，发现有服务不可用，立即通知客户端程序修改服务访问列表，剔除不可用的服务。<br>数据层：主从复制</p>
+<p>高可用的应用</p>
+<ol>
+<li>通过负载均衡进行无状态服务的失效转移</li>
+<li>应用服务器集群的Session管理<br>2.1 Session复制，通信量太大，不适用<br>2.2 Session绑定，将来源于同一IP的请求分发到同一台服务器上，即Session绑定在某台服务器，会话黏滞，缺点，宕机会丢失Session<br>2.3 利用Cookie记录Session，将Session记录在客户端，每次请求服务器的时候，将Session放在请求中发送给服务器，服务器处理完请求后再将修改过的session响应给客户端。缺点：受Cookie大小限制、关闭Cookie不起作用<br>2.3 Session服务器，利用独立部署的Session服务区集群统一管理Session,应用服务器每次读写Session时，都访问Session服务器（无状态和有状态的Session服务器）</li>
+</ol>
+<p>高可用的服务<br>可复用的服务模块为业务产品提供基础公共服务，大型网站中这些服务通常都独立分布式部署，被具体应用远程调用。可复用的服务和应用一样，也是无状态的服务，因此可以使用类似负载均衡的失效转移策略实现高可用的服务</p>
+<ol>
+<li>分级管理<br>将服务器进行分级管理，核心应用和服务优先使用更好的硬件，显然，用户及时付款购物比能不能评价商品更重要，所以订单、支付服务比评价服务有更高优先级。高优先级的服务需要部署在不同的物理机上。</li>
+<li>超时设置<br>由于服务端宕机、线程死锁等原因，可能导致应用程序对服务端调用失去响应，应在应用程序中设置服务调用的超时时间，一旦超时，根据服务调度策略，选择重试或失效转移</li>
+<li>异步调用<br>应用对服务的调用通过消息队列等异步方式完成，避免一个服务失败导致整个应用请求失败的情况。</li>
+<li>服务降级<br>降级有两种：拒绝服务或关闭服务，淘宝在双十一系统最繁忙时段关闭“评价”，“确认收货”服务，保证核心交易服务的顺利完成</li>
+<li>幂等性<br>幂等性就是重复多次执行结果不变，作用一样，比如设置性别为男。转账操作不符合幂等性</li>
+</ol>
+<p>高可用的数据<br>缓存服务器宕机引起缓存数据丢失导致服务器复杂压力过高应该通过其他手段解决，而不是提高缓存服务本身的高可用。理想情况下任何一台服务器宕机引起的缓存失效都只影响应用缓存数据的一小部分，不会对应用性能和数据库负载造成太大影响。<br>CAP理论认为，一个提供数据服务的存储系统无法同时满足数据一致性(Consistency)，数据可用性(Availibility)，分区容忍性(Partition Tolerance)，分区容忍性是必须的，一般都会保证可用性和分区容忍性，在一定程度上放弃一致性<br>数据一致性分为</p>
+<ol>
+<li>数据强一致<br>各个副本的数据在物理存储中总是一致的，数据更新操作结果和操作响应总是一致的，即操作响应通知更新失败，那么数据一定没有被更新，而不是处于不确定状态</li>
+<li>数据用户一致<br>即数据在物理存储中的各个副本的数据可能是不一致的，但终端用户访问时，同构纠错和校验机制，可以确定一个一致的且正确的数据返回给用户</li>
+<li><p>数据最终一致<br>系统经过一段时间的自我恢复和修正，数据最终达到一致。</p>
+</li>
+<li><p>数据备份<br>主从热备</p>
+</li>
+<li>失效转移<br>失效确认 - 访问转移 - 数据恢复</li>
+</ol>
+<p>高可用的软件质量保证</p>
+<ol>
+<li>网站发布<br>发布过程中，每次关闭的服务器都是集群中的一小部分，并在发布完成后立即可以访问，因此整个发布过程不影响用户使用</li>
+<li>自动化测试<br>Web自动化测试，ThoughtWorks开发的Selenium，可以模拟用户操作进行测试，包括Web功能测试和浏览器兼容测试</li>
+<li>预发布验证<br>预发布服务器是一种特殊用途的服务器，它和线上的正式服务器唯一的不同就是没有配置在负载均衡服务器上，外部用户u无法访问。</li>
+<li>代码控制</li>
+<li>灰度发布</li>
+<li>监控数据采集<br>服务端日志手机、客户端浏览器日志收集、服务器性能监控、数据报告<br>监控管理： 系统报警、失效转移、自动优雅降级</li>
+</ol>
+<h3 id="第六章_网站的伸缩性架构">第六章 网站的伸缩性架构</h3><p>通过纵向分离部署实现系统伸缩性<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-12/76643763.jpg" alt="通过纵向分离部署实现系统伸缩性"><br>通过横向分离部署实现系统伸缩性<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-12/78440186.jpg" alt="通过横向分离部署实现系统伸缩性"><br>应用服务器集群的伸缩性设计</p>
+<ol>
+<li>HTTP重定向负载均衡<br>根据用户的HTTP请求计算一台真实的Web服务器地址，并将该Web服务器地址写入HTTP重定向响应中返回给浏览器，浏览器请求真实的Web服务器地址</li>
+<li>DNS域名解析负载均衡<br>A记录中配置的多个服务器构成一个集群，可以实现负载均衡，同时DNS还支持基于地理位置的域名解析，解析成距离用户最近的一个服务器地址。缺点是当下线某台服务器后，即使修改了DNS的A记录，要使其生效也需要较长时间，这段时间，DNS依然会将域名解析到已经下线的服务器。改造：大型网站总是部分利用DNS域名解析，利用域名解析作为第一级负载均衡手段，得到的一组服务器并不是实际提供Web服务的服务器，而是同样提供负载均衡服务的内部服务器，再将请求分发到真实的Web服务器上</li>
+<li>反向代理负载均衡</li>
+<li>IP负载均衡<br>修改目的IP进行负载，IP负载均衡在内核进程完成数据分发，较反向代理负载均衡有更好性能。缺点：集群的最大响应数据吞吐量不得不受制于负载均衡服务器网卡带宽，能不能使真实数据从真实物理服务器直接返回给用户呢</li>
+<li>数据链路层负载均衡<br>修改数据的目的mac地址，不修改目的IP地址，Web服务器集群所有服务器的虚拟IP地址都和负载服务器的IP地址相同，因此数据可以正常传输。网关服务器直接将数据包发送到用户浏览器，响应数据不需要通过负载均衡服务器。在linux平台最好的链路层负载均衡产品是LVS(Linux Virtual Server)</li>
+</ol>
+<p>负载均衡算法：<br>轮询：依次分发到每台应用服务器<br>加权轮询：高性能的服务分配更多请求<br>随机：随机数本身就很均衡<br>最少连接：将新到的请求分发到最少连接的服务器上<br>原地址散列：根据请求来源的IP地址进行HASH计算，这样来自同一个IP地址的请求总在同一个服务器上处理，该请求的上下文信息可以存储在这台服务器上，在一个会话周期内重复使用，实现会话黏滞</p>
+<p>传统的加缓存服务器的办法是在网站访问量最少的时候扩容，然后通过模拟请求的方法逐渐预热缓存，使缓存服务器中的数据重新分布<br>分布式缓存的一致性Hash算法实现Key到缓存服务器的Hash映射，由此可能产生一个负载不均匀问题，可以增加一个虚拟层来解决。</p>
+<h3 id="网站的可扩展架构">网站的可扩展架构</h3><p>模块分布式部署以后具体聚合方式主要有分布式消息队列和分布式服务</p>
+<ol>
+<li>分布式消息队列<br>事件驱动架构(Event Driver Architecture EDA)<br>通过在低耦合的模块之间传输时间消息，以保持模块的松散耦合，典型的EDA就是生产消费者模式<ul>
+<li>在伸缩性方面，由于消息队列服务器上的数据可以看做是被即时处理的，因此类似于无状态的服务器，伸缩性设计比较简单。将新服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可</li>
+<li>在可用性方面，为了避免消费者进程处理缓慢，分布式消息队列服务器内存空间不足造成的问题，如果内存队列已满，会将消息写入磁盘，消息推送模块在将内存队列消息处理完以后，将磁盘内容加载到内存队列继续处理。<br>为了避免消息队列服务器宕机造成消息丢失，会将消息成功发送到消息队列的消息存储在消息生产服务器，等消息真正被消息消费者服务器处理后才删除消息。在消息服务器宕机后，生产者服务器会选择分布式消息队列服务器集群中其他的服务器发布消息。</li>
+</ul>
+</li>
+<li>分布式服务<br>阿里巴巴分布式开源框架Dubbo<br>Dubbo的远程服务通信模块支持多种通信协议和数据序列化协议，使用NIO通信框架，具有较高的网络通信性能。<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-12/46986723.jpg" alt="Dubbo"></li>
+</ol>
+<h3 id="网站的安全架构">网站的安全架构</h3><ol>
+<li>对于XSS攻击<br>跨站点攻击，指黑客通过篡改网页，注入恶意脚本，在用户浏览网页时候，控制用户浏览器进行恶意操作的一种攻击方式<br>有两种，一种是反射性，攻击者诱使用户点击一个嵌入恶意脚本的连接，达到攻击目的<br>另外一种是持久性XSS攻击，黑客提交含有恶意脚本的请求，保存在被攻击的Web站点的数据库中，用户浏览网页时，恶意脚本被包含在正常页面中，达到攻击目的。</li>
+<li>SQL注入攻击和OS注入攻击一般都因为采用了开源的组件，或者黑客利用错误回显推测数据库结构。解决方案增加过滤，使用参数绑定</li>
+<li>CSRF 跨站点请求伪造，攻击者通过跨站请求，以合法用户的身份进行非法操作，如转账交易，发表评论等。主要手法是利用跨站请求，在用户不知情的情况下，以用户的身份伪造请求，其核心是利用了浏览器Cookie或服务器Session策略，盗取用户身份。<br>解决方案：表单Token,验证码、Http请求头的Referer域中记录着请求来源，可通过检查请求来源，验证其是否合法，很多网站使用这个功能实现图片防盗链（如果图片访问的页面来源不是来自自己网站的网页就拒绝）</li>
+</ol>
+<h3 id="附录">附录</h3><table>
+<thead>
+<tr>
+<th>项目名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tair</td>
+<td>分布式Key/Value存储引擎，分为持久化和非持久化两种使用方式</td>
+</tr>
+<tr>
+<td>TFS</td>
+<td>一个分布式文件系统，适用于海量小文件存储</td>
+</tr>
+<tr>
+<td>OceanBase</td>
+<td>分布式数据库系统，支持千亿级别的读写事务</td>
+</tr>
+<tr>
+<td>TDDL</td>
+<td>对应用透明的分库分表层和具有众多特性的动态数据源</td>
+</tr>
+<tr>
+<td>GeoDNS</td>
+<td>基于开源域名服务器软件BIND的增强版本，域名解析到距离用户最近的服务器</td>
+</tr>
+<tr>
+<td>LVS</td>
+<td>基于Linux的开源负载均衡服务器</td>
+</tr>
+<tr>
+<td>Squid</td>
+<td>基于Linux的开源反向代理服务器</td>
+</tr>
+<tr>
+<td>Lighttpd</td>
+<td>轻量服务器，一般用来做图片服务器</td>
+</tr>
+<tr>
+<td>Memcached</td>
+<td>无中心高性能的开源分布式缓存系统</td>
+</tr>
+<tr>
+<td>Lucene</td>
+<td>Apache出品，Java开发的开源全文搜索引擎</td>
+</tr>
+</tbody>
+</table>
+<p>如果有词条信息更新，应用服务器使用Invalidation Notification服务通知使Squid缓存失效，重新访问应用服务器更新词条。</p>
+<h3 id="后记">后记</h3><p>不要企图去设计一个大型网站！大型网站不是设计出来的，而是逐步演化出来的<br>垄断、牌照、行业壁垒、国有资本、行政资源，这些在传统行业呼风唤雨的魔法到了互联网领域只会被嘲笑、被捉弄。庞大只是笨拙而已，壁垒只会画地为牢<br>互联网是一种精神，一种开放、分享、自由的精神；越是付出不问汇报，越是获得丰厚的回报；越是不设边界，越是拥有整个世界。互联网是一种颠覆，打碎所有的藩篱，给所有人平等表达和获取的机会，每个人都可以发出自己的声音。互联网是一种建设，重塑人们的思维方式和社会运行方式，建设一个任何人彼此理解信任的大同世界。互联网正在并将继续改变这个世界，一切才刚刚开始，你我正生逢其时！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/分布式/">分布式</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/12/大型网站技术架构核心原理与案例分析/" data-title="大型网站技术架构核心原理与案例分析 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/12/疯狂java讲义笔记一/" title="疯狂java讲义笔记一">
+  <strong>上一篇：</strong><br/>
+  <span>
+  疯狂java讲义笔记一</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/12/Guava概览/"  title="Guava概览">
+ <strong>下一篇：</strong><br/> 
+ <span>Guava概览
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/12/大型网站技术架构核心原理与案例分析/" data-title="大型网站技术架构核心原理与案例分析" data-url="http://yoursite.com/2016/05/12/大型网站技术架构核心原理与案例分析/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#网站的高性能架构"><span class="toc-number">1.</span> <span class="toc-text">网站的高性能架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五章_网站高可用架构"><span class="toc-number">2.</span> <span class="toc-text">第五章 网站高可用架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第六章_网站的伸缩性架构"><span class="toc-number">3.</span> <span class="toc-text">第六章 网站的伸缩性架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网站的可扩展架构"><span class="toc-number">4.</span> <span class="toc-text">网站的可扩展架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网站的安全架构"><span class="toc-number">5.</span> <span class="toc-text">网站的安全架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附录"><span class="toc-number">6.</span> <span class="toc-text">附录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-number">7.</span> <span class="toc-text">后记</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

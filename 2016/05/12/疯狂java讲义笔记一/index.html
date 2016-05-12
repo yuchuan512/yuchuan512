@@ -1,0 +1,1029 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>疯狂java讲义笔记一 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="开发定义类，方法时也可以先添加文档注释，然后使用 javadoc 工具来生成自己的API文档将字符串转换为数值类型 Byte.parseByte(String str) Integer.parseInt(String str) Float.parseFloat(String str)位运算符 &amp;amp; 按位与  | 按位或  ~按位非   ^按位异或   &amp;lt;&amp;lt; 左移运算符 &amp;gt;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="疯狂java讲义笔记一">
+<meta property="og:url" content="http://yoursite.com/2016/05/12/疯狂java讲义笔记一/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="开发定义类，方法时也可以先添加文档注释，然后使用 javadoc 工具来生成自己的API文档将字符串转换为数值类型 Byte.parseByte(String str) Integer.parseInt(String str) Float.parseFloat(String str)位运算符 &amp;amp; 按位与  | 按位或  ~按位非   ^按位异或   &amp;lt;&amp;lt; 左移运算符 &amp;gt;&amp;">
+<meta property="og:updated_time" content="2016-05-12T07:48:14.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="疯狂java讲义笔记一">
+<meta name="twitter:description" content="开发定义类，方法时也可以先添加文档注释，然后使用 javadoc 工具来生成自己的API文档将字符串转换为数值类型 Byte.parseByte(String str) Integer.parseInt(String str) Float.parseFloat(String str)位运算符 &amp;amp; 按位与  | 按位或  ~按位非   ^按位异或   &amp;lt;&amp;lt; 左移运算符 &amp;gt;&amp;">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/12/疯狂java讲义笔记一/" title="疯狂java讲义笔记一" itemprop="url">疯狂java讲义笔记一</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-12T07:47:29.000Z" itemprop="datePublished"> 发表于 2016-05-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="###_OutputStream_output_=_new_FileOutputStream(file,true);_true表示追加数据"><span class="toc-number">1.</span> <span class="toc-text">## OutputStream output = new FileOutputStream(file,true); true表示追加数据</span></a></li></ol>
+		
+		</div>
+		
+		<p>开发定义类，方法时也可以先添加文档注释，然后使用 javadoc 工具来生成自己的API文档<br>将字符串转换为数值类型<br> Byte.parseByte(String str)<br> Integer.parseInt(String str)<br> Float.parseFloat(String str)<br>位运算符 &amp; 按位与  | 按位或  ~按位非   ^按位异或   &lt;&lt; 左移运算符 &gt;&gt; 右移运算符 &gt;&gt;&gt;无符号右移运算符<br> 逻辑运算符 &amp;&amp; 必须前后两个均为true,返回true   &amp; 不短路与<br> || 只要两个操作数有一个为true,就返回true   | 不短路或<br> 使用静态初始化的方法来初始化一个二维数组<br> String [][] str1 = new String[][]{new String[3],new String[]{“hello”}};</p>
+<p>public static void test(int a,String…books){<br> for(String tmp : books){<br> System.out.println(tmp);<br> }<br>}<br> 数组形式的形参可以处于形参列表的任意位置，但个数可变的形参只能处于形参列表的最后，也就是，一个方法中最多只能有一个长度可变的形参</p>
+<p>类的生命周期：一个类在使用之前要经过类加载，类验证，类准备，类解析，类初始化等几个阶段<br>对象并不是完全由构造器创建，在这之前系统会为该对象分配内存空间，并为这个对象执行默认初始化，这个对象已经产生了。<br> 构造器中通过this来引用他，使得这个对象作为构造器的返回值被返回，从而让外部程序可以访问该对象。</p>
+<p>编译时的类型由声明该变量使用的类型决定，运行时的类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，就出现了多态。<br>一个类里可以多多个初始化块，相同类型的初始化块之间有顺序，前面定义的初始化块先执行，后面定义的后执行<br> 初始化块总是在构造器执行之前执行</p>
+<p>如果定义初始化块使用了static修饰符，则变成了静态初始化块，也被称为类初始化块。静态初始化块总是比普通初始化块先执行<br> 静态初始化块是类相关的，用于对整个类进行初始化处理。</p>
+<p>对于特殊需求，可以通过重写equals方法来实现<br> 正确的重写equals方法英爱满足下列条件：<br> 自反性 对任意x,x.equals(x)一定返回true<br> 对称性  对任意x和y,若 x.equals(y) 返回true,则 y.equals(x)也返回true<br> 传递性  x-&gt;y y-&gt;z x-&gt;z<br> 一致性  对任意的x和y,无论调用多少次，结果不变<br> 对任何不是null的对象，x.equals(null) 一定返回false</p>
+<p>public boolean equals (Object obj){<br> if(this == obj){return true;}<br> if(obj != null &amp;&amp; obj.getClass() == Person.class){<br>  Person PersonObj = (Person)obj;<br>  if(this.getIdStr().equals(PersonObj.getIdStr()))<br>  return true;<br>  }<br>}</p>
+<p>Hash就是把任意长度的输入，通过散列算法，变变换成固定长度的输出，输出就是散列值<br> 这种转换是一种压缩映射，也就是说，散列值的空间通常远小于输入的空间<br> 不同的输入可能会散列成相同过的输出，而不可能从散列值来唯一的确定输入值<br>   对象相等则hashCode 一定相等，hashCode 相等对象未必相等</p>
+<p>缓存实例eg:<br> public class CacheImmutale {<br>private final String name;<br>public CacheImmutale(String name){<br>this.name = name;<br>}<br>private String getName() {<br>return name;<br>}<br>private static CacheImmutale[] cache = new CacheImmutale[10];<br>private static int pos = 0;<br>public static CacheImmutale valueOf(String name){<br>for(int i = 0;i &lt; pos;i++){<br>if(cache[i] != null &amp;&amp; cache[i].getName().equals(name)){<br>return cache[i];<br>}<br>}<br>if(pos == 10){<br>cache[0] = new CacheImmutale(name);<br>pos = 1;<br>return cache[0];<br>}else{<br>cache[pos++] = new CacheImmutale(name);<br>return cache[pos-1];<br>}<br>}<br>public boolean equals(Object obj){<br>if(obj instanceof CacheImmutale){<br>CacheImmutale ci = (CacheImmutale)obj;<br>if(name.equals(ci.getName()))<br>return true;<br>}<br>return false;<br>}<br>public int hashCode(){<br>return name.hashCode();<br>}</p>
+<p>抽象父类可以只定义需要使用的某些方法，其余则留给其子类实现。<br> eg:<br> public abstract class SpeedMeter {<br>private double turnRate;<br>public SpeedMeter(){</p>
+<p>}<br>public abstract double getRadius();<br>public void setTurnRate(double turnRate){<br>this.turnRate = turnRate;<br>}<br>public double getSpeed() {<br>return java.lang.Math.PI <em> 2 </em>getRadius() * turnRate;<br>}<br> }</p>
+<p> public class CarSpeedRate extends SpeedMeter{<br>public double getRadius(){<br>return 0.23;<br>}<br>public static void main(String[] args) {<br>CarSpeedRate csm = new CarSpeedRate();<br>csm.setTurnRate(15);<br>System.out.println(csm.getSpeed());<br>}<br> }</p>
+<p>接口和抽象类的不同点<br> 接口体现的是一种规范，抽象体现的是一种模板设计<br> 接口里只能包含抽象方法，不包含已经提供实现的方法；抽象类可以包含普通方法<br> 接口里不能定义静态方法；抽象类里可以定义静态方法<br> 接口只能定义静态常量属性，不能定义普通属性；抽象类可以静态常量属性，也可以定义普通属性<br> 接口不包含构造器；抽象类可以包含构造器，抽象类的构造器并不是用于创建对象，而让其子类调用这些构造器来完成属于抽象类的初始化操作<br> 接口不难更包含初始化块，但抽象类可以包含初始化块。<br> 一个类最多只能有一个直接父类，包括抽象类；但一个类可以直接实现多个接口，通过实现多个接口可以弥补java单继承的不足</p>
+<p>Object[] toArray() 把集合装换成一个数组<br> int size() 返回集合里元素的个数<br> Iterator iterator()  返回一个Iterator对象，用于遍历集合里的对象<br> 可以使用泛型来限制集合里元素的类型，并让集合记住所有集合元素的类型</p>
+<p>当使用Iterator对集合元素进行迭代时，Iterator并不是把集合元素本身传给了迭代变量，而是把集合元素的值传给了迭代变量<br> 所以修改迭代变量的值对集合元素本身没有任何影响</p>
+<p>重写hashCode()方法的基本原则：<br> 当两个对象通过equals() 方法比较返回true时，这两个对象的hashCode应该相等。<br> 对象中功能用作equals比较标准的属性，都应该用来计算hashCode值<br> HashSet集合判断两个元素相等的标准是两个对象通过equals方法比较相等，并且两个对象的hashCode()方法返回值也相等</p>
+<p>TreeSet (排序)是SortedSet接口的唯一实现，可以确保集合元素处于排序状态<br>如果试图把一个对象添加进TreeSet时，则该对象的类必须实现Comparable接口，否则异常<br>Comparator comparator() 返回当前Set使用的Comparator或者返回null，表示以自然方式排序<br> Object first() 集合中第一个<br> Object last()  集合中最后一个<br> Object lower(Object e)  返回集合中位于指定元素之前的元素，注意是一个元素<br> Object higher(Object e)  之后的元素，注意是一个元素，不是返回集合<br> SortedSet subSet(fromElement,toElement)  返回此Set的集合，范围  包含开始，不包含结尾<br> SortedSet headSet(toElement)  返回Set的子集，由小于toElement的元素组成<br> SortedSet tailSet(fromElement) 返回Set的子集，由大于或等于fromElement的元素组成</p>
+<p>操作数组的工具类 Arrays.asList(Object …a)方法可以把一个数组或指定个数的对象转换成一个List集合，这个list既不是ArrayList实现类<br> 的实例，也不是Vector实现类的实例，而是Arrays的内部类ArrayList的实例</p>
+<p>List方法：<br>void add(int index,Object element)<br>boolean addAll(int index,Collection c) 将集合c所包含的所有元素插入在index处<br>Object get(int index)<br>int indexOf(Object o)  返回对象o在list出现的位置索引<br>int lastIndexOf(Object o) 返回对象o在list集合中最后一次出现的位置索引<br>Object remove(int index) 删除并返回index索引处的元素<br>Objece set(int index,Object element) 将index处的元素替换成element对象，返回新元素<br>List subList(int fromIndex,int toIndex) 返回从fromindex(包含)到toindex(不包含)所有集合元素的子集合<br>List的indexOf 方法判断两个对象相等的条件是通过equals方法比较返回true</p>
+<p>List额外提供了一个listIterator()方法,该方法返回一个在Iterator接口基础上增加了如下方法：<br>boolean hasPrevious() 返回该迭代器关联的集合是否还有上一个元素<br>Object previous() 返回迭代器的上一个元素<br>void add()  在指定位置插入一个元素<br>List<string> booklist = new ArrayList<string>();<br>ListIterator<string> lt = booklist.listIterator();</string></string></string></p>
+<p>ArrayList和Vector类都是基于数组实现的List类，提供了如下两个方法来操作capacity属性<br>void ensureCapacity(int minCapacity) 将ArrayList或Vector集合的capacity增加minCapacity<br>void trimToSize() 调整ArrayList或Vector集合的capacity为列表当前大小，可调用该方法减少ArrayList或Vector对象的存储空间<br>ArrayList和Vector显著区别是：ArrayList是线程不安全的，Vector集合则是线程安全的</p>
+<p>vector提供了栈 stack。方法: peek()  pop()  push(Object item)<br>与java其他集合一样，进栈出栈的都是Object，因此从栈中取出元素后必须做类型转换<br>Object peek()  返回栈的第一个元素，但不出栈<br>Object pop()  返回栈的第一个元素，出栈<br>void push(Object item) 将其进栈</p>
+<p>操作数组的工具类 Arrays，asList(Object …a)方法可以把一个数组或指定个数的对象转换成一个List集合，这个list既不是ArrayList实现类<br>的实例，也不是Vector实现类的实例，而是Arrays的内部类ArrayList的实例</p>
+<p>Queue接口所提供的方法：用于模拟队列<br>void add(Object e)  加入此队列的尾部<br>Object element(); 获取队列头部元素，不删除<br>Object peek()读取队首元素<br>Object poll()获取队首元素并且删除<br>Objece remove()</p>
+<p>Queue有两个常用的实现类： LinkedList  和   PriorityQueue</p>
+<p>Deque接口定义了一些可以双向操作队列的方法<br>void addFirst(Object e)<br>void addLast(Object e)<br>Iterator descendingIterator() 返回以该双向队列对应的迭代器，该迭代器将以逆向顺序迭代队列中元素<br>Object getFirst() 获取，但不删除双向队列的第一个元素<br>Object getLast()  获取，但不删除双向队列的末尾<br>boolean offerFirst(Object e) 将指定元素插入该双向队列的开头<br>boolean offerLast(Object e)  将指定元素插入该双向队列的末尾<br>Object peekFirst()  获取，但不删除该双向队列的第一个元素<br>Object peekLast()  获取，但不删除该双向队列的最后一个元素<br>Object pollFirst() 获取，并删除双向队列的第一个元素<br>Object pollLast()获取，并删除双向队列的最后一个元素<br>Object pop() 出该双向队列表示的栈中的第一个元素<br>void push(Object e)  将一个元素push进该双向队列所表示的栈中</p>
+<p>Object removeFirst() 获取删除该双向队列的第一个元素<br>Object removeFirstOccurrence(Object o) 删除该双向队列的第一次的出现元素o<br>removeLast() 获取删除该双向队列的最后一个元素<br>removeLastOccurrence(Object o) 删除该双向队列的最后一次出现元素o</p>
+<p>LinkedList集合不仅提供了List功能，还提供了双向队列，栈的功能<br>PriorityQueue 保存队列元素的顺序并不是按加入队列的顺序，而是按队列元素的大小进行重新排序</p>
+<p>Map接口中定义了如下常用的方法：<br>void clear() 删除Map对象中所有key-value对<br>boolean containsKey(Object key) 查询Map中是否包含指定key，如果包含返回true<br>boolean containsValue(Object value) 查询Map是否包含一个或多个value，如果包含返回true<br>Set entrySet()返回Map所包含的key-value对所组成的Set集合<br>Object get(Object key) 返回指定可以所对应的value<br>boolean isEmpty() 查询该Map是否为空<br>Set keySet()  返回该Map中所有可以所组成的Set集合<br>Object put(Object key,Object value)  添加一个key-value对，如果当前Map中已有一个与该key相等的key-value对，则新的key-value会覆盖原来的<br>void putAll(Map m) 将指定Map中的key-value对复制到本Map中<br>Object remove(Object key) 删除指定key 所对应的key-value对，返回被删除key所关联的value<br>int size()  返回Map中的key-value对的个数<br>Collection values()  返回该Map里所有value组成的collection</p>
+<p>Map中博阿含一个内部类，Entry.该类封装了一个key-value对，Entry包含三个方法：<br>Object getKey() 返回该Entry里包含的key 值<br>Object getValue()  返回该Entry里包含的value值<br>Object setValue(V value) 设置该Entry里包含的value值，并返回新设置的value值</p>
+<p>Hashtable和HashMap存在两点典型区别：<br>HashTable 是一个线程安全的Map实现，但HashMap是线程不安全的实现<br>Hashtable不允许使用null作为key和value</p>
+<p>Properties类是HashTable类的自雷，可以把Map对象和属性文件关联起来，从而可以把Map对象中的key-value对写入属性文件<br>也可以把属性文件中的属性名属性值加载到Map对象中。<br>Properties提供了三个方法来修改Properties里的key,value值<br>String getProperty(String key)   获取Properties中指定属性名对应的属性值<br>String getProperty(String key,String defaultValue) 类似于前一个方法，如果Properties中不存在key时，返回默认值<br>Object setProperty(String key,String value) 设置属性值<br>void load(InputStream inStream)   从属性文件(以输入流表示)中加载属性名=属性值<br>void store(OutputStream out,String comments)  将Properties中的key-value对写入指定属性文件<br>eg:<br>Properties props = new Properties();<br>props.setProperty(“username”, “yee”);<br>props.setProperty(“password”, “12334”);<br>props.store(new FileOutputStream(“a.ini”), “comment line”);<br>Properties props2 = new Properties();<br>props2.setProperty(“gender”, “male”);<br>props2.load(new FileInputStream(“a.ini”));</p>
+<p>操作集合的工具类 ： Collection<br>Java提供了一个操作Set,List和Map等集合的工具类 Collections，该工具提供了大量方法对集合排序，查询和修改操作<br>还提供了将集合对象设置为不可变，对集合对象实现同步控制等方法<br>Collections提供了如下几个方法用于对List集合元素进行排序<br>static void reverse(List list)  反转指定List集合中元素的顺序<br>static void shuffle(List lsit)  随机排序，shuffle方法模拟了洗牌动作<br>static void sort(List list)  自然顺序升序排序<br>static void sort(List list,Comparator) 根据Comparator产生的顺序对List集合的元素进行排序<br>static void swap(List list,int i,int j) 将制定List集合中 i 处元素和 j 处元素交换<br>static void rotate(List list, int distance) 将制定集合中i处元素和 list.length-i 处元素进行交换</p>
+<p>static int binarySearch(List list,Object key)    使用二分搜索法搜索指定List集合<br>static Object max(Collection coll)   根据自然顺序，返回给定集合最大元素<br>static Object max(Collection coll,Comparator comp)  根据指定Comparator产生的顺序，返回给定集合最大元素<br>static Object min(Collection coll)     自然顺序，返回给定集合最小元素<br>static Object min(Collection coll,Comparator comp)    根据指定Comparator产生的顺序，返回给定集合最小元素<br>static void fill(List list,Object obj)   使用指定元素obj替换指定List集合的所有元素<br>static int frequency(Collection c,Object obj)   返回指定集合中等于指定对象的元素数量<br>static int indexOfSubList(List source,List target)   返回子List对象在母List对象中第一次出现的位置索引，若没有，返回-1<br>static int lastIndexOfSubList(List source,List target)  返回子List对象在母List对象中最后一次出现的位置索引，若没有，返回-1<br>static boolean replaceAll(List list,Object oldVal,Object newVal)   替换</p>
+<p>同步控制：<br>Collections类中提供了多个synchronizedXxx方法，该方法返回指定集合对象对应的同步对象，从而可以解决多线程并发访问集合时的线程安全问题<br>Collections c = Collections.synchronizedCollection(new ArrayList())<br>List list = Collections.synchronizedList(new ArrayList())<br>Set s = Collections.synchronizedSet(new HashSet())<br>Map m = Collections.synchronizedMap(new HashMap())<br>在上面的实例中，直接将新创建的集合对象传给了Collections的synchronizedXxx方法，这样可以直接获取List,Set,Map 的线程安全时限版本。</p>
+<p>泛型中子类重写父类方法时，要与父类的类型一致<br>List<string> ls = new ArrayList<string>();</string></string></p>
+<p>java.util.Scanner<br>sr.useDelimiter(“\n”);<br>sr.hasNext()<br>sr.hasNextLine()</p>
+<p>读取文件：Scanner sr = new Scanner(new File(“e:\a.txt”));</p>
+<p>使用bufferedreader读取<br>BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br>String sr = null;<br>while((sr=br.readLine())!=null){<br>System.out.println(sr);<br>}</p>
+<p>使用Calendar<br>Calendar calendar =  Calendar.getInstance()</p>
+<p>正则表达式：<br>boolean matches(String regex)<br>String replaceAll(String regexx,String replacement)<br>String replaceFirst(String regex,String replacement)<br>String[] split(String regex)</p>
+<p>网状型数据库<br>层次性数据库<br>关系型数据库<br>面向对象数据库</p>
+<p>SQL语句的关键字不区分大小写</p>
+<p>java_300</p>
+<p>取得选中项目 jcb_dish.getSelectedItem().toString()</p>
+<p>for循环 for(String item:value){System.out.println(item+””)}</p>
+<p>arr1复制到arr2中  int arr[]=Arrays.copyOfRange(arr1,5,arr1.length);</p>
+<p>java的java.util.Arrays类中提供了sort()方法，可以采用二分排序</p>
+<p>数组声明初始化：int arr[]=new int[]{22,23,45}<br>int arr2[]={23,45,34}</p>
+<p>java.util.Arrays   Arrays.binarySearch(数组，关键字)<br>  Arrays.binarySearch(数组，开始（包含），结束（不包含），关键字)</p>
+<p>简易for循环一般用来遍历List对象或Iterator对象</p>
+<p>面向对象特征：封装，继承，多态</p>
+<p>OOP(object-oriented programming) 面向对象编程<br>关键字abstract用于定义抽象类和抽象方法，抽象类是一种不可以被实例化的类</p>
+<p>方法重载：在同一个类中有相同名称，不同参数的方法，这些方法有相同的功能</p>
+<p>成员变量VS局部变量</p>
+<p>只能通过构造方法创建对象吗 ？<br>不是，还可以通过工厂方法创建对象，通过反射创建对象</p>
+<p>隐藏类的属性，使其不被其他类使用 private</p>
+<p>某个变量的值能被所有对象共享，可以将变量声明为静态变量 private static int num=10;<br>静态常量  public static final double pi=3.14<br>用static 修饰的方法称为静态方法</p>
+<p>static{}静态语句块  比如用在数据库连接，初始化图像等<br>final修饰常量</p>
+<p>浅克隆：被克隆的各个对象都是基本类型，而不是引用类型<br>深克隆：存在引用类型 ，相当于在浅克隆的基础上对引用类型加以处理</p>
+<p>两种方式实现克隆：序列化的方式   一次克隆各个可变的引用类型域的方式</p>
+<p>匿名内部类是指没有指定类名的内部类，当某个类不需要重复使用时，就可以把该类定义为匿名内部类，由于匿名内部类 没有类名，所以在程序中只能使用一次，<br>   在图形化编程的事件监控器代码中，会大量使用匿名内部类</p>
+<p>创建class对象的方法：<br>1.存在某个类完整路径的字符串，通过class类的forName()方法<br>2.知道某个类student  通过 student.class()<br>3.知道某个类的实例 如：student.getClass()</p>
+<p>重写equals()方法遵循      自反性，对称性，传递性，一致性</p>
+<p>在java中使用反射创建对象的两种方法:<br>1 通过使用class类的newInstance()方法实现   适合无参<br>2 使用constructor类实现  适合有参</p>
+<p>自动装包指的是 基本类型自动转换为包装类<br>自动拆包指的是 包装类自动转换为基本类型</p>
+<p>int 是Java中的基本数据类型，Integer是包装类，java将包装类作为对象调用</p>
+<p>基本数据类型有 boolean char float double （四种整数） byte,short,int long</p>
+<p>java笔记</p>
+<p>数据类型可以从低变量到高变量<br>高精度到低精度 强制转换 int a=(int)1.2<br>精度由低到高 byte short int long float duoble<br>在java中的小数默认是double<br>class 类名{成员变量（属性），成员函数（方法），构造方法}<br>一个类可以定义多个构造方法<br>this只能在类定义内部使用</p>
+<p>类变量，类方法<br>static int total<br>//total 是静态变量，因此可以被任何一个对象访问<br>类变量是该类的所有对象共享的变量<br>类方法是属于所有对象实例的<br>加上static 成为类变量或者静态变量，否则实例变量<br>java面向对象编程的四大特征 ：（抽象） 封装，继承，多态<br>把一类食物的共同属性和行为提取出来，形成一个物理模型，称为抽象</p>
+<p>封装就是把抽象出的数据和对数据的操作封装在一起<br>字体：window–general–appearance–colors and font–basic–YaHei</p>
+<p>包名小写<br>常用的包 java.util.<em>工具    java.net.</em>网络</p>
+<p>成员变量，成员方法都有访问修饰符<br>继承： class pupil extends stu<br>public protected 属性和方法都被继承，若不希望子类继承某个属性或者方法，则声明为私有的<br>方法重载  方法覆盖  @override<br>使用“+”与字符串连接的任何类型的数据都会转换成字符串进行连接<br>eg: “3+5=”+3+5  返回的是“3+5=35”</p>
+<p>java中String str=null 与String str=””的区别 ？<br>前者表示声明了一个String对象的引用str，但是没有为其分配内存空间<br>后者表示创建了一个长度为0的空字符串， and 在内存中为其分配了内存空间</p>
+<p>被final关键字修饰的变量是不可以被继承的，没有被final关键字修饰的类是可以被继承的<br> String类为final关键字修饰的类，所以不能被继承</p>
+<p>str.toLowerCase()  str.toUpperCase()  返回一个处理过的字符串，str本身不会有任何改变</p>
+<p>“==”和equals()区别？<br>“==”比较的是两个对象使用的内存地址和内容；<br>equals() 比较的是内容</p>
+<p>判断字符串是否为空：<br>1.sVar==null<br>2.sVar.equals(“”)<br>3.sVar.length()==0</p>
+<p>去掉字符串的空格： String str=” “  str.replaceAll(“ “,””) OR  str.trim()</p>
+<p>子字符串  str.substring(x[包含],y[不包含])</p>
+<p>char[] chars=str.toCharArray();   //将字符串存到字符数组中<br>for(int i=0;i&lt;chars.length;i++){bool=character.isDigit(char[i]); if(bool==true){break;}  }<br>str.indexOf(“h”) 在字符串中搜寻指定字符</p>
+<p>进制转换 Integer类的几个方法<br>二进制to十进制 int no=Integer.parseInt(“10001000”,2)  parseInt(String s,int radix[基数])</p>
+<p>toBinaryString(int i)    toHexString(int i)   toOctalString(int i)</p>
+<p>StringBuilder对象是一个可变的字符序列，大大提高了频繁增加字符串的效率  “+”会产生新的String实例，在内存中创建新的字符串对象</p>
+<p>StringBuffer 类也是一个包含有缓冲区的字符串对象   StringBuilder类是非线程安全的，StringBuffer是线程安全的</p>
+<p>str=str.replace(“ “,””);   str.replaceFirst(“ “,” “); str.replaceAll(String regex,String replacement);</p>
+<p>编码格式：byte[] btutf=str.getBytes(“UTF-8”);<br>String strz=new String(btutf,”UTF-8”);</p>
+<p>String value=”dfasdfds”  byte[] bt=value.getBytes(); //转换为字符数组</p>
+<p>使用try…catch,try…catch…finally.以及try…finally等语句块进行异常处理，还可以通过throws关键字声明方法抛出的异常<br>通过throws声明方法抛出的异常可以简化程序编写，只在最后调用方法时进行异常处理</p>
+<p>对于字节文件：FileInputStream  FileOutputStream<br>对于字符文件：FileReader   FileWriter</p>
+<p>Java枚举  values()返回一个包含全部枚举元素的数组<br>valuesOf()返回当前字符串对应的枚举元素</p>
+<p>泛型提高程序健壮性，指的是把一些运行时Bug改为编译时Bug，通过及时修复Bug而提高程序健壮性</p>
+<p>泛型声明类型参数，命名要求：E:元素  K:键  N:数字  V:值<br> T:类型，S,U，V类型</p>
+<p>Java语言不支持多继承，因此在限制类型参数范围是，不能使用两个类</p>
+<p>在java中，数组是协变的，例如：Integer类是Number类的子类，那么可以<br>将Integer类型的数组复制给Number类型的数组</p>
+<p>泛型不能协变<br>泛型中的擦除是指在程序编译后，就将类型信息擦除了</p>
+<p>新建一个进程，两种方法。<br>1.public class Test extends Thread{} //继承Thread<br>2.public class Test implements Runnable{}  //Runnable接口</p>
+<p>由于java仅支持单继承，却可以实现多个接口，推荐用第二种方法</p>
+<p>java<br>并发性和并行性区别：<br>并行是指在同一时刻，有多条指令在多个处理器上同事执行；并发是指在同一时刻只能有一条指令执行，<br>但多个的进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果</p>
+<p>一个进程你可以拥有多个线程，一个线程必须有一个父进程。线程可以拥有自己的堆栈，自己的程序计数器和局部变量<br>但不拥有系统资源，它与父进程的其他线程共享 该进程所拥有的全部资源。<br>使用继承thread时获得当前线程对象比较简答，直接使用this就可以了；使用时限Runnable接口时要获得当前<br>对象必须使用Thread.currentThread()方法。</p>
+<p>每个线程的优先级都与创建它的父线程具有相同的优先级，在默认情况下，main线程具有普通优先级<br>synchronized关键字可以i修饰方法，可以修饰代码块</p>
+<p>yield让出cpu的使用权，让给同优先级的或者更高优先级的<br>join()线程等待被join的线程结束才继续运行</p>
+<p>重写hashCode()方法和equals()方法<br>public int hashCode(){<br>return accountNo.hashCode();<br>}<br>public boolean equals(Object obj){<br>if(obj!=null&amp;&amp;obj.getClass()==Account.class){<br>Account target = (Account)obj;<br>return target.getAccountNo().equals(accountNo);<br>}<br>return false;<br>}</p>
+<p>public synchronized void draw(){}通过synchronized关键字来声明加锁</p>
+<p>Lock是控制多个线程对共享资源进行访问的工具。<br>class x{<br>private final ReentrantLock lock = new ReentrantLock();<br>public void m(){<br>lock.lock();<br>try{</p>
+<p>}<br>finally}<br>lock.unlock();<br>}<br>}<br>加锁和释放锁要出现在一个块结构中，而且当获取了多个锁时，他们必须以相反的顺序释放<br>ReentrantLock锁具有重入性，也就是可以对已经加锁的ReentrantLock再次加锁。<br>Object类提供的wait(),notify()和notifyAll()三个方法，这三个方法不属于Thread类，而是属于Object<br>但这三个方法必须由同步监视器对象来调用，分为两种情况<br>1）使用synchronized修饰的同步方法，因为该类默认实例就是同步监视器，所以在同步方法中直接调用这三个方法<br>2）使用synchronized修饰的同步代码块，同步监视器是synchronized括号里的对象，必须使用该对象调用这三个方法</p>
+<p>自定义线程捕获异常<br>package com.yu;<br>public class ExHandler {<br>public static void main(String[] args) {<br>Thread.currentThread().setUncaughtExceptionHandler(new MyExHandler());<br>int a = 5/0;<br>}<br>}<br>class MyExHandler implements Thread.UncaughtExceptionHandler{<br>@Overrideto<br>public void uncaughtException(Thread t, Throwable e) {<br>// TODO Auto-generated method stub<br>System.out.println(t+”线程出现问题”+e);<br>}<br>}</p>
+<p>使用线程池可以很好的提高性能，尤其是当程序需要创建大量生存期很短暂的线程时，更应该考虑使用线程池<br>public class ThreadPoolTest {<br>public static void main(String[] args) {<br>ExecutorService pool = Executors.newFixedThreadPool(6);<br>pool.submit(new TestThread());<br>pool.submit(new TestThread());<br>pool.shutdown();<br>}<br>}<br>class TestThread implements Runnable{<br>@Override<br>public void run() {<br>// TODO Auto-generated method stub<br>for(int i = 0;i &lt; 100;i++){<br>System.out.println(Thread.currentThread().getName()+”的i为:”+i);<br>}<br>}<br>}</p>
+<p>计算机网络协议通常由三部分组成，语义部分，用于决定给双方对话的类型；语法部分，用于决定双方对话的格式<br>变换规则，用于决定通信双方的应答关系</p>
+<p>java为网络支持提供了java.net包，该包下的URL和URLConnection等类提供了以编程方式访问Web服务的功能<br>而URLDecoder和URLEncoder则提供了普通字符串和application/x-www-form-urlencoded MIME字符串相互转换的静态方法</p>
+<p>多线程下载；如果要实现断点下载，则还需要额外增加一个配置文件（所有支持断点下载的工具都会在下载<br>开始生成两个文件，一个是与网络资源大小相同的文件夹，一个是配置文件），该配置文件分别记录每个线程<br>已经下载到了那个字节，当网络断开后再次开始下载时，每个线程根据配置文件里记录的位置向后下载即可</p>
+<p>java使用Socket对象来代表两端的通信端口，并通过Socket产生IO流来进行网络通信</p>
+<p>java获取指定元素的节点<br>public static void main(String[] args) throws ParserException {<br>String url = “<a href="http://www.ttmeishi.com/CaiXi/" target="_blank" rel="external">http://www.ttmeishi.com/CaiXi/</a>“;<br>Parser parser = new Parser(url);<br>   parser.setEncoding(“utf-8”);<br>   NodeFilter filter = new TagNameFilter(“a”);<br>   NodeList list = parser.extractAllNodesThatMatch(filter);<br>System.out.println(list.toHtml());<br>= list.elementAt(1);<br>}</p>
+<p>byte  -128 ~ 127<br>short -32768 ~ 32767<br>NullPointerException 空指针异常，引用数据类型，观察其是否被正确实例化<br>匿名对象 new Person(“zhang”,20).tell()<br>数组静态初始化： int[] data = new int[]{20,32,32}<br>数组动态初始化： int[] data = new int[3]<br>数组排序  Arrays.sort(data)<br>System.arrayCopy(dataB,5,dataA,2,3);<br>每一个字符串都是String的匿名对象。<br>在String类进行设计的时候采用了一种共享设计模式的概念，在每一个运行的JVM层存在一个字符串的对象池，如果用户直接赋值，会将字符串<br>放入到池中，以供其他继续使用直接赋值方式的String对象使用。</p>
+<p>String str = new String(“hello”)创建了两个实例化对象，一个是String类的匿名对象hello，一个是使用关键字new实例化的String对象</p>
+<p>String类的常用方法：<br>字符串与字符：<br>public String(char[] value) 将全部的字符数组 ——&gt; 字符串<br>public String(char[] value,int offset,int count)  将部分字符数组变为字符串<br>public charAt(int index)  取得指定索引位置上的字符<br>public char[] toCharArray()  将字符串—–&gt; 字符数组<br>字符串与字节<br>public String(byte[] bytes)<br>public String(byte[] bytes,int offset,int length)<br>public byte[] getBytes()<br>public Bytes[] getBytes(String charSetName)<br>字符串比较： equals(String str)   equalsIgnoreCase(String str)   compareTo(String str)<br>字符串查找<br>public boolean contains(String s)<br>public int indexOf(String s) //查找字符串的位置<br>public int indexOf(String str,int fromIndex)<br>public int lastIndexOf(String str)<br>public int lastIndexOf(String str,int fromIndex)<br>public boolean startsWith(String prefix)  //是否以指定字符串开头<br>public boolean startsWith(String prefix,int offset)<br>public boolean endsWith(String suffix)<br>字符串替换<br>public String replaceAll(String regex,String replacement)<br>public String replaceFirst(String regex,String replacement)<br>字符串截取：<br>public String subString(int beginIndex)<br>public String subString(int beginIndex,int endIndex)<br>字符串拆分：<br>public String[] split(String regex)<br>public String[] split(String regex,int limit)<br>其他方法：<br>public boolean isEmpty()<br>public int length()<br>public String trim()<br>public String toLowerCase()<br>public String toUpperCase()<br>public String concat(String str)</p>
+<p>引用传递：<br>public static void main(String args[]){<br>String str = “hello”;<br>fun(str);<br>System.out.println(str);</p>
+<p>}<br>public static void fun(){<br>temp = “world”;<br>}<br>结果输出  hello，因为temp改变了指向</p>
+<p>static 定义的属性保存在全局数据区， 使用 类名称.static属性 的方式来完成<br>java主要存在四块内存空间<br>1.栈内存空间，保存所有的对象名称<br>2.堆内存空间 保存每个对象的具体属性内容<br>3.全局数据区 保存static类型的属性<br>4.全局代码区  保存所有的方法定义</p>
+<p>private static int count = 0;<br>public Person(){<br>System.out.println(“num is:” + ++count);<br>}<br>public static void main(String[] args) {<br>new Person();<br>new Person();<br>new Person();<br>}</p>
+<p>代码块有 普通代码块，构造块，静态块<br>构造块优先于构造方法执行<br>静态块优先于构造块执行，而且不管有多少个实例化对象产生，静态块只会执行一次，主要作用是为类中的static属性初始化<br>主类中的静态块的执行优先于主方法</p>
+<p>内部类的用法:<br>class Outer{<br>private String msg=”hello”;<br>class Inner{<br>public void print(){<br>System.out.println(msg);<br>}<br>}<br>public void fun(){<br>Inner in = new Inner();<br>in.print();<br>}<br>}<br>public  class TestDemo{<br>public static void main(String[] args) {<br>Outer out = new Outer();<br>out.fun();<br>}<br>}</p>
+<p>子类对象的实例化操作会调用父类的构造方法，super调用父类构造时一定要放在构造方法的首行上。<br>final:<br>1.final修饰的类不能有子类，无法被其他类继承。<br>2.使用final定义的方法不能被子类所重写<br>3.使用final定义的变量，就表示敞亮，常量在定义时必须设置默认值，且不能修改。</p>
+<p>构造方法私有化—&gt; 隐藏构造方法，单例模式<br>eg:<br>class Singleton{<br>private final static Singleton instance = new Singleton();<br>private Singleton(){}<br>public static Singleton getInstance()<br>{return instance;}<br>public void print(){<br>System.out.println(“hello”);<br>}<br>}<br>public class Test{<br>public static void main(String args[]){<br>Singleton inst = Singleton.getInstance();<br>inst.print();<br>}<br>}</p>
+<p>多例模式：<br>class Sex {<br>private static final Sex MALE = new Sex(“男”);<br>private static final Sex FEMALE = new Sex(“女”);<br>private String title;<br>private Sex(String title){<br>this.title = title;<br>}<br> public static Sex getInstance(String msg){<br>switch(msg){<br>case “male”:<br>return MALE;<br>case “female”:<br>return FEMALE;<br>default:<br>return null;<br>}<br>}<br>}</p>
+<p>如果在try语句中有一个return语句，那么紧跟在try后面的finally一定会被执行，并且是在return 前执行<br>RuntimeException和Exception区别，并列举出 几个常见的RuntimeException<br>Exception定义了必须处理的异常，而RuntimeException定义的异常可以选择性的进行处理<br>RuntimeException是Exception的子类，常见的RuntimeException有： NumberFormatException ClassCastException NullPointerException<br>ArithmeticException ArrayIndexOutOfBoundException</p>
+<p>断言指的是程序执行到某行后，其结果一定是预期的结果<br>自定义异常：<br>class MyException extends Exception{<br>public MyException(String msg) {<br>// TODO Auto-generated constructor stub<br>super(msg);<br>}<br>}<br>main:  throw new MyException(“it’s a exception”);<br>异常是导致程序中断运行的一种指令流<br>throws用在方法声明处，表示本方法不处理异常<br>throw表示在方法中手工抛出一个异常<br>不同包的同名类，则导入的时候要指定完整名称 eg: cn.mldn.util.Message msg = new cn.mldn.util.Message()</p>
+<p>命名规范：<br>类名称  每一个单词的开头首字母大写，如TestDemo<br>变量名称 第一个单词的首字母小写，之后每个单词的首字母大写 如stuName<br>方法名称  第一个单词的首字母小写，之后每个单词的首字母大写 如 printInfo()<br>常量名称  每个字母大写 如FLAG<br>包名称  所有字母小写  如 cn.mldnjava.util</p>
+<p>可变参数： 可以比较直观的传递任意多个参数<br>public static int add(int… data) {<br>int sum = 0;<br>for (int x = 0; x &lt; data.length; x++) {<br>sum += data[x];<br>}<br>return sum;<br>}</p>
+<p>foreach 语句<br>for(int x:data){<br>sum+=x;<br>}</p>
+<p>泛型：类中操作的属性或方法的参数类型不在定义时声明，而是在使用时动态设置<br>枚举来写多例设计模式<br>enum Color{<br>RED,GREEN,BLUE;<br>}<br>Color c = Color.RED;</p>
+<p>jdk1.7之后，switch可以操作Strint数据<br>可以使用通配符？接受全部的泛型类型对象<br>通过&lt;？extend 类&gt;可以设置泛型的上限，&lt;？super 类&gt;可以设置泛型的下限<br>在java中使用enum关键字定义一个枚举类，每个枚举类都是集成Enum类<br>enum Color{<br>RED,GREEN,BLUE;<br>}<br>for(Color c:Color.values())  //取得全部的枚举值<br>System.out.println(c.ordinal()+” “ + c.name())</p>
+<p>线程的命名和取得<br>public Thread(Runnable target ,String name)  //实例化线程对象，接受Runnable接口子类对象，同时设置线程名称<br>public final void setName(String name) //设置线程名称<br>public final String getName()  //取得线程名称<br>线程的休眠  在run方法中，Thread.sleep(100)   System.out.println(Thread.currentThread().getName())<br>线程优先级设置<br>public static final int MAX_PRIORITY<br>public static final int NORM_PRIORITY<br>public static final int MIN_PRIOTITY<br>public final void setPriority(int newPriority) // Runnable mt = new Runnable() ; Thread t = new Thread(mt,”线程A”)<br>public final int getPriority() //  t.setPriority(Thread.MAX_PRIORITY)  System.out.println(Thread.currentThread().getPriority())</p>
+<p>同步：使用同步代码块，或者使用同步方法<br>同步代码块只需要在执行的大括号前加上 synchronized(this)<br>同步方法 public synchronized void sale()<br>static native synchronized 都不能和abstract同时声明方法</p>
+<p>解决重复的问题需要等待及唤醒机制，这一机制的实现只能依靠Object类完成，Object定义了3个方法来完成线程操作<br>public final void wait() throws InterruptedException<br>public final void notify()<br>public final void nofityAll()</p>
+<p>sleep()和wait()区别<br>sleep是Thread类定义的static方法，表示线程休眠，将执行机会让给其他线程，但监控状态依然保持，到时候会自动恢复<br>wati是Object类定义的方法，表示线程等待，一直到执行了notify或notifyAll方法后才结束</p>
+<p>一般 通过设置一个标志位的方式停止一个线程的运行<br>String不适合被频繁修改的字符串，这种情况下可以使用StringBuffer，方便用户进行内容的修改<br>一个类是否可以继承String类？ 不能，String类使用了final定义，不能被其他类继承</p>
+<p>操作一：将String变为StringBuffer<br>方法一 利用StringBuffer的构造方法   public StringBuffer(String str)  —&gt; StringBuffer bf = new StringBuffer(str);<br>方法二   StringBuffer的append()方法   buf.append(str)</p>
+<p>操作二 将StringBuffer变为String  StringBuffer的toString()方法  String str = buf.toString() 方法<br>StringBuffer常用方法：<br>bf.reverse()  bf.replace(int start,int end,String str)  br.insert(int offset,数据)</p>
+<p>System类提供了两个常用方法：<br>public static void arrayCopy(Object src,int srcPos,Object dest,int destPos,int length)<br>public static long currentTimeMillis()<br>eg:long start = System.currentTimeMillis();    long end = System.currentTimeMillis(); —&gt;(end - start)<br>日期操作类<br>public Date()<br>public Date(long date) //将数字变为Date类对象，long为日期时间数据<br>eg: Date date = new Date(System.currentTimeMillis());<br>public long getTime()  //将当期那日期时间变为long型<br>eg: Date date = new Date();<br>long num = date.getTime();</p>
+<p>日期格式化操作类 SimpleDateformat<br>public SimpleDateFormat(String pattern)  //传入日期时间标记实例化对象<br>public final String format(Date date)   //将日期格式化为字符串数据<br>public Date parse(String source) throws ParserException  //将字符串格式化为日期数据<br>eg:<br>Date date = new Date();<br>SimpleDateFormat sdf = new SimpleDateFormat(“yyyy-MM-dd HH:mm:ss”);<br>String str = sdf.format(date);   —–&gt;   2015-04-28 11:13:54   //日期格式化为字符串</p>
+<p>eg:<br>String str = “1991-08-20 12:12:12.122”;<br>SimpleDateFormat sdf = new SimpleDateFormat(“yy-MM-dd HH:mm:ss.SSS”);<br>Date date = sdf.parse(str);   //将字符串格式化为日期数据</p>
+<p>Random类<br>Random rand = new Random();  rand.nextInt(101);<br>大数字操作类：<br>java.math.BigInteger和java.math.BigDecimal 这两个类属于Number的子类<br>数组操作类： Arrays类<br>public static boolean equals(int[] a,int[] b)  //Arrays.equals(dataA,dataB)<br>public static void fill(int[] a,int val)   //Arrays.fill(dataA,3)<br>public static void sort(int[] a)   //Arrays.sort(dataA)<br>public static int binarySearch(int[] a,int key)    //Arrays.binarySearch(dataA,key)<br>public static String toString(int[] a)  //Arrays.toString(dataA)<br>普通的对象数组是不能够进行比较的，如果要比较需要比较器（Comparable接口就是一种比较器）的支持</p>
+<p>比较器：<br>欲进行比较，需要实现Comparable接口<br>public class Person implements Comparable<person><br>重写compareTo方法<br>public int compareTo(Person o){<br>if(this.age &gt; o.age){<br>return 1;<br>}else if(this.age &lt; o.age){<br>return -1;<br>}else{<br>return 0;<br>}<br>}</person></p>
+<p>对象克隆<br>实现Cloneable接口，但这个接口属于标识接口，只表示一种能力。<br>class Person implements Cloneable{  }<br>@Override<br>public String toString(){return “  “;}<br>@Override<br>protected Object clone() throws CloneNotSupportedException<br> {return super.clone();}</p>
+<p>正则表达式<br>所有正则匹配的符号都在  java.util.regex.Pattern  类中进行定义<br>//  \ 匹配转移字符 “\”<br>\t匹配转移字符”\t”<br>^开始<br>$结束<br>.标识任意的一位字符<br>\d  表示任意的一位数字  \D非数字<br>\w 任意的一位字母,数字，下划线      \W非字母，数字，下划线<br>？0或1次</p>
+<ul>
+<li>0次，1次或多次</li>
+</ul>
+<ul>
+<li>1次或多次<br>{n} 正好n次<br>{n,} n次以上<br>{n,m} 最少n次，最多m次<br>eg: 123.1   regex = “\d+(\.\d+)”<br>String类对正则的支持<br>public boolean matches(String regex)   str.matches(regex)<br>public String replaceAll(String regex,String replacement)<br>public String[] split(String regex )<br>eg: String str = “a1bb2cc3dddd4eeeee5fff6eddd7oooo8iiiiii9”;<br>String regex=”\d”;<br>String result[] = str.split(regex);<br>public String[] split(String regex,int limit)</li>
+</ul>
+<p>字符串—&gt; 数字<br>int data = Integer.parseInt(str)<br>double data = Double.parseDouble(str)<br>表示任意一个用[],如[a-zA-z0-9\.]，表示或者关系的用(xx|yy)<br>判断电话号码的regex      String regex = “((\d{3,4}|\(\d{3,4}\))-?)?\d{7,8}”;<br>简单的邮箱地址验证 String regex = “[a-zA-Z][a-zA-Z0-9]*@[a-zA-Z_0-9\.]+\.(com|cn|net)”</p>
+<p>反射<br>Java IO操作<br>所有的IO操作都在java.io包中进行定义，而且整个java.io包实际上就是五个类和一个接口<br>五个类：File InputStrearm OutStream Reader Writer<br>一个接口： Serializable<br>public File(String pathname)  构造方法，给定一个要操作文件的完整路径<br>File file = new File(“D:\demo.txt”);<br>file.exists()  file.createNewFile()  file.delete()<br>public boolean createNewFile() throws ArrayIndexOutOfBoundException<br>public boolean delete()<br>public boolean exists()<br>File file = new File(“D:”+File.separator+”demo.txt”);   File.separator是为了在不同平台运行</p>
+<p>创建有目录的文件<br>public File getParentFile()  找到一个指定路径的父路径<br>public boolean mkdirs()   创建指定目录<br>File file = new File(“D:”+File.separator+”hello”+File.separator+”test”+File.separator+”demo.txt”);<br>if(!file.getParentFile().exists()){<br>file.getParentFile().mkdirs();            //若不存在父文件，则创建之<br>}<br>if(file.exists()){<br>file.delete();        //若文件不存在，创建之<br>}else{<br>file.createNewFile();<br>}</p>
+<p>File的其他用法：<br>public String getName()   //取得文件名称<br>public boolean isDirectory()<br>public boolean isFile()  //file.isFile()<br>public boolean isHidden()<br>public long lastModified()   //文件的最后一次修改日期<br>public long length()  //取得文件大小，以字节为单位返回<br>public boolean renameTo(File dest)   //为文件重命名      file.renameTo(newName)<br>public File[] listFiles()   //将目录中所有文件以File对象数组的方式返回   File result[] = file.listFiles()<br>递归输出目录下的文件<br>public static void print(File file){<br>    if(file.isDirectory()){<br>    File result[] = file.listFiles();<br>        if(result!=null){<br>            for(int x = 0; x &lt; result.length; x++)<br>                print(result[x]);<br>        }<br>    }<br>    System.out.println(file);<br>}</p>
+<p>yuchuan—————–<br>字节操作流  OutputStream  InputStream<br>字符操作流  Writer  Reader</p>
+<p>FileOutputStream类的构造方法：<br>public FileOutputStream(FIle file) throws FileNotFoundException  实例化FileOutputStream，主要用于新建数据<br>public FileOutputStream(File file,boolean append) throws FileNotFoundException   主要用于追加数据<br>OutputStream定义的方法<br>pubic FileOutpubStream(File file)throws FileNotFoundExceptin<br>public void write(byte[] b) throws IOException<br>public void write(byte[] b,int off,int len) throws IOException<br>对于OutputStream而言，它本身定义的是一个抽象类，按照抽象类的使用原则，需要定义抽象类的子类，子类要为抽象类进行对象的实例化<br>而后调用的方法以父类为主，而具体的实现是实例化这个父类的子类完成的，关心的是子类的构造方法。</p>
+<p>InputStream定义方法：<br>public abstract int read() throws IOException   //读取一个字节，到结尾返回 -1<br>public int read(byte[] b)throws IOException   //读取多个字节，返回的是读取的数据个数<br>public int read(byte[] b,int off,int len) throws IOException</p>
+<p>如果希望对输出的内容增加换行显示，可以使用”\r\n”来表示<br>eg：把内容输出到指定文件<br> File file = new File(“D:”+File.separator+”test.txt”);<br>OutputStream output = new FileOutputStream(file);<br>OutputStream output = new FileOutputStream(file,true); true表示追加数据<br>String data = “hello world”;<br>output.write(data.getBytes());<br>output.close();<br>eg:从指定文件读取内容：<br> InputStream input = new FileInputStream(file);<br>byte[] data = new byte[1024];<br>int len = input.read(data);<br>input.close();<br>System.out.println(“data is:”+new String(data,0,len));<br>字节流和字符流的区别<br>字节流在IO操作时，直接针对的是操作的数据端(如文件)，而字符流操作时不是直接针对于终端，而是针对于缓存区的操作，而后由缓存区<br>操作终端，属于间接操作。<br>字节流没有使用缓冲区，而字符流使用了缓冲区<br>处理各种数据都可以通过字节流完成，而在处理中文时使用字符流会更好</p>
+<p>单个字节读取：<br>while((temp=input.read())!=-1){<br>data[foot++]=(byte) temp;<br>}<br>字符输出流 Writer类本身是一个抽象类，那么要使用它依然要依靠其子类，比如FileWriter类<br>public abstract void close() throws IOException<br>public void write(String str) throws IOException<br>public void wirte(char[] buf) throws IOException<br>public abstract void flush() throws IOException<br>eg:<br>Writer out = new FileWriter(file);<br>String data = “\r\nnice to meet you .\n”;<br>out.write(data);        //直接把字符串输出到文件中<br>out.close();</p>
+<p>字符输入流<br>public abstract void close() throws IOException<br>public int read() throws IOException<br>public int read(char[] cbuf) throws IOException<br>Reader in = new FileReader(file);<br>char data[] = new char[1024];<br>int len = in.read(data);<br>System.out.println(“data is:” +new String(data,0,len));<br>in.close();</p>
+<p>转换流<br>将字节输出流变为字符输出流 OutputSteam -&gt; Writer   OutputStreamWriter<br>将字节输入流变为字符输入流 InputStream -&gt;Reader   InputStreamReader<br>eg:<br>OutputStream output = new FileOutputStream(file);<br>Writer out = new OutputStreamWriter(output);<br>out.write(“hello world”);<br>out.close();</p>
+<p>InputStream抽象类下面 有   FileInputStream 和 ByteArrayInputStream<br>OutputStream抽象类下面有   FileOutputStream 和 ByteArrayOutputStream</p>
+<p>缓冲区操作 BufferedReader de 构造方法： public BufferedReader(Reader in)<br>读取操作  public String readLine() throws IOException</p>
+<p>BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));<br>String str = buf.readLine()      //利用BufferedReader进行循环判断<br>if(str.matches(“\d+”)){</p>
+<p>num = Integer.parseInt(str);</p>
+<p>System.out.println(num*num);</p>
+<p>}<br>Scanner 方法<br>pubic Scanner(InputStream source)<br>public boolean hasNext(Pattern pattern)  //判断输入的数据是否符合指定的正则标准<br>public boolean hasNext()  //判断有输入内容<br>public boolean hasNextxxx()  //判断输入的是否为指定的数据类型<br>public String next()          //接受内容<br>public String next(Pattern pattern)  //接受内容，进行正则验证<br>public int nextXxx()   //接受指定的输入类型<br>public Scanner useDelimiter(String pattern)      sn.useDelimiter(“\n”);    //设置读取的分隔符<br>由输入验证生日：<br>eg:<br>if(sn.hasNext(“\d{4}-\d{2}-\d{2}”)){<br>String str = sn.next(“\d{4}-\d{2}-\d{2}”);<br>Date date = new SimpleDateFormat(“yyyy-MM-dd”).parse(str);</p>
+<p>对象序列化<br>对象序列指的是可以将内存中保存的对象数据（主要指的是一个对象里面所包含属性内容）进行二进制数据传输的一种操作，要想<br>实现这样的二进制操作，对象所在的类就必须实现java.io.Serializable 接口（这个接口和Cloneable接口一样，都属于一种标识接口<br>表示一种能力）可以使用transient关键字定义不被序列化的属性。</p>
+<p>ServerSocket类的常用操作方法<br>public ServerSocket(int port) throws IOException<br>public Socket accept() throws IOException<br>public void close() throws IOException<br>Socket的常用操作方法<br>public Socket(String host,int port)<br>public OutputStream getOutputStream()<br>public InputStream getInputStream()</p>
+<p>java习惯用法总结</p>
+<ol>
+<li>实现equals()</li>
+</ol>
+<p>class Person {<br>  String name;<br>  int birthYear;<br>  byte[] raw;<br>  public boolean equals(Object obj) {</p>
+<pre><code><span class="keyword">if</span> (!obj instanceof Person)
+<span class="command">  return</span> <span class="constant">false</span>;
+Person other = (Person)obj;
+<span class="command">return</span> <span class="property">name</span>.<span class="keyword">equals</span>(other.<span class="property">name</span>)
+    &amp;&amp; birthYear == other.birthYear
+    &amp;&amp; Arrays.<span class="keyword">equals</span>(raw, other.raw);
+</code></pre><p>  }<br>  public int hashCode() { … }<br>}<br>参数必须是Object类型，不能是外围类。</p>
+<p>foo.equals(null) 必须返回false，不能抛NullPointerException。（注意，null instanceof 任意类 总是返回false，<br>因此上面的代码可以运行。）</p>
+<p>基本类型域（比如，int）的比较使用 == ，基本类型数组域的比较使用Arrays.equals()。</p>
+<p>覆盖equals()时，记得要相应地覆盖 hashCode()，与 equals() 保持一致。</p>
+<ol>
+<li>实现hashCode()</li>
+</ol>
+<p>class Person {<br>  String a;<br>  Object b;<br>  byte c;<br>  int[] d;</p>
+<p>  public int hashCode() {<br>    return a.hashCode() + b.hashCode() + c + Arrays.hashCode(d);<br>  }</p>
+<p>  public boolean equals(Object o) { … }<br>}<br>当x和y两个对象具有x.equals(y) == true ，你必须要确保x.hashCode() == y.hashCode()。<br>根据逆反命题，如果x.hashCode() != y.hashCode()，那么x.equals(y) == false 必定成立。<br>你不需要保证，当x.equals(y) == false时，x.hashCode() != y.hashCode()。但是，如果你可以尽可能地使它成立的话，这会提高哈希表的性能。</p>
+<p>3.实现compareTo()</p>
+<p>class Person implements Comparable<person> {<br>  String firstName;<br>  String lastName;<br>  int birthdate;</person></p>
+<p>  // Compare by firstName, break ties by lastName, finally break ties by birthdate<br>  public int compareTo(Person other) {<br>    if (firstName.compareTo(other.firstName) != 0)<br>      return firstName.compareTo(other.firstName);<br>    else if (lastName.compareTo(other.lastName) != 0)<br>      return lastName.compareTo(other.lastName);<br>    else if (birthdate &lt; other.birthdate)<br>      return -1;<br>    else if (birthdate &gt; other.birthdate)<br>      return 1;<br>    else<br>      return 0;<br>  }<br>}</p>
+<p>4.实现clone()</p>
+<p>class Values implements Cloneable {<br>  String abc;<br>  double foo;<br>  int[] bars;<br>  Date hired;</p>
+<p>  public Values clone() {<br>    try {<br>      Values result = (Values)super.clone();<br>      result.bars = result.bars.clone();<br>      result.hired = result.hired.clone();<br>      return result;<br>    } catch (CloneNotSupportedException e) {  // Impossible<br>      throw new AssertionError(e);<br>    }<br>  }<br>}<br>使用 super.clone() 让Object类负责创建新的对象。<br>基本类型域都已经被正确地复制了。同样，我们不需要去克隆String和BigInteger等不可变类型。<br>手动对所有的非基本类型域（对象和数组）进行深度复制（deep copy）。<br>实现了Cloneable的类，clone()方法永远不要抛CloneNotSupportedException。因此，<br>需要捕获这个异常并忽略它，或者使用不受检异常（unchecked exception）包装它。</p>
+<p>5.使用StringBuilder或StringBuffer</p>
+<p>// join([“a”, “b”, “c”]) -&gt; “a and b and c”<br>String join(List<string> strs) {<br>  StringBuilder sb = new StringBuilder();<br>  boolean first = true;<br>  for (String s : strs) {<br>    if (first)<br>    first = false;<br>    else<br>    sb.append(“ and “);<br>    sb.append(s);<br>  }<br>  return sb.toString();<br>}<br>不要像这样使用重复的字符串连接：s += item ，因为它的时间效率是O(n^2)。<br>使用StringBuilder或者StringBuffer时，可以使用append()方法添加文本和使用toString()方法去获取连接起来的整个文本。<br>优先使用StringBuilder，因为它更快。StringBuffer的所有方法都是同步的，而你通常不需要同步的方法。</string></p>
+<p>6.<br>Random rand = new Random();<br>System.out.println(rand.nextInt(6)+1);</p>
+<p>7.使用Iterator.remove()</p>
+<p>void filter(List<string> list) {<br>  for (Iterator<string> iter = list.iterator(); iter.hasNext(); ) {<br>    String item = iter.next();<br>    if (…)<br>      iter.remove();<br>  }<br>}</string></string></p>
+<p>8.字符串反转(逆序)<br>public static String reverse(String s){<br>return new StringBuilder(s).reverse().toString();<br>}</p>
+<p>9.启动线程<br>1)继承Thread类<br>class MyThread extends Thread{<br>public void run(){   …   }<br>}<br>new MyThread.start();<br>2) 实现Runnable接口<br>class MyRunnable implements Runnable{<br>public void run(){   …   }<br>}<br>new Thread(new MyRunnable()).start()<br>不要直接调用run()方法。总是调用Thread.start()方法，这个方法会创建一条新的线程并使新建的线程调用run()。</p>
+<p>10.<br>如果try之前的语句运行失败并且抛出异常，那么finally语句块就不会执行<br>如果try语句块里面的语句抛出异常，那么程序的运行就会跳到finally语句块里执行尽可能多的语句，然后跳出这个方法（</p>
+<ol>
+<li>从输入流里读取字节数据</li>
+</ol>
+<p>InputStream in = (…);<br>try {<br>  while (true) {<br>    int b = in.read();<br>    if (b == -1)<br>      break;<br>    (… process b …)<br>  }<br>} finally {<br>  in.close();<br>}<br>read()方法要么返回下一次从流里读取的字节数（0到255，包括0和255），要么在达到流的末端时返回-1。</p>
+<ol>
+<li>从输入流里读取块数据</li>
+</ol>
+<p>InputStream in = (…);<br>try {<br>  byte[] buf = new byte[100];<br>  while (true) {<br>    int n = in.read(buf);<br>    if (n == -1)<br>      break;<br>    (… process buf with offset=0 and length=n …)<br>  }<br>} finally {<br>  in.close();<br>}<br>要记住的是，read()方法不一定会填满整个buf，所以你必须在处理逻辑中考虑返回的长度。</p>
+<p>13.从文件里读取文本</p>
+<p>BufferedReader in = new BufferedReader(<br>    new InputStreamReader(new FileInputStream(…), “UTF-8”));<br>try {<br>  while (true) {<br>    String line = in.readLine();<br>    if (line == null)<br>      break;<br>    (… process line …)<br>  }<br>} finally {<br>  in.close();<br>}<br>BufferedReader对象的创建显得很冗长。这是因为Java把字节和字符当成两个不同的概念来看待（这与C语言不同）。<br>你可以使用任何类型的InputStream来代替FileInputStream，比如socket。<br>当达到流的末端时，BufferedReader.readLine()会返回null。<br>要一次读取一个字符，使用Reader.read()方法。<br>你可以使用其他的字符编码而不使用UTF-8，但最好不要这样做。</p>
+<p>14.向文件里写文本</p>
+<p>PrintWriter out = new PrintWriter(<br>    new OutputStreamWriter(new FileOutputStream(…), “UTF-8”));<br>try {<br>  out.print(“Hello “);<br>  out.print(42);<br>  out.println(“ world!”);<br>} finally {<br>  out.close();<br>}<br>Printwriter对象的创建显得很冗长。这是因为Java把字节和字符当成两个不同的概念来看待（这与C语言不同）。<br>就像System.out，你可以使用print()和println()打印多种类型的值。<br>你可以使用其他的字符编码而不使用UTF-8，但最好不要这样做。</p>
+<p>15.预防性检测（Defensive checking）数值<br>预防性检测对象<br>预防性检测数组索引<br>预防性检测数组区间</p>
+<p>16.填充数组元素<br>byte[] a =new byte[10];<br>Arrays.fill(a,(byte)123);<br>for (byte b : a) {<br>System.out.println(b);<br>}</p>
+<p>17.把4个字节包装（packing）成一个int</p>
+<p>int packBigEndian(byte[] b) {<br>  return (b[0] &amp; 0xFF) &lt;&lt; 24<br>       | (b[1] &amp; 0xFF) &lt;&lt; 16<br>       | (b[2] &amp; 0xFF) &lt;&lt;  8<br>       | (b[3] &amp; 0xFF) &lt;&lt;  0;<br>}</p>
+<p>int packLittleEndian(byte[] b) {<br>  return (b[0] &amp; 0xFF) &lt;&lt;  0<br>       | (b[1] &amp; 0xFF) &lt;&lt;  8<br>       | (b[2] &amp; 0xFF) &lt;&lt; 16<br>       | (b[3] &amp; 0xFF) &lt;&lt; 24;<br>}</p>
+<p>18.把int分解（Unpacking）成4个字节</p>
+<p>byte[] unpackBigEndian(int x) {<br>  return new byte[] {<br>    (byte)(x &gt;&gt;&gt; 24),<br>    (byte)(x &gt;&gt;&gt; 16),<br>    (byte)(x &gt;&gt;&gt;  8),<br>    (byte)(x &gt;&gt;&gt;  0)<br>  };<br>}</p>
+<p>byte[] unpackLittleEndian(int x) {<br>  return new byte[] {<br>    (byte)(x &gt;&gt;&gt;  0),<br>    (byte)(x &gt;&gt;&gt;  8),<br>    (byte)(x &gt;&gt;&gt; 16),<br>    (byte)(x &gt;&gt;&gt; 24)<br>  };<br>}<br>总是使用无符号右移操作符（&gt;&gt;&gt;）对位进行包装（packing），不要使用算术右移操作符（&gt;&gt;）。</p>
+<p>eg<br>public class RightDef{<br>  int num1 = num2+2;<br>  static int num2 = 0;<br>}<br>static 修饰的变量属于类，类变量会随着类初始化得到初始化，因此num2的初始化时机总是处于num1的初始化时机之前</p>
+<p>使用 static 修饰的变量是类变量，没有使用 static 修饰的是实例变量<br>在同一个JVM中，每个类只对应一个Class对象，但每个类可以创建多个Java对象<br>同一个JVM内的类变量只需一块内存空间，但是该类每创建一次实例，就需要为实例变量分配内存空间<br>每个类初始化完成之后，系统都会为该类创建一个对应的Class实例，程序可以通过反射来获取某个类对应的Class实例。<br>eg: 要获取person类的Class实例。通过 Person.class 或者 Class.forName(“Person”);</p>
+<p>通过实例来访问某个类变量的时候，底层依然会转换为通过类访问类变量。</p>
+<p>实例变量的初始化时机：<br>1）定义实例变量时指定初始值<br>2）非静态初始化块中对实例变量指定初始值<br>3）构造器中对实例变量指定初始值<br>1和2先于3执行，1,2的顺序与他们在源程序中的排列顺序相同<br>eg:<br>public Cat(String name,int age){ … }<br>{weight=2.0}<br>double weight = 2.3<br>每次执行之后weight都是 2.3，因为非静态代码块在前面，先执行</p>
+<p>类变量的初始化时机：<br>1）定义类变量时指定初始值<br>2）静态初始化块中对类变量指定初始值<br>这两种方式的执行顺序与他们在源程序中的排列顺序相同</p>
+<p>final 可修饰变量，被final修饰的变量被赋值后不能重新赋值<br>final 可修饰方法，被final修饰的方法不能被重写<br>final 可修饰类  ，被final修饰的类不能派生子类</p>
+<p>java<br>并发性和并行性区别：<br>并行是指在同一时刻，有多条指令在多个处理器上同事执行；并发是指在同一时刻只能有一条指令执行，<br>但多个的进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果</p>
+<p>一个进程你可以拥有多个线程，一个线程必须有一个父进程。线程可以拥有自己的堆栈，自己的程序计数器和局部变量<br>但不拥有系统资源，它与父进程的其他线程共享 该进程所拥有的全部资源。<br>使用继承thread时获得当前线程对象比较简答，直接使用this就可以了；使用时限Runnable接口时要获得当前<br>对象必须使用Thread.currentThread()方法。</p>
+<p>每个线程的优先级都与创建它的父线程具有相同的优先级，在默认情况下，main线程具有普通优先级<br>synchronized关键字可以i修饰方法，可以修饰代码块</p>
+<p>yield让出cpu的使用权，让给同优先级的或者更高优先级的<br>join()线程等待被join的线程结束才继续运行</p>
+<p>重写hashCode()方法和equals()方法<br>public int hashCode(){<br>return accountNo.hashCode();<br>}<br>public boolean equals(Object obj){<br>if(obj!=null&amp;&amp;obj.getClass()==Account.class){<br>Account target = (Account)obj;<br>return target.getAccountNo().equals(accountNo);<br>}<br>return false;<br>}</p>
+<p>public synchronized void draw(){}通过synchronized关键字来声明加锁</p>
+<p>Lock是控制多个线程对共享资源进行访问的工具。<br>class x{<br>private final ReentrantLock lock = new ReentrantLock();<br>public void m(){<br>lock.lock();<br>try{</p>
+<p>}<br>finally}<br>lock.unlock();<br>}<br>}<br>加锁和释放锁要出现在一个块结构中，而且当获取了多个锁时，他们必须以相反的顺序释放<br>ReentrantLock锁具有重入性，也就是可以对已经加锁的ReentrantLock再次加锁。<br>Object类提供的wait(),notify()和notifyAll()三个方法，这三个方法不属于Thread类，而是属于Object<br>但这三个方法必须由同步监视器对象来调用，分为两种情况<br>1）使用synchronized修饰的同步方法，因为该类默认实例就是同步监视器，所以在同步方法中直接调用这三个方法<br>2）使用synchronized修饰的同步代码块，同步监视器是synchronized括号里的对象，必须使用该对象调用这三个方法</p>
+<p>自定义线程捕获异常<br>package com.yu;<br>public class ExHandler {<br>public static void main(String[] args) {<br>Thread.currentThread().setUncaughtExceptionHandler(new MyExHandler());<br>int a = 5/0;<br>}<br>}<br>class MyExHandler implements Thread.UncaughtExceptionHandler{<br>@Overrideto<br>public void uncaughtException(Thread t, Throwable e) {<br>// TODO Auto-generated method stub<br>System.out.println(t+”线程出现问题”+e);<br>}<br>}</p>
+<p>使用线程池可以很好的提高性能，尤其是当程序需要创建大量生存期很短暂的线程时，更应该考虑使用线程池<br>public class ThreadPoolTest {<br>public static void main(String[] args) {<br>ExecutorService pool = Executors.newFixedThreadPool(6);<br>pool.submit(new TestThread());<br>pool.submit(new TestThread());<br>pool.shutdown();<br>}<br>}<br>class TestThread implements Runnable{<br>@Override<br>public void run() {<br>// TODO Auto-generated method stub<br>for(int i = 0;i &lt; 100;i++){<br>System.out.println(Thread.currentThread().getName()+”的i为:”+i);<br>}<br>}<br>}</p>
+<p>计算机网络协议通常由三部分组成，语义部分，用于决定给双方对话的类型；语法部分，用于决定双方对话的格式<br>变换规则，用于决定通信双方的应答关系</p>
+<p>java为网络支持提供了java.net包，该包下的URL和URLConnection等类提供了以编程方式访问Web服务的功能<br>而URLDecoder和URLEncoder则提供了普通字符串和application/x-www-form-urlencoded MIME字符串相互转换的静态方法</p>
+<p>多线程下载；如果要实现断点下载，则还需要额外增加一个配置文件（所有支持断点下载的工具都会在下载<br>开始生成两个文件，一个是与网络资源大小相同的文件夹，一个是配置文件），该配置文件分别记录每个线程<br>已经下载到了那个字节，当网络断开后再次开始下载时，每个线程根据配置文件里记录的位置向后下载即可</p>
+<p>java使用Socket对象来代表两端的通信端口，并通过Socket产生IO流来进行网络通信</p>
+<p>java获取指定元素的节点<br>public static void main(String[] args) throws ParserException {<br>String url = “<a href="http://www.ttmeishi.com/CaiXi/" target="_blank" rel="external">http://www.ttmeishi.com/CaiXi/</a>“;<br>Parser parser = new Parser(url);<br>   parser.setEncoding(“utf-8”);<br>   NodeFilter filter = new TagNameFilter(“a”);<br>   NodeList list = parser.extractAllNodesThatMatch(filter);<br>System.out.println(list.toHtml());<br>= list.elementAt(1);<br>}</p>
+<p>byte  -128 ~ 127<br>short -32768 ~ 32767<br>NullPointerException 空指针异常，引用数据类型，观察其是否被正确实例化<br>匿名对象 new Person(“zhang”,20).tell()<br>数组静态初始化： int[] data = new int[]{20,32,32}<br>数组动态初始化： int[] data = new int[3]<br>数组排序  Arrays.sort(data)<br>System.arrayCopy(dataB,5,dataA,2,3);<br>每一个字符串都是String的匿名对象。<br>在String类进行设计的时候采用了一种共享设计模式的概念，在每一个运行的JVM层存在一个字符串的对象池，如果用户直接赋值，会将字符串<br>放入到池中，以供其他继续使用直接赋值方式的String对象使用。</p>
+<p>String str = new String(“hello”)创建了两个实例化对象，一个是String类的匿名对象hello，一个是使用关键字new实例化的String对象</p>
+<p>String类的常用方法：<br>字符串与字符：<br>public String(char[] value) 将全部的字符数组 ——&gt; 字符串<br>public String(char[] value,int offset,int count)  将部分字符数组变为字符串<br>public charAt(int index)  取得指定索引位置上的字符<br>public char[] toCharArray()  将字符串—–&gt; 字符数组<br>字符串与字节<br>public String(byte[] bytes)<br>public String(byte[] bytes,int offset,int length)<br>public byte[] getBytes()<br>public Bytes[] getBytes(String charSetName)<br>字符串比较： equals(String str)   equalsIgnoreCase(String str)   compareTo(String str)<br>字符串查找<br>public boolean contains(String s)<br>public int indexOf(String s) //查找字符串的位置<br>public int indexOf(String str,int fromIndex)<br>public int lastIndexOf(String str)<br>public int lastIndexOf(String str,int fromIndex)<br>public boolean startsWith(String prefix)  //是否以指定字符串开头<br>public boolean startsWith(String prefix,int offset)<br>public boolean endsWith(String suffix)<br>字符串替换<br>public String replaceAll(String regex,String replacement)<br>public String replaceFirst(String regex,String replacement)<br>字符串截取：<br>public String subString(int beginIndex)<br>public String subString(int beginIndex,int endIndex)<br>字符串拆分：<br>public String[] split(String regex)<br>public String[] split(String regex,int limit)<br>其他方法：<br>public boolean isEmpty()<br>public int length()<br>public String trim()<br>public String toLowerCase()<br>public String toUpperCase()<br>public String concat(String str)</p>
+<p>引用传递：<br>public static void main(String args[]){<br>String str = “hello”;<br>fun(str);<br>System.out.println(str);</p>
+<p>}<br>public static void fun(){<br>temp = “world”;<br>}<br>结果输出  hello，因为temp改变了指向</p>
+<p>static 定义的属性保存在全局数据区， 使用 类名称.static属性 的方式来完成<br>java主要存在四块内存空间<br>1.栈内存空间，保存所有的对象名称<br>2.堆内存空间 保存每个对象的具体属性内容<br>3.全局数据区 保存static类型的属性<br>4.全局代码区  保存所有的方法定义</p>
+<p>private static int count = 0;<br>public Person(){<br>System.out.println(“num is:” + ++count);<br>}<br>public static void main(String[] args) {<br>new Person();<br>new Person();<br>new Person();<br>}</p>
+<p>代码块有 普通代码块，构造块，静态块<br>构造块优先于构造方法执行<br>静态块优先于构造块执行，而且不管有多少个实例化对象产生，静态块只会执行一次，主要作用是为类中的static属性初始化<br>主类中的静态块的执行优先于主方法</p>
+<p>内部类的用法:<br>class Outer{<br>private String msg=”hello”;<br>class Inner{<br>public void print(){<br>System.out.println(msg);<br>}<br>}<br>public void fun(){<br>Inner in = new Inner();<br>in.print();<br>}<br>}<br>public  class TestDemo{<br>public static void main(String[] args) {<br>Outer out = new Outer();<br>out.fun();<br>}<br>}</p>
+<p>子类对象的实例化操作会调用父类的构造方法，super调用父类构造时一定要放在构造方法的首行上。<br>final:<br>1.final修饰的类不能有子类，无法被其他类继承。<br>2.使用final定义的方法不能被子类所重写<br>3.使用final定义的变量，就表示敞亮，常量在定义时必须设置默认值，且不能修改。</p>
+<p>构造方法私有化—&gt; 隐藏构造方法，单例模式<br>eg:<br>class Singleton{<br>private final static Singleton instance = new Singleton();<br>private Singleton(){}<br>public static Singleton getInstance()<br>{return instance;}<br>public void print(){<br>System.out.println(“hello”);<br>}<br>}<br>public class Test{<br>public static void main(String args[]){<br>Singleton inst = Singleton.getInstance();<br>inst.print();<br>}<br>}</p>
+<p>如果在try语句中有一个return语句，那么紧跟在try后面的finally一定会被之星，并且是在return 前执行<br>RuntimeException和Exception区别，并列举出 几个常见的RuntimeException<br>Exception定义了必须处理的异常，而RuntimeException定义的异常可以选择性的进行处理<br>RuntimeException是Exception的子类，常见的RuntimeException有： NumberFormatException ClassCastException NullPointerException<br>ArithmeticException ArrayIndexOutOfBoundException</p>
+<p>断言指的是程序执行到某行后，其结果一定是预期的结果<br>自定义异常：<br>class MyException extends Exception{<br>public MyException(String msg) {<br>// TODO Auto-generated constructor stub<br>super(msg);<br>}<br>}<br>main:  throw new MyException(“it’s a exception”);<br>异常是导致程序中断运行的一种指令流<br>throws用在方法声明处，表示本方法不处理异常<br>throw表示在方法中手工抛出一个异常<br>不同包的同名类，则导入的时候要指定完整名称 eg: cn.mldn.util.Message msg = new cn.mldn.util.Message()</p>
+<p>命名规范：<br>类名称  每一个单词的开头首字母大写，如TestDemo<br>变量名称 第一个单词的首字母小写，之后每个单词的首字母大写 如stuName<br>方法名称  第一个单词的首字母小写，之后每个单词的首字母大写 如 printInfo()<br>常量名称  每个字母大写 如FLAG<br>包名称  所有字母小写  如 cn.mldnjava.util</p>
+<p>可变参数： 可以比较直观的传递任意多个参数<br>public static int add(int… data) {<br>int sum = 0;<br>for (int x = 0; x &lt; data.length; x++) {<br>sum += data[x];<br>}<br>return sum;<br>}</p>
+<p>foreach 语句<br>for(int x:data){<br>sum+=x;<br>}</p>
+<p>泛型：类中操作的属性或方法的参数类型不在定义时声明，而是在使用时动态设置<br>枚举来写多例设计模式<br>enum Color{<br>RED,GREEN,BLUE;<br>}<br>Color c = Color.RED;</p>
+<p>jdk1.7之后，switch可以操作Strint数据<br>可以使用通配符？接受全部的泛型类型对象<br>通过&lt;？extend 类&gt;可以设置泛型的上限，&lt;？super 类&gt;可以设置泛型的下限<br>在java中使用enum关键字定义一个枚举类，每个枚举类都是集成Enum类<br>enum Color{<br>RED,GREEN,BLUE;<br>}<br>for(Color c:Color.values())  //取得全部的枚举值<br>System.out.println(c.ordinal()+” “ + c.name())</p>
+<p>线程的命名和取得<br>public Thread(Runnable target ,String name)  //实例化线程对象，接受Runnable接口子类对象，同时设置线程名称<br>public final void setName(String name) //设置线程名称<br>public final String getName()  //取得线程名称<br>线程的休眠  在run方法中，Thread.sleep(100)   System.out.println(Thread.currentThread().getName())<br>线程优先级设置<br>public static final int MAX_PRIORITY<br>public static final int NORM_PRIORITY<br>public static final int MIN_PRIOTITY<br>public final void setPriority(int newPriority) // Runnable mt = new Runnable() ; Thread t = new Thread(mt,”线程A”)<br>public final int getPriority() //  t.setPriority(Thread.MAX_PRIORITY)  System.out.println(Thread.currentThread().getPriority())</p>
+<p>同步：使用同步代码块，或者使用同步方法<br>同步代码块只需要在执行的大括号前加上 synchronized(this)<br>同步方法 public synchronized void sale()<br>static native synchronized 都不能和abstract同时声明方法</p>
+<p>解决重复的问题需要等待及唤醒机制，这一机制的实现只能依靠Object类完成，Object定义了3个方法来完成线程操作<br>public final void wait() throws InterruptedException<br>public final void notify()<br>public final void nofityAll()</p>
+<p>sleep()和wait()区别<br>sleep是Thread类定义的static方法，表示线程休眠，将执行机会让给其他线程，但监控状态依然保持，到时候会自动恢复<br>wati是Object类定义的方法，表示线程等待，一直到执行了notify或notifyAll方法后才结束</p>
+<p>一般 通过设置一个标志位的方式停止一个线程的运行<br>String不适合被频繁修改的字符串，这种情况下可以使用StringBuffer，方便用户进行内容的修改<br>一个类是否可以继承String类？ 不能，String类使用了final定义，不能被其他类继承</p>
+<p>操作一：将String变为StringBuffer<br>方法一 利用StringBuffer的构造方法   public StringBuffer(String str)  —&gt; StringBuffer bf = new StringBuffer(str);<br>方法二   StringBuffer的append()方法   buf.append(str)</p>
+<p>操作二 将StringBuffer变为String  StringBuffer的toString()方法  String str = buf.toString() 方法<br>StringBuffer常用方法：<br>bf.reverse()  bf.replace(int start,int end,String str)  br.insert(int offset,数据)</p>
+<p>System类提供了两个常用方法：<br>public static void arrayCopy(Object src,int srcPos,Object dest,int destPos,int length)<br>public static long currentTimeMillis()<br>eg:long start = System.currentTimeMillis();    long end = System.currentTimeMillis(); —&gt;(end - start)<br>日期操作类<br>public Date()<br>public Date(long date) //将数字变为Date类对象，long为日期时间数据<br>eg: Date date = new Date(System.currentTimeMillis());<br>public long getTime()  //将当期那日期时间变为long型<br>eg: Date date = new Date();<br>long num = date.getTime();</p>
+<p>日期格式化操作类 SimpleDateformat<br>public SimpleDateFormat(String pattern)  //传入日期时间标记实例化对象<br>public final String format(Date date)   //将日期格式化为字符串数据<br>public Date parse(String source) throws ParserException  //将字符串格式化为日期数据<br>eg:<br>Date date = new Date();<br>SimpleDateFormat sdf = new SimpleDateFormat(“yyyy-MM-dd HH:mm:ss”);<br>String str = sdf.format(date);   —–&gt;   2015-04-28 11:13:54   //日期格式化为字符串</p>
+<p>eg:<br>String str = “1991-08-20 12:12:12.122”;<br>SimpleDateFormat sdf = new SimpleDateFormat(“yy-MM-dd HH:mm:ss.SSS”);<br>Date date = sdf.parse(str);   //将字符串格式化为日期数据</p>
+<p>Random类<br>Random rand = new Random();  rand.nextInt(101);<br>大数字操作类：<br>java.math.BigInteger和java.math.BigDecimal 这两个类属于Number的子类<br>数组操作类： Arrays类<br>public static boolean equals(int[] a,int[] b)  //Arrays.equals(dataA,dataB)<br>public static void fill(int[] a,int val)   //Arrays.fill(dataA,3)<br>public static void sort(int[] a)   //Arrays.sort(dataA)<br>public static int binarySearch(int[] a,int key)    //Arrays.binarySearch(dataA,key)<br>public static String toString(int[] a)  //Arrays.toString(dataA)<br>普通的对象数组是不能够进行比较的，如果要比较需要比较器（Comparable接口就是一种比较器）的支持</p>
+<p>比较器：<br>欲进行比较，需要实现Comparable接口<br>public class Person implements Comparable<person><br>重写compareTo方法<br>public int compareTo(Person o){<br>if(this.age &gt; o.age){<br>return 1;<br>}else if(this.age &lt; o.age){<br>return -1;<br>}else{<br>return 0;<br>}<br>}</person></p>
+<p>对象克隆<br>实现Cloneable接口，但这个接口属于标识接口，只表示一种能力。<br>class Person implements Cloneable{  }<br>@Override<br>public String toString(){return “  “;}<br>@Override<br>protected Object clone() throws CloneNotSupportedException<br> {return super.clone();}</p>
+<p>正则表达式<br>所有正则匹配的符号都在  java.util.regex.Pattern  类中进行定义<br>//  \ 匹配转移字符 “\”<br>\t匹配转移字符”\t”<br>^开始<br>$结束<br>.标识任意的一位字符<br>\d  表示任意的一位数字  \D非数字<br>\w 任意的一位字母,数字，下划线      \W非字母，数字，下划线<br>？0或1次</p>
+<ul>
+<li>0次，1次或多次</li>
+</ul>
+<ul>
+<li>1次或多次<br>{n} 正好n次<br>{n,} n次以上<br>{n,m} 最少n次，最多m次<br>eg: 123.1   regex = “\d+(\.\d+)”<br>String类对正则的支持<br>public boolean matches(String regex)   str.matches(regex)<br>public String replaceAll(String regex,String replacement)<br>public String[] split(String regex )<br>eg: String str = “a1bb2cc3dddd4eeeee5fff6eddd7oooo8iiiiii9”;<br>String regex=”\d”;<br>String result[] = str.split(regex);<br>public String[] split(String regex,int limit)</li>
+</ul>
+<p>字符串—&gt; 数字<br>int data = Integer.parseInt(str)<br>double data = Double.parseDouble(str)<br>表示任意一个用[],如[a-zA-z0-9\.]，表示或者关系的用(xx|yy)<br>判断电话号码的regex      String regex = “((\d{3,4}|\(\d{3,4}\))-?)?\d{7,8}”;<br>简单的邮箱地址验证 String regex = “[a-zA-Z][a-zA-Z0-9]*@[a-zA-Z_0-9\.]+\.(com|cn|net)”</p>
+<p>反射<br>Java IO操作<br>所有的IO操作都在java.io包中进行定义，而且整个java.io包实际上就是五个类和一个接口<br>五个类：File InputStrearm OutStream Reader Writer<br>一个接口： Serializable<br>public File(String pathname)  构造方法，给定一个要操作文件的完整路径<br>File file = new File(“D:\demo.txt”);<br>file.exists()  file.createNewFile()  file.delete()<br>public boolean createNewFile() throws ArrayIndexOutOfBoundException<br>public boolean delete()<br>public boolean exists()<br>File file = new File(“D:”+File.separator+”demo.txt”);   File.separator是为了在不同平台运行</p>
+<p>创建有目录的文件<br>public File getParentFile()  找到一个指定路径的父路径<br>public boolean mkdirs()   创建指定目录<br>File file = new File(“D:”+File.separator+”hello”+File.separator+”test”+File.separator+”demo.txt”);<br>if(!file.getParentFile().exists()){<br>file.getParentFile().mkdirs();            //若不存在父文件，则创建之<br>}<br>if(file.exists()){<br>file.delete();        //若文件不存在，创建之<br>}else{<br>file.createNewFile();<br>}</p>
+<p>File的其他用法：<br>public String getName()   //取得文件名称<br>public boolean isDirectory()<br>public boolean isFile()  //file.isFile()<br>public boolean isHidden()<br>public long lastModified()   //文件的最后一次修改日期<br>public long length()  //取得文件大小，以字节为单位返回<br>public boolean renameTo(File dest)   //为文件重命名      file.renameTo(newName)<br>public File[] listFiles()   //将目录中所有文件以File对象数组的方式返回   File result[] = file.listFiles()<br>递归输出目录下的文件<br>public static void print(File file){<br>if(file.isDirectory()){<br>File result[] = file.listFiles();<br>if(result!=null){<br>for(int x = 0; x &lt; result.length; x++)<br>print(result[x]);<br>}<br>}<br>System.out.println(file);<br>}</p>
+<p>字节操作流  OutputStream  InputStream<br>字符操作流  Writer  Reader</p>
+<p>FileOutputStream类的构造方法：<br>public FileOutputStream(FIle file) throws FileNotFoundException  实例化FileOutputStream，主要用于新建数据<br>public FileOutputStream(File file,boolean append) throws FileNotFoundException   主要用于追加数据<br>OutputStream定义的方法<br>pubic FileOutpubStream(File file)throws FileNotFoundExceptin<br>public void write(byte[] b) throws IOException<br>public void write(byte[] b,int off,int len) throws IOException<br>对于OutputStream而言，它本身定义的是一个抽象类，按照抽象类的使用原则，需要定义抽象类的子类，子类要为抽象类进行对象的实例化<br>而后调用的方法以父类为主，而具体的实现是实例化这个父类的子类完成的，关心的是子类的构造方法。</p>
+<p>InputStream定义方法：<br>public abstract int read() throws IOException   //读取一个字节，到结尾返回 -1<br>public int read(byte[] b)throws IOException   //读取多个字节，返回的是读取的数据个数<br>public int read(byte[] b,int off,int len) throws IOException</p>
+<p>如果希望对输出的内容增加换行显示，可以使用”\r\n”来表示<br>eg：把内容输出到指定文件<br> File file = new File(“D:”+File.separator+”test.txt”);<br>OutputStream output = new FileOutputStream(file);</p>
+<h2 id="##_OutputStream_output_=_new_FileOutputStream(file,true);_true表示追加数据">## OutputStream output = new FileOutputStream(file,true); true表示追加数据</h2><p>String data = “hello world”;<br>output.write(data.getBytes());<br>output.close();<br>eg:从指定文件读取内容：<br> InputStream input = new FileInputStream(file);<br>byte[] data = new byte[1024];<br>int len = input.read(data);<br>input.close();<br>System.out.println(“data is:”+new String(data,0,len));</p>
+<p>字节流和字符流的区别<br>字节流在IO操作时，直接针对的是操作的数据端(如文件)，而字符流操作时不是直接针对于终端，而是针对于缓存区的操作，而后由缓存区<br>操作终端，属于间接操作。<br>字节流没有使用缓冲区，而字符流使用了缓冲区<br>处理各种数据都可以通过字节流完成，而在处理中文时使用字符流会更好</p>
+<p>单个字节读取：<br>while((temp=input.read())!=-1){<br>data[foot++]=(byte) temp;<br>}<br>字符输出流 Writer类本身是一个抽象类，那么要使用它依然要依靠其子类，比如FileWriter类<br>public abstract void close() throws IOException<br>public void write(String str) throws IOException<br>public void wirte(char[] buf) throws IOException<br>public abstract void flush() throws IOException<br>eg:<br>Writer out = new FileWriter(file);<br>String data = “\r\nnice to meet you .\n”;<br>out.write(data);        //直接把字符串输出到文件中<br>out.close();</p>
+<p>字符输入流<br>public abstract void close() throws IOException<br>public int read() throws IOException<br>public int read(char[] cbuf) throws IOException<br>Reader in = new FileReader(file);<br>char data[] = new char[1024];<br>int len = in.read(data);<br>System.out.println(“data is:” +new String(data,0,len));<br>in.close();</p>
+<p>转换流<br>将字节输出流变为字符输出流 OutputSteam -&gt; Writer   OutputStreamWriter<br>将字节输入流变为字符输入流 InputStream -&gt;Reader   InputStreamReader<br>eg:<br>OutputStream output = new FileOutputStream(file);<br>Writer out = new OutputStreamWriter(output);<br>out.write(“hello world”);<br>out.close();</p>
+<p>InputStream抽象类下面 有   FileInputStream 和 ByteArrayInputStream<br>OutputStream抽象类下面有   FileOutputStream 和 ByteArrayOutputStream</p>
+<p>缓冲区操作 BufferedReader de 构造方法： public BufferedReader(Reader in)<br>读取操作  public String readLine() throws IOException</p>
+<p>BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));<br>String str = buf.readLine()      //利用BufferedReader进行循环判断<br>if(str.matches(“\d+”)){</p>
+<p>num = Integer.parseInt(str);</p>
+<p>System.out.println(num*num);</p>
+<p>}<br>Scanner 方法<br>pubic Scanner(InputStream source)<br>public boolean hasNext(Pattern pattern)  //判断输入的数据是否符合指定的正则标准<br>public boolean hasNext()  //判断有输入内容<br>public boolean hasNextxxx()  //判断输入的是否为指定的数据类型<br>public String next()          //接受内容<br>public String next(Pattern pattern)  //接受内容，进行正则验证<br>public int nextXxx()   //接受指定的输入类型<br>public Scanner useDelimiter(String pattern)      sn.useDelimiter(“\n”);    //设置读取的分隔符<br>由输入验证生日：<br>eg:<br>if(sn.hasNext(“\d{4}-\d{2}-\d{2}”)){<br>String str = sn.next(“\d{4}-\d{2}-\d{2}”);<br>Date date = new SimpleDateFormat(“yyyy-MM-dd”).parse(str);</p>
+<p>对象序列化<br>对象序列指的是可以将内存中保存的对象数据（主要指的是一个对象里面所包含属性内容）进行二进制数据传输的一种操作，要想<br>实现这样的二进制操作，对象所在的类就必须实现java.io.Serializable 接口（这个接口和Cloneable接口一样，都属于一种标识接口<br>表示一种能力）可以使用transient关键字定义不被序列化的属性。</p>
+<p>ServerSocket类的常用操作方法<br>public ServerSocket(int port) throws IOException<br>public Socket accept() throws IOException<br>public void close() throws IOException<br>Socket的常用操作方法<br>public Socket(String host,int port)<br>public OutputStream getOutputStream()<br>public InputStream getInputStream()</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/12/疯狂java讲义笔记一/" data-title="疯狂java讲义笔记一 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/12/大型网站技术架构核心原理与案例分析/"  title="大型网站技术架构核心原理与案例分析">
+ <strong>下一篇：</strong><br/> 
+ <span>大型网站技术架构核心原理与案例分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/12/疯狂java讲义笔记一/" data-title="疯狂java讲义笔记一" data-url="http://yoursite.com/2016/05/12/疯狂java讲义笔记一/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="###_OutputStream_output_=_new_FileOutputStream(file,true);_true表示追加数据"><span class="toc-number">1.</span> <span class="toc-text">## OutputStream output = new FileOutputStream(file,true); true表示追加数据</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

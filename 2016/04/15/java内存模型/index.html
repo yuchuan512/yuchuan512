@@ -23,8 +23,9 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 
 主内存包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法参数，后者是线程私有的，不会被共享。
 Java内存模型中规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存。线程的工作内存中保存了该线程使用到的变量到主内存副本拷贝，线程对变量的所有操作（读取、赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间无法直接访问对方工作内存中的变量，线程间">
+<meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-4/73912420.jpg">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-15/55500961.jpg">
-<meta property="og:updated_time" content="2016-04-15T14:05:39.024Z">
+<meta property="og:updated_time" content="2016-05-04T10:20:38.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java内存模型">
 <meta name="twitter:description" content="模型
@@ -110,7 +111,7 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		
 		</div>
 		
-		<h3 id="模型">模型</h3><p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-15/55500961.jpg" alt="java内存模型"></p>
+		<h3 id="模型">模型</h3><p><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-4/73912420.jpg" alt="java核心要点"><br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-4-15/55500961.jpg" alt="java内存模型"></p>
 <ol>
 <li>主内存包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法参数，后者是线程私有的，不会被共享。</li>
 <li><p>Java内存模型中规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存。线程的工作内存中保存了该线程使用到的变量到主内存副本拷贝，线程对变量的所有操作（读取、赋值）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同线程之间无法直接访问对方工作内存中的变量，线程间变量值的传递均需要在主内存来完成</p>
@@ -257,7 +258,7 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>22</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
 		  
 		
 		  
@@ -273,6 +274,10 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
 		  
 		
@@ -281,7 +286,7 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
 		  
 		
 		  
@@ -289,7 +294,19 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
 		  
 		
 		  
@@ -317,6 +334,10 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
 		  
 		
@@ -333,11 +354,11 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
 		  
 		
 		  
@@ -357,11 +378,11 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		</ul>

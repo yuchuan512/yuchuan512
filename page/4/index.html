@@ -78,15 +78,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/11/多线程笔记/" title="多线程笔记" itemprop="url">
+    <a href="/2016/04/15/架构思想小记/" title="架构思想小记" itemprop="url">
   
-    <h1 itemprop="name">多线程笔记</h1>
+    <h1 itemprop="name">架构思想小记</h1>
     
      
-           <p itemprop="description" >ThreadLocal12345678910111213141516171819202122232425262728293031323334353637383940414243public class ThreadLocalTest &amp;#123;	private static T</p>
+           <p itemprop="description" >优先使用对象组合，而不是类继承类继承也有一些不足之处。首先，因为继承在编译时刻就定义了，所以无法在运行时刻改变从父类继承的实现。更糟的是，父类通常至少定义了部分子类的具体表示。因为继承对子类揭示了其父类的实现细节，所以继承常被认为“破坏了封装性” 。子类中的实现与它的父类有如此紧</p>
         
     
-    <time datetime="2016-03-11T14:20:00.000Z" itemprop="datePublished">2016-03-11</time>
+    <time datetime="2016-04-15T14:31:38.000Z" itemprop="datePublished">2016-04-15</time>
   </a>
 </section>
 
@@ -98,15 +98,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/11/java面试/" title="java面试" itemprop="url">
+    <a href="/2016/04/15/java开发常用程序库/" title="java开发常用程序库" itemprop="url">
   
-    <h1 itemprop="name">java面试</h1>
+    <h1 itemprop="name">java开发常用程序库</h1>
     
      
-           <p itemprop="description" >并行计算与分布式计算1.并行计算借助并行算法和并行编程语言能够实现进程及并行和线程级并行；而分布式计算只是将任务分成小块到各个计算机分别计算各自执行2.粒度方面，并行计算中，处理器间的交互一般很频繁，往往具有细粒度和的开销的特征并且被认为是可靠的；分布式计算中，处理器间的交互不频</p>
+           <p itemprop="description" >摘自：http://www.blogbus.com/dreamhead-logs/226738702.html
+在很多人眼中，Java已经是一门垂垂老矣的语言，但并不妨碍Java世界依然在前进。如果你曾离开Java，云游于其它世界，或是每日只在遗留代码中挣扎，或许是时候抬起头，看</p>
         
     
-    <time datetime="2016-03-11T06:50:54.000Z" itemprop="datePublished">2016-03-11</time>
+    <time datetime="2016-04-15T14:22:10.000Z" itemprop="datePublished">2016-04-15</time>
   </a>
 </section>
 
@@ -118,17 +119,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/11/排序总结/" title="堆排序" itemprop="url">
+    <a href="/2016/04/15/java里面的设计模式/" title="java里面的设计模式" itemprop="url">
   
-    <h1 itemprop="name">堆排序</h1>
+    <h1 itemprop="name">java里面的设计模式</h1>
     
      
-           <p itemprop="description" >堆排序
-
-堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分</p>
+           <p itemprop="description" >###Structural（结构模式）
+Adapter:把一个接口或是类变成另外一种。java.util.Arrays#asList()javax.swing.JTable(TableModel)java.io.InputStreamReader(InputStream)java</p>
         
     
-    <time datetime="2016-03-11T06:48:07.000Z" itemprop="datePublished">2016-03-11</time>
+    <time datetime="2016-04-15T14:08:33.000Z" itemprop="datePublished">2016-04-15</time>
   </a>
 </section>
 
@@ -140,15 +140,18 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/08/java线程池/" title="java线程池" itemprop="url">
+    <a href="/2016/04/15/java内存模型/" title="java内存模型" itemprop="url">
   
-    <h1 itemprop="name">java线程池</h1>
+    <h1 itemprop="name">java内存模型</h1>
     
      
-           <p itemprop="description" >1、线程池简介：多线程技术主要解决处理器单元内多个线程执行的问题，它可以显著减少处理器单元的闲置时间，增加处理器单元的吞吐能力。假设一个服务器完成一项任务所需时间为：T1 创建线程时间，T2 在线程中执行任务的时间，T3 销毁线程时间。如果：T1 + T3 远大于 T2，则可以采</p>
+           <p itemprop="description" >模型
+
+主内存包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法参数，后者是线程私有的，不会被共享。
+Java内存模型中规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存。线程的工作内存中保存了该线程使用到的变量到主内存副本拷贝，线程对变量的所有操作</p>
         
     
-    <time datetime="2016-03-08T13:35:23.000Z" itemprop="datePublished">2016-03-08</time>
+    <time datetime="2016-04-15T13:00:51.000Z" itemprop="datePublished">2016-04-15</time>
   </a>
 </section>
 
@@ -160,15 +163,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/07/字符串算法/" title="字符串算法" itemprop="url">
+    <a href="/2016/04/12/JDK并发工具类/" title="JDK并发工具类" itemprop="url">
   
-    <h1 itemprop="name">字符串算法</h1>
+    <h1 itemprop="name">JDK并发工具类</h1>
     
      
-           <p itemprop="description" >字符串算法字符串变形词1234567891011121314151617181920212223242526272829/** * 判断两个字符串是否互为变形词 * 如果str1和str2中出现的字符种类一样且每种字符出现的次数也一样,则互为变形词 * @author flyyc</p>
+           <p itemprop="description" >Fork/Join 框架测试1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import java.util.concurrent.ExecutionExce</p>
         
     
-    <time datetime="2016-03-07T12:11:16.000Z" itemprop="datePublished">2016-03-07</time>
+    <time datetime="2016-04-12T13:44:27.000Z" itemprop="datePublished">2016-04-12</time>
   </a>
 </section>
 
@@ -180,19 +183,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/07/矩阵的加速乘法-斐波那契、台阶、农场母牛问题/" title="矩阵的加速乘法(斐波那契、台阶、农场母牛问题)" itemprop="url">
+    <a href="/2016/04/11/算法-数组/" title="算法-数组" itemprop="url">
   
-    <h1 itemprop="name">矩阵的加速乘法(斐波那契、台阶、农场母牛问题)</h1>
+    <h1 itemprop="name">算法-数组</h1>
     
      
-           <p itemprop="description" >矩阵相乘的加速算法实现复杂度为O(logN)的算法
-
-给定整数N，返回斐波那契数列的第N项
-一次可以跨2个或1个台阶，返回有多少种走法
-农场成熟的母牛每年只会生一头小母牛，假设不死。第一年农场有一只成熟的母牛，从第二年开始，母牛生小母牛，每只小母牛3年之后成熟生小母牛，求N年之后</p>
+           <p itemprop="description" >奇数全部放在偶数前面12345678910111213141516171819202122232425262728/** * 把数组中的奇数全部放到偶数之前 * 注意：面试官期待我们提供的不仅仅是解决一个问题的办法，而是解决一系列问题的通用办法 */public class Or</p>
         
     
-    <time datetime="2016-03-07T12:10:59.000Z" itemprop="datePublished">2016-03-07</time>
+    <time datetime="2016-04-11T13:42:26.000Z" itemprop="datePublished">2016-04-11</time>
   </a>
 </section>
 
@@ -204,15 +203,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/05/死锁简单例子/" title="死锁简单例子" itemprop="url">
+    <a href="/2016/04/10/算法-树/" title="算法-树" itemprop="url">
   
-    <h1 itemprop="name">死锁简单例子</h1>
+    <h1 itemprop="name">算法-树</h1>
     
      
-           <p itemprop="description" >12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455/** * 写出一个死锁例子 * @author flyyc */public</p>
+           <p itemprop="description" >创建二叉排序树1234567891011121314151617181920private static void createBinaryTree(TreeNode head ,int value) &amp;#123;		if(head==null)			return;		TreeN</p>
         
     
-    <time datetime="2016-03-05T14:26:45.000Z" itemprop="datePublished">2016-03-05</time>
+    <time datetime="2016-04-10T13:58:32.000Z" itemprop="datePublished">2016-04-10</time>
   </a>
 </section>
 
@@ -224,17 +223,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/05/Map接口及子类总结/" title="Map接口及子类总结" itemprop="url">
+    <a href="/2016/04/10/算法-链表/" title="算法-链表" itemprop="url">
   
-    <h1 itemprop="name">Map接口及子类总结</h1>
+    <h1 itemprop="name">算法-链表</h1>
     
      
-           <p itemprop="description" >转自 Hsuxu的专栏
-子接口Bindings、ConcurrentMap、ConcurrentNavigableMap、MessageContext、LogicMessageContext、NavigableMap、SOAPMessageMap、SortedMap
-实现类Abs</p>
+           <p itemprop="description" >单链表整体逆置/相邻元素逆置123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676</p>
         
     
-    <time datetime="2016-03-05T14:23:02.000Z" itemprop="datePublished">2016-03-05</time>
+    <time datetime="2016-04-10T13:58:22.000Z" itemprop="datePublished">2016-04-10</time>
   </a>
 </section>
 
@@ -246,21 +243,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/05/一张图看懂Java多线程/" title="一张图看懂Java多线程" itemprop="url">
+    <a href="/2016/04/10/算法-动态规划/" title="算法-动态规划" itemprop="url">
   
-    <h1 itemprop="name">一张图看懂Java多线程</h1>
+    <h1 itemprop="name">算法-动态规划</h1>
     
      
-           <p itemprop="description" >一张图看懂Java多线程
-转自 Hsuxu的专栏
-
-
-Thread t = new Thread()，初始化一个线程，实际上就是一个普通对象，此时他的状态为New
-
-t.start(); 线程处于就绪状态（可运行状态），也就是随时等待着运行， 不要小看这个start，这个star</p>
+           <p itemprop="description" >最长公共子序列12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758/** * 给定两个字符串str1和str2,返回这</p>
         
     
-    <time datetime="2016-03-05T14:22:28.000Z" itemprop="datePublished">2016-03-05</time>
+    <time datetime="2016-04-10T13:57:56.000Z" itemprop="datePublished">2016-04-10</time>
   </a>
 </section>
 
@@ -272,19 +263,15 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/05/Cmd-Markdown参考/" title="Cmd Markdown参考" itemprop="url">
+    <a href="/2016/04/10/算法-字符串/" title="算法-字符串相关" itemprop="url">
   
-    <h1 itemprop="name">Cmd Markdown参考</h1>
+    <h1 itemprop="name">算法-字符串相关</h1>
     
      
-           <p itemprop="description" >欢迎使用 Cmd Markdown 编辑阅读器
-我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：
-
-
-整理知</p>
+           <p itemprop="description" >句子逆序输出123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** 句子逆序 * 将一个英文语句以单词为单位逆序排放。例如“I am a boy”，逆序排</p>
         
     
-    <time datetime="2016-03-05T13:44:37.000Z" itemprop="datePublished">2016-03-05</time>
+    <time datetime="2016-04-10T13:57:35.000Z" itemprop="datePublished">2016-04-10</time>
   </a>
 </section>
 
@@ -295,7 +282,7 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
   </nav>
 
 </div>
@@ -315,6 +302,14 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		
 		  
 			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
 		  
 		
 		  
@@ -342,11 +337,15 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>25</sup></a></li>
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
 		  
 		
 		  
@@ -374,7 +373,27 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
 		  
 		
 		  
@@ -399,6 +418,10 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		
 		  
 			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
 		  
 		
 		  
@@ -430,6 +453,10 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
 		  
 		
@@ -438,11 +465,11 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
-			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
 		  
 		
 		  
@@ -450,7 +477,7 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
-			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
 		  
 		
 		  
@@ -458,15 +485,19 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		  
 		
 		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
 		  
 		
 		</ul>
@@ -503,7 +534,7 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -520,6 +551,10 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		
 			
 				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -552,10 +587,6 @@ t.start(); 线程处于就绪状态（可运行状态），也就是随时等待
 		
 			
 				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -1,0 +1,854 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>IntelliJ IDEA工具使用笔记 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="IntelliJ IDEA 工具使用参考极客学院ctrl+N 输入类名，从下拉列表选择pyCharm Tips -&amp;gt;Open directory -&amp;gt; Open in current window -&amp;gt; Add to currently opended projectsCtrl+shitf+T 快速打开类
+Ctrl+空格  快速补全ctrl+空格 两次，补全类名无论该类是否被引入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IntelliJ IDEA工具使用笔记">
+<meta property="og:url" content="http://yoursite.com/2016/06/09/IntelliJ-IDEA工具使用笔记/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="IntelliJ IDEA 工具使用参考极客学院ctrl+N 输入类名，从下拉列表选择pyCharm Tips -&amp;gt;Open directory -&amp;gt; Open in current window -&amp;gt; Add to currently opended projectsCtrl+shitf+T 快速打开类
+Ctrl+空格  快速补全ctrl+空格 两次，补全类名无论该类是否被引入">
+<meta property="og:updated_time" content="2016-06-09T14:29:07.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IntelliJ IDEA工具使用笔记">
+<meta name="twitter:description" content="IntelliJ IDEA 工具使用参考极客学院ctrl+N 输入类名，从下拉列表选择pyCharm Tips -&amp;gt;Open directory -&amp;gt; Open in current window -&amp;gt; Add to currently opended projectsCtrl+shitf+T 快速打开类
+Ctrl+空格  快速补全ctrl+空格 两次，补全类名无论该类是否被引入">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/09/IntelliJ-IDEA工具使用笔记/" title="IntelliJ IDEA工具使用笔记" itemprop="url">IntelliJ IDEA工具使用笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-09T14:26:49.000Z" itemprop="datePublished"> 发表于 2016-06-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eclipse_VS_IntelliJ_IDEA"><span class="toc-number">1.</span> <span class="toc-text">Eclipse VS  IntelliJ IDEA</span></a></li></ol>
+		
+		</div>
+		
+		<p>IntelliJ IDEA 工具使用<br><a href="http://wiki.jikexueyuan.com/project/intellij-idea-tutorial/settings-introduce-1.html" target="_blank" rel="external">参考极客学院</a><br>ctrl+N 输入类名，从下拉列表选择<br>pyCharm Tips -&gt;<br>Open directory -&gt; Open in current window -&gt; Add to currently opended projects<br>Ctrl+shitf+T 快速打开类</p>
+<p>Ctrl+空格  快速补全<br>ctrl+空格 两次，补全类名无论该类是否被引入<br>Ctrl+G find usages in the popup menu<br>ctrl+shift+空格  View | Quick Document   查看方法文档 （查看外部文档 用 Shift+F2）<br>F3    jump to declarations<br>ctrl+F3   浏览该类大致结构   Navigate  | File Structure<br>alt+shift+R     快速重命名    Refactor | Rename<br>补全的时候使用Tab<br>shift+click 或者 鼠标中键<br>alt+F1<br>ctrl+D  重复所选块<br>ctrl+p   此时，如果光标在括号中间，可以显示所需参数<br>ctrl+q   最后一次修改的地方<br>ctrl+shift+上    移动<br>alt+enter  自动导入包<br>alt+F7  查找该方法，类 在其他地方的使用情况<br>ctrl+O  覆盖基类方法<br>ctrl+Q 快速文档<br>ctrl+B  跳转定义<br>ctrl+F12  类结构<br>重命名变量  选中 shift+F6<br>ctrl+I 实现接口方法<br>alt+insert  生成getter、setter方法<br>ctrl+alt+T  surround with<br>ctrl+shift+空格   补全new<br>ctrl+shift+backspace  适用于跟代码很深，需要返回原来的编辑位置<br>Alt+Q  查看当前所属于哪个类<br>Ctrl+E  最近打开的文件<br>Ctrl+J  呼出 Live Template abbreviation   eg： it ctrl+J<br>方法之间有虚线分割： open the editor settings and select the Show method separators check box in the Appearance page.<br>Alt+Up/Down  当前类的方法之间循环切换<br>while debugging the program, select its text in the editor (you may press a Ctrl+W a few times to efficiently perform this operation) and press Alt+F8.</p>
+<p>To quickly evaluate the value of any expression while debugging the program, hold Alt and click this expression to see its value and calculate it, call a method, etc.</p>
+<p>Alt+Shift+C  快速浏览该项目最近操作<br>Ctrl+空格    完成html,css等的文件名称|属性补全<br>直接写出文件名称，会提示是否创建该文件<br>Ctrl+Shift+I 快速浏览某类或方法<br>Alt+Shift+F10 you can access the Run/Debug dropdown<br>You can quickly open a Maven project by selecting a pom.xml file in the File | Open dialog. The corresponding Maven project is imported with default settings, without launching the wizard.</p>
+<p>eg:<br>private FileOutputStream 此时按下 ctrl+shift+空格  会补全一个本地变量 fileOutputStream</p>
+<p>.IntelliJ IDEA 这个目录保存IntelliJ的配置，如果配置乱了可以删掉这个目录重新设置</p>
+<ol>
+<li>config 目录：是 IntelliJ IDEA 个性化化配置目录，这个目录主要记录了：IDE 主要配置功能、自定义的代码模板、自定义的文件模板、自定义的快捷键、Project 的 tasks 记录等等个性化的设置。</li>
+<li>system 目录是 IntelliJ IDEA 系统文件目录，里面主要有：缓存、索引、容器文件输出等等<br>可以修改 bin/idea.properties里面的  idea.config.path=F:/360SycDir/idea_config/config 来指定config目录位置，同步自己的配置文件<br>右键 开启Toolbox</li>
+</ol>
+<p>Appearance 可以修改主题及主题字体<br>Font  可以修改代码字体<br>Console Font 可以修改控制台字体</p>
+<p>如果遇到蓝屏断电等情况可能会造成InteliJ崩溃，缓存索引出问题，此时可以点击File-Invalidate Caches 就可以了</p>
+<p>编译三种方式</p>
+<ol>
+<li>Compile： 对选定的目标（java类文件）进行强制性编译，不管目标是否被修改过</li>
+<li>Rebuild：对选定的目标（Project)进行强制性编译，由于Rebuild的目标是Project，所以时间较长</li>
+<li>Make   ：使用最多的编译操作，对选定的目标（Project或Module）进行编译，但是只编译修改过的文件</li>
+</ol>
+<p>点击项目栏可以直接进行搜索<br>has no Save button. Since in IntelliJ IDEA you can undo refactorings and revert changes from Local History<br>Code | Reformat Code  (CTRL+ALT+L)   格式化代码<br>Code | Optimiza Import (CTRL+ALT+O)  优化导入</p>
+<p>Ctrl+F9 Make Project  可以映射Ctrl+S为Make Project，因为IntelliJ没有保存的概念<br>Shift X 2 可以呼出搜索框<br>Alt+左右箭头   切换Tab页<br>Smart completion   Ctrl+Shift+空格<br>Ctrl+Shift+F12 最大化窗口<br>Ctrl+E 最近文件<br>Ctrl+Tab  切换最近文件<br>Ctrl+F12    类文件结构   可以直接搜索<br>Shift+Alt+Up/Down   移动行<br>Ctrl+Y  删除行<br>查看提示  Alt+Enter<br>Ctrl+I  实现接口方法<br>Ctrl+H  在接口文件中查看接口被那些类实现<br>Ctrl+U  查看源代码<br>Alt+Left/Right 退回上一层代码</p>
+<p>Shift+F10  Run<br>Shift+F9   Debug<br>Ctrl+F9    Make<br>Ctrl+F10   Update application</p>
+<p>Shift+F9   Debug<br>Ctrl+Shift+I  快速浏览该类<br>Ctrl+Alt+T   Surround With<br>Ctrl+Alt+J  Surround with live template<br>Ctrl+Alt+U  UML图<br>Ctrl+Shift+Alt+T   重命名一个变量<br>Ctrl+G   定位到行</p>
+<p>Ctrl+Shift+A  可以查看搜索所有的快捷键<br>Alt+Enter  快速修正<br>Alt+Insert  生成getter、setter方法<br>在左边的文件位置，可以直接按下Alt+Enter 新建文件<br>Ctrl+Q  快速浏览API说明<br>Ctrl+P 查看API参数<br>Ctrl+Shift+N  查找某个文件并定位到具体行数  Hello:18 表示定位到18行<br>Ctrl+空格  快速补全<br>ctrl+空格 两次，补全类名无论该类是否被引入<br>Ctrl+G find usages in the popup menu<br>ctrl+shift+空格  View | Quick Document   查看方法文档 （查看外部文档 用 Shift+F2）<br>F3    jump to declarations<br>ctrl+F3   浏览该类大致结构   Navigate  | File Structure<br>alt+shift+R     快速重命名    Refactor | Rename<br>补全的时候使用Tab<br>shift+click 或者 鼠标中键<br>alt+F1<br>ctrl+D  重复所选块<br>ctrl+p   此时，如果光标在括号中间，可以显示所需参数<br>ctrl+q   最后一次修改的地方<br>ctrl+shift+上    移动<br>alt+enter  自动导入包<br>alt+F7  查找该方法在其他地方的使用情况<br>ctrl+o  覆盖基类方法</p>
+<p>模板用法，可以在  Editor | Live Templates修改，使用的时候Tab即可</p>
+<h3 id="Eclipse_VS_IntelliJ_IDEA">Eclipse VS  IntelliJ IDEA</h3><table>
+<thead>
+<tr>
+<th>template</th>
+<th>Eclipse</th>
+<th>IntelliJ IDEA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define a main method</td>
+<td>main</td>
+<td>psvm</td>
+</tr>
+<tr>
+<td>Iterate over an array</td>
+<td>for</td>
+<td>itar</td>
+</tr>
+<tr>
+<td>Iterate over a collection</td>
+<td>for</td>
+<td>itco</td>
+</tr>
+<tr>
+<td>Iterate over a list</td>
+<td>for</td>
+<td>itli</td>
+</tr>
+<tr>
+<td>Iterate over an iterable</td>
+<td>foreach</td>
+<td>iter</td>
+</tr>
+<tr>
+<td>print to System out</td>
+<td>sysout</td>
+<td>sout</td>
+</tr>
+<tr>
+<td>print to System err</td>
+<td>syserr</td>
+<td>serr</td>
+</tr>
+</tbody>
+</table>
+<p>apply a template to an expression you’ve already typed<br>eg .ifn   -&gt;   if(..==null){…}Statement<br>Editor  | General   | Postfix Completion</p>
+<p>选中项目 - View -open module settings  - &gt; SDKS   可以指定多种SDK，方便在不同项目中切换<br>新建的包以层级目录显示 在设置齿轮 Compate empty middle package 去掉勾选</p>
+<p>调试<br>step into   F7<br>smart step into  shift+F7<br>step over   F8<br>step over  F8<br>step out   shift+F8<br>Resume    F9<br>Toggle breakpoint   Ctrl+F8<br>Evaluate expression Alt+F8</p>
+<p>deploying to application servers in IntelliJ IDEA is more or less similar to what you are probably used to in Eclipse</p>
+<p>new Date().var 自动赋值给本地变量</p>
+<p>断点进入后，点击Drop Frame按钮之后，断点重新回到方法体之外<br>IntelliJ自动补全功能默认区分大小写，可以在 Code Completion 中把Case sensitive completion 设置为None<br>Auto Import 中开启自动导包功能</p>
+<p>Code Folding  设置哪些类型是默认折叠的<br>若文件太多行数，可以进行垂直或水平分割修改代码<br>Debug状态下，如果要批量删除断点，可以点击左下角的红点，选中要删除的断点删除<br>Ctrl+Alt+T 选择自定义折叠代码区域功能<br>Editor Tabs show tabs in single row 把Tab分多行显示<br>Java- Code Generation 把注释放在紧贴代码的头部<br>Compiler -&gt; 在make或者rebuild过程很慢的时候，可以增加此堆的内存设置，一般大内存的机器设置1500<br>Editor-&gt;General 中设置查看最近文件数量</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/tool/">tool</a>►<a class="article-category-link" href="/categories/tool/IntelliJ/">IntelliJ</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/06/09/IntelliJ-IDEA工具使用笔记/" data-title="IntelliJ IDEA工具使用笔记 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/09/java源码解析/" title="java源码解析">
+  <strong>上一篇：</strong><br/>
+  <span>
+  java源码解析</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/09/Guava库学习/"  title="Guava库学习">
+ <strong>下一篇：</strong><br/> 
+ <span>Guava库学习
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/06/09/IntelliJ-IDEA工具使用笔记/" data-title="IntelliJ IDEA工具使用笔记" data-url="http://yoursite.com/2016/06/09/IntelliJ-IDEA工具使用笔记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eclipse_VS_IntelliJ_IDEA"><span class="toc-number">1.</span> <span class="toc-text">Eclipse VS  IntelliJ IDEA</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

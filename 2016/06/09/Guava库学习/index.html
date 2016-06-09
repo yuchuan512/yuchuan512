@@ -1,0 +1,841 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Guava库学习 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="Guava库学习
+Junit使用
+在InteliJ中，test目录右键，Mark Directory as -&amp;gt; Test Source Root 然后在里面@Test引入Junit.jar即可编写测试用例
+文件操作
+使用Files类来执行那些基本的任务，比如：移动或复制文件，或读取文件内容到一个字符串集合
+
+
+
+Closer类，提供了一种非常干净的方式，确保Closeable实例被正确的关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guava库学习">
+<meta property="og:url" content="http://yoursite.com/2016/06/09/Guava库学习/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="Guava库学习
+Junit使用
+在InteliJ中，test目录右键，Mark Directory as -&amp;gt; Test Source Root 然后在里面@Test引入Junit.jar即可编写测试用例
+文件操作
+使用Files类来执行那些基本的任务，比如：移动或复制文件，或读取文件内容到一个字符串集合
+
+
+
+Closer类，提供了一种非常干净的方式，确保Closeable实例被正确的关">
+<meta property="og:updated_time" content="2016-06-09T14:28:38.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guava库学习">
+<meta name="twitter:description" content="Guava库学习
+Junit使用
+在InteliJ中，test目录右键，Mark Directory as -&amp;gt; Test Source Root 然后在里面@Test引入Junit.jar即可编写测试用例
+文件操作
+使用Files类来执行那些基本的任务，比如：移动或复制文件，或读取文件内容到一个字符串集合
+
+
+
+Closer类，提供了一种非常干净的方式，确保Closeable实例被正确的关">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/09/Guava库学习/" title="Guava库学习" itemprop="url">Guava库学习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-09T14:26:17.000Z" itemprop="datePublished"> 发表于 2016-06-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Junit使用"><span class="toc-number">1.</span> <span class="toc-text">Junit使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件操作"><span class="toc-number">2.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#文件的复制"><span class="toc-number">2.0.1.</span> <span class="toc-text">文件的复制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#文件的移动/重命名"><span class="toc-number">2.0.2.</span> <span class="toc-text">文件的移动/重命名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#像字符串一样处理文件"><span class="toc-number">2.0.3.</span> <span class="toc-text">像字符串一样处理文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#文件的哈希值"><span class="toc-number">2.0.4.</span> <span class="toc-text">文件的哈希值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#文件写和追加数据"><span class="toc-number">2.0.5.</span> <span class="toc-text">文件写和追加数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strings类和Charsets类"><span class="toc-number">3.</span> <span class="toc-text">Strings类和Charsets类</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Charsets类"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Charsets类</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Strings类"><span class="toc-number">3.0.1.</span> <span class="toc-text">Strings类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ComparisonChain类的学习和使用"><span class="toc-number">4.</span> <span class="toc-text">ComparisonChain类的学习和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Joiner类的学习使用"><span class="toc-number">5.</span> <span class="toc-text">Joiner类的学习使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Splitter的应用"><span class="toc-number">6.</span> <span class="toc-text">Splitter的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Guava_Collection学习"><span class="toc-number">7.</span> <span class="toc-text">Guava Collection学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Collections_Lists"><span class="toc-number">7.1.</span> <span class="toc-text">Collections Lists</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CharMatcher"><span class="toc-number">8.</span> <span class="toc-text">CharMatcher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Big_Endian_和_Little_Endian"><span class="toc-number">9.</span> <span class="toc-text">Big Endian 和 Little Endian</span></a></li></ol>
+		
+		</div>
+		
+		<p>Guava库学习</p>
+<h3 id="Junit使用">Junit使用</h3><blockquote>
+<p>在InteliJ中，test目录右键，Mark Directory as -&gt; Test Source Root 然后在里面@Test引入Junit.jar即可编写测试用例</p>
+<h3 id="文件操作">文件操作</h3><ul>
+<li>使用Files类来执行那些基本的任务，比如：移动或复制文件，或读取文件内容到一个字符串集合</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>Closer类，提供了一种非常干净的方式，确保Closeable实例被正确的关闭</p>
+</li>
+<li><p>ByteSource 和 CharSource类，提供了不可变的输入流（Input）和读（Reader）</p>
+</li>
+<li><p>ByteSink 和 CharSink类，提供了不可变的输出流（Output）和写（Writer）</p>
+</li>
+<li><p>CharStreams和ByteStreams类，为读Readers、写Writers、输入流InputStreams、输出流OutputStreams 提供了一些静态的实用方法</p>
+</li>
+<li><p>BaseEncoding类，提供了编码和解码字节序列和ASCII字符的方法</p>
+</li>
+</ul>
+<h5 id="文件的复制">文件的复制</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testFile() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> original = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">        <span class="keyword">File</span> <span class="keyword">copy</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test3.txt"</span>);</span><br><span class="line">        Files.move(original,<span class="keyword">copy</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="文件的移动/重命名">文件的移动/重命名</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> readFileIntoListOfStirngTest() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test3.txt"</span>);</span><br><span class="line">        List&lt;String&gt; expectedLines = Lists.newArrayList(<span class="string">"hello one"</span>,<span class="string">"two Hello"</span>,<span class="string">"hello three"</span>);</span><br><span class="line">        List&lt;String&gt; readLine = Files.<span class="keyword">readLines</span>(<span class="keyword">file</span>,Charsets.UTF_8);</span><br><span class="line">        assertThat(expectedLines, is(readLine));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="像字符串一样处理文件">像字符串一样处理文件</h5><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">实现LineProcessor接口，此处采用集合泛型</span><br><span class="line"><span class="keyword">public</span> class ToListLineProcessor implements LineProcessor&lt;List&lt;<span class="keyword">String</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Splitter splitter = Splitter.on(<span class="string">","</span>);</span><br><span class="line">    <span class="keyword">private</span> List&lt;<span class="keyword">String</span>&gt; bookTitle = Lists.newArrayList();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> TITLE_INDEX = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 文件的每一行都会经过processLine处理</span></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> processLine(<span class="keyword">String</span> <span class="built_in">line</span>) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        bookTitle.<span class="built_in">add</span>(Iterables.<span class="built_in">get</span>(splitter.<span class="built_in">split</span>(<span class="built_in">line</span>),TITLE_INDEX));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 最终返回的结果</span></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> List&lt;<span class="keyword">String</span>&gt; getResult() &#123;</span><br><span class="line">        <span class="keyword">return</span> bookTitle;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> readLinesWithProcessors() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"D:\\test3.txt"</span>);</span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; readLines = Files.readLines(file, Charsets.UTF_8,<span class="keyword">new</span> ToListLineProcessor());</span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; expectedLines = Lists.newArrayList(<span class="string">"hello"</span>,<span class="string">"world"</span>,<span class="string">"hello"</span>);</span><br><span class="line">        assertThat(expectedLines,is(readLines));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="文件的哈希值">文件的哈希值</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testFilesHashing() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test3.txt"</span>);</span><br><span class="line">        HashCode hashCode = Files.hash(<span class="keyword">file</span>, Hashing.md5());</span><br><span class="line">        System.out.<span class="keyword">println</span>(hashCode.toString().length());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="文件写和追加数据">文件写和追加数据</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> appendingWritingFileTest() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\hello.txt"</span>);</span><br><span class="line">        <span class="keyword">file</span>.deleteOnExit();</span><br><span class="line">        String hamletQuoteStart = <span class="string">"To be ,or not to be"</span>;</span><br><span class="line">        Files.<span class="keyword">write</span>(hamletQuoteStart, <span class="keyword">file</span>, Charsets.UTF_8);</span><br><span class="line">        String hamletQuoteEnd = <span class="string">",that is the question"</span>;</span><br><span class="line">        Files.<span class="keyword">append</span>(hamletQuoteEnd, <span class="keyword">file</span>, Charsets.UTF_8);</span><br><span class="line">        assertThat(Files.toString(<span class="keyword">file</span>, Charsets.UTF_8),is(hamletQuoteStart+hamletQuoteEnd));</span><br><span class="line"></span><br><span class="line">        String overWrites = <span class="string">"OverWriting the file"</span>;</span><br><span class="line">        Files.<span class="keyword">write</span>(overWrites, <span class="keyword">file</span>, Charsets.UTF_8);</span><br><span class="line">        assertThat(Files.toString(<span class="keyword">file</span>, Charsets.UTF_8), is(overWrites));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以通过Files类提供的静态工厂方法来创建ByteSource、ByteSink、 CharSource、CharSink实例<br>我们将专注于ByteSource和ByteSink对象，CharSource和 CharSink对象与之相似，只是使用的是字符<br>ByteSource类表示一个可读的字节<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> createByteSourceFromFileTest() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> f1 = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test2.txt"</span>);</span><br><span class="line">        ByteSource byteSource = Files.asByteSource(f1);</span><br><span class="line">        <span class="keyword">byte</span>[] readByte = byteSource.<span class="keyword">read</span>();</span><br><span class="line">        assertThat(readByte,is(Files.toByteArray(f1)));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>ByteSink类表示一个可写的字节<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testCreateFileByteSink() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> dest = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">        ByteSink byteSink = Files.asByteSink(dest);</span><br><span class="line">        <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test2.txt"</span>);</span><br><span class="line">        byteSink.<span class="keyword">write</span>(Files.toByteArray(<span class="keyword">file</span>));</span><br><span class="line">        assertThat(Files.toByteArray(dest), is(Files.toByteArray(<span class="keyword">file</span>)));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> copyToByteSinkTest() <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="keyword">File</span> <span class="keyword">source</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">        <span class="keyword">File</span> dest = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test2.txt"</span>);</span><br><span class="line">        ByteSource byteSource = Files.asByteSource(<span class="keyword">source</span>);</span><br><span class="line">        ByteSink byteSink = Files.asByteSink(dest);</span><br><span class="line">        byteSource.copyTo(byteSink);</span><br><span class="line">        assertThat(Files.toByteArray(dest), is(Files.toByteArray(<span class="keyword">source</span>)));</span><br></pre></td></tr></table></figure>
+<p>ByteStreams是一个实用的程序类，用来处理InputStream和OutputStream实例，CharStreams则是用来处理Reader和Writer实例的程序类。</p>
+<h3 id="Strings类和Charsets类">Strings类和Charsets类</h3><h6 id="Charsets类">Charsets类</h6><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@<span class="function">Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCharsets</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        print(Charsets.UTF_8);</span><br><span class="line">        print(Charsets.ISO_8859_1);</span><br><span class="line">        <span class="keyword">byte</span>[] bytes;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            bytes = <span class="keyword">string</span>.getBytes(<span class="string">"UTF-8"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Charsets类则包装了一些常用的 字符集常量，</span></span><br><span class="line">        <span class="comment">// 使用Charsets封装的字符集避免处理异常</span></span><br><span class="line">        bytes = <span class="keyword">string</span>.getBytes(Charsets.UTF_8);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Strings类">Strings类</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testString()&#123;</span><br><span class="line">        <span class="keyword">char</span> c = <span class="string">'s'</span>;</span><br><span class="line">        <span class="comment">// 将param1的长度改变为length，长度不足的话向后追加字符param2</span></span><br><span class="line">        <span class="keyword">print</span>(Strings.padEnd(string,<span class="number">6</span>,c));</span><br><span class="line">        <span class="comment">// 也有padStart()方法，向前追加，长度超出默认返回原字符</span></span><br><span class="line">        <span class="keyword">print</span>(Strings.padStart(string,<span class="number">6</span>,c));</span><br><span class="line">        <span class="keyword">print</span>(Strings.nullToEmpty(<span class="keyword">null</span>));</span><br><span class="line">        <span class="keyword">print</span>(Strings.emptyToNull(<span class="string">" "</span>));</span><br><span class="line">        <span class="keyword">print</span>(Strings.isNullOrEmpty(<span class="keyword">null</span>));</span><br><span class="line">        <span class="keyword">print</span>(Strings.repeat(string,<span class="number">3</span>));</span><br><span class="line">        <span class="comment">// 返回两个字符串相同的前缀</span></span><br><span class="line">        <span class="keyword">print</span>(Strings.commonPrefix(<span class="string">"nihaoma?"</span>,<span class="string">"nibuhaoma?"</span>));</span><br><span class="line">        <span class="comment">// 返回两个字符串相同的后缀</span></span><br><span class="line">        <span class="keyword">print</span>(Strings.commonSuffix(<span class="string">"nihaoma?"</span>,<span class="string">"nibuhaoma?"</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ComparisonChain类的学习和使用">ComparisonChain类的学习和使用</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Girl implements Comparable&lt;Girl&gt;&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> <span class="variable">height</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> face;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Girl(<span class="keyword">String</span> face, <span class="keyword">double</span> <span class="variable">height</span>, <span class="keyword">String</span> name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.face = face;</span><br><span class="line">        <span class="keyword">this</span>.<span class="variable">height</span> = <span class="variable">height</span>;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 使用了建造者模式</span></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> compareTo(Girl o) &#123;</span><br><span class="line">        <span class="keyword">return</span> ComparisonChain.start()</span><br><span class="line">                .compare(name,o.name)</span><br><span class="line">                .compare(<span class="variable">height</span>,o.<span class="variable">height</span>)</span><br><span class="line">                .compare(face,o.face)</span><br><span class="line">                .result();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Joiner类的学习使用">Joiner类的学习使用</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> class JoinTest &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> sep = <span class="string">"|"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> List list = initTestingData();</span><br><span class="line">    <span class="comment">// HashMap 的一种新写法</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt;() &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            put(<span class="string">"i love u"</span>, <span class="string">"u love me"</span>);</span><br><span class="line">            put(<span class="string">"i like u"</span>, <span class="string">"u like me"</span>);</span><br><span class="line">            put(<span class="string">"i hate u"</span>, <span class="string">"u hate me"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> List initTestingData() &#123;</span><br><span class="line">        List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                list.<span class="built_in">add</span>(<span class="keyword">null</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                list.<span class="built_in">add</span>(<span class="string">"test"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testBuildStringWithJoin()&#123;</span><br><span class="line">        <span class="keyword">String</span> <span class="built_in">str</span> = Joiner.on(sep).skipNulls().<span class="built_in">join</span>(list);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="built_in">str</span>);</span><br><span class="line">        <span class="keyword">String</span> str2 = Joiner.on(sep).useForNull(<span class="string">"hello"</span>).<span class="built_in">join</span>(list);</span><br><span class="line">        System.out.<span class="built_in">println</span>(str2);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testJoinerStringBuilder()&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        Joiner joiner = Joiner.on(sep).skipNulls();</span><br><span class="line">        joiner.appendTo(sb,<span class="string">"i love me"</span>,<span class="string">"i like u "</span>,<span class="keyword">null</span>,<span class="string">"i hate u"</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(sb.toString());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testMapJoiner()&#123;</span><br><span class="line">        <span class="keyword">String</span> <span class="built_in">str</span> = Joiner.on(sep).withKeyValueSeparator(<span class="string">"="</span>).<span class="built_in">join</span>(<span class="built_in">map</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="built_in">str</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testJoiner()&#123;</span><br><span class="line">        <span class="keyword">String</span> str1 = Joiner.on(<span class="string">";"</span>).skipNulls().<span class="built_in">join</span>(Arrays.asList(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="keyword">null</span>));</span><br><span class="line">        assertEquals(str1,<span class="string">"a;b;c"</span>);</span><br><span class="line">        <span class="keyword">String</span> str2 = Joiner.on(<span class="string">","</span>).<span class="built_in">join</span>(Arrays.asList(<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>));</span><br><span class="line">        assertEquals(str2,<span class="string">"1,5,7"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line">test1|test2|test3|test4|test6|test7|test8|test9|test11|test12|test13|test14|test16|test17|test18|test19</span><br><span class="line">hello|test1|test2|test3|test4|hello|test6|test7|test8|test9|hello|test11|test12|test13|test14|hello|test16|test17|test18|test19</span><br><span class="line">i love me|i like u |i hate u</span><br><span class="line">i hate u=u hate me|i like u=u like me|i love u=u love me</span><br></pre></td></tr></table></figure>
+<p>skipNulls（）方法用于过滤集合中为null的元素，然后返回一个新的Joiner对象实例；<br>useForNull(String nullText)方法用于将集合中为null的元素替换成指定的字符串，并返回新的Joiner对象实例；<br>withKeyValueSeparator(String separator)方法，处理map时使用，接收map中key和value之间的分隔符；<br>join方法则用来接收需要处理的集合对象或object[]对象数组，返回处理后的字符串表示。</p>
+<h3 id="Splitter的应用">Splitter的应用</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">Test</span></span><br><span class="line">    public void testSplitter() &#123;</span><br><span class="line">        <span class="comment">// omitEmptyStrings方法用于忽略分割后产生的空值</span></span><br><span class="line">        Iterable strings = Splitter.<span class="keyword">on</span>(separator).omitEmptyStrings()</span><br><span class="line">                .<span class="keyword">split</span>(string);</span><br><span class="line">        <span class="comment">// [i hate u=u hate me , i like u=u like me , i love u=u love me]</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(strings);</span><br><span class="line">        <span class="comment">// trimResults方法用于处理分割后每一项中的空白符</span></span><br><span class="line">        Iterable strings2 = Splitter.<span class="keyword">on</span>(separator)</span><br><span class="line">                .trimResults().<span class="keyword">split</span>(string);</span><br><span class="line">        <span class="comment">// [i hate u=u hate me, i like u=u like me, , , i love u=u love me]</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(strings2);</span><br><span class="line"></span><br><span class="line">        Iterable&lt;String&gt; string3 = Splitter.<span class="keyword">on</span>(separator).omitEmptyStrings().trimResults().<span class="keyword">split</span>(string);</span><br><span class="line">        System.<span class="keyword">out</span>.println(string3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">输出为</span><br><span class="line">[i hate <span class="keyword">u</span>=<span class="keyword">u</span> hate me , i like <span class="keyword">u</span>=<span class="keyword">u</span> like me , i love <span class="keyword">u</span>=<span class="keyword">u</span> love me]</span><br><span class="line">[i hate <span class="keyword">u</span>=<span class="keyword">u</span> hate me, i like <span class="keyword">u</span>=<span class="keyword">u</span> like me, , , i love <span class="keyword">u</span>=<span class="keyword">u</span> love me]</span><br><span class="line">[i hate <span class="keyword">u</span>=<span class="keyword">u</span> hate me, i like <span class="keyword">u</span>=<span class="keyword">u</span> like me, i love <span class="keyword">u</span>=<span class="keyword">u</span> love me]</span><br><span class="line"></span><br><span class="line">@<span class="keyword">Test</span></span><br><span class="line">    public void testMapSplitter() &#123;</span><br><span class="line">        Splitter.MapSplitter mapSplitter = Splitter.<span class="keyword">on</span>(separator)</span><br><span class="line">                .omitEmptyStrings().withKeyValueSeparator(separator2);</span><br><span class="line">        Map&lt;String, String&gt; map = mapSplitter.<span class="keyword">split</span>(string);</span><br><span class="line">        <span class="keyword">Set</span> keySet = map.keySet();</span><br><span class="line">        <span class="comment">// [i hate u, i like u, i love u]</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(keySet);</span><br><span class="line">    &#125;</span><br><span class="line">输出为</span><br><span class="line">[i hate <span class="keyword">u</span>, i like <span class="keyword">u</span>, i love <span class="keyword">u</span>]</span><br></pre></td></tr></table></figure>
+<p>Splitter是通过Splitter.on(分隔符).split(字符串)来处理字符串，与Joiner类似，通过静态on（）方法，我 们构建了一个Splitter对象，其中提供了两种常用的方法，分别是omitEmptyStrings（）和trimResults（），这两个方法的 调用都会返回一个新的Splitter对象实例。<br>omitEmptyStrings（）用于忽略字符串分割后产生的空值元素，trimResults（）用于去除字符串分割后子元素中的空白符。<br>与Joiner类似，Splitter也提供了一个内部类MapSplitter来处理字符串，返回map集合，调用方法为 withKeyValueSeparator(separator)，在静态on()方法之后调用，在分割后的子项中根据指定的separator再次分 割成key-value键值对，返回的结果为map集合。</p>
+<h3 id="Guava_Collection学习">Guava Collection学习</h3><p>FluentIterable是一个抽象类同时实现了 Iterable接口，内部提供了一个静态的from方法，用于接收一个Iterable接口的实现作为参数，返回一个包装了Iterable接口的 FluentIterable实例。FluentIterable可以链式调用toList、toSet、 toMap、 toSortedList以及toSortedSet等方法，转换为我们熟悉的集合类型。</p>
+<p>FluentIterable.filter和FluentIterable.transform方法，顾名思义，分别用于集合的过滤和转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> List&lt;Girl&gt; girls;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Girl g1 = <span class="keyword">new</span> Girl(<span class="number">17</span>, <span class="string">"nice"</span>);</span><br><span class="line">        Girl g2 = <span class="keyword">new</span> Girl(<span class="number">18</span>, <span class="string">"beauty"</span>);</span><br><span class="line">        Girl g3 = <span class="keyword">new</span> Girl(<span class="number">19</span>, <span class="string">"nice"</span>);</span><br><span class="line">        Girl g4 = <span class="keyword">new</span> Girl(<span class="number">18</span>, <span class="string">"nice"</span>);</span><br><span class="line">        girls = Lists.newArrayList(g1,g2,g3,g4);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFluentIterable</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * from方法：用于包装Iterable接口，返回FluentIterable实例</span><br><span class="line">         * filter方法：用于过滤集合中元素，返回过滤后的集合</span><br><span class="line">         */</span></span><br><span class="line">        FluentIterable.from(girls).filter(<span class="keyword">new</span> Predicate&lt;Girl&gt;() &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">apply</span><span class="params">(Girl girl)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"nice"</span>.equals(girl.getFace());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * transform方法：用于根据指定Function转换集合元素，返回转换后的集合</span><br><span class="line">         */</span></span><br><span class="line">        FluentIterable&lt;String&gt; fluentIterable = FluentIterable.from(girls).transform(<span class="keyword">new</span> Function&lt;Girl, String&gt;() &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">apply</span><span class="params">(Girl girl)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Joiner.on(<span class="string">","</span>).join(girl.getAge(), girl.getFace());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter(Predicate&lt;? <span class="keyword">super</span> E&gt; predicate)：</span><br><span class="line">---&gt; 接收一个Predicate作为参数，过滤那些能够满足predicate的元素，返回FluentIterable实例。</span><br><span class="line"></span><br><span class="line">transform(Function&lt;? <span class="keyword">super</span> E, T&gt; function)：</span><br><span class="line">---&gt; 接收一个Function作为参数，相应转换集合中的元素，返回FluentIterable实例。</span><br></pre></td></tr></table></figure>
+<h4 id="Collections_Lists">Collections Lists</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"> @<span class="keyword">Test</span></span><br><span class="line">    public void testLists() &#123;</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * 一些构造List实例的方法很简单</span><br><span class="line">         * 如：newArrayList(),newLinkedList()等</span><br><span class="line">         * 这里不再赘述</span><br><span class="line">         */</span></span><br><span class="line">        String str = <span class="string">"i love u"</span>;<span class="comment">//测试用</span></span><br><span class="line">        String[] strs = &#123;<span class="string">"i like u"</span>, <span class="string">"i miss u"</span>&#125;;<span class="comment">//测试用</span></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * asList：返回一个不可变的List</span><br><span class="line">         * 其中包含指定的第一个元素和附加的元素数组组成</span><br><span class="line">         * 修改这个数组将反映到返回的List上</span><br><span class="line">         */</span></span><br><span class="line">        <span class="keyword">List</span>&lt;String&gt; <span class="keyword">list</span> = Lists.asList(str, strs);</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="keyword">list</span>); <span class="comment">//[i love u, i like u, i miss u]</span></span><br><span class="line">        strs[1] = <span class="string">"i hate u"</span>;<span class="comment">//对strs数组的修改会反映到List中</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="keyword">list</span>);<span class="comment">//[i love u, i like u, i hate u]</span></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * transform：根据传进来的function对fromList进行相应的处理</span><br><span class="line">         * 并将处理得到的结果存入到新的list对象中返回</span><br><span class="line">         */</span></span><br><span class="line">        <span class="keyword">List</span>&lt;String&gt; newList = Lists.transform(<span class="keyword">list</span>, new Function&lt;String, String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public String apply(String <span class="keyword">input</span>) &#123;</span><br><span class="line">                <span class="comment">//这里简单的对集合中的元素转换为大写</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">input</span>.toUpperCase();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.<span class="keyword">out</span>.println(newList);<span class="comment">//[I LOVE U, I LIKE U, I HATE U]</span></span><br><span class="line">         <span class="comment">/**</span><br><span class="line">         * partition：根据size传入的List进行切割，切割成符合要求的小的List</span><br><span class="line">         * 并将这些小的List存入一个新的List对象中返回</span><br><span class="line">         */</span></span><br><span class="line">        <span class="keyword">List</span>&lt;<span class="keyword">List</span>&lt;String&gt;&gt; lists = Lists.partition(<span class="keyword">list</span>, 2);</span><br><span class="line">        System.<span class="keyword">out</span>.println(lists);<span class="comment">//[[i love u, i like u], [i hate u]]</span></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * charactersOf：将传进来的String或者CharSequence分割为单个的字符</span><br><span class="line">         * 并存入到一个ImmutableList对象中返回</span><br><span class="line">         * ImmutableList：一个高性能、不可变的、随机访问列表的实现</span><br><span class="line">         */</span></span><br><span class="line">        ImmutableList&lt;Character&gt; characters = Lists.charactersOf(<span class="string">"realfighter"</span>);</span><br><span class="line">        System.<span class="keyword">out</span>.println(characters);<span class="comment">//[r, e, a, l, f, i, g, h, t, e, r]</span></span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * reverse：返回一个传入List内元素倒序后的List</span><br><span class="line">         */</span></span><br><span class="line">        <span class="keyword">List</span>&lt;String&gt; reverse = Lists.<span class="literal">reverse</span>(<span class="keyword">list</span>);</span><br><span class="line">        System.<span class="keyword">out</span>.println(reverse);<span class="comment">//[i hate u, i like u, i love u]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出</span><br><span class="line">[i love <span class="keyword">u</span>, i like <span class="keyword">u</span>, i miss <span class="keyword">u</span>]</span><br><span class="line">[i love <span class="keyword">u</span>, i like <span class="keyword">u</span>, i hate <span class="keyword">u</span>]</span><br><span class="line">[I LOVE <span class="keyword">U</span>, I LIKE <span class="keyword">U</span>, I HATE <span class="keyword">U</span>]</span><br><span class="line">[[i love <span class="keyword">u</span>, i like <span class="keyword">u</span>], [i hate <span class="keyword">u</span>]]</span><br><span class="line">[r, <span class="keyword">e</span>, a, <span class="keyword">l</span>, f, i, <span class="keyword">g</span>, <span class="keyword">h</span>, t, <span class="keyword">e</span>, r]</span><br><span class="line">[i hate <span class="keyword">u</span>, i like <span class="keyword">u</span>, i love <span class="keyword">u</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="CharMatcher">CharMatcher</h3><p>字符串匹配 &amp;&amp; 字符处理<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="property">@Test</span></span><br><span class="line">    public <span class="literal">void</span> testCharMatcher()&#123;</span><br><span class="line">        assertEquals(CharMatcher.DIGIT.retainFrom(<span class="string">"some text 889983 and more"</span>),<span class="string">"889983"</span>);</span><br><span class="line">        assertEquals(CharMatcher.DIGIT.removeFrom(<span class="string">"some text 889983 and more"</span>),<span class="string">"some text  and more"</span>);</span><br><span class="line">        assertEquals(CharMatcher.anyOf(<span class="string">"abcxy"</span>).removeFrom(<span class="string">"abcdefgxyz"</span>),<span class="string">"defgz"</span>);</span><br><span class="line">        String str1 = CharMatcher.inRange(<span class="string">'a'</span>,<span class="string">'f'</span>)</span><br><span class="line">                .<span class="keyword">and</span>(CharMatcher.isNot(<span class="string">'c'</span>))</span><br><span class="line">                .<span class="keyword">and</span>(CharMatcher.isNot(<span class="string">'e'</span>))</span><br><span class="line">                .<span class="keyword">or</span>(CharMatcher.<span class="keyword">is</span>(<span class="string">'z'</span>))</span><br><span class="line">                .replaceFrom(<span class="string">"abyczef"</span>,<span class="string">"*"</span>);</span><br><span class="line">        assertEquals(str1,<span class="string">"**yc*e*"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Big_Endian_和_Little_Endian">Big Endian 和 Little Endian</h3><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">CharUtil</span> &#123;</span><br><span class="line">    /**</span><br><span class="line">     * big endian是指低地址存放最高有效字节（<span class="type">MSB</span>），而little endian则是低地址存放最低有效字节（<span class="type">LSB</span>）</span><br><span class="line">     * @param</span><br><span class="line">     *          bytes</span><br><span class="line">     * @<span class="keyword">return</span></span><br><span class="line">     *          <span class="type">int</span></span><br><span class="line">     */</span><br><span class="line">    public <span class="keyword">static</span> <span class="type">int</span> byte2Int(byte[] bytes)&#123;</span><br><span class="line">        <span class="type">int</span> num = bytes[<span class="number">3</span>] &amp; <span class="number">0xFF</span>;</span><br><span class="line">        num |= (bytes[<span class="number">2</span>] &lt;&lt; <span class="number">8</span>) &amp; <span class="number">0xFF00</span>;</span><br><span class="line">        num |= (bytes[<span class="number">1</span>] &lt;&lt; <span class="number">16</span>) &amp; <span class="number">0xFF0000</span>;</span><br><span class="line">        num |= (bytes[<span class="number">0</span>] &lt;&lt; <span class="number">24</span>) &amp; <span class="number">0xFF000000</span>;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="keyword">static</span> byte[] int2ByteArray(<span class="type">int</span> i)&#123;</span><br><span class="line">        byte[] <span class="literal">result</span> = new byte[<span class="number">4</span>];</span><br><span class="line">        <span class="literal">result</span>[<span class="number">0</span>] = (byte) ((i &gt;&gt; <span class="number">24</span>) &amp; <span class="number">0xFF</span>);</span><br><span class="line">        <span class="literal">result</span>[<span class="number">1</span>] = (byte)((i &gt;&gt; <span class="number">16</span> ) &amp; <span class="number">0xFF</span>);</span><br><span class="line">        <span class="literal">result</span>[<span class="number">2</span>] = (byte)((i &gt;&gt; <span class="number">8</span> ) &amp; <span class="number">0xFF</span>);</span><br><span class="line">        <span class="literal">result</span>[<span class="number">3</span>] = (byte)(i &amp; <span class="number">0xFF</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试代码<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">testNum</span> &#123;</span><br><span class="line">    @<span class="function">Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testByte2Int</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] bb = <span class="keyword">new</span> <span class="keyword">byte</span>[]&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">        System.<span class="keyword">out</span>.println(CharUtil.byte2Int(bb));</span><br><span class="line">    &#125;</span><br><span class="line">    @<span class="function">Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInt2ByteArray</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] bt = CharUtil.int2ByteArray(<span class="number">258</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bt.length; i++) &#123;</span><br><span class="line">            <span class="keyword">byte</span> b = bt[i];</span><br><span class="line">            System.<span class="keyword">out</span>.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意：OutputStream中直接写入一个int类型，会截取低8位，丢弃高24位，因此需要将基本类型先转换为字节流。Java采用的是BigEndian字节序，所有的网络协议都是采用BigEndian字节序来进行传输的，因此我们在进行数据的传输时，需要先将其转换成BigEndian字节序；同理，在数据接收时，也需要进行响应的转换</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/Guava/">Guava</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/06/09/Guava库学习/" data-title="Guava库学习 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/09/IntelliJ-IDEA工具使用笔记/" title="IntelliJ IDEA工具使用笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  IntelliJ IDEA工具使用笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/12/疯狂java讲义笔记一/"  title="疯狂java讲义笔记一">
+ <strong>下一篇：</strong><br/> 
+ <span>疯狂java讲义笔记一
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/06/09/Guava库学习/" data-title="Guava库学习" data-url="http://yoursite.com/2016/06/09/Guava库学习/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Junit使用"><span class="toc-number">1.</span> <span class="toc-text">Junit使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件操作"><span class="toc-number">2.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#文件的复制"><span class="toc-number">2.0.1.</span> <span class="toc-text">文件的复制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#文件的移动/重命名"><span class="toc-number">2.0.2.</span> <span class="toc-text">文件的移动/重命名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#像字符串一样处理文件"><span class="toc-number">2.0.3.</span> <span class="toc-text">像字符串一样处理文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#文件的哈希值"><span class="toc-number">2.0.4.</span> <span class="toc-text">文件的哈希值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#文件写和追加数据"><span class="toc-number">2.0.5.</span> <span class="toc-text">文件写和追加数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strings类和Charsets类"><span class="toc-number">3.</span> <span class="toc-text">Strings类和Charsets类</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Charsets类"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Charsets类</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Strings类"><span class="toc-number">3.0.1.</span> <span class="toc-text">Strings类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ComparisonChain类的学习和使用"><span class="toc-number">4.</span> <span class="toc-text">ComparisonChain类的学习和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Joiner类的学习使用"><span class="toc-number">5.</span> <span class="toc-text">Joiner类的学习使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Splitter的应用"><span class="toc-number">6.</span> <span class="toc-text">Splitter的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Guava_Collection学习"><span class="toc-number">7.</span> <span class="toc-text">Guava Collection学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Collections_Lists"><span class="toc-number">7.1.</span> <span class="toc-text">Collections Lists</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CharMatcher"><span class="toc-number">8.</span> <span class="toc-text">CharMatcher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Big_Endian_和_Little_Endian"><span class="toc-number">9.</span> <span class="toc-text">Big Endian 和 Little Endian</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

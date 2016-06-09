@@ -1,0 +1,862 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>myBatis学习笔记 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="mybatis 接触configure.xml
+&amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;&amp;lt;!DOCTYPE configuration PUBLIC “-//mybatis.org//DTD Config 3.0//EN”“http://mybatis.org/dtd/mybatis-3-config.dtd&amp;quot;&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="myBatis学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/06/09/myBatis学习笔记/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="mybatis 接触configure.xml
+&amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;&amp;lt;!DOCTYPE configuration PUBLIC “-//mybatis.org//DTD Config 3.0//EN”“http://mybatis.org/dtd/mybatis-3-config.dtd&amp;quot;&amp;gt;">
+<meta property="og:updated_time" content="2016-06-09T14:41:21.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="myBatis学习笔记">
+<meta name="twitter:description" content="mybatis 接触configure.xml
+&amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;&amp;lt;!DOCTYPE configuration PUBLIC “-//mybatis.org//DTD Config 3.0//EN”“http://mybatis.org/dtd/mybatis-3-config.dtd&amp;quot;&amp;gt;">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/09/myBatis学习笔记/" title="myBatis学习笔记" itemprop="url">myBatis学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-09T14:40:46.000Z" itemprop="datePublished"> 发表于 2016-06-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis_接触"><span class="toc-number">1.</span> <span class="toc-text">mybatis 接触</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用接口实现"><span class="toc-number">2.</span> <span class="toc-text">使用接口实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis实现数据的增删改查"><span class="toc-number">3.</span> <span class="toc-text">mybatis实现数据的增删改查</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="mybatis_接触">mybatis 接触</h3><p>configure.xml</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>&lt;!DOCTYPE configuration PUBLIC “-//mybatis.org//DTD Config 3.0//EN”<br>“<a href="http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;" target="_blank" rel="external">http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</a></p>
+<configuration><br>    <typealiases><br>        <typealias alias="User" type="com.yihaomen.mybatis.model.User"><br>    </typealias></typealiases><br><br>    <environments default="development"><br>        <environment id="development"><br>        <transactionmanager type="JDBC"><br>            <datasource type="POOLED"><br>            <property name="driver" value="com.mysql.jdbc.Driver"><br>            <property name="url" value="jdbc:mysql://127.0.0.1:3306/test"><br>            <property name="username" value="root"><br>            <property name="password" value="root"><br>            </property></property></property></property></datasource><br>        </transactionmanager></environment><br>    </environments><br><br>    <mappers><br>        <mapper resource="com/yihaomen/mybatis/model/User.xml"><br>    </mapper></mappers><br></configuration>
+
+<p>user.xml</p>
+<mapper namespace="com.yihaomen.mybatis.models.UserMapper"><br>    <select id="selectUserByID" parametertype="int" resulttype="User"><br>        select * from <code>user</code> where id = #{id}<br>    </select><br></mapper>
+
+
+<p>public class Test {<br>    private static SqlSessionFactory sqlSessionFactory;<br>    private static Reader reader;</p>
+<pre><code><span class="keyword">static</span> {
+    <span class="keyword">try</span> {
+        reader = Resources.getResourceAsReader(<span class="string">"Configuration.xml"</span>);
+        sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(reader);
+    } <span class="keyword">catch</span> (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
+    SqlSession session = sqlSessionFactory.openSession();
+    <span class="keyword">try</span> {
+        User user = (User) session.selectOne(
+                <span class="string">"com.yihaomen.mybatis.models.UserMapper.selectUserByID"</span>, <span class="number">1</span>);
+        System.<span class="keyword">out</span>.println(user.getUserAddress());
+        System.<span class="keyword">out</span>.println(user.getUserName());
+    } <span class="keyword">finally</span> {
+        session.close();
+    }
+}
+</code></pre><p>}</p>
+<h3 id="使用接口实现">使用接口实现</h3><p>user.xml ,改变namespace的值，指向接口</p>
+<mapper namespace="com.yihaomen.mybatis.inter.IUserOperation"><br>    <select id="selectUserByID" parametertype="int" resulttype="User"><br>        select * from <code>user</code> where id = #{id}<br>    </select><br></mapper>
+
+<p>public static void main(String[] args) {<br>        SqlSession session = sqlSessionFactory.openSession();<br>        try {<br>            IUserOperation userOperation = session.getMapper(IUserOperation.class);<br>            User user = userOperation.selectUserByID(1);<br>            System.out.println(user.getUserAddress());<br>            System.out.println(user.getUserName());<br>        } finally {<br>            session.close();<br>        }<br>    }</p>
+<h3 id="mybatis实现数据的增删改查">mybatis实现数据的增删改查</h3><p>一、 查找<br>User.xml 配置</p>
+<mapper namespace="com.yihaomen.mybatis.inter.IUserOperation"><br>    <select id="selectUserByID" parametertype="int" resulttype="User"><br>        select <em> from <code>user</code> where id = #{id}<br>    </em></select><br>    <resultmap type="User" id="resultListUser"><br>        <id column="id" property="id"><br>        <result column="userName" property="userName"><br>        <result column="userAge" property="userAge"><br>        <result column="userAddress" property="userAddress"><br>    </result></result></result></id></resultmap><br>    <select id="selectUsers" parametertype="string" resultmap="resultListUser"><br>        select  from user where userName like #{userName}<br>    </select><br></mapper>
+
+<p>接口增加方法<br>public interface IUserOperation {<br>    public User selectUserByID(int id);<br>    public List<user> selectUsers(String userName);<br>}</user></p>
+<p>测试类<br>    public static void main(String[] args) {<br>        Test testUser = new Test();<br>        testUser.getUserList(“%”);<br>    }</p>
+<pre><code>public void getUserList(String <span class="keyword">user</span>Name){
+    SqlSession session = sqlSessionFactory.openSession();
+    try {
+        IUserOperation <span class="keyword">user</span>Operation = session
+                .getMapper(IUserOperation.class);
+        List<span class="variable">&lt;User&gt;</span> users = <span class="keyword">user</span>Operation.selectUsers(<span class="keyword">user</span>Name);
+        <span class="keyword">for</span> (User <span class="keyword">user</span> : users) {
+            System.<span class="keyword">out</span>.println(<span class="keyword">user</span>.getId() + <span class="string">":"</span> + <span class="keyword">user</span>.getUserName()
+                    + <span class="string">":"</span> + <span class="keyword">user</span>.getUserAddress());
+        }
+    } finally {
+        session.close();
+    }
+}
+</code></pre><p>二、 增加<br>user.xml</p>
+<insert id="addUser" parametertype="User" usegeneratedkeys="true" keyproperty="id"><br>        insert into user(userName,userAge,userAddress)<br>             values(#{userName},#{userAge},#{userAddress})<br></insert>
+
+<p>public interface IUserOperation {<br>    public User selectUserByID(int id);<br>    public List<user> selectUsers(String userName);<br>    public void addUser(User user);<br>}</user></p>
+<p>public static void main(String[] args) {<br>        User user = new User();<br>        user.setUserAddress(“人民广场”);<br>        user.setUserName(“飞鸟”);<br>        user.setUserAge(20);<br>        SqlSession session = sqlSessionFactory.openSession();<br>        try {<br>            IUserOperation userOperation = session.getMapper(IUserOperation.class);<br>            userOperation.addUser(user);<br>            session.commit();<br>            System.out.println(“id : “+user.getId());<br>        } catch (Exception e) {<br>            // TODO: handle exception<br>        }finally{<br>            session.close();<br>        }<br>    }</p>
+<p>三、更新数据</p>
+<update id="updateUser" parametertype="User"><br>        update user set userName=#{userName},userAge=#{userAge},userAddress=#{userAddress} where id=#{id}<br></update>
+
+<p>public interface IUserOperation {<br>    public User selectUserByID(int id);<br>    public List<user> selectUsers(String userName);<br>    public void addUser(User user);<br>    public void updateUser(User user);<br>}</user></p>
+<p>public static void main(String[] args) {<br>        SqlSession session = sqlSessionFactory.openSession();<br>        try {<br>            IUserOperation userOperation = session.getMapper(IUserOperation.class);<br>            User user = userOperation.selectUserByID(4);<br>            user.setUserAddress(“hell”);<br>            userOperation.updateUser(user);<br>            session.commit();<br>        } catch (Exception e) {<br>            // TODO: handle exception<br>        }finally{<br>            session.close();<br>        }<br>    }</p>
+<p>四、删除数据<br> <delete id="deleteUser" parametertype="int"><br>        delete from user where id=#{id}<br> </delete></p>
+<p> public interface IUserOperation {<br>    public User selectUserByID(int id);<br>    public List<user> selectUsers(String userName);<br>    public void addUser(User user);<br>    public void updateUser(User user);<br>    public void deleteUser(int id);<br>}</user></p>
+<p>public static void main(String[] args) {<br>        SqlSession session = sqlSessionFactory.openSession();<br>        try {<br>            IUserOperation userOperation = session.getMapper(IUserOperation.class);<br>            userOperation.deleteUser(4);<br>            session.commit();<br>        } catch (Exception e) {<br>            // TODO: handle exception<br>        }finally{<br>            session.close();<br>        }<br>    }<br>五、表关联<br>    别名：<br>    <typealiases><br>        <typealias alias="Article" type="com.yihaomen.mybatis.model.Article"><br>    </typealias></typealiases></p>
+<pre><code>&lt;resultMap id=<span class="string">"resultUserArticleList"</span> <span class="keyword">type</span>=<span class="string">"com.yihaomen.mybatis.model.Article"</span>&gt;  // 写全类名，否则提示找不到类
+    &lt;id property=<span class="string">"id"</span> column=<span class="string">"aid"</span>/&gt;
+    &lt;<span class="literal">result</span> property=<span class="string">"title"</span> column=<span class="string">"title"</span>/&gt;
+    &lt;<span class="literal">result</span> property=<span class="string">"content"</span> column=<span class="string">"content"</span>/&gt;
+
+    &lt;association property=<span class="string">"user"</span> javaType=<span class="string">"User"</span>&gt;
+        &lt;id property=<span class="string">"id"</span> column=<span class="string">"id"</span>/&gt;
+        &lt;<span class="literal">result</span> property=<span class="string">"userName"</span> column=<span class="string">"userName"</span>/&gt;
+        &lt;<span class="literal">result</span> property=<span class="string">"userAddress"</span> column=<span class="string">"userAddress"</span>/&gt;
+    &lt;/association&gt;
+&lt;/resultMap&gt;
+
+&lt;select id=<span class="string">"getUserArticles"</span> parameterType=<span class="string">"int"</span> resultMap=<span class="string">"resultUserArticleList"</span>&gt;
+   select user.id,user.userName,user.userAddress,article.id aid,article.title,article.content <span class="keyword">from</span> user,article
+          where user.id=article.userid <span class="keyword">and</span> user.id=<span class="comment">#{id}</span>
+&lt;/select&gt;
+</code></pre><p>public class Article {<br>    private int id;<br>    private User user;<br>    private String title;<br>    private String content;<br>}</p>
+<p>public interface IUserOperation {<br>    public User selectUserByID(int id);<br>    public List<user> selectUsers(String userName);<br>    public void addUser(User user);<br>    public void updateUser(User user);<br>    public void deleteUser(int id);<br>    public List<article> getUserArticles(int id);<br>}</article></user></p>
+<p>public void getUserArticles(int userid){<br>        SqlSession session = sqlSessionFactory.openSession();<br>        try {<br>            IUserOperation userOperation = session.getMapper(IUserOperation.class);<br>            List<article> articles = userOperation.getUserArticles(userid);<br>            for (Article article : articles) {<br>                System.out.println(article.getTitle()+”:”+article.getContent()+”:”+article.getUser().getUserName()+”:”<br>                        +article.getUser().getUserAddress());<br>            }<br>        } catch (Exception e) {<br>        } finally{<br>            session.close();<br>        }<br>    }</article></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/myBatis/">myBatis</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/06/09/myBatis学习笔记/" data-title="myBatis学习笔记 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/09/安装小结/" title="安装小结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  安装小结</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/09/常见的网络攻击原理分析/"  title="常见的网络攻击原理分析">
+ <strong>下一篇：</strong><br/> 
+ <span>常见的网络攻击原理分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/06/09/myBatis学习笔记/" data-title="myBatis学习笔记" data-url="http://yoursite.com/2016/06/09/myBatis学习笔记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis_接触"><span class="toc-number">1.</span> <span class="toc-text">mybatis 接触</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用接口实现"><span class="toc-number">2.</span> <span class="toc-text">使用接口实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis实现数据的增删改查"><span class="toc-number">3.</span> <span class="toc-text">mybatis实现数据的增删改查</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

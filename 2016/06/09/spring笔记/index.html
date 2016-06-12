@@ -40,7 +40,7 @@ public Person(Dog dog) {
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-13/27499441.jpg">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-13/18386608.jpg">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-13/73688262.jpg">
-<meta property="og:updated_time" content="2016-06-09T14:32:32.516Z">
+<meta property="og:updated_time" content="2016-06-10T14:29:33.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring笔记">
 <meta name="twitter:description" content="spring构造注入public class Dog implements Animal{
@@ -233,6 +233,13 @@ public Person(Dog dog) {
 <p>使用@Resource 配置依赖，与<property...> 元素的ref属性有相同的效果<br>@Component<br>public class Chinese{<br>    private Axe axe;<br>    @Resource(name=”stoneAxe”)<br>    public void setAxe(Axe axe){<br>        this.axe = axe;<br>    }<br>}<br>@Resource 不仅可以修饰setter方法，还可以修饰变量<br>@Resource(name=”stoneAxe”)<br>private Axe axe</property...></p>
 <p>Spring 3.0 新增 @DependsOn({“steelAxe”,”abc”})  初始化之前，会强制初始化steelAxe,abc两个Bean<br>@Lazy(true) 指定当Spring容器初始化时，不会预初始化之</p>
 <p>当使用@Autowired 标注setter方法时，默认采用byType自动装配策略<br>Spring4.0 @Autowired 可以根据泛型进行自动装配</p>
+<p>spring缓存机制<br>在Spring配置文件中添加<cache:annotation-driven cache-manager="缓存管理器ID"> 该元素指定Spring根据注解来启用Bean级别或方法级别的缓存<br>如果将容器中缓存管理器的ID设置为cacheManager,则可省略<cache:annotation-driven> 的cache-manager属性<br>一般来说，应用有多少个组件需要缓存，程序就应该配置多少个缓存区<br>EhCache缓存实现配置：ehcache-core-2.4.3.jar 和 slf4j-api-1.6.1.jar</cache:annotation-driven></cache:annotation-driven></p>
+<p>使用@Cacheeable执行缓存</p>
+<ol>
+<li>类级别的缓存<br>@service(“userService”)<br>@Cacheable(value=”users”)<br>程序调用该类的任意方法时，只要传入的参数相同，Spring就会使用缓存<br>同一个类不管调用哪个方法，只要调用方法时传入的参数相同，Spring都会直接利用缓存区中的数据</li>
+<li>方法级别的缓存<br>使用@Cacheable 修饰方法时，就可控制Spring在方法级别进行缓存，这样当程序调用该方法时，只要传入的参数相同，Spring就会使用缓存</li>
+</ol>
+<p>使用@CacheEvict清除缓存<br>@CacheEvict(value=”users”)  清楚users缓存区中的数据<br>@CacheEvict(value=”users”,allEntries=true) 清空整个users缓存区</p>
 </string,beaninterface></string,beaninterface></beaninterface></context:component-scan></bean></bean></bean></lookup-method...></lookup-method...></lookup-method...></bean...></property...></constructor-arg...></beans></bean></bean></beans></beans...></bean>  
 	</div>
 		<footer class="article-footer clearfix">

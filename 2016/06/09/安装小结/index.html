@@ -25,7 +25,7 @@
 安装软件命令： apt-get install softname1 softname2 softname3……
 卸载软件命令： apt-get remove softname1 softname2 softname3……
 卸载">
-<meta property="og:updated_time" content="2016-06-09T14:42:10.888Z">
+<meta property="og:updated_time" content="2016-07-12T15:17:10.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装小结">
 <meta name="twitter:description" content="Ubuntu 中apt-get用法：查找软件命令： apt-cache search keyword
@@ -108,7 +108,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li></ol>
 		
 		</div>
 		
@@ -128,6 +128,7 @@
 <p>已经装有openjdk启用官方jdk的方法：<br>依次终端执行：<br>sudo update-alternatives –install /usr/bin/java java /home/tecn/jdk1.7.0_55/bin/java 445<br>sudo update-alternatives –install /usr/bin/javac javac /home/tecn/jdk1.7.0_55/bin/javac 445<br>sudo update-alternatives –config java<br>将会提示，要维持当前值[*]请按回车键，或者输入选择的编号：<br>输入优先级为 445 的那项的编号，回车即可。</p>
 <h3 id="centso安装pip_下载源码安装">centso安装pip 下载源码安装</h3><p>wget –no-check-certificate <a href="https://github.com/pypa/pip/archive/1.5.5.tar.gz" target="_blank" rel="external">https://github.com/pypa/pip/archive/1.5.5.tar.gz</a><br>tar zvxf 1.5.5.tar.gz    #解压文件<br>cd pip-1.5.5/<br>python setup.py install</p>
 <p>你可以检查日志或者控制 Shadowsocks 的运行：<br>supervisorctl tail -f shadowsocks stderr<br>supervisorctl restart shadowsocks</p>
+<h3 id="安装gitbook">安装gitbook</h3><p>切换npm源<br>打开.npmrc文件 添加<br>registry = <a href="http://registry.npm.taobao.org" target="_blank" rel="external">http://registry.npm.taobao.org</a><br>或者 执行<br>npm config set registry “<a href="http://r.cnpmjs.org/" target="_blank" rel="external">http://r.cnpmjs.org/</a>“<br>然后 npm install gitbook-cli -g<br>安装好之后  gitbook -V</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -189,7 +190,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li></ol>
  
   </div>
 

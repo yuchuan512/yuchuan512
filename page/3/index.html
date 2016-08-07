@@ -273,7 +273,7 @@ Map/ReduceMapReduce借鉴了函数式程序设计语言的思想，通过Map函�
     <h1 itemprop="name">java锁类型</h1>
     
      
-           <p itemprop="description" >自旋锁自旋锁适用于锁竞争不那么激烈的情况，和同步块比较小的情况，由于线程的阻塞和释放都是基于信号量（操作系统课本的汇编示例代码还记得不），并且有用户态和内核态的频繁切换以及线程上下文切换开销比较大，对于前述的两种情况阻塞和释放竞争锁的线程显得没那么的必要，所以引入了自旋锁，但是自</p>
+           <p itemprop="description" >自旋锁使用了CAS原子操作，lock函数将owner设置为当前线程，并且预测原来的值为空。unlock函数将owner设置为null，并且预测值为当前线程。当有第二个线程调用lock操作时由于owner值不为空，导致循环一直被执行，直至第一个线程调用unlock函数将owner设</p>
         
     
     <time datetime="2016-04-15T14:46:28.000Z" itemprop="datePublished">2016-04-15</time>

@@ -78,6 +78,48 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2016/04/16/java面试问题总结/" title="java面试问题总结" itemprop="url">
+  
+    <h1 itemprop="name">java面试问题总结</h1>
+    
+     
+           <p itemprop="description" >java锁类型
+自旋锁，为解决由用户态和内核态的频繁切换以及线程上下文切换开销比较大引入自旋锁。问题：ABA,单核无效。解决：AtomicStampedReference将更新一个“对象 —-引用”二元组，通过在引用上加上“版本号”，从而避免ABA问题。
+可重入锁，可重入锁，也叫</p>
+        
+    
+    <time datetime="2016-04-16T04:09:00.000Z" itemprop="datePublished">2016-04-16</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/04/15/java锁类型/" title="java锁类型" itemprop="url">
+  
+    <h1 itemprop="name">java锁类型</h1>
+    
+     
+           <p itemprop="description" >自旋锁使用了CAS原子操作，lock函数将owner设置为当前线程，并且预测原来的值为空。unlock函数将owner设置为null，并且预测值为当前线程。当有第二个线程调用lock操作时由于owner值不为空，导致循环一直被执行，直至第一个线程调用unlock函数将owner设</p>
+        
+    
+    <time datetime="2016-04-15T14:46:28.000Z" itemprop="datePublished">2016-04-15</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2016/04/15/架构思想小记/" title="架构思想小记" itemprop="url">
   
     <h1 itemprop="name">架构思想小记</h1>
@@ -240,49 +282,9 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/10/算法-动态规划/" title="算法-动态规划" itemprop="url">
-  
-    <h1 itemprop="name">算法-动态规划</h1>
-    
-     
-           <p itemprop="description" >最长公共子序列12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758/** * 给定两个字符串str1和str2,返回这</p>
-        
-    
-    <time datetime="2016-04-10T13:57:56.000Z" itemprop="datePublished">2016-04-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/10/算法-字符串/" title="算法-字符串相关" itemprop="url">
-  
-    <h1 itemprop="name">算法-字符串相关</h1>
-    
-     
-           <p itemprop="description" >句子逆序输出123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** 句子逆序 * 将一个英文语句以单词为单位逆序排放。例如“I am a boy”，逆序排</p>
-        
-    
-    <time datetime="2016-04-10T13:57:35.000Z" itemprop="datePublished">2016-04-10</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
   </nav>
 
 </div>
@@ -341,7 +343,7 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
 		  
 		
 		  
@@ -390,6 +392,10 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		
 		  
 			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 		  
 		
 		  
@@ -461,15 +467,15 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
 		  
 		
 		  
@@ -481,11 +487,11 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 		  
 		
 		  
@@ -493,11 +499,11 @@ Java内存模型中规定了所有的变量都存储在主内存中，每条线�
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		</ul>

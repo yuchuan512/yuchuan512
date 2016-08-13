@@ -25,7 +25,7 @@
 安装软件命令： apt-get install softname1 softname2 softname3……
 卸载软件命令： apt-get remove softname1 softname2 softname3……
 卸载">
-<meta property="og:updated_time" content="2016-07-12T15:17:10.387Z">
+<meta property="og:updated_time" content="2016-08-13T02:04:52.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装小结">
 <meta name="twitter:description" content="Ubuntu 中apt-get用法：查找软件命令： apt-cache search keyword
@@ -108,7 +108,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS_升级python3"><span class="toc-number">7.</span> <span class="toc-text">CentOS 升级python3</span></a></li></ol>
 		
 		</div>
 		
@@ -129,6 +129,8 @@
 <h3 id="centso安装pip_下载源码安装">centso安装pip 下载源码安装</h3><p>wget –no-check-certificate <a href="https://github.com/pypa/pip/archive/1.5.5.tar.gz" target="_blank" rel="external">https://github.com/pypa/pip/archive/1.5.5.tar.gz</a><br>tar zvxf 1.5.5.tar.gz    #解压文件<br>cd pip-1.5.5/<br>python setup.py install</p>
 <p>你可以检查日志或者控制 Shadowsocks 的运行：<br>supervisorctl tail -f shadowsocks stderr<br>supervisorctl restart shadowsocks</p>
 <h3 id="安装gitbook">安装gitbook</h3><p>切换npm源<br>打开.npmrc文件 添加<br>registry = <a href="http://registry.npm.taobao.org" target="_blank" rel="external">http://registry.npm.taobao.org</a><br>或者 执行<br>npm config set registry “<a href="http://r.cnpmjs.org/" target="_blank" rel="external">http://r.cnpmjs.org/</a>“<br>然后 npm install gitbook-cli -g<br>安装好之后  gitbook -V</p>
+<h3 id="CentOS_升级python3">CentOS 升级python3</h3><p>CentOSpython升级python3导致yum不能正常使用 ，因为yum是基于python2.x的,python版本不兼容导致出现<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">File</span> <span class="string">"/usr/bin/yum"</span>, <span class="keyword">line</span> 30</span><br><span class="line">    except KeyboardInterrupt, <span class="literal">e</span></span><br><span class="line">SyntaxError: invalid <span class="keyword">syntax</span></span><br></pre></td></tr></table></figure></p>
+<p>解决方法：<br><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/bin/yum</span><br><span class="line">首行由 #!/usr/bin/python 改为</span><br><span class="line"><span class="shebang">#!/usr/bin/python2.6</span></span><br></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -190,7 +192,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS_升级python3"><span class="toc-number">7.</span> <span class="toc-text">CentOS 升级python3</span></a></li></ol>
  
   </div>
 
@@ -247,7 +249,7 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
 		  
 		
 		  
@@ -296,6 +298,10 @@
 		
 		  
 			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 		  
 		
 		  
@@ -367,15 +373,15 @@
 		  
 		
 		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
 		  
 		
 		  
@@ -387,11 +393,11 @@
 		  
 		
 		  
-			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 		  
 		
 		  
@@ -399,11 +405,11 @@
 		  
 		
 		  
-			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
 		  
 		
 		</ul>

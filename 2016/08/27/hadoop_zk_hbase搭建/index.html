@@ -11,15 +11,19 @@
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
+    <meta name="description" content="hbase支持结构化半结构化不允许跨行的事务HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性创建表的时候必须制定一个列族Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储
+新增用户 useradd -m hadoop -s /bin/bashvim /etc/sysconfig/ne">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Flow">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/08/27/hadoop_zk_hbase搭建/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description">
+<meta property="og:description" content="hbase支持结构化半结构化不允许跨行的事务HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性创建表的时候必须制定一个列族Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储
+新增用户 useradd -m hadoop -s /bin/bashvim /etc/sysconfig/ne">
+<meta property="og:updated_time" content="2016-08-27T14:25:20.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flow">
-<meta name="twitter:description">
+<meta name="twitter:description" content="hbase支持结构化半结构化不允许跨行的事务HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性创建表的时候必须制定一个列族Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储
+新增用户 useradd -m hadoop -s /bin/bashvim /etc/sysconfig/ne">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -73,224 +77,122 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/12/Guava概览/" title="Guava概览" itemprop="url">
-  
-    <h1 itemprop="name">Guava概览</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >Guava 是一个 Google 的基于java1.6的类库集合的扩展项目，包括 collections, caching, primitives support, concurrency libraries, common annotations, string process</p>
-        
+      <a href="/2016/08/27/hadoop_zk_hbase搭建/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-27T14:25:20.409Z" itemprop="datePublished"> 发表于 2016-08-27</time>
     
-    <time datetime="2016-05-12T07:37:56.000Z" itemprop="datePublished">2016-05-12</time>
-  </a>
-</section>
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>hbase支持结构化半结构化<br>不允许跨行的事务<br>HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性<br>创建表的时候必须制定一个列族<br>Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储</p>
+<p>新增用户 useradd -m hadoop -s /bin/bash<br>vim /etc/sysconfig/network  ====》 hostname<br>vim /etc/hosts ip:hostName   eg ： 10.101.100.101  master</p>
+<ol>
+<li>ssh无密码登录<br>rpm -qa | grep ssh<br>yum install openssh-clients<br>yum install openssh-server</li>
+</ol>
+<p>cd /etc/ssh/ssh_confg<br>去掉端口22和protocol注释</p>
+<p>cd /etc/ssh/sshd_config<br>root用户下修改 /etc/ssh/sshd_config文件（取消以下三个变量的注释）<br>RSAAuthentication yes<br>PubkeyAuthentication yes<br>AuthorizedKeysFile  .ssh/authorized_keys<br>重启服务  service sshd restart</p>
+<p>切换到hadoop，ssh localhost无密码登录<br>cd /home/hadoop<br>ssh localhost生成  .ssh<br>进入/home/hadoop/.ssh<br>创建hadoop用户秘钥，加入授权<br>ssh-keygen -t rsa<br>cat id_rsa.pub &gt;&gt; authorized_keys</p>
+<p>slaver1和slaver2做类似操作，scp id_rsa.pub root@master:/home/hadoop<br>加入authorized_keys 中<br>注意 chmod 600 authorized_keys（必须设置权限，否则centos不通过）<br>将authorized_key传输到slaver1,slaver2，并将所属组和用户设置为hadoop</p>
+<p>2.<br>service iptables stop 临时关闭防火墙<br>chkconfig iptables off 永久关闭防火墙</p>
+<ol>
+<li>安装zookeeper<br>确定防火墙已经关闭<br>vim /usr/local/zookeeper/conf/zoo.cfg<br>dataDir=/home/data_zoo/data<br>dataLogDir=/home/logs/zklog</li>
+</ol>
+<p>server.1=master:2888:3888<br>server.2=slaver1:2888:3888<br>server.3=slaver2:2888:3888<br>对应server的myid<br>vim /home/data_zoo/data/myid 1<br>vim /home/data_zoo/data/myid 2<br>vim /home/data_zoo/data/myid 3<br>确保权限<br>chown -R hadoop:hadoop/usr/local/zookeeper<br>chown -R hadoop:hadoop /home/data_zoo<br>chown -R hadoop:hadoop /home/logs</p>
+<p>vim /etc/profile<br>export ZOOKEEPER_HOME=/usr/local/zookeeper<br>export PATH=$ZOOKEEPER_HOME/bin:$PATH<br>source /etc/profile</p>
+<p>启动<br>zkServer.sh start<br>若启动有问题，使用 zkServer.sh start-foreground 查看启动过程报错信息<br>zkServer.sh stop<br>zkCli.sh -server localhost:2181<br>至此，zk搭建完成</p>
+<ol>
+<li>hadoop配置<br>参考 <a href="http://blog.csdn.net/zhshulin/article/details/50413240" target="_blank" rel="external">http://blog.csdn.net/zhshulin/article/details/50413240</a><br>修改 slaves、core-site.xml、hdfs-site.xml、mapred-site.xml、yarn-site.xml<br>注意，需要/usr/loca/hadoop/etc/hadoop 中 vim hadoop-env.sh  yarn-env.sh 配置JAVA_HOME=/opt/jdk7<br>出现name service not found<br>vim ~/.bashrc<br>export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native<br>export HADOOP_OPTS=”-Djava.library.path=$HADOOP_HOME/lib”</li>
+</ol>
+<ol>
+<li>hbase搭建<br>参考 <a href="http://blog.csdn.net/andie_guo/article/details/44086433" target="_blank" rel="external">http://blog.csdn.net/andie_guo/article/details/44086433</a><br><a href="http://blackproof.iteye.com/blog/2023798" target="_blank" rel="external">http://blackproof.iteye.com/blog/2023798</a></li>
+</ol>
+<p>vim regionservers === &gt; slaver1  slaver2</p>
+<p>vim hbase-env.sh<br>export JAVA_HOME=/opt/jdk7<br>export HBASE_HOME=/usr/local/hbase<br>export HADOOP_HOME=/usr/local/hadoop<br>export HBASE_LOG_DIR=/usr/local/hbase/logs<br>export HBASE_MANAGES_ZK=false  不使用hbase自带zk</p>
+<p>vim hbase-site.xml</p>
+<property><br>    <name>hbase.rootdir</name><br>    <value>hdfs://master:9000/hbase</value><br></property><br><property><br>    <name>hbase.cluster.distributed</name><br>    <value>true</value><br></property><br><property><br>    <name>hbase.zookeeper.property.clientPort</name><br>    <value>2181</value><br></property><br><property><br>    <name>hbase.zookeeper.quorum</name><br>    <value>master,slaver1,slaver2</value><br></property><br><property><br>    <name>hbase.master</name><br>    <value>master:6000</value><br></property><br><property><br>    <name>hbase.zookeeper.property.dataDir</name><br>    <value>/home/data_zoo/data</value><br></property><br><property><br>    <name>dfs.support.append</name><br>    <value>true</value><br></property>
 
-
-
-
-
-
+<p>free 详解 <a href="http://www.cnblogs.com/coldplayerest/archive/2010/02/20/1669949.html" target="_blank" rel="external">http://www.cnblogs.com/coldplayerest/archive/2010/02/20/1669949.html</a></p>
+<p>localhost:50070 web界面</p>
+<p>idea连接hbase编程，需要把hbase-site.xml放入类路径下面，修改 window/system32/drivers/etc/hosts即可</p>
+<p>sublime setting.xml<br>[<br>{ “keys”: [“alt+m”], “command”: “markdown_preview”, “args”: { “target”: “browser”} },<br>{ “keys”: [“alt+d”], “command”: “run_macro_file”, “args”: {“file”: “Packages/Default/Delete Line.sublime-macro”} },<br>{ “keys”: [“shift+enter”], “command”: “run_macro_file”, “args”: {“file”: “Packages/Default/Add Line.sublime-macro”} }<br>]</p>
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/12/python学习笔记/" title="python学习笔记" itemprop="url">
-  
-    <h1 itemprop="name">python学习笔记</h1>
-    
-     
-           <p itemprop="description" >You can try out the features described in the tips while this dialog stays open on the screen.
-pyCharm Tips -&amp;gt;Open directory -&amp;gt; Open i</p>
-        
-    
-    <time datetime="2016-05-12T07:36:20.000Z" itemprop="datePublished">2016-05-12</time>
-  </a>
-</section>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/12/mysql学习笔记/" title="mysql学习笔记" itemprop="url">
-  
-    <h1 itemprop="name">mysql学习笔记</h1>
-    
-     
-           <p itemprop="description" >Linux平台安装Mysql失败是因为/etc/my.cnf 的设置是系统的错误路径，可以将$MySQL_HOME/support_files/目录下面的配置文件复制到/etc/my.cnf
- 1cp ./support_files/my_medium.cnf  /etc/my.</p>
-        
-    
-    <time datetime="2016-05-12T07:34:19.000Z" itemprop="datePublished">2016-05-12</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/04/Sing-Dance/" title="Sing &amp;&amp; Dance" itemprop="url">
-  
-    <h1 itemprop="name">Sing &amp;&amp; Dance</h1>
-    
-     
-           <p itemprop="description" ></p>
-        
-    
-    <time datetime="2016-05-04T12:05:02.000Z" itemprop="datePublished">2016-05-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/04/云计算与大数据/" title="云计算与大数据" itemprop="url">
-  
-    <h1 itemprop="name">云计算与大数据</h1>
-    
-     
-           <p itemprop="description" >http是比TCP更高层次的应用层协议，只有底层协议建立之后才能建立更高层协议的连接，因此需要建立TCP连接Web服务器以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
-HTTPS和HTTP区别：
-HTTPS协议需要到CA申请证书，免费证书较少，一般需要</p>
-        
-    
-    <time datetime="2016-05-04T10:29:14.000Z" itemprop="datePublished">2016-05-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/05/04/java反射/" title="java反射" itemprop="url">
-  
-    <h1 itemprop="name">java反射</h1>
-    
-     
-           <p itemprop="description" >1、Java反射的概念    反射含义：可以获取正在运行的Java对象。2、Java反射的功能    1)可以判断运行时对象所属的类    2)可以判断运行时对象所具有的成员变量和方法    3)通过反射甚至可以调用到private的方法    4)生成动态代理3、实现Java反</p>
-        
-    
-    <time datetime="2016-05-04T10:25:02.000Z" itemprop="datePublished">2016-05-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/29/AFDX/" title="AFDX" itemprop="url">
-  
-    <h1 itemprop="name">AFDX</h1>
-    
-     
-           <p itemprop="description" >航空电子全双工交换式以太网（AFDX）技术基于IEEE 802.2 以太网和TCP/IP 通用原理，利用商用货架网络化技术来实现飞机设备间的数据高速通信，AFDX 与普通商用以太网最大的不同点在于AFDX采用了虚拟链路技术和冗余管理，提高了数据传输的可靠性和服务质量。
-冗余管理机</p>
-        
-    
-    <time datetime="2016-04-29T01:45:21.000Z" itemprop="datePublished">2016-04-29</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/29/linux必学的60个命令/" title="linux必学的60个命令" itemprop="url">
-  
-    <h1 itemprop="name">linux必学的60个命令</h1>
-    
-     
-           <p itemprop="description" >Linux必学的60个命令linux命令笔记
-IDC(Internet Data Center)mkdir nihaomkdir -p 123/456/789依次创建 tree 123 以树形显示mkdir a b c 同时创建三个目录
-touch text 创建空文件ll te</p>
-        
-    
-    <time datetime="2016-04-29T01:45:04.000Z" itemprop="datePublished">2016-04-29</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/26/六大原则/" title="六大原则" itemprop="url">
-  
-    <h1 itemprop="name">六大原则</h1>
-    
-     
-           <p itemprop="description" >单一职责原则高内聚，低耦合。每一个类应该只有一个职责，对外只能提供一种功能，而引起类变化的原因应该只有一个。将不同的职责分别进行封装，不要将其组合在一个勒种，要使这个类只有一个可能会以前它变化的原因。
-里氏替换原则在里氏替换原则中，所有引用基类的地方必须能够透明的使用其子类对象，</p>
-        
-    
-    <time datetime="2016-04-26T14:06:52.000Z" itemprop="datePublished">2016-04-26</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/26/设计模式二/" title="设计模式二" itemprop="url">
-  
-    <h1 itemprop="name">设计模式二</h1>
-    
-     
-           <p itemprop="description" >建造者模式建造模式是将复杂的内部创建封装在内部，对于外部调用的人来说，只需要传入建造者和建造工具，对于内部是如何建造成成品的，调用者无需关心。在Java的应用中JavaMail使用到了该模式。
-原型模式1234567891011121314151617/* 浅复制 */publi</p>
-        
-    
-    <time datetime="2016-04-26T14:06:40.000Z" itemprop="datePublished">2016-04-26</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
-  </nav>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/08/27/hadoop_zk_hbase搭建/" data-title="Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/28/mess/" title="">
+  <strong>上一篇：</strong><br/>
+  <span>
+  (no title)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/08/21/算法一/"  title="">
+ <strong>下一篇：</strong><br/> 
+ <span>(no title)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/08/27/hadoop_zk_hbase搭建/" data-title="" data-url="http://yoursite.com/2016/08/27/hadoop_zk_hbase搭建/"></div>
+</section>
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -742,12 +644,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -825,4 +804,4 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>

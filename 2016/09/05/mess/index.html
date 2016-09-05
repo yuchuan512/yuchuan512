@@ -4,26 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Flow</title>
+    <title>mess | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="hbase支持结构化半结构化不允许跨行的事务HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性创建表的时候必须制定一个列族Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储
-新增用户 useradd -m hadoop -s /bin/bashvim /etc/sysconfig/ne">
+    <meta name="description" content="ETL extract transform loadJetty DebugRun -&amp;gt; Edit Configurations -&amp;gt; Maven -&amp;gt; clean Jetty:run-exploded  pom.xmlContent-Type:text/html   Content-Type:application/jsonHandlerInterceptorAdapter -&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flow">
-<meta property="og:url" content="http://yoursite.com/2016/08/27/hadoop_zk_hbase搭建/index.html">
+<meta property="og:title" content="mess">
+<meta property="og:url" content="http://yoursite.com/2016/09/05/mess/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="hbase支持结构化半结构化不允许跨行的事务HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性创建表的时候必须制定一个列族Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储
-新增用户 useradd -m hadoop -s /bin/bashvim /etc/sysconfig/ne">
-<meta property="og:updated_time" content="2016-08-27T14:25:20.409Z">
+<meta property="og:description" content="ETL extract transform loadJetty DebugRun -&amp;gt; Edit Configurations -&amp;gt; Maven -&amp;gt; clean Jetty:run-exploded  pom.xmlContent-Type:text/html   Content-Type:application/jsonHandlerInterceptorAdapter -&amp;">
+<meta property="og:updated_time" content="2016-09-05T09:30:20.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flow">
-<meta name="twitter:description" content="hbase支持结构化半结构化不允许跨行的事务HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性创建表的时候必须制定一个列族Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储
-新增用户 useradd -m hadoop -s /bin/bashvim /etc/sysconfig/ne">
+<meta name="twitter:title" content="mess">
+<meta name="twitter:description" content="ETL extract transform loadJetty DebugRun -&amp;gt; Edit Configurations -&amp;gt; Maven -&amp;gt; clean Jetty:run-exploded  pom.xmlContent-Type:text/html   Content-Type:application/jsonHandlerInterceptorAdapter -&amp;">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -83,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/27/hadoop_zk_hbase搭建/" title="" itemprop="url"></a>
+      <a href="/2016/09/05/mess/" title="mess" itemprop="url">mess</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-27T14:25:20.409Z" itemprop="datePublished"> 发表于 2016-08-27</time>
+    <time datetime="2016-09-05T09:30:01.000Z" itemprop="datePublished"> 发表于 2016-09-05</time>
     
   </p>
 </header>
@@ -103,35 +100,22 @@
 		
 		</div>
 		
-		<p>hbase支持结构化半结构化<br>不允许跨行的事务<br>HBase的表必须有一个列族，列族直接影响HBase数据存储的物理特性<br>创建表的时候必须制定一个列族<br>Put p = new Put(Bytes.toBytes(“mark tom”)) HBase中所有数据都是作为原始数据使用字节数组的形式存储</p>
-<p>新增用户 useradd -m hadoop -s /bin/bash<br>vim /etc/sysconfig/network  ====》 hostname<br>vim /etc/hosts ip:hostName   eg ： 10.101.100.101  master</p>
+		<p>ETL extract transform load<br>Jetty Debug<br>Run -&gt; Edit Configurations -&gt; Maven -&gt; clean Jetty:run-exploded  pom.xml<br>Content-Type:text/html   Content-Type:application/json<br>HandlerInterceptorAdapter -&gt; prehandle posthandle afterCompletion<br>netstat -ano | find str “8080”<br>class*=col 所有以col开头元素<br>图</p>
 <ol>
-<li>ssh无密码登录<br>rpm -qa | grep ssh<br>yum install openssh-clients<br>yum install openssh-server</li>
+<li>opentsdb</li>
+<li>jstorm</li>
 </ol>
-<p>cd /etc/ssh/ssh_confg<br>去掉端口22和protocol注释</p>
-<p>cd /etc/ssh/sshd_config<br>root用户下修改 /etc/ssh/sshd_config文件（取消以下三个变量的注释）<br>RSAAuthentication yes<br>PubkeyAuthentication yes<br>AuthorizedKeysFile  .ssh/authorized_keys<br>重启服务  service sshd restart</p>
-<p>切换到hadoop，ssh localhost无密码登录<br>cd /home/hadoop<br>ssh localhost生成  .ssh<br>进入/home/hadoop/.ssh<br>创建hadoop用户秘钥，加入授权<br>ssh-keygen -t rsa<br>cat id_rsa.pub &gt;&gt; authorized_keys</p>
-<p>slaver1和slaver2做类似操作，scp id_rsa.pub root@master:/home/hadoop<br>加入authorized_keys 中<br>注意 chmod 600 authorized_keys（必须设置权限，否则centos不通过）<br>将authorized_key传输到slaver1,slaver2，并将所属组和用户设置为hadoop</p>
-<p>2.<br>service iptables stop 临时关闭防火墙<br>chkconfig iptables off 永久关闭防火墙</p>
-<ol>
-<li>安装zookeeper<br>确定防火墙已经关闭<br>vim /usr/local/zookeeper/conf/zoo.cfg<br>dataDir=/home/data_zoo/data<br>dataLogDir=/home/logs/zklog</li>
-</ol>
-<p>server.1=master:2888:3888<br>server.2=slaver1:2888:3888<br>server.3=slaver2:2888:3888<br>对应server的myid<br>vim /home/data_zoo/data/myid 1<br>vim /home/data_zoo/data/myid 2<br>vim /home/data_zoo/data/myid 3<br>确保权限<br>chown -R hadoop:hadoop/usr/local/zookeeper<br>chown -R hadoop:hadoop /home/data_zoo<br>chown -R hadoop:hadoop /home/logs</p>
-<p>vim /etc/profile<br>export ZOOKEEPER_HOME=/usr/local/zookeeper<br>export PATH=$ZOOKEEPER_HOME/bin:$PATH<br>source /etc/profile</p>
-<p>启动<br>zkServer.sh start<br>若启动有问题，使用 zkServer.sh start-foreground 查看启动过程报错信息<br>zkServer.sh stop<br>zkCli.sh -server localhost:2181<br>至此，zk搭建完成</p>
-<ol>
-<li>hadoop配置<br>参考 <a href="http://blog.csdn.net/zhshulin/article/details/50413240" target="_blank" rel="external">http://blog.csdn.net/zhshulin/article/details/50413240</a><br>修改 slaves、core-site.xml、hdfs-site.xml、mapred-site.xml、yarn-site.xml<br>注意，需要/usr/loca/hadoop/etc/hadoop 中 vim hadoop-env.sh  yarn-env.sh 配置JAVA_HOME=/opt/jdk7<br>出现name service not found<br>vim ~/.bashrc<br>export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native<br>export HADOOP_OPTS=”-Djava.library.path=$HADOOP_HOME/lib”</li>
-</ol>
-<ol>
-<li>hbase搭建<br>参考 <a href="http://blog.csdn.net/andie_guo/article/details/44086433" target="_blank" rel="external">http://blog.csdn.net/andie_guo/article/details/44086433</a><br><a href="http://blackproof.iteye.com/blog/2023798" target="_blank" rel="external">http://blackproof.iteye.com/blog/2023798</a></li>
-</ol>
-<p>vim regionservers === &gt; slaver1  slaver2</p>
-<p>vim hbase-env.sh<br>export JAVA_HOME=/opt/jdk7<br>export HBASE_HOME=/usr/local/hbase<br>export HADOOP_HOME=/usr/local/hadoop<br>export HBASE_LOG_DIR=/usr/local/hbase/logs<br>export HBASE_MANAGES_ZK=false  不使用hbase自带zk</p>
-<p>vim hbase-site.xml</p>
-<property><br>    <name>hbase.rootdir</name><br>    <value>hdfs://master:9000/hbase</value><br></property><br><property><br>    <name>hbase.cluster.distributed</name><br>    <value>true</value><br></property><br><property><br>    <name>hbase.zookeeper.property.clientPort</name><br>    <value>2181</value><br></property><br><property><br>    <name>hbase.zookeeper.quorum</name><br>    <value>master,slaver1,slaver2</value><br></property><br><property><br>    <name>hbase.master</name><br>    <value>master:6000</value><br></property><br><property><br>    <name>hbase.zookeeper.property.dataDir</name><br>    <value>/home/data_zoo/data</value><br></property><br><property><br>    <name>dfs.support.append</name><br>    <value>true</value><br></property>
-
-<p>free 详解 <a href="http://www.cnblogs.com/coldplayerest/archive/2010/02/20/1669949.html" target="_blank" rel="external">http://www.cnblogs.com/coldplayerest/archive/2010/02/20/1669949.html</a></p>
-<p>localhost:50070 web界面</p>
+<p>ctrl+shift+h 格式化html/css/javascript<br>ctrl+alt+j  json格式化<br>alt+m markdown</p>
+<p>r 读<br>r+ 读写<br>w 覆盖写<br>a  附加</p>
+<p>gitbook<br>编写 SUMMARY.md   README.md</p>
+<p>AOP拦截多个方法。  requestmapping @Param(value=”param” required=false)</p>
+<p>ctrl+shift+I  类定义<br>alt+F1<br>alt+9 查看那些git修改过   view-tool window<br>junit generator<br>ASM ByteCode</p>
+<p>四种隔离级别<br>未提交读 提交读  可重复读  串行化</p>
+<p>团队博客 ATA<br>做的东西所处的地位、重要性<br>基于HBase的时间序列数据库</p>
+<p>service iptables stop<br>chkconfig iptables off  永久关闭防火墙</p>
+<p>vim /etc/seliux/config   SELinux=disabled</p>
+<p>lsb_release -a  linux版本号<br>jar cvf count.jar</p>
+<p>google技巧<br>“” 完全匹配单词<br>xx -y  包含xx不包含y，减号前面有空格，后面紧跟单词<br>inurl:test  url里面包含test<br>intitle:test   titile里面包含test<br>allintitle:test<br>filetype:pdf  seo<br>site:<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a> xx  站内搜索</p>
 <p>idea连接hbase编程，需要把hbase-site.xml放入类路径下面，修改 window/system32/drivers/etc/hosts即可</p>
 <p>sublime setting.xml<br>[<br>{ “keys”: [“alt+m”], “command”: “markdown_preview”, “args”: { “target”: “browser”} },<br>{ “keys”: [“alt+d”], “command”: “run_macro_file”, “args”: {“file”: “Packages/Default/Delete Line.sublime-macro”} },<br>{ “keys”: [“shift+enter”], “command”: “run_macro_file”, “args”: {“file”: “Packages/Default/Add Line.sublime-macro”} }<br>]</p>
   
@@ -146,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/27/hadoop_zk_hbase搭建/" data-title="Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/09/05/mess/" data-title="mess | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -159,19 +143,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/28/mess/" title="">
-  <strong>上一篇：</strong><br/>
-  <span>
-  (no title)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/21/算法一/"  title="">
+<a href="/2016/09/05/mysql5-7安装/"  title="mysql5.7安装">
  <strong>下一篇：</strong><br/> 
- <span>(no title)
+ <span>mysql5.7安装
 </span>
 </a>
 </div>
@@ -180,7 +156,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/27/hadoop_zk_hbase搭建/" data-title="" data-url="http://yoursite.com/2016/08/27/hadoop_zk_hbase搭建/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/05/mess/" data-title="mess" data-url="http://yoursite.com/2016/09/05/mess/"></div>
 </section>
 
 
@@ -263,7 +239,7 @@
 		  
 		
 		  
-			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 		  
 		
 		  

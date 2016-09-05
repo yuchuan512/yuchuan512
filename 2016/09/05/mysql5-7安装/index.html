@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Flow</title>
+    <title>mysql5.7安装 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="ETL extract transform loadJetty DebugRun -&amp;gt; Edit Configurations -&amp;gt; Maven -&amp;gt; clean Jetty:run-exploded  pom.xmlContent-Type:text/html   Content-Type:application/jsonHandlerInterceptorAdapter -&amp;">
+    <meta name="description" content="mysql5.7 安装1234567891011useradd -m mysql -s /bin/bashcd /usr/localtar zxvf mysql-5.7.14-linux-glibc2.5-x86_64.tar.gzmv mysql-5.7.14-linux-glibc2.5-x86_64 mysqlmkdir -p /home/data/mysql/datachown -R my">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flow">
-<meta property="og:url" content="http://yoursite.com/2016/08/28/mess/index.html">
+<meta property="og:title" content="mysql5.7安装">
+<meta property="og:url" content="http://yoursite.com/2016/09/05/mysql5-7安装/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="ETL extract transform loadJetty DebugRun -&amp;gt; Edit Configurations -&amp;gt; Maven -&amp;gt; clean Jetty:run-exploded  pom.xmlContent-Type:text/html   Content-Type:application/jsonHandlerInterceptorAdapter -&amp;">
-<meta property="og:updated_time" content="2016-08-27T16:57:50.074Z">
+<meta property="og:description" content="mysql5.7 安装1234567891011useradd -m mysql -s /bin/bashcd /usr/localtar zxvf mysql-5.7.14-linux-glibc2.5-x86_64.tar.gzmv mysql-5.7.14-linux-glibc2.5-x86_64 mysqlmkdir -p /home/data/mysql/datachown -R my">
+<meta property="og:updated_time" content="2016-09-05T09:31:13.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flow">
-<meta name="twitter:description" content="ETL extract transform loadJetty DebugRun -&amp;gt; Edit Configurations -&amp;gt; Maven -&amp;gt; clean Jetty:run-exploded  pom.xmlContent-Type:text/html   Content-Type:application/jsonHandlerInterceptorAdapter -&amp;">
+<meta name="twitter:title" content="mysql5.7安装">
+<meta name="twitter:description" content="mysql5.7 安装1234567891011useradd -m mysql -s /bin/bashcd /usr/localtar zxvf mysql-5.7.14-linux-glibc2.5-x86_64.tar.gzmv mysql-5.7.14-linux-glibc2.5-x86_64 mysqlmkdir -p /home/data/mysql/datachown -R my">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -80,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/28/mess/" title="" itemprop="url"></a>
+      <a href="/2016/09/05/mysql5-7安装/" title="mysql5.7安装" itemprop="url">mysql5.7安装</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-27T16:57:50.074Z" itemprop="datePublished"> 发表于 2016-08-28</time>
+    <time datetime="2016-09-05T09:29:03.000Z" itemprop="datePublished"> 发表于 2016-09-05</time>
     
   </p>
 </header>
@@ -96,30 +96,40 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql5-7_安装"><span class="toc-number">1.</span> <span class="toc-text">mysql5.7 安装</span></a></li></ol>
 		
 		</div>
 		
-		<p>ETL extract transform load<br>Jetty Debug<br>Run -&gt; Edit Configurations -&gt; Maven -&gt; clean Jetty:run-exploded  pom.xml<br>Content-Type:text/html   Content-Type:application/json<br>HandlerInterceptorAdapter -&gt; prehandle posthandle afterCompletion<br>netstat -ano | find str “8080”<br>class*=col 所有以col开头元素<br>图</p>
+		<h4 id="mysql5-7_安装">mysql5.7 安装</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">useradd -m mysql -s <span class="regexp">/bin/</span>bash</span><br><span class="line">cd <span class="regexp">/usr/</span>local</span><br><span class="line">tar zxvf mysql-<span class="number">5.7</span><span class="number">.14</span>-linux-glibc2<span class="number">.5</span>-x86_64.tar.gz</span><br><span class="line">mv mysql-<span class="number">5.7</span><span class="number">.14</span>-linux-glibc2<span class="number">.5</span>-x86_64 mysql</span><br><span class="line">mkdir -p <span class="regexp">/home/</span>data<span class="regexp">/mysql/</span>data</span><br><span class="line">chown -R <span class="string">mysql:</span>mysql mysql</span><br><span class="line">chown -R <span class="regexp">/home/</span>data<span class="regexp">/mysql/</span>data</span><br><span class="line"></span><br><span class="line">cd mysql</span><br><span class="line"></span><br><span class="line">.<span class="regexp">/bin/</span>mysqld --user=mysql --basedir=<span class="regexp">/usr/</span>local<span class="regexp">/mysql --datadir=/</span>home<span class="regexp">/data/</span>mysql<span class="regexp">/data --initialize-insecure --socket=/</span>usr<span class="regexp">/local/</span>mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>–initialize-insecure mysql5.7默认会生成随机密码，此选项密码设置默认密码为空</p>
+</blockquote>
+<p>vim /etc/my.cnf<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[client]</span></span><br><span class="line"><span class="setting">port=<span class="value"><span class="number">3306</span></span></span></span><br><span class="line"><span class="setting">socket=<span class="value">/usr/local/mysql/mysql.sock</span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysqld]</span></span><br><span class="line"><span class="setting">datadir=<span class="value">/home/data/mysql/data</span></span></span><br><span class="line"><span class="setting">socket=<span class="value">/usr/local/mysql/mysql.sock</span></span></span><br><span class="line"><span class="setting">user=<span class="value">mysql</span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysqld_safe]</span></span><br><span class="line"><span class="setting">log-error=<span class="value">/var/log/mysqld.log</span></span></span><br><span class="line"><span class="setting">pid-file=<span class="value">/var/run/mysqld/mysqld.pid</span></span></span><br></pre></td></tr></table></figure></p>
+<p>添加mysqld服务<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim support-files/mysql.server</span><br><span class="line">basedir=<span class="regexp">/usr/</span>local/mysql</span><br><span class="line">datadir=<span class="regexp">/home/</span>data<span class="regexp">/mysql/</span>data</span><br><span class="line"></span><br><span class="line">cp support-files<span class="regexp">/mysql.server /</span>etc<span class="regexp">/init.d/</span>mysqld</span><br><span class="line">chmod <span class="number">700</span> <span class="regexp">/etc/</span>init.d/mysqld</span><br><span class="line">chkconfig mysqld on</span><br></pre></td></tr></table></figure></p>
+<p>启动服务<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld <span class="built_in">start</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>授权其他客户端连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> root@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'root'</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改root密码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> authentication_string=<span class="keyword">password</span>(<span class="string">'root'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span> <span class="keyword">and</span> host=<span class="string">'localhost'</span></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>mysql5.7已经取出password字段，改为authentication_string。<br>注意</p>
 <ol>
-<li>opentsdb</li>
-<li>jstorm</li>
+<li>/usr/local/mysql下确定sock没有被锁，没有mysql.sock.lock文件</li>
+<li>若第一次初始化失败，需要删除datadir目录。eg <figure class="highlight"><figcaption><span>-fr</span><a href="/home/data/mysql/data/*">```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. &#22914;&#26524;&#23458;&#25143;&#31471;&#36830;&#25509;&#22833;&#36133;&#65292;&#26816;&#26597;&#38450;&#28779;&#22681;&#26159;&#21542;&#20851;&#38381;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>ctrl+shift+h 格式化html/css/javascript<br>ctrl+alt+j  json格式化<br>alt+m markdown</p>
-<p>r 读<br>r+ 读写<br>w 覆盖写<br>a  附加</p>
-<p>gitbook<br>编写 SUMMARY.md   README.md</p>
-<p>AOP拦截多个方法。  requestmapping @Param(value=”param” required=false)</p>
-<p>ctrl+shift+I  类定义<br>alt+F1<br>alt+9 查看那些git修改过   view-tool window<br>junit generator<br>ASM ByteCode</p>
-<p>四种隔离级别<br>未提交读 提交读  可重复读  串行化</p>
-<p>团队博客 ATA<br>做的东西所处的地位、重要性<br>基于HBase的时间序列数据库</p>
-<p>service iptables stop<br>chkconfig iptables off  永久关闭防火墙</p>
-<p>vim /etc/seliux/config   SELinux=disabled</p>
-<p>lsb_release -a  linux版本号<br>jar cvf count.jar</p>
-<p>google技巧<br>“” 完全匹配单词<br>xx -y  包含xx不包含y，减号前面有空格，后面紧跟单词<br>inurl:test  url里面包含test<br>intitle:test   titile里面包含test<br>allintitle:test<br>filetype:pdf  seo<br>site:<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a> xx  站内搜索</p>
+<p>service iptables stop    临时关闭<br>chkconfig iptables off   永久关闭<br>```</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+</div>
 
 
 </div>
@@ -128,7 +138,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/28/mess/" data-title="Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/09/05/mysql5-7安装/" data-title="mysql5.7安装 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -141,11 +151,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/09/05/mess/" title="mess">
+  <strong>上一篇：</strong><br/>
+  <span>
+  mess</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2016/08/27/hadoop_zk_hbase搭建/"  title="">
+<a href="/2016/09/05/hadoop2-6-0-hbase1-1-zookeeper3-4-6搭建/"  title="hadoop2.6.0_hbase1.1_zookeeper3.4.6搭建">
  <strong>下一篇：</strong><br/> 
- <span>(no title)
+ <span>hadoop2.6.0_hbase1.1_zookeeper3.4.6搭建
 </span>
 </a>
 </div>
@@ -154,7 +172,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/28/mess/" data-title="" data-url="http://yoursite.com/2016/08/28/mess/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/05/mysql5-7安装/" data-title="mysql5.7安装" data-url="http://yoursite.com/2016/09/05/mysql5-7安装/"></div>
 </section>
 
 
@@ -164,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql5-7_安装"><span class="toc-number">1.</span> <span class="toc-text">mysql5.7 安装</span></a></li></ol>
  
   </div>
 
@@ -237,7 +255,7 @@
 		  
 		
 		  
-			<li><a href="/categories/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
 		  
 		
 		  

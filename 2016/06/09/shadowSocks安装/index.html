@@ -26,7 +26,7 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 
 安装shadowsocks首先是安装一些必要的组件：在服务端输入以下指令：yum install m2crypto python-setuptoolseasy_install pippip install s">
 <meta property="og:image" content="https://github.com/clowwindy/shadowsocks/wiki/%E7%94%A8-Supervisor-%E8%BF%90%E8%A1%8C-Shadowsocks/a3a5d48dbe0e82a7b9b0836c3678230c8be457bd">
-<meta property="og:updated_time" content="2016-06-09T14:36:33.246Z">
+<meta property="og:updated_time" content="2016-09-18T01:30:17.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shadowSocks安装">
 <meta name="twitter:description" content="创建秘钥其中private部分存储在你的设备本地，而public部分则需要上传到远程设备上
@@ -122,7 +122,9 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 </ol>
 <p>建立配置文件<br>/etc/shadowsocks.json<br>{<br>“server”:”2604:a880:1:20::74f:8001”,<br>“server_port”:”8388”,<br>“local_address”:”127.0.0.1”,<br>“local_port”:”1080”,<br>“password”:”yuchuan78”,<br>“method”:”aes-256-cfb”,<br>“fast_open”:”false”,<br>“workers”:”1”<br>}</p>
 <p>启动SS<br>ssserver -c /etc/shadowsocks.json</p>
-<h3 id="后台运行shadowsocks">后台运行shadowsocks</h3><p>如果你想在后台运行 Shadowsocks，可以使用 supervisor<br><img src="https://github.com/clowwindy/shadowsocks/wiki/%E7%94%A8-Supervisor-%E8%BF%90%E8%A1%8C-Shadowsocks/a3a5d48dbe0e82a7b9b0836c3678230c8be457bd" alt="后台运行 "><br>echo_supervisord_conf &gt; /etc/supervisord.conf</p>
+<h3 id="后台运行shadowsocks">后台运行shadowsocks</h3><p>如果你想在后台运行 Shadowsocks，可以使用 supervisor</p>
+<p>apt-get update<br>apt-get install supervisor</p>
+<p><img src="https://github.com/clowwindy/shadowsocks/wiki/%E7%94%A8-Supervisor-%E8%BF%90%E8%A1%8C-Shadowsocks/a3a5d48dbe0e82a7b9b0836c3678230c8be457bd" alt="后台运行 "><br>echo_supervisord_conf &gt; /etc/supervisord.conf</p>
 <p>编辑配置文件supervisord.conf，在后面添加</p>
 <p>[program:shadowsocks]<br>command=ssserver -c /etc/shadowsocks.json<br>autostart=true<br>autorestart=true<br>user=nobody</p>
 <p>启动<br>默认路径配置启动：supervisord<br>指定路径配置启动：supervisord -c “指定路径”/supervisord.conf</p>
@@ -264,7 +266,7 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
 		  
 		
 		  
@@ -441,7 +443,7 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
 			
 		
 			
@@ -465,7 +467,7 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 			
 		
 			
-				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -485,11 +487,11 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -513,11 +515,11 @@ ssh-keygen -t rsa -C “yuchuan512@163.com”  添加密钥
 			
 		
 			
-				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

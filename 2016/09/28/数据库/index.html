@@ -1,0 +1,873 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="SQL执行过程
+from 数据源1.1 笛卡尔积1.2 on过滤1.3 外连接 增加外部行
+where条件过滤
+group by 分组
+having 对分组过滤
+select5.1 计算表达式5.2 distinct 重复记录5.3 top5.4 order by
+
+接口和抽象类
+接口更多体现的是一种规范，抽象类体现的是一种模板设计
+接口只能包含抽象方法，抽象类里面可以包含抽象方法，也可以包含普通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flow">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/数据库/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="SQL执行过程
+from 数据源1.1 笛卡尔积1.2 on过滤1.3 外连接 增加外部行
+where条件过滤
+group by 分组
+having 对分组过滤
+select5.1 计算表达式5.2 distinct 重复记录5.3 top5.4 order by
+
+接口和抽象类
+接口更多体现的是一种规范，抽象类体现的是一种模板设计
+接口只能包含抽象方法，抽象类里面可以包含抽象方法，也可以包含普通">
+<meta property="og:image" content="http://p1.bqimg.com/567571/04bf06eb6c532631.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/0f38beefb3e5966a.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/a3c306111493fed6.png">
+<meta property="og:updated_time" content="2016-09-28T01:58:32.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flow">
+<meta name="twitter:description" content="SQL执行过程
+from 数据源1.1 笛卡尔积1.2 on过滤1.3 外连接 增加外部行
+where条件过滤
+group by 分组
+having 对分组过滤
+select5.1 计算表达式5.2 distinct 重复记录5.3 top5.4 order by
+
+接口和抽象类
+接口更多体现的是一种规范，抽象类体现的是一种模板设计
+接口只能包含抽象方法，抽象类里面可以包含抽象方法，也可以包含普通">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/28/数据库/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-28T01:58:32.107Z" itemprop="datePublished"> 发表于 2016-09-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL执行过程"><span class="toc-number">1.</span> <span class="toc-text">SQL执行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口和抽象类"><span class="toc-number">2.</span> <span class="toc-text">接口和抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库完整性"><span class="toc-number">3.</span> <span class="toc-text">数据库完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#散列冲突"><span class="toc-number">4.</span> <span class="toc-text">散列冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计模式"><span class="toc-number">5.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建型模式"><span class="toc-number">5.1.</span> <span class="toc-text">创建型模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结构型模式"><span class="toc-number">5.2.</span> <span class="toc-text">结构型模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#行为模式"><span class="toc-number">5.3.</span> <span class="toc-text">行为模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatis_一级缓存_二级缓存"><span class="toc-number">6.</span> <span class="toc-text">MyBatis 一级缓存 二级缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile"><span class="toc-number">7.</span> <span class="toc-text">volatile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库分表分区"><span class="toc-number">8.</span> <span class="toc-text">数据库分表分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql的体系结构"><span class="toc-number">9.</span> <span class="toc-text">mysql的体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的DDL"><span class="toc-number">10.</span> <span class="toc-text">常用的DDL</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="SQL执行过程">SQL执行过程</h3><ol>
+<li>from 数据源<br>1.1 笛卡尔积<br>1.2 on过滤<br>1.3 外连接 增加外部行</li>
+<li>where条件过滤</li>
+<li>group by 分组</li>
+<li>having 对分组过滤</li>
+<li>select<br>5.1 计算表达式<br>5.2 distinct 重复记录<br>5.3 top<br>5.4 order by</li>
+</ol>
+<h3 id="接口和抽象类">接口和抽象类</h3><ol>
+<li>接口更多体现的是一种规范，抽象类体现的是一种模板设计</li>
+<li>接口只能包含抽象方法，抽象类里面可以包含抽象方法，也可以包含普通方法</li>
+<li>接口不能包含静态方法，抽象类可以包含静态方法。</li>
+<li>接口和抽象类都不能直接实例化，一个类可以继承一个抽象类实现多个接口</li>
+<li>接口不能包含初始化块，抽象类可以</li>
+</ol>
+<h3 id="数据库完整性">数据库完整性</h3><ol>
+<li>实体完整性，规定表的每一行在表中是惟一的实体</li>
+<li>域完整性，是指表中的列必须满足某种特定的数据类型约束，其中约束又包括取值范围、精度</li>
+<li>引用完整性，两个表的主键和外键数据一致，防止数据丢失或无意义的数据在数据库中扩散</li>
+<li>用户自定义完整性，针对某个特定关系数据库的约束条件，比如 主键约束，外键约束，唯一约束，check约束</li>
+</ol>
+<h3 id="散列冲突">散列冲突</h3><ol>
+<li>开放定址法</li>
+<li>再散列法</li>
+<li>链地址法</li>
+</ol>
+<h3 id="设计模式">设计模式</h3><h4 id="创建型模式">创建型模式</h4><ol>
+<li>简单工厂</li>
+<li>工厂方法</li>
+<li>抽象工厂</li>
+<li>单例模式</li>
+<li>建造者模式</li>
+</ol>
+<h4 id="结构型模式">结构型模式</h4><ol>
+<li>适配器模式（针对对象、类、接口的适配）</li>
+<li>享元模式</li>
+<li>代理模式</li>
+<li>装饰模式</li>
+</ol>
+<h4 id="行为模式">行为模式</h4><ol>
+<li>职责链模式</li>
+<li>观察者模式，当一个对象变化时，其它依赖该对象的对象都会收到通知，并且随着变化</li>
+</ol>
+<h3 id="MyBatis_一级缓存_二级缓存">MyBatis 一级缓存 二级缓存</h3><p>一般在mybatis集成spring时，会把SqlSessionFactory设置为单例注入到IOC容器中，不把sqlsession也设置为单例的原因是sqlsession是线程不安全的，所以不能为单例。那也就意味着其实是有关闭sqlsession的过程的。其实，对于每一个service中的sqlsession是不同的，这是通过mybatis-spring中的org.mybatis.spring.mapper.MapperScannerConfigurer创建sqlsession自动注入到service中的。<br>而一级缓存的设计是每个sqlsession单独使用一个缓存空间，不同的sqlsession是不能互相访问数据的。当然，在sqlsession关闭后，其中数据自然被清空。</p>
+<p>一级缓存的作用域仅限于一个sqlsession，但是二级缓存的作用域是一个namespace。但并不是意味着同一个namespace创建的mapper可以互相读取缓存内容，这里的原则是，如果开启了二级缓存，那么在关闭sqlsession后，会把该sqlsession一级缓存中的数据添加到namespace的二级缓存中。</p>
+<h3 id="volatile">volatile</h3><p>1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。<br>2）禁止进行指令重排序，保证了一定程序的有序性。<br>volatile 不保证原子性，只保证可见性<br>先行发生原则：一个变量的写操作先行发生于后面对这个变量的读操作</p>
+<h3 id="数据库分表分区">数据库分表分区</h3><p>什么是分表？<br>分表是将一个大表按照一定的规则分解成多张具有独立存储空间的实体表，我们可以称为子表，每个表都对应三个文件，MYD数据文件，.MYI索引文件，.frm表结构文件。这些子表可以分布在同一块磁盘上，也可以在不同的机器上。app读写的时候根据事先定义好的规则得到对应的子表名，然后去操作它。</p>
+<p>什么是分区？<br>分区和分表相似，都是按照规则分解表。不同在于分表将大表分解为若干个独立的实体表，而分区是将数据分段划分在多个位置存放，可以是同一块磁盘也可以在不同的机器。分区后，表面上还是一张表，但数据散列到多个位置了。app读写的时候操作的还是大表名字，db自动去组织分区的数据。</p>
+<h3 id="mysql的体系结构">mysql的体系结构</h3><p><img src="http://p1.bqimg.com/567571/04bf06eb6c532631.png" alt="mysql体系结构"></p>
+<p>MyISAM vs InnoDB<br><img src="http://p1.bqimg.com/567571/0f38beefb3e5966a.png" alt="MyISAM"><br><img src="http://p1.bqimg.com/567571/a3c306111493fed6.png" alt="InnoDB"></p>
+<h3 id="常用的DDL">常用的DDL</h3><ol>
+<li>alter table talbe_name delete column_name</li>
+<li>alter table table_name add column_name DATA_TYPE not null</li>
+<li>alter table table_name modidfy column_name not null</li>
+<li>alter table table_name rename old_column_name to new_column_name</li>
+<li>select * into #table_name from …</li>
+<li>alter table tb_name add constraint pk_name primary key(col_name)</li>
+<li>alter table table old_table_name rename new_table_name</li>
+<li>alter table tb_name drop constraint pk_name</li>
+<li>create table tmp_001(res_id integer identity not null)</li>
+<li>comment on table table_name is ‘…’</li>
+<li>create index index_name on table_name(column_name)</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/09/28/数据库/" data-title="Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/09/28/java面试0928/" title="java面试0928">
+  <strong>上一篇：</strong><br/>
+  <span>
+  java面试0928</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/09/11/java面试-0911/"  title="java面试(0911)">
+ <strong>下一篇：</strong><br/> 
+ <span>java面试(0911)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/28/数据库/" data-title="" data-url="http://yoursite.com/2016/09/28/数据库/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL执行过程"><span class="toc-number">1.</span> <span class="toc-text">SQL执行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口和抽象类"><span class="toc-number">2.</span> <span class="toc-text">接口和抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库完整性"><span class="toc-number">3.</span> <span class="toc-text">数据库完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#散列冲突"><span class="toc-number">4.</span> <span class="toc-text">散列冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计模式"><span class="toc-number">5.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建型模式"><span class="toc-number">5.1.</span> <span class="toc-text">创建型模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结构型模式"><span class="toc-number">5.2.</span> <span class="toc-text">结构型模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#行为模式"><span class="toc-number">5.3.</span> <span class="toc-text">行为模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatis_一级缓存_二级缓存"><span class="toc-number">6.</span> <span class="toc-text">MyBatis 一级缓存 二级缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile"><span class="toc-number">7.</span> <span class="toc-text">volatile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库分表分区"><span class="toc-number">8.</span> <span class="toc-text">数据库分表分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql的体系结构"><span class="toc-number">9.</span> <span class="toc-text">mysql的体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的DDL"><span class="toc-number">10.</span> <span class="toc-text">常用的DDL</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/" title="interview">interview<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

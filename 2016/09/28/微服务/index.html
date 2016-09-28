@@ -4,35 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>linux进阶 | Flow</title>
+    <title>微服务 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="welcome to you
-linux skillcommand
-Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基于内存的文件系统，其维护着关于当前正在运行的内核状态信息，其中包括CPU、内存、分区划分、I/O地址、直接内存访问通道 和正在运行的进程
-如何在/usr目录下找出大小超过10MB的文件？find /usr -size +10M
-如何在/home目录下找出120">
+    <meta name="description" content="微服务是将一个应用拆分成多个独立的服务，每个服务都具有业务属性，并且能独立的被开发、测试、构建、部署。
+日志聚合Splunk和LogStashSplunk 日志聚合 搜索 语义提取 对结果进行分组、联合、拆分、格式化 可视化功能  邮件提醒功能  告警功能Splunk既可以单机部署，也可以分布式部署。在微服务架构中，由于不同的服务部署在不同的主机上，而我们希望对日志进行集中管理，因此通常使用的是分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux进阶">
-<meta property="og:url" content="http://yoursite.com/2015/09/05/linux进阶/index.html">
+<meta property="og:title" content="微服务">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/微服务/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="welcome to you
-linux skillcommand
-Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基于内存的文件系统，其维护着关于当前正在运行的内核状态信息，其中包括CPU、内存、分区划分、I/O地址、直接内存访问通道 和正在运行的进程
-如何在/usr目录下找出大小超过10MB的文件？find /usr -size +10M
-如何在/home目录下找出120">
-<meta property="og:updated_time" content="2015-09-05T12:32:52.425Z">
+<meta property="og:description" content="微服务是将一个应用拆分成多个独立的服务，每个服务都具有业务属性，并且能独立的被开发、测试、构建、部署。
+日志聚合Splunk和LogStashSplunk 日志聚合 搜索 语义提取 对结果进行分组、联合、拆分、格式化 可视化功能  邮件提醒功能  告警功能Splunk既可以单机部署，也可以分布式部署。在微服务架构中，由于不同的服务部署在不同的主机上，而我们希望对日志进行集中管理，因此通常使用的是分">
+<meta property="og:updated_time" content="2016-09-28T02:07:33.857Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux进阶">
-<meta name="twitter:description" content="welcome to you
-linux skillcommand
-Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基于内存的文件系统，其维护着关于当前正在运行的内核状态信息，其中包括CPU、内存、分区划分、I/O地址、直接内存访问通道 和正在运行的进程
-如何在/usr目录下找出大小超过10MB的文件？find /usr -size +10M
-如何在/home目录下找出120">
+<meta name="twitter:title" content="微服务">
+<meta name="twitter:description" content="微服务是将一个应用拆分成多个独立的服务，每个服务都具有业务属性，并且能独立的被开发、测试、构建、部署。
+日志聚合Splunk和LogStashSplunk 日志聚合 搜索 语义提取 对结果进行分组、联合、拆分、格式化 可视化功能  邮件提醒功能  告警功能Splunk既可以单机部署，也可以分布式部署。在微服务架构中，由于不同的服务部署在不同的主机上，而我们希望对日志进行集中管理，因此通常使用的是分">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -92,14 +83,14 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/05/linux进阶/" title="linux进阶" itemprop="url">linux进阶</a>
+      <a href="/2016/09/28/微服务/" title="微服务" itemprop="url">微服务</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-05T12:24:46.000Z" itemprop="datePublished"> 发表于 2015-09-05</time>
+    <time datetime="2016-09-28T02:04:07.000Z" itemprop="datePublished"> 发表于 2016-09-28</time>
     
   </p>
 </header>
@@ -108,57 +99,34 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux_skill"><span class="toc-number">1.</span> <span class="toc-text">linux skill</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#command"><span class="toc-number">1.1.</span> <span class="toc-text">command</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">1.2.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep"><span class="toc-number">1.3.</span> <span class="toc-text">grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed"><span class="toc-number">1.4.</span> <span class="toc-text">sed</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML_skill"><span class="toc-number">2.</span> <span class="toc-text">UML skill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim_skill"><span class="toc-number">3.</span> <span class="toc-text">vim skill</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#日志聚合"><span class="toc-number">1.</span> <span class="toc-text">日志聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监控与告警"><span class="toc-number">2.</span> <span class="toc-text">监控与告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微服务与持续交付"><span class="toc-number">3.</span> <span class="toc-text">微服务与持续交付</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微服务与轻量级通信机制"><span class="toc-number">4.</span> <span class="toc-text">微服务与轻量级通信机制</span></a></li></ol>
 		
 		</div>
 		
-		<p>welcome to you</p>
-<h2 id="linux_skill">linux skill</h2><h3 id="command">command</h3><ol>
-<li>Linux系统中的/proc文件系统有什么用？<br>/proc文件系统是一个基于内存的文件系统，其维护着关于当前正在运行的内核状态信息，其中包括CPU、内存、分区划分、I/O地址、直接内存访问通道 和正在运行的进程</li>
-<li>如何在/usr目录下找出大小超过10MB的文件？<br>find /usr -size +10M</li>
-<li>如何在/home目录下找出120天之前被修改过的文件？<br>find /home -mtime +120</li>
-<li>如何在/var目录下找出90天之内未被访问过的文件？<br>find /var ! -atime -90</li>
-<li>整个目录树下查找文件core，如发现则无需提示直接删除它们<br>find / -name core -exec {} \;</li>
-<li>ll | awk {print $3,owns,$9} 这条命令是在做什么？</li>
-<li>Linux中的at命令有什么用？<br>at命令用来安排一个程序在未来的做一次一次性执行。所有提交的任务都被放在 /var/spool/at 目录下并且到了执行时间的时候通过atd守护进程来执行。</li>
-<li>linux中lspci命令的作用是什么？<br>lspci命令用来显示你的系统上PCI总线和附加设备的信息。</li>
-<li>export PS1 = <code>$LOGNAME@hostname:\$PWD:</code> 这条命令是在做什么？<br>这条export命令会更改登录提示符来显示用户名、本机名和当前工作目录。</li>
-<li>CSSViewer<br>它有一个浮动面板，上面不但指明鼠标所在之地的身份，还提供其字体、文本、颜色、背景、框、定位和效果属性的说明。 CSSViewer可以快速提供你所需要的基本CSS信息。</li>
-<li>Vim 会记录文件的更改，你很容易可以回退到之前某个时间。该命令是相当直观的。比如： :earlier 1m<br>会把文件回退到 1 分钟以前的状态。<br>可以使用下面的命令进行相反的转换：:later</li>
-<li>ls <em>[0-9]</em> 显示包含数字的文件名和目录名</li>
-<li>tree 显示文件和目录由根目录开始的树形结构(1)<br>lstree 显示文件和目录由根目录开始的树形结构(2)</li>
-<li>cp dir/* . 复制一个目录下的所有文件到当前工作目录<br>cp -a /tmp/dir1 . 复制一个目录到当前工作目录<br>cp -a dir1 dir2 复制一个目录</li>
-<li>ln -s file1 lnk1 创建一个指向文件或目录的软链接<br>ln file1 lnk1 创建一个指向文件或目录的物理链接</li>
-</ol>
-<h3 id="find">find</h3><p>find /home/user1 -name *.bin 在目录 ‘/ home/user1’ 中搜索带有’.bin’ 结尾的文件<br>find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件<br>find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件<br>find / -name *.rpm -exec chmod 755 ‘{}’ \; 搜索以 ‘.rpm’ 结尾的文件并定义其权限<br>locate *.ps 寻找以 ‘.ps’ 结尾的文件 - 先运行 ‘updatedb’ 命令<br>whereis halt 显示一个二进制文件、源码或man的位置<br>which halt 显示一个二进制文件或可执行文件的完整路径</p>
-<ol>
-<li>useradd -s /bin/sh -d /usr/gem -g group –G adm,root gem<br>新建了一个用户gem，该用户的登录Shell是/bin/sh，它属于group用户组，同时又属于adm和root用户组，group用户组是其主组</li>
-<li>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下</li>
-<li>tar -zcvf archive.tar.gz dir1 创建一个gzip格式的压缩包</li>
-<li>dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX<br>unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS</li>
-<li>文本处理<br>cat file1 file2 … | command &lt;&gt; file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT</li>
-</ol>
-<p>cat file1 | command( sed, grep, awk, grep, etc…) &gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中</p>
-<p>cat file1 | command( sed, grep, awk, grep, etc…) &gt;&gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中</p>
-<h3 id="grep">grep</h3><p>grep Aug /var/log/messages 在文件 ‘/var/log/messages’中查找关键词”Aug”<br>grep ^Aug /var/log/messages 在文件 ‘/var/log/messages’中查找以”Aug”开始的词汇<br>grep [0-9] /var/log/messages 选择 ‘/var/log/messages’ 文件中所有包含数字的行<br>grep Aug -R /var/log/* 在目录 ‘/var/log’ 及随后的目录中搜索字符串”Aug”</p>
-<h3 id="sed">sed</h3><p>sed ‘s/stringa1/stringa2/g’ example.txt 将example.txt文件中的 “string1” 替换成 “string2”<br>sed ‘/^$/d’ example.txt 从example.txt文件中删除所有空白行<br>sed ‘/ <em>#/d; /^$/d’ example.txt 从example.txt文件中删除所有注释和空白行<br>echo ‘esempio’ | tr ‘[:lower:]’ ‘[:upper:]’ 合并上下单元格内容<br>sed -e ‘1d’ result.txt 从文件example.txt 中排除第一行<br>sed -n ‘/stringa1/p’ 查看只包含词汇 “string1”的行<br>sed -e ‘s/ </em>$//‘ example.txt 删除每一行最后的空白字符<br>sed -e ‘s/stringa1//g’ example.txt 从文档中只删除词汇 “string1” 并保留剩余全部<br>sed -n ‘1,5p;5q’ example.txt 查看从第一行到第5行内容<br>sed -n ‘5p;5q’ example.txt 查看第5行<br>sed -e ‘s/00*/0/g’ example.txt 用单个零替换多个零<br>cat -n file1 标示文件的行数<br>cat example.txt | awk ‘NR%2==1’ 删除example.txt文件中的所有偶数行<br>echo a b c | awk ‘{print $1}’ 查看一行第一栏<br>echo a b c | awk ‘{print $1,$3}’ 查看一行的第一和第三栏<br>paste file1 file2 合并两个文件或两栏的内容<br>paste -d ‘+’ file1 file2 合并两个文件或两栏的内容，中间用”+”区分<br>sort file1 file2 排序两个文件的内容<br>sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份)<br>sort file1 file2 | uniq -u 删除交集，留下其他的行<br>sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件)<br>comm -1 file1 file2 比较两个文件的内容只删除 ‘file1’ 所包含的内容<br>comm -2 file1 file2 比较两个文件的内容只删除 ‘file2’ 所包含的内容<br>comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分<br>22.<br>ifconfig eth0 显示一个以太网卡的配置<br>ifup eth0 启用一个 ‘eth0’ 网络设备<br>ifdown eth0 禁用一个 ‘eth0’ 网络设备<br>ifconfig eth0 192.168.1.1 netmask 255.255.255.0 控制IP地址</p>
-<h2 id="UML_skill">UML skill</h2><p>开发模型： 瀑布模型 螺线模型  增量模型<br>黑盒测试：考虑程序的功能，而不是实际代码<br>百合测试：通过程序代码来设计测试数据，使测试数据能很好覆盖语句及执行路径<br>泛化绘制为从孩子指向双亲的空三角箭头<br>泛化使多态操作成为可能，即操作的实现方法由实际对象的类来决定<br>内部类可以看成是服务类的特殊形式，即类可以服务包含它的外部类，内部类作为外部类的一部分，可以提取器外部类的私有属性<br>如果多个活动者之间存在很多共性，就可以使用泛化来分解共性行为。<br>与包含关系不同，在扩展关系中，箭头的方向是从扩展用例到基用例。<br>通过多态，一个通用接口可以实现不同的行为特征<br>关联用一条无线线段表示，代表一种双向关系</p>
-<h2 id="vim_skill">vim skill</h2><p>U可以撤销一行的改变<br>u命令和ctrl-R来撤销和重做<br>w 2w  b 2b  向前或者向后移动word个长度   e 到达当前单词的末尾<br>fx 在当前航搜寻字符<br>%匹配跳转<br>/the> 匹配以the结尾的单词  /\<the 匹配以the开头的单词="" \<the\="">匹配the<br>set incsearch 在输入时开始搜索<br>3dw 3次删除word   d3w 删除3个word<br>f&lt; 找到第一个&lt;    df&lt; 删除到&lt;   .重复之前的操作<br>four -&gt;&gt; five    /four  cwfive  n .  n .<br>ye y$复制到尾部<br>diw 删除光标所在的单词<br>set filetype 检测语言类型<br>多次匹配 ： /a<em>  匹配 a aa aaa…<br>/(ab)</em><br>/ab+<br>/folder\=<br>/a.*b<br>/foo|bar<br>/one|two|three</the></p>
+		<p>微服务是将一个应用拆分成多个独立的服务，每个服务都具有业务属性，并且能独立的被开发、测试、构建、部署。</p>
+<h3 id="日志聚合">日志聚合</h3><p>Splunk和LogStash<br>Splunk 日志聚合 搜索 语义提取 对结果进行分组、联合、拆分、格式化 可视化功能  邮件提醒功能  告警功能<br>Splunk既可以单机部署，也可以分布式部署。在微服务架构中，由于不同的服务部署在不同的主机上，而我们希望对日志进行集中管理，因此通常使用的是分布式部署，分布式部署时，每个部署有服务应用的主机都会安装一个日志转发器（Splunk Forwarder）,当前节点的日志通过转发器被转发到Splunk的重要服务器上，负责接收日志的这台Splunk服务器也被称作接收器<br>通过配置Splunk配置文件 inputs.conf 配置重要日志目录进行监控管理</p>
+<p>LogStash  日志收集  过滤 结果输出</p>
+<h3 id="监控与告警">监控与告警</h3><p>监控产品 Zabbix  NewRelic  Nagios  OneAPM  大部分都使用Nagios,运行在linux上的开源监控系统</p>
+<h3 id="微服务与持续交付">微服务与持续交付</h3><ul>
+<li>什么是持续交付<br>持续交付是软件系统的构建、部署、测试、审核、发布过程的一种自动化实现</li>
+<li>持续交付的核心<br>核心是部署流水线，因为部署流水线能将这几个环节有效的连接起来<ul>
+<li>小批量价值流动</li>
+<li>频繁可发布</li>
+<li>快速反馈</li>
+</ul>
+</li>
+</ul>
+<h3 id="微服务与轻量级通信机制">微服务与轻量级通信机制</h3><p>REST(Representational State Transfer,表述性状态转移)是使用较广泛的分布式节点间同步通信的实现方式。REST从语义层面将响应结果定义为资源，并使用HTTP的标准动词映射为对资源的操作，形成一种以资源为核心，以HTTP为操作方式的，跨语言跨平台的服务间的通信机制。</p>
+<p>访问方式</p>
+<ul>
+<li>拉模式要求消费者定期检查队列上的消息</li>
+<li>推模式是每当发布者将消息添加到队列中时，会通过某种机制通知消费者。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/linux/">linux</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/vim/">vim</a>
-  </div>
 
 </div>
 
@@ -166,7 +134,7 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/09/05/linux进阶/" data-title="linux进阶 | Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/09/28/微服务/" data-title="微服务 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -180,18 +148,18 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/05/sql笔记/" title="sql笔记">
+ <a href="/2016/09/28/笔试面试汇总/" title="笔试面试汇总">
   <strong>上一篇：</strong><br/>
   <span>
-  sql笔记</span>
+  笔试面试汇总</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/04/hexo-搭建小记/"  title="hexo 搭建小记">
+<a href="/2016/09/28/网络知识小结/"  title="网路知识小结">
  <strong>下一篇：</strong><br/> 
- <span>hexo 搭建小记
+ <span>网路知识小结
 </span>
 </a>
 </div>
@@ -200,7 +168,7 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/05/linux进阶/" data-title="linux进阶" data-url="http://yoursite.com/2015/09/05/linux进阶/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/28/微服务/" data-title="微服务" data-url="http://yoursite.com/2016/09/28/微服务/"></div>
 </section>
 
 
@@ -210,7 +178,7 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux_skill"><span class="toc-number">1.</span> <span class="toc-text">linux skill</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#command"><span class="toc-number">1.1.</span> <span class="toc-text">command</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">1.2.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep"><span class="toc-number">1.3.</span> <span class="toc-text">grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed"><span class="toc-number">1.4.</span> <span class="toc-text">sed</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML_skill"><span class="toc-number">2.</span> <span class="toc-text">UML skill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim_skill"><span class="toc-number">3.</span> <span class="toc-text">vim skill</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#日志聚合"><span class="toc-number">1.</span> <span class="toc-text">日志聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监控与告警"><span class="toc-number">2.</span> <span class="toc-text">监控与告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微服务与持续交付"><span class="toc-number">3.</span> <span class="toc-text">微服务与持续交付</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微服务与轻量级通信机制"><span class="toc-number">4.</span> <span class="toc-text">微服务与轻量级通信机制</span></a></li></ol>
  
   </div>
 
@@ -271,7 +239,7 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
 		  
 		
 		  
@@ -448,7 +416,7 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
 			
 		
 			
@@ -472,7 +440,7 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 			
 		
 			
-				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -492,11 +460,11 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -520,11 +488,11 @@ Linux系统中的/proc文件系统有什么用？/proc文件系统是一个基�
 			
 		
 			
-				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

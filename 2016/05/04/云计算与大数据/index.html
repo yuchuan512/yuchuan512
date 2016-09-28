@@ -25,7 +25,7 @@ HTTPS和HTTP区别：
 HTTPS协议需要到CA申请证书，免费证书较少，一般需要交费
 HTTP的信息是明文传输的，HTTPS则是具有安全性的SSL加密传输协议
 HTTP和HTTPS使用完全不同的连接方">
-<meta property="og:updated_time" content="2016-08-07T03:47:42.371Z">
+<meta property="og:updated_time" content="2016-09-17T02:28:16.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云计算与大数据">
 <meta name="twitter:description" content="http是比TCP更高层次的应用层协议，只有底层协议建立之后才能建立更高层协议的连接，因此需要建立TCP连接Web服务器以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
@@ -128,7 +128,8 @@ HTTP和HTTPS使用完全不同的连接方">
 <li>可用性(Availability,A):对数据更新具备高可用性。在集群中一部分节点故障后，集群整体是否还能响应客户端的读写请求</li>
 <li>分区容忍性(Partition  tolerance,P):当集群中的某些节点无法联系时，仍能正常提供服务。以实际效果而言，分区相当于对通信的时限要求，系统如果不能再时限内达成数据一致性，意味着发生了分区的情况，必须就当前操作在一致性和可用性之间做出选择。<br>CAP理论告诉我们，在大规模的分布式系统中，分区容忍性是基本要求，所以要对可用性和一致性有所权衡。</li>
 </ol>
-<h3 id="进程间通信(Interprocess_Communication,IPC)">进程间通信(Interprocess Communication,IPC)</h3><h3 id="网络服务泛型">网络服务泛型</h3><p>java的JINI(Java Intelligent Network Infrastructure)和web service 都是属于该泛型的网络设施。Web服务使用XML和XSD标准来自我描述，用简单对象访问协议(Simple Object Access Protocol,SOAP)交换数据。使用Web服务技术，能使运行与不同机器上的不同应用无需借助其他的支持就可以相互通信。Web服务向外提供一个能够通过Web进行调用的API，即目录服务。</p>
+<h3 id="进程间通信(Interprocess_Communication,IPC)">进程间通信(Interprocess Communication,IPC)</h3><p>管道通信 无名管道和有名管道，分别针对亲缘关系父子进程和非亲缘关系进程<br>信号量 对共享资源进行保护<br>消息队列 消息队列标识符区分<br>内存映射<br>套接字 跨机器通信</p>
+<h3 id="网络服务泛型">网络服务泛型</h3><p>java的JINI(Java Intelligent Network Infrastructure)和web service 都是属于该泛型的网络设施。Web服务使用XML和XSD标准来自我描述，用简单对象访问协议(Simple Object Access Protocol,SOAP)交换数据。使用Web服务技术，能使运行与不同机器上的不同应用无需借助其他的支持就可以相互通信。Web服务向外提供一个能够通过Web进行调用的API，即目录服务。</p>
 <h3 id="java_Socket编程">java Socket编程</h3><h3 id="Web_Service优点">Web Service优点</h3><ol>
 <li>良好的封装性，服务使用者只能看到对象提供的通用接口和功能列表，不用关心服务的细节</li>
 <li>松耦合，只要调用接口不变，内部变更对于调用者透明</li>
@@ -260,7 +261,7 @@ HTTP和HTTPS使用完全不同的连接方">
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
 		  
 		
 		  
@@ -437,7 +438,7 @@ HTTP和HTTPS使用完全不同的连接方">
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
 			
 		
 			
@@ -461,7 +462,7 @@ HTTP和HTTPS使用完全不同的连接方">
 			
 		
 			
-				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -481,11 +482,11 @@ HTTP和HTTPS使用完全不同的连接方">
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -509,11 +510,11 @@ HTTP和HTTPS使用完全不同的连接方">
 			
 		
 			
-				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>java集合 | Flow</title>
+    <title>mongodb学习 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="Java CollectionArrayList Vector都是(数组)实现集合容器可以容纳任何对象，但是在实际应用中往往都是容纳同一类型的对象泛型只是在编译阶段有效，防止错误产生。避免扩容操作，因为会产生垃圾，影响性能Iterator itor = list.iterator();        while (itor.hasNext()) {            System.out.pr">
+    <meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java集合">
-<meta property="og:url" content="http://yoursite.com/2015/09/15/java集合/index.html">
+<meta property="og:title" content="mongodb学习">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/mongodb学习/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="Java CollectionArrayList Vector都是(数组)实现集合容器可以容纳任何对象，但是在实际应用中往往都是容纳同一类型的对象泛型只是在编译阶段有效，防止错误产生。避免扩容操作，因为会产生垃圾，影响性能Iterator itor = list.iterator();        while (itor.hasNext()) {            System.out.pr">
-<meta property="og:updated_time" content="2015-09-27T07:51:51.451Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2016-09-28T02:11:41.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java集合">
-<meta name="twitter:description" content="Java CollectionArrayList Vector都是(数组)实现集合容器可以容纳任何对象，但是在实际应用中往往都是容纳同一类型的对象泛型只是在编译阶段有效，防止错误产生。避免扩容操作，因为会产生垃圾，影响性能Iterator itor = list.iterator();        while (itor.hasNext()) {            System.out.pr">
+<meta name="twitter:title" content="mongodb学习">
+<meta name="twitter:description">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -80,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/15/java集合/" title="java集合" itemprop="url">java集合</a>
+      <a href="/2016/09/28/mongodb学习/" title="mongodb学习" itemprop="url">mongodb学习</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-15T14:19:53.000Z" itemprop="datePublished"> 发表于 2015-09-15</time>
+    <time datetime="2016-09-28T02:11:41.000Z" itemprop="datePublished"> 发表于 2016-09-28</time>
     
   </p>
 </header>
@@ -96,45 +96,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java_Collection"><span class="toc-number">1.</span> <span class="toc-text">Java Collection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList_Vector都是(数组)实现"><span class="toc-number">1.1.</span> <span class="toc-text">ArrayList Vector都是(数组)实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkList(链表)实现"><span class="toc-number">1.2.</span> <span class="toc-text">LinkList(链表)实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java_Eclipse无法查看源代码"><span class="toc-number">1.3.</span> <span class="toc-text">Java Eclipse无法查看源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashSet_无序集合"><span class="toc-number">1.4.</span> <span class="toc-text">HashSet 无序集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TreeSet"><span class="toc-number">1.5.</span> <span class="toc-text">TreeSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-number">1.6.</span> <span class="toc-text">HashMap</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="Java_Collection">Java Collection</h2><h3 id="ArrayList_Vector都是(数组)实现">ArrayList Vector都是(数组)实现</h3><p>集合容器可以容纳任何对象，但是在实际应用中往往都是容纳同一类型的对象<br>泛型只是在编译阶段有效，防止错误产生。<br>避免扩容操作，因为会产生垃圾，影响性能<br>Iterator itor = list.iterator();<br>        while (itor.hasNext()) {<br>            System.out.println(itor.next());</p>
-<pre><code>}
-</code></pre><p>for(String str:list){<br>    …<br>}<br>Vector底层也是数组，支持一种老的遍历方式Enumeration,ArralyList遍历的方式也支持<br>ArrayList线程不安全，Vector线程安全</p>
-<h3 id="LinkList(链表)实现">LinkList(链表)实现</h3><p>提供了更为丰富的头尾操作</p>
-<h3 id="Java_Eclipse无法查看源代码">Java Eclipse无法查看源代码</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.点 “window“-&gt; “<span class="constant">Preferences</span>”-&gt; “<span class="constant">Java</span>” -&gt; “<span class="constant">Installed</span> <span class="constant">JRES</span>”</span><br><span class="line"><span class="number">2</span>.此时<span class="string">"Installed JRES"</span>右边是列表窗格，列出了系统中的<span class="constant">JRE</span> 环境，选择你的<span class="constant">JRE</span>，然后点边上的“<span class="constant">Edit</span>...“， 会出现一个窗口(<span class="constant">Edit</span> <span class="constant">JRE</span>) </span><br><span class="line"><span class="number">3</span>.选中rt.jar文件的这一项：“<span class="constant">C</span><span class="symbol">:</span>\<span class="constant">Java</span>\jdk1.<span class="number">5.0_04</span>\jre\<span class="class"><span class="keyword">lib</span>\<span class="title">rt</span>.<span class="title">jar</span>” 点 左边的“+”号展开它（<span class="title">JDK</span>实际安装路径以你的为准）</span></span><br><span class="line"><span class="number">4</span>.展开后，可以看到“<span class="constant">Source</span> <span class="constant">Attachment</span><span class="symbol">:</span>(none)”，点这一项，点右边的按钮“<span class="constant">Source</span> <span class="constant">Attachment</span>...“，选择你的<span class="constant">JDK</span>目录下的 “src.zip”文件</span><br><span class="line"><span class="number">5</span>.一路点“ok”结束。</span><br></pre></td></tr></table></figure>
-<h3 id="HashSet_无序集合">HashSet 无序集合</h3><p>容纳的对象必须根据自己的唯一标识来重写equals和hashCode方法<br>对象一旦放入HashSet容器，那么对象的唯一标识属性的值不能再修改，否则导致对象移除不了<br>因为HashSet存放元素的时候，元素的位置是和对象HashCode算法得到的值相关的，查找元素时也要根据这个算法的值然后找到<br>相关位置，移除元素，没有则remove方法返回false,久而久之，产生内存泄露<br>HashSet底层用的是HashMap</p>
-<h3 id="TreeSet">TreeSet</h3><p>TreeSet容纳的对象有序，对象必须要能排序(排序方式自定义)<br>两种排序的比较器：<br>1.比较的对象实现Comparable接口，覆写compareTo方法<br>java.lang.Comparable,TreeSet使用无参数的构造函数，那么容纳的对象必须实现Comparable接口<br>implements Comparable<br>@Override<br>public int compareTo(User o){<br>    if(!this.name.equals(o.name))<br>        return this.name.compareTo(o.name);<br>    else<br>        return this.age-o.age; //名字相同，根据年龄排序<br>    return 0;<br>}<br>2.java.util.Comparator<br>TreeSet构造的时候使用Comparator作为构造函数的参数<br>TreeSet<user> ts = new TreeSet<user>(new MyComparator());<br>public class MyComparator implements Comparator<user>{<br>    @Override<br>    public int compare(User o1,user o2){<br>        return o1.getName().compareTo(o2.getName());<br>    }<br>}</user></user></user></p>
-<h3 id="HashMap">HashMap</h3><p>HashMap hm = new HashMap()<br>//遍历Set集合，得到key，通过key获取value<br>Set set = hm.keySet();<br>for(Object obj:set){<br>    String key = (String)obj;<br>    User u = (User)hm.get(key);<br>}<br>//放入HashMap集合中的key，value都被包装成Map.Entry这个内部类的属性，有一个键值对，就存在一个Map.Entry的实例对象<br>//通过entrySet()方法就可以把这些实例对象都放入Set集合中<br>Set set1 = hm.entrySet();<br>for(Object obj:set1){<br>     Map.Entry me = (Map.Entry)object;<br>     System.out.println(me.getKey())+”=”+me.getValue();<br>}</p>
-<p>HashMap<string,user> user2 = new HashMap<string,user>();<br>user2.put(u1.getId(),u1);<br>Set<string> set = User.keySet();<br>for(String key:set){<br>    user.get(key);<br>}</string></string,user></string,user></p>
-<p>HashMap<map.entry<string,user>&gt; set1 = User.entrySet();<br>for(){}</map.entry<string,user></p>
-<p>map.put(key,value)如果key相同，则后面的值会覆盖前面的值<br>使用HashMap来统计字符出现的频率：<br>HashMap<string,integer> hm = new HashMap<string,integer>();</string,integer></string,integer></p>
-<pre><code>String s = <span class="string">"abcdefghijklabcdiefabiddccdabffeg"</span><span class="comment">;</span>
-for <span class="list">(<span class="keyword">int</span> i = <span class="number">0</span><span class="comment">; i &lt; s.length(); i++) {</span>
-    String str = s.substring<span class="list">(<span class="keyword">i</span>, i+1)</span><span class="comment">;</span>
-    if<span class="list">(<span class="keyword">hm</span>.containsKey<span class="list">(<span class="keyword">str</span>)</span>)</span>{
-        hm.put<span class="list">(<span class="keyword">str</span>, hm.get<span class="list">(<span class="keyword">str</span>)</span><span class="number">+1</span>)</span><span class="comment">;</span>
-    }else{
-        hm.put<span class="list">(<span class="keyword">str</span>, <span class="number">1</span>)</span><span class="comment">;</span>
-    }
-}</span>
-</code></pre>  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/java/">java</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Collection/">Collection</a><a href="/tags/java/">java</a>
-  </div>
 
 </div>
 
@@ -142,7 +112,7 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/09/15/java集合/" data-title="java集合 | Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/09/28/mongodb学习/" data-title="mongodb学习 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +125,11 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/09/16/internship小记/" title="internship">
-  <strong>上一篇：</strong><br/>
-  <span>
-  internship</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/09/15/java面试题/"  title="java面试题">
+<a href="/2016/09/28/redis学习/"  title="redis学习">
  <strong>下一篇：</strong><br/> 
- <span>java面试题
+ <span>redis学习
 </span>
 </a>
 </div>
@@ -176,7 +138,7 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/15/java集合/" data-title="java集合" data-url="http://yoursite.com/2015/09/15/java集合/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/28/mongodb学习/" data-title="mongodb学习" data-url="http://yoursite.com/2016/09/28/mongodb学习/"></div>
 </section>
 
 
@@ -186,7 +148,7 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java_Collection"><span class="toc-number">1.</span> <span class="toc-text">Java Collection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList_Vector都是(数组)实现"><span class="toc-number">1.1.</span> <span class="toc-text">ArrayList Vector都是(数组)实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkList(链表)实现"><span class="toc-number">1.2.</span> <span class="toc-text">LinkList(链表)实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java_Eclipse无法查看源代码"><span class="toc-number">1.3.</span> <span class="toc-text">Java Eclipse无法查看源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashSet_无序集合"><span class="toc-number">1.4.</span> <span class="toc-text">HashSet 无序集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TreeSet"><span class="toc-number">1.5.</span> <span class="toc-text">TreeSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-number">1.6.</span> <span class="toc-text">HashMap</span></a></li></ol></li></ol>
+ 
  
   </div>
 
@@ -247,7 +209,7 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
 		  
 		
 		  
@@ -424,7 +386,7 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
 			
 		
 			
@@ -448,7 +410,7 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 			
 		
 			
-				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -468,11 +430,11 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -496,11 +458,11 @@ for <span class="list">(<span class="keyword">int</span> i = <span class="number
 			
 		
 			
-				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

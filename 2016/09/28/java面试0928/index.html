@@ -1,0 +1,1052 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>java面试0928 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="note_interview
+
+Spring MVC工作原理1、客户端发出一个http请求给web服务器，web服务器对http请求进行解析，如果匹配DispatcherServlet的请求映射路径（在web.xml中指定），web容器将请求转交给DispatcherServlet.2、DipatcherServlet接收到这个请求之后将根据请求的信息（包括URL、Http方法、请求报文头和请求参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java面试0928">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/java面试0928/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="note_interview
+
+Spring MVC工作原理1、客户端发出一个http请求给web服务器，web服务器对http请求进行解析，如果匹配DispatcherServlet的请求映射路径（在web.xml中指定），web容器将请求转交给DispatcherServlet.2、DipatcherServlet接收到这个请求之后将根据请求的信息（包括URL、Http方法、请求报文头和请求参">
+<meta property="og:image" content="http://i4.buimg.com/567571/508d650c1dbe639f.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/2093b1eb3b653b8e.png">
+<meta property="og:image" content="http://i2.buimg.com/567571/0a6cdfcc47f784e7.gif">
+<meta property="og:image" content="http://i2.buimg.com/567571/44a4a416858609d3.png">
+<meta property="og:updated_time" content="2016-09-28T02:09:59.085Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java面试0928">
+<meta name="twitter:description" content="note_interview
+
+Spring MVC工作原理1、客户端发出一个http请求给web服务器，web服务器对http请求进行解析，如果匹配DispatcherServlet的请求映射路径（在web.xml中指定），web容器将请求转交给DispatcherServlet.2、DipatcherServlet接收到这个请求之后将根据请求的信息（包括URL、Http方法、请求报文头和请求参">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/28/java面试0928/" title="java面试0928" itemprop="url">java面试0928</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-28T02:03:27.000Z" itemprop="datePublished"> 发表于 2016-09-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>note_interview</p>
+<ol>
+<li><p>Spring MVC工作原理<br><img src="http://i4.buimg.com/567571/508d650c1dbe639f.jpg" alt="spring mvc流程图"><br><img src="http://i1.piimg.com/567571/2093b1eb3b653b8e.png" alt="spring深究"><br>1、客户端发出一个http请求给web服务器，web服务器对http请求进行解析，如果匹配DispatcherServlet的请求映射路径（在web.xml中指定），web容器将请求转交给DispatcherServlet.<br>2、DipatcherServlet接收到这个请求之后将根据请求的信息（包括URL、Http方法、请求报文头和请求参数Cookie等）以及HandlerMapping的配置找到处理请求的处理器（Handler）。<br>3-4、DispatcherServlet根据HandlerMapping找到对应的Handler,将处理权交给Handler（Handler将具体的处理进行封装），再由具体的HandlerAdapter对Handler进行具体的调用。<br>5、Handler对数据处理完成以后将返回一个ModelAndView()对象给DispatcherServlet。<br>6、Handler返回的ModelAndView()只是一个逻辑视图并不是一个正式的视图，DispatcherSevlet通过ViewResolver将逻辑视图转化为真正的视图View。<br>7、Dispatcher通过model解析出ModelAndView()中的参数进行解析最终展现出完整的view并返回给客户端。</p>
+</li>
+<li><p>SpringMVC 异步模式 DeferedResult<modelandview> 结合回调函数</modelandview></p>
+</li>
+<li><p>ConcurrentHashMap<br>ConcurrentHashMap将hash表分为16个桶（默认值），诸如get,put,remove等常用操作只锁当前需要用到的桶。<br>读取大多数没有上锁，写操作锁定的粒度非常细，只有在求size等操作才需要锁定整个表<br>弱一致迭代器  当iterator被创建后集合在发生变化就不再是抛出ConcurrentModificationException,iterator完成后再将头指针替换为新的数据，这样iterator线程可以使用原来老的数据，而写线程也可以并发的完成改变。<br>在segment的get操作中，通过getFirst函数得到第一个值，然后通过next，找到想要的对象。如果不空，返回；若为空，可能是其他线程正在修改节点，比如弱一致性迭代器将指针更改为新值得过程。这里需要对e重新上锁在读一次，以保证得到的是正确值。readValueUnderLock就是用lock进行加锁。</p>
+</li>
+<li><p>动态代理</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">DynamicProxy</span> implements <span class="type">InvocationHandler</span> &#123;</span><br><span class="line">    private <span class="type">Object</span> <span class="keyword">object</span>;</span><br><span class="line"></span><br><span class="line">    public <span class="type">DynamicProxy</span>(<span class="type">Object</span> obj)&#123;</span><br><span class="line">        <span class="keyword">object</span> = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="type">Object</span> invoke(<span class="type">Object</span> proxy, <span class="type">Method</span> <span class="keyword">method</span>, <span class="type">Object</span>[] args) throws <span class="type">Throwable</span> &#123;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"before"</span>);</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"method "</span> + <span class="keyword">method</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">method</span>.invoke(<span class="keyword">object</span>,args);</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"after"</span>);</span><br><span class="line">        <span class="keyword">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Subject</span> subject = new <span class="type">SubjectImpl</span>();</span><br><span class="line">        <span class="type">InvocationHandler</span> handler = new <span class="type">DynamicProxy</span>(subject);</span><br><span class="line">        <span class="type">Subject</span> subjectProxy = (<span class="type">Subject</span>) <span class="type">Proxy</span>.newProxyInstance(subject.getClass().getClassLoader(),subject.getClass().getInterfaces(),handler);</span><br><span class="line">        subjectProxy.rent();</span><br><span class="line">        subjectProxy.hello(<span class="string">"world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Http协议总结<br>回应格式</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.0 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Content-Type</span>: <span class="string">text/plain Content-Length: 137582  Expires: Thu, 05 Dec 1997 16:00:00 GMT  Last-Modified: Wed, 5 August 1996 15:55:28 GMTServer: Apache 0.84</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>回应的格式是”头信息 + 一个空行（\r\n） + 数据”。其中，第一行是”协议版本 + 状态码（status code） + 状态描述”。<br>Content-Type<br>application/pdf    text/plain  application/json<br>Content-Encoding<br>服务端 数据压缩方式 Content-Encoding:gzip   compress  deflate<br>客户端  Accept-Encoding: gzip,deflate</p>
+<p>HTTP1.1<br>持久连接<br>TCP连接默认不关闭，可以复用，不用声明 Connection:keep-alive<br>管道机制<br>可以同时发送多个请求，服务端响应还是按照顺序，先回应A请求，完成后再回应B请求<br>Content-Length<br>http1.1分块传输，(chunked transfer encoding) ,只要回应的头信息有Transfer-Encoding字段，就表明回应将由数量未定的数据块组成。<br>每个非空的数据块之前，会有一个16进制的值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。</p>
+<ol>
+<li>spring事务传播行为<br>PROPAGATION_REQUIRED  支持当前事务<br>PROPAGATION_REQUIRES_NEW   当前事务挂起新开事务<br>PROPAGATION_SUPPORTS  外层开启事务，加入事务；外层没有开启事务，则自己也不开启事务<br>PROPAGATION_NESTED  根据异常是否捕获到决定是否回滚<br>a、捕获异常，执行异常分支逻辑<br>b、外部事务回滚</li>
+</ol>
+<ol>
+<li>数据库隔离级别<br>未提交读  提交读 可重复读  串行化<br>隔离级别越高，并发度越小<br>幻读和不可重复读的区别：</li>
+<li>不可重复读的重点是修改，同样的条件，读取过的数据，再次读取出来发现值不一样了</li>
+<li>幻读的重点在于新增或删除，同样的条件，第1次和第2次读出来的记录数不一样</li>
+</ol>
+<p>1）MyISAM 表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低。<br>2）InnoDB 行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度也最高。</p>
+<p>若仅从锁的角度来说，表级锁更适合于以查询为主，只有少量按索引条件更新数据的应用，如WEB应用；行级锁更适合于有大量按索引条件并发更新少量不同数据，同时又有并发查询的应用，如一些在线事务处理（OLTP）系统。</p>
+<ol>
+<li>Spring知识点提炼<br>控制反转： 通过控制反转实现松散耦合。对象们给出他们的依赖，而不是创建或查找依赖的对象。需要的对象由容器自动注入对象。容器负责管理对象的声明周期和配置<br>面向切面： 把应用业务逻辑和系统服务分开。<br>Spring两种容器</li>
+<li>BeanFactory: eg: XmlBeanFactory，根据xml文件定义加载beans</li>
+<li>ApplicationContext 基于BeanFactory构建，并提供面向应用的服务<br>IOC的注入方式： 1. 构造器依赖注入   2. setter方法注入</li>
+</ol>
+<p>Spring容器配置元数据</p>
+<ol>
+<li>xml配置文件</li>
+<li>基于注解的配置</li>
+<li>基于java的配置 @Configuration, @Bean</li>
+</ol>
+<p>Bean标签的属性<br>id name  class<br>init-method   destroy-method   factory-method   scope    autowired</p>
+<p>Bean的构造<br>调用setXXX()方法设置Bean的属性<br>调用BeanNameAware的setBeanName()<br>调用BeanFactoryAware的setBeanFactory()方法<br>调用BeanPostProcessor的postProcessBeforeInitialization()方法<br>调用InitializingBean的afterPropertiesSet()方法<br>调用自定义的初始化方法<br>调用BeanPostProcessor类的postProcessAfterInitialization()方法<br>调用DisposableBean的destroy()方法<br>调用自定义的销毁方法</p>
+<p>当使用@Autowired标注多个构造器时，Spring就会从所有满足装配条件的构造器中选择入参最多的那个构造器。</p>
+<p>Spring切面可以应用五种类型的通知：<br>before：前置通知，在一个方法执行前被调用。@Before<br>after: 在方法执行之后调用的通知，无论方法执行是否成功。@After<br>after-returning: 仅当方法成功完成后执行的通知。@AfterReturning<br>after-throwing: 在方法抛出异常退出时执行的通知。@AfterThrowing<br>around: 在方法执行之前和之后调用的通知。@Around</p>
+<p>声明式事务<br>可以将业务代码和事务管理分离，只需要用注解和xml配置来管理事务</p>
+<p>ACID<br>Atomic  Consistent   Isolated   Durable<br>JTA规定了应用程序与一个或多个数据源之间协调事务的标准API。 如果你的事务需要跨多个事务资源（例如两个或多个数据库；或者如Spring+ActiveMQ整合需要将ActiveMQ和数据库的事务整合起来），就需要使用jtaTransactionManager.</p>
+<ol>
+<li><p>Spring AOP和IOC的实现原理？<br>动态代理和反射</p>
+</li>
+<li><p>简述下JVM。<br>这个是个开放性的问题，考验你对JVM整体的理解。从Javac讲述到GC：<br>首先通过IDE编写完java程序之后，就要javac来编译成class文件，分为：词法分析，语法分析，语义分析，代码生成是个阶段，在语义分析阶段又可以分为：填充符号表、标注检查、数据流分析和控制流分析。标注检查比如定义int a=1+2，在这个阶段就会被解析成int a=3; 又比如在控制流分析阶段又去除语法糖的动作，类似foreach的解语法糖等。</p>
+</li>
+</ol>
+<p>其次，编译生成class文件之后，就需要JVM加载。加载涉及到一个双亲委派模型，需要对双亲委派模型进行一下论述，以及为什么需要双亲委派模型（为了安全加载）。<br>双亲委派：<br>启动类加载器  /JAVA_HOME/lib<br>扩展类加载器  /JAVA_HOME/lib/ext<br>应用程序类加载器   用户类路径下指定的类库<br>除了顶层启动类加载器之外，其他加载器都有自己的父类加载器。如果一个类加载器收到了类加载的请求，他首先不会自己去尝试加载这个类，而是把这个请求为派给弗雷加载器去完成，每一个层次的类加载器都是如此。只有当弗雷加载器反馈自己无法完成这个请求（搜索范围没有找到所需的类）时，子类加载器才会尝试自己去加载。<br>委派机制的意思 - 防止内存中出现多份同样的字节码<br>如果不用委派而是自己加载自己的，那么类A就会加载一份字节码，类B也会加载一份字节码，内存中就会出现两份字节码。而使用委派机制，会递归的向父类查找，父类能提供则提供，不能提供则自己加载，这样保证内存中只有一份这样的字节码。</p>
+<p>类在加载之后就需要涉及验证-准备-解析-初始化的操作。<br>验证：目的是为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。比如是否以魔数0xCAFEBABE开头。<br>准备：正式为类变量分配内存并设置类变量初始值的阶段。譬如public static int value=123;这时候赋值value为0.<br>解析：虚拟机将常量池内的符号引用转换为直接引用的过程。</p>
+<p>初始化：这个阶段在上一篇讲过了，一定要突出这个知识点：虚拟机规范严格规定了有且只有5种情况（JDK7）必须对类进行初始化(执行类构造器()方法):</p>
+<p>遇到new,getstatic,putstatic,invokestatic这失调字节码指令时，如果类没有进行过初始化，则需要先触发其初始化。生成这4条指令的最常见的Java代码场景是：使用new关键字实例化对象的时候、读取或设置一个类的静态字段（被final修饰、已在编译器把结果放入常量池的静态字段除外）的时候，以及调用一个类的静态方法的时候。</p>
+<p>使用java.lang.reflect包的方法对类进行反射调用的时候，如果类没有进行过初始化，则需要先触发其初始化。</p>
+<p>当初始化一个类的时候，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化。</p>
+<p>当虚拟机启动时，用户需要指定一个要执行的主类（包含main()方法的那个类），虚拟机会先初始化这个主类。</p>
+<p>当使用jdk1.7动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getstatic,REF_putstatic,REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行初始化，则需要先出触发其初始化。<br>初始化之后就可以使用了，加载的类信息存入了运行时数据区的方法区，也就是俗称的永久代。运行时数据区分为：java堆，java栈，本地方法栈，方法区，pc寄存器。然后简单叙述下这些概念。</p>
+<p>new一个对象需要在java堆中开辟内存，使用完之后就需要垃圾回收操作了，接下去要将GC了。</p>
+<p>以Hot spot为例，java堆分为年轻代和老年代。通过GC Roots标记不可达内存对象进行回收处理。GC算法有：Mark-Sweep, Copying, Mark-Compact, 分代。接下去就论述垃圾收集器了。年轻代有Serial, ParNew, Parallel Scavenge等都是采用复制算法。</p>
+<p>老年代有Serial-Old, Parallel-Old, CMS。还有一个G1收集器。一般互联网公司喜欢采用CMS，然后就论述了一下CMS，CMS分为5个部分：初始标记，并发标记，重新标记，并发清除和并发重置，其中初始标记和重新标记是需要Stop the World的。CMS还有一个概念就是Concurrent Mode Failure，发生之后需要来一记Serial-Old的干活。</p>
+<ol>
+<li><p>JDK中除了IO使用了装饰模式，其他什么地方还使用了装饰模式？（Collections.synchonizedMap, unchecked系列以及unmodifiable系列）</p>
+</li>
+<li><p>PriorityQueue<br>通过完全二叉树实现的小顶堆</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">siftUp</span><span class="params">(<span class="keyword">int</span> k, E x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> parent = (k - <span class="number">1</span>) &gt;&gt;&gt; <span class="number">1</span>;<span class="comment">//parentNo = (nodeNo-1)/2</span></span><br><span class="line">        Object e = <span class="built_in">queue</span>[parent];</span><br><span class="line">        <span class="keyword">if</span> (comparator.compare(x, (E) e) &gt;= <span class="number">0</span>)<span class="comment">//调用比较器的比较方法</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="built_in">queue</span>[k] = e;</span><br><span class="line">        k = parent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">queue</span>[k] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">siftDown</span><span class="params">(<span class="keyword">int</span> k, E x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> half = size &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (k &lt; half) &#123;</span><br><span class="line">        <span class="comment">//首先找到左右孩子中较小的那个，记录到c里，并用child记录其下标</span></span><br><span class="line">        <span class="keyword">int</span> child = (k &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;<span class="comment">//leftNo = parentNo*2+1</span></span><br><span class="line">        Object c = <span class="built_in">queue</span>[child];</span><br><span class="line">        <span class="keyword">int</span> right = child + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; size &amp;&amp;</span><br><span class="line">            comparator.compare((E) c, (E) <span class="built_in">queue</span>[right]) &gt; <span class="number">0</span>)</span><br><span class="line">            c = <span class="built_in">queue</span>[child = right];</span><br><span class="line">        <span class="keyword">if</span> (comparator.compare(x, (E) c) &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="built_in">queue</span>[k] = c;<span class="comment">//然后用c取代原来的值</span></span><br><span class="line">        k = child;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">queue</span>[k] = x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多线程加减</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> MyData myData = <span class="keyword">new</span> MyData(<span class="number">40</span>);</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                    myData.add();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                    myData.dec();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        System.out.println(<span class="string">"finish"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库优化<br>优化。。。<br><img src="http://i2.buimg.com/567571/0a6cdfcc47f784e7.gif" alt="数据库漏斗优化法则"></p>
+</li>
+<li><p>Thread vs Runnable</p>
+</li>
+<li>使用Runnable可以避免单继承带来的局限性</li>
+<li>使用Runnable便于线程之间共享数据</li>
+</ol>
+<p>建立索引的原则</p>
+<ol>
+<li>最左前缀匹配</li>
+<li>尽量选择区分度高的列作为索引，count(distince col)/count(*) 表示字段不重复的比例。一般需要join的字段区分度要求0.1以上，1条扫描10条记录</li>
+<li>索引列不参与计算  from_unixtime(create_time)=’2014-05-29’  写成   create_time=unix_timestamp(“2014-05-29”)</li>
+<li>尽量扩展索引，不要新建索引，比如表中已经有a的索引，现在要加(a,b)的索引，只需要修改原来的索引即可。</li>
+</ol>
+<p>慢查询优化基本步骤</p>
+<ol>
+<li>设置SQL_NO_CACHE</li>
+<li>where条件单表查，锁定最小返回记录表。单表每个字段分别查询，查看那个字段区分度最高</li>
+<li>explain查看执行计划，是否与1一致</li>
+<li>order by limit 形式的sql语句让排序的表优先查</li>
+<li>加索引时参照建立索引的几大原则</li>
+</ol>
+<p>SQL存储过程优化方法</p>
+<ol>
+<li>减少不必要的列的选择</li>
+<li>减少不必要的列的排序</li>
+<li>利用好索引</li>
+<li>利用视图</li>
+<li>where语句，按照范围大小来确定条件子句的前后顺序</li>
+</ol>
+<p>以下三种情况不会使用索引</p>
+<ol>
+<li>like ‘%R’ 模糊匹配</li>
+<li>发生隐式转换</li>
+<li><p>不符合最左匹配原则</p>
+</li>
+<li><p>Quartz<br>专用词汇</p>
+</li>
+<li>Scheduler: 任务调度器</li>
+<li>Trigger: 触发器</li>
+<li>Job: 任务</li>
+<li>misfire: 错过的，本来应该被执行但实际没有执行的任务调度</li>
+</ol>
+<p>主要有两种类型的 job：无状态的（stateless）和有状态的（stateful）。对于同一个 trigger 来说，有状态的 job 不能被并行执行，只有上一次触发的任务被执行完之后，才能触发下一次执行。Job 主要有两种属性：volatility 和 durability，其中 volatility 表示任务是否被持久化到数据库存储，而 durability 表示在没有 trigger 关联的时候任务是否被保留。</p>
+<p>如何处理 Misfired 任务<br>在 Quartz 应用中，misfired job 是经常遇到的情况。一般来说，下面这些原因可能造成 misfired job：<br>1）系统因为某些原因被重启。在系统关闭到重新启动之间的一段时间里，可能有些任务会被 misfire；<br>2）Trigger 被暂停（suspend）的一段时间里，有些任务可能会被 misfire；<br>3）线程池中所有线程都被占用，导致任务无法被触发执行，造成 misfire；<br>4）有状态任务在下次触发时间到达时，上次执行还没有结束；<br>为了处理 misfired job，Quartz 中为 trigger 定义了处理策略，主要有下面两种：<br>MISFIRE_INSTRUCTION_FIRE_ONCE_NOW：针对 misfired job 马上执行一次；<br>MISFIRE_INSTRUCTION_DO_NOTHING：忽略 misfired job，等待下次触发；</p>
+<p>在 Quartz 中，一个 tirgger 在最后一次触发完成之后，会被自动删除。Quartz 默认不会保留已经结束的 trigger</p>
+<ol>
+<li><p>memcache</p>
+</li>
+<li><p>synchronized与lock区别</p>
+</li>
+<li>lock能完成synchronized的所有功能</li>
+<li>lock比synchronized更小的粒度，性能更好</li>
+<li><p>lock需要手动释放锁，synchronized自动释放锁</p>
+</li>
+<li><p>jvm组成<br><img src="http://i2.buimg.com/567571/44a4a416858609d3.png" alt="jvm组成"><br>Class Loader 只管加载，只要符合文件结构就加载，至于说能不能运行，则不是它负责的，那是由Execution Engine 负责的。</p>
+</li>
+</ol>
+<p>栈内存，栈帧，当A调用时压入到栈中，执行完之后弹出栈帧，先进后出原则；栈帧数据：本地变量、入参、出参<br>堆内存，新生区（尹甸区、幸存0区、幸存1区），老年区，永久代（必须的类信息）。<br>方法区，被所有线程共享，保存所有字段和方法字节码，及特殊方法如构造函数，接口代码等<br>PC计数器，每个线程都有一个程序计数器，就是一个指针，指向方法区中的方法字节码，由执行引擎读取下一条指令。<br>本地方法栈，调用本地方法</p>
+<ol>
+<li>HashMap VS HashTable</li>
+<li>继承不同， Dictionary  vs  AbstractMap</li>
+<li>Hashtable方法是同步的，线程安全的；HashMap非线程安全</li>
+<li>哈希值的使用不同，Hashtable直接使用对象的hashcode,而HashMap重新计算hash值</li>
+<li><p>HashMap可以使用null作为键，可以使用一个或多个null作为值；Hashtable不允许出现null</p>
+</li>
+<li><p>ssh  vs  springmvc<br>1.易用性<br>Spring MVC上手简单，并且可以与Spring无缝结合，毕竟都是一个公司的产品，学习起来也比较简单，比如从前端给对象填充值，他的处理就比Struts2简单多了，再比如对Restful风格的URL的支持，这些Spring MVC都比Struts2做的好N倍。<br>2.安全性<br>Spring MVC到目前为止还没有发现比较严重的漏洞。<br>3.可扩展性<br>Spring MVC依靠Spring这颗大树，Spring的实力我想大家不用怀疑吧，包括版本的更新、迭代这些都是经过历史见证的。</p>
+</li>
+<li><p>SQL<br>DDL —数据定义语言 (Create ， Alter ， Drop ， DECLARE)<br>DML —数据操纵语言 (Select ， Delete ， Update ， Insert)<br>DCL —数据控制语言 (GRANT ， REVOKE ， COMMIT ， ROLLBACK)</p>
+</li>
+<li><p>类编译到加载<br>javac编译成class: 词法分析、语法分析、语义分析、代码生成四个阶段。编译成class文件之后，需要JVM加载，双亲委派机制（安全加载）<br>保证内存中只有一份这样的代码。 加载之后要设计验证、准备、解析、初始化操作。<br>遇到new/get static/put static/invode static 这四条指令时，如果类没有进行过初始化，则需要先触发初始化。使用new关键字实例化对象的时候、读取或设置一个类的静态字段、调用一个类的静态方法的时候、使用java.lang.reflect包的方法对类进行反射调用的时候<br>当初始化一个类的时候，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化。</p>
+</li>
+<li><p>微服务<br>微服务架构将一个应用拆分成多个独立的、具有业务属性的服务，每个服务运行在不同的进程中，服务于服务之间通过轻量级通信机制互相协作、互相配合，从而为终端用户提供业务价值。同事，每个服务可以根据业务逻辑，采用不同的语言、框架、工具以及存储技术来解决业务问题。因此，微服务架构强调的是一种独立开发、独立测试、独立部署、独立运行的高度自治的架构模式，也是一种更灵活、更开放、更松散的演进式架构。</p>
+</li>
+</ol>
+<p>微服务是SOA的定义的一个子集，相比SOA根据有灵活性、可实时性以及可扩展性，独立测试、独立部署、独立运行的软件架构模式</p>
+<table>
+<thead>
+<tr>
+<th>SOA实现</th>
+<th>微服务架构实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企业级，自顶向下开展实施</td>
+<td>团队级，自底向上开展实施</td>
+</tr>
+<tr>
+<td>服务由多个子系统组成，粒度大</td>
+<td>一个系统被拆分成多个服务，粒度细</td>
+</tr>
+<tr>
+<td>企业服务总线，集中式的服务架构</td>
+<td>无集中式总线，松散的服务架构</td>
+</tr>
+<tr>
+<td>集成方式复杂</td>
+<td>集成方式简单（HTTP/REST/JSON)</td>
+</tr>
+<tr>
+<td>单块架构系统，相互依赖，部署复杂</td>
+<td>服务能独立部署</td>
+</tr>
+</tbody>
+</table>
+<p>微服务特点<br>跨平台跨语言（技术多样性，最合适的技术方案去解决具体的问题）   单一职责  轻量级通信  独立性（流水线部署）  进程隔离</p>
+<p>缺点： 服务太微，数量变多不好管理  ；  服务间依赖测试</p>
+<ol>
+<li><p>left join / right join / full join<br>full join 包含左表和右表，不匹配的为空值</p>
+</li>
+<li><p>TCP缺点<br>如果传输量很少的话，建立连接开销太大</p>
+</li>
+<li><p>设计模式</p>
+<ul>
+<li>责任链模式<br>将接受者对象连成一条链，并在该链上传递请求，知道有一个接收对象处理它，通过让更多对象有机会处理请求，避免了请求发送者与接收者之间的耦合。<br>遵循了开闭原则，新增接受者时只需要新增一个类</li>
+</ul>
+</li>
+</ol>
+<p>实际应用：</p>
+<ul>
+<li>java中的异常处理机制</li>
+<li>servlet的过滤器</li>
+<li>审批流程</li>
+</ul>
+<ol>
+<li><p>六大原则<br>单一职责原则<br>开闭原则 实体（类、模块）应该对扩展开放，对修改关闭<br>里氏替换原则 父类可以出现的地方,子类也可以出现,父类都可以被子类代替而无需改动.<br>依赖倒置原则 针对接口编程，依赖于抽象而不依赖于具体<br>接口隔离原则 使用多个隔离的接口，降低依赖，降低耦合<br>迪米特法则（最少知道原则） 一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相互独立</p>
+</li>
+<li><p>ConcurrentModificationException<br>A:用集合本身遍历集合，用集合去修改集合。 集合实现。添加成功，元素添加到末尾。<br>B:用迭代器迭代，用迭代器修改元素。 迭代器实现。添加成功，遍历到哪里，添加到哪里。</p>
+</li>
+<li><p>集合和数组的区别?<br>集合： 1：长度可以发生改变。 2：只能存储对象类型。引用类型。 3：可以存储任意类型的对象。<br>数组： 1：长度固定。 2：可以存储基本类型，也可以存储对象类型。 3：只能存储同一种类型的元素。</p>
+</li>
+<li><p>flush()和close()的区别?<br>A:flush() 刷新缓冲区，流对象还可以继续使用。<br>B:close() 释放资源，但是会先刷新一次缓冲区，保证数据不丢失，操作完毕后，流对象不可以再被使用。</p>
+</li>
+<li><p>HashMap vs Hashtable</p>
+</li>
+<li>HashMap实现Map接口，继承AbstractMap; Hashtable实现Map接口，继承Dictionary</li>
+<li>HashMap允许null的键值对； Hashtable不允许null的键或值</li>
+<li>HashMap是非线程安全的；Hashtable是线程安全的</li>
+<li><p>计算hash的方式不一样，Hashtable直接使用hashCode，HashMap在hashCode重新计算</p>
+</li>
+<li><p>内核态 用户态<br>当一个任务执行系统调用而陷入到内核代码中执行时，就称进程处于内核状态，此时处理器处于特权级最高的内核代码中执行。用户运行一个程序，该程序所创建的进程开始是运行在用户态的，如果要执行文件操作，网络数据发送等操作，必须通过write,send等系统调用，这些系统调用会调用内核中的代码来完成操作，此时必须切换到内核空间去执行这些代码。<br>保护模式是通过内存页表操作等机制，保证进程间的地址空间不会互相冲突，一个进程的操作不会修改另一个进程的地址空间的数据。</p>
+</li>
+<li><p>Hibernate vs MyBatis</p>
+</li>
+<li>Hibernate完全ORM框架，MyBatis半自动化的ORM框架，支持直接操作sql。编写POJO与sql的映射关系</li>
+<li><p>MyBatis更容易进sql优化，细粒度的优化</p>
+</li>
+<li><p>mysql什么情况不会走索引</p>
+<ul>
+<li>like ‘%R%’</li>
+<li>发生显式或隐式转换</li>
+<li>函数作用在索引字段上</li>
+</ul>
+</li>
+<li><p>web安全</p>
+<ul>
+<li>XSS跨站脚本攻击</li>
+<li>SQL注入攻击</li>
+<li>TCP SYN拒绝服务攻击</li>
+<li>UDP Flooding</li>
+<li>arp攻击</li>
+</ul>
+</li>
+<li><p>ClassLoader</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">Class</span>&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">        <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">            <span class="comment">// First, check if the class has already been loaded</span></span><br><span class="line">            <span class="keyword">Class</span>&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        c = findBootstrapClassOrNull(name);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">                    c = findClass(name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">                <span class="comment">// 连接</span></span><br><span class="line">                resolveClass(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在JVM加载类的时候，需要经过三个步骤：装载，连接，初始化。连接分三步：验证，准备，解释<br>使用forName加载的时候就会将Class进行解释和初始化。</p>
+<p>JVM的约定使得一个字符分为两个部分，JVM内部和OS的文件系统。在JVM内部，统一使用Unicode表示，当这个字符被从JVM内部移到外部，就进行了编码转换，使用了具体的编码方案。因此，所有的编码转换只发生在边界的地方，JVM和OS的交界处，也就是各种输入/输出流起作用的地方。</p>
+<ol>
+<li><p>异常<br>java语言两种异常： checked exception 继承自 java.lang.Exception；<br>另一种 runtime exception 继承自java.lang.RuntimeException</p>
+</li>
+<li><p>final finally finalize</p>
+<ul>
+<li>final<br>final修饰变量<br>变量一旦初始化，不可改变。对于基本类型来说，值不能改变；对于对象变量来说引用不能改变。初始化可以在定义处或构造函数中<br>final修饰方法<br>final修饰类</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>finally</li>
+<li>finalize<br>  JVM保证调用finalize函数之前，这个对象是不可达的，保证finalize最多运行一次。finalize用于一些不容易控制，并且非常重要的资源的释放，例如一些IO操作，数据的连接。这种情况下，应该以通过程序本身管理这些资源为主，以finalize函数释放资源为辅，形成双保险的管理机制，不应该仅仅依靠finalize来释放资源。</li>
+</ul>
+<ol>
+<li><p>如何实现java序列化<br>让类实现Serializable接口，创建一个OutputStream，然后把它嵌进ObjectOutputStream,这时就能用writeObject()方法把对象写入OutputStream。读的时候需要把InputStream嵌到ObjectInputStream中，然后再调用readObject()方法。</p>
+</li>
+<li><p>六大原则<br>设计模式是一套面向对象的代码设计经验总结。<br>六大原则<br>单一职责原则：对于一个类，应该只有一个引起它变化的原因。易于维护，高度可复用性<br>里氏替换原则：子类型必须能够替换掉他们的父类型，而不引起其他变化。<br>开放关闭原则：对扩展开放，对修改关闭。实现一个新的功能，添加一个类比修改现有的类更加方便安全。<br>依赖倒置原则：程序的高层模块不应该依赖于低层模块，都应该依赖于抽象。针对接口变成，而不是针对实现编程。<br>合成/聚合复用原则：尽量使用合成/聚合。优先使用对象的合成/聚合会有助于保持系统的每个类都会被封装，并且类被集中在单个任务中。<br>迪米特法则： 最少知道原则，一个对象应当尽可能少的了解其他对象。降低耦合性</p>
+</li>
+<li><p>简单工厂 工厂方法  抽象工厂模式<br>简单工厂 分离客户端和后台逻辑，简单易操作。缺点是违背开放-关闭原则，添加新产品麻烦<br>工厂方法 易于添加新产品，开放-关闭原则。缺点是新产品的添加带来了大量新的类的创建，增加了工作量<br>抽象工厂模式 客户端通过抽象接口操作实力，有利于交换产品系列。</p>
+</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/09/28/java面试0928/" data-title="java面试0928 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/09/28/网络知识小结/" title="网路知识小结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  网路知识小结</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/09/28/数据库/"  title="">
+ <strong>下一篇：</strong><br/> 
+ <span>(no title)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/28/java面试0928/" data-title="java面试0928" data-url="http://yoursite.com/2016/09/28/java面试0928/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/" title="interview">interview<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

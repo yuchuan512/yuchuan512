@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/12/疯狂java讲义笔记一/index.html">
 <meta property="og:site_name" content="Flow">
 <meta property="og:description" content="开发定义类，方法时也可以先添加文档注释，然后使用 javadoc 工具来生成自己的API文档将字符串转换为数值类型 Byte.parseByte(String str) Integer.parseInt(String str) Float.parseFloat(String str)位运算符 &amp;amp; 按位与  | 按位或  ~按位非   ^按位异或   &amp;lt;&amp;lt; 左移运算符 &amp;gt;&amp;">
-<meta property="og:updated_time" content="2016-05-12T07:48:14.621Z">
+<meta property="og:updated_time" content="2016-09-13T13:40:25.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="疯狂java讲义笔记一">
 <meta name="twitter:description" content="开发定义类，方法时也可以先添加文档注释，然后使用 javadoc 工具来生成自己的API文档将字符串转换为数值类型 Byte.parseByte(String str) Integer.parseInt(String str) Float.parseFloat(String str)位运算符 &amp;amp; 按位与  | 按位或  ~按位非   ^按位异或   &amp;lt;&amp;lt; 左移运算符 &amp;gt;&amp;">
@@ -112,7 +112,7 @@
 <p>抽象父类可以只定义需要使用的某些方法，其余则留给其子类实现。<br> eg:<br> public abstract class SpeedMeter {<br>private double turnRate;<br>public SpeedMeter(){</p>
 <p>}<br>public abstract double getRadius();<br>public void setTurnRate(double turnRate){<br>this.turnRate = turnRate;<br>}<br>public double getSpeed() {<br>return java.lang.Math.PI <em> 2 </em>getRadius() * turnRate;<br>}<br> }</p>
 <p> public class CarSpeedRate extends SpeedMeter{<br>public double getRadius(){<br>return 0.23;<br>}<br>public static void main(String[] args) {<br>CarSpeedRate csm = new CarSpeedRate();<br>csm.setTurnRate(15);<br>System.out.println(csm.getSpeed());<br>}<br> }</p>
-<p>接口和抽象类的不同点<br> 接口体现的是一种规范，抽象体现的是一种模板设计<br> 接口里只能包含抽象方法，不包含已经提供实现的方法；抽象类可以包含普通方法<br> 接口里不能定义静态方法；抽象类里可以定义静态方法<br> 接口只能定义静态常量属性，不能定义普通属性；抽象类可以静态常量属性，也可以定义普通属性<br> 接口不包含构造器；抽象类可以包含构造器，抽象类的构造器并不是用于创建对象，而让其子类调用这些构造器来完成属于抽象类的初始化操作<br> 接口不难更包含初始化块，但抽象类可以包含初始化块。<br> 一个类最多只能有一个直接父类，包括抽象类；但一个类可以直接实现多个接口，通过实现多个接口可以弥补java单继承的不足</p>
+<p>接口和抽象类的不同点<br> 接口体现的是一种规范，抽象体现的是一种模板设计<br> 接口里只能包含抽象方法，不包含已经提供实现的方法；抽象类可以包含普通方法<br> 接口里不能定义静态方法；抽象类里可以定义静态方法<br> 接口只能定义静态常量属性，不能定义普通属性；抽象类可以静态常量属性，也可以定义普通属性<br> 接口不包含构造器；抽象类可以包含构造器，抽象类的构造器并不是用于创建对象，而让其子类调用这些构造器来完成属于抽象类的初始化操作<br> 接口不能包含初始化块，但抽象类可以包含初始化块。<br> 一个类最多只能有一个直接父类，包括抽象类；但一个类可以直接实现多个接口，通过实现多个接口可以弥补java单继承的不足</p>
 <p>Object[] toArray() 把集合装换成一个数组<br> int size() 返回集合里元素的个数<br> Iterator iterator()  返回一个Iterator对象，用于遍历集合里的对象<br> 可以使用泛型来限制集合里元素的类型，并让集合记住所有集合元素的类型</p>
 <p>当使用Iterator对集合元素进行迭代时，Iterator并不是把集合元素本身传给了迭代变量，而是把集合元素的值传给了迭代变量<br> 所以修改迭代变量的值对集合元素本身没有任何影响</p>
 <p>重写hashCode()方法的基本原则：<br> 当两个对象通过equals() 方法比较返回true时，这两个对象的hashCode应该相等。<br> 对象中功能用作equals比较标准的属性，都应该用来计算hashCode值<br> HashSet集合判断两个元素相等的标准是两个对象通过equals方法比较相等，并且两个对象的hashCode()方法返回值也相等</p>
@@ -529,7 +529,7 @@ Person other = (Person)obj;
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
 		  
 		
 		  
@@ -706,7 +706,7 @@ Person other = (Person)obj;
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
 			
 		
 			
@@ -730,7 +730,7 @@ Person other = (Person)obj;
 			
 		
 			
-				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -750,11 +750,11 @@ Person other = (Person)obj;
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -778,11 +778,11 @@ Person other = (Person)obj;
 			
 		
 			
-				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

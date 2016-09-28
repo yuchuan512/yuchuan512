@@ -31,7 +31,7 @@ myslq忘记登录密码
 m">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/38631395.jpg">
 <meta property="og:image" content="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/69687340.jpg">
-<meta property="og:updated_time" content="2016-05-12T07:35:15.765Z">
+<meta property="og:updated_time" content="2016-09-18T01:45:44.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql学习笔记">
 <meta name="twitter:description" content="Linux平台安装Mysql失败是因为/etc/my.cnf 的设置是系统的错误路径，可以将$MySQL_HOME/support_files/目录下面的配置文件复制到/etc/my.cnf
@@ -130,7 +130,7 @@ m">
 <li><p>mysql丢失密码</p>
 <ul>
 <li><p>windows平台</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">net <span class="operator"><span class="keyword">stop</span> mysql</span><br><span class="line">mysqld <span class="comment">--skip-grant-tables</span></span><br><span class="line">打开另一个命令行窗口</span><br><span class="line">mysql -u root</span><br><span class="line"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpwd'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span></span><br><span class="line">		<span class="keyword">and</span> host=<span class="string">'localhost'</span></span><br><span class="line">加载权限表</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">net <span class="operator"><span class="keyword">stop</span> mysql</span><br><span class="line">mysqld <span class="comment">--skip-grant-tables</span></span><br><span class="line">打开另一个命令行窗口</span><br><span class="line">mysql -u root</span><br><span class="line"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpwd'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span></span><br><span class="line">		<span class="keyword">and</span> host=<span class="string">'localhost'</span></span><br><span class="line">注意： 修改密码命令mysql5<span class="number">.7</span>有改动</span><br><span class="line">加载权限表</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>linux平台</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysqld_safe <span class="comment">--skip-grant-tables user=mysql</span></span><br><span class="line">mysql -u root</span><br><span class="line"><span class="operator"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpwd'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span></span><br><span class="line">		<span class="keyword">and</span> host=<span class="string">'localhost'</span></span><br><span class="line">加载权限表</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
@@ -188,8 +188,16 @@ m">
 <p>INSERT INTO table2 VALUES(1,5);<br>INSERT INTO table2 VALUES(2,6);<br>INSERT INTO table2 VALUES(3,7);<br>INSERT INTO table2 VALUES(4,8);<br>优化前：第二张表检索4行数据，且extra没有使用索引<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/38631395.jpg" alt=""><br>添加索引 alter table table2 add index(tid)<br>优化后:第二张表检索1行数据，且extra使用索引<br><img src="http://7xrkr6.com1.z0.glb.clouddn.com/16-5-10/69687340.jpg" alt=""></p>
 <p>利用Profiling分析查询语句<br>set profiling = 1 开启profiling<br>show profiles<br>show profile for query 8;<br>show profile cpu for query 8;<br>show profile block io for query 8;</p>
 <ul>
-<li>索引<br>使用like关键词，只有”%”不在第一个位置，索引才会起作用<br>使用多列索引的查询语句，只有查询语句使用了索引的第一个字段时，索引才会被使用<br>使用OR关键词前后两个条件中的列都是索引时，查询中才使用索引，否则不使用索引。</li>
-<li>优化Insert语句<ol>
+<li><p>索引<br>四种情况不走索引</p>
+<ol>
+<li>like “%” 不走索引</li>
+<li>发生了隐式转换或显示转换不走索引</li>
+<li>不符合最左匹配原则不走索引</li>
+<li>or前后必须都是索引才走索引，否则不走索引</li>
+</ol>
+</li>
+<li><p>优化Insert语句</p>
+<ol>
 <li>一次性插入多值<br>eg: insert into books values(1,’book’),(2,’book2’),(3,’book3’)</li>
 <li>通常可以锁定表以加速插入数据<br>lock tables test write; insert …; unlock tables;<br>如果不加锁定表，每一次执行insert语句完成后，索引缓冲区都会被写到磁盘上，而加入锁定后索引缓冲区仅被写到磁盘上1次</li>
 </ol>
@@ -345,7 +353,7 @@ m">
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>33</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
 		  
 		
 		  
@@ -522,7 +530,7 @@ m">
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>20</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
 			
 		
 			
@@ -546,7 +554,7 @@ m">
 			
 		
 			
-				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -566,11 +574,11 @@ m">
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
 			
 		
 			
@@ -594,11 +602,11 @@ m">
 			
 		
 			
-				<li><a href="/tags/Collection/" title="Collection">Collection<sup>1</sup></a></li>
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

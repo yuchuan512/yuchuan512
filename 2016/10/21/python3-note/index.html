@@ -1,0 +1,892 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python3_note | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="python3.4基础print(10/3)    浮点除   3.3333333333333335print(10//3)   地板除   3在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python3_note">
+<meta property="og:url" content="http://yoursite.com/2016/10/21/python3-note/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="python3.4基础print(10/3)    浮点除   3.3333333333333335print(10//3)   地板除   3在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：P">
+<meta property="og:updated_time" content="2016-10-21T03:30:21.341Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python3_note">
+<meta name="twitter:description" content="python3.4基础print(10/3)    浮点除   3.3333333333333335print(10//3)   地板除   3在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：P">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/21/python3-note/" title="python3_note" itemprop="url">python3_note</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-21T03:29:48.000Z" itemprop="datePublished"> 发表于 2016-10-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python3-4基础"><span class="toc-number">1.</span> <span class="toc-text">python3.4基础</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-_coding:_utf-8_-"><span class="toc-number"></span> <span class="toc-text">-- coding: utf-8 --</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编码"><span class="toc-number">0.1.</span> <span class="toc-text">编码</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-_coding:_utf-8_--1"><span class="toc-number"></span> <span class="toc-text">-- coding: utf-8 --</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#假定这是你的银行存款:"><span class="toc-number"></span> <span class="toc-text">假定这是你的银行存款:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则表达式"><span class="toc-number">0.1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协程"><span class="toc-number">0.2.</span> <span class="toc-text">协程</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h3 id="python3-4基础">python3.4基础</h3><p>print(10/3)    浮点除   3.3333333333333335<br>print(10//3)   地板除   3<br>在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。<br>用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：<br>Python提供了ord()函数获取字符的整数表示，chr()函数把编码转换为对应的字符：<br><figure class="highlight"><figcaption><span>chr(66)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#21547;&#26377;&#20013;&#25991;&#30340;str&#26080;&#27861;&#29992;ASCII&#32534;&#30721;&#65292;&#22240;&#20026;&#20013;&#25991;&#32534;&#30721;&#30340;&#33539;&#22260;&#36229;&#36807;&#20102;ASCII&#32534;&#30721;&#30340;&#33539;&#22260;&#65292;Python&#20250;&#25253;&#38169;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>len(b’ABC’)<br>3<br>len(‘中文’.encode(‘utf-8’))<br>6<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>个中文字符经过UTF-<span class="number">8</span>编码后通常会占用<span class="number">3</span>个字节，而<span class="number">1</span>个英文字符只占用<span class="number">1</span>个字节。</span><br><span class="line">utf-<span class="number">8</span>编码是变长的</span><br><span class="line">以utf-<span class="number">8</span>编码</span><br></pre></td></tr></table></figure></p>
+<p>#!/usr/bin/env python3</p>
+<h1 id="-_coding:_utf-8_-">-<em>- coding: utf-8 -</em>-</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">保留两位小数   <span class="string">'%.2f'</span> % <span class="number">3.142592653</span></span><br><span class="line"></span><br><span class="line">如果没有<span class="keyword">return</span>语句，函数执行完毕后也会返回结果，只是结果为None。</span><br><span class="line"><span class="keyword">return</span> None可以简写为<span class="keyword">return</span>。</span><br><span class="line">默认参数必须指向不变对象！</span><br><span class="line">获取当前目录包含的文件</span><br><span class="line"><span class="literal">import</span> os</span><br><span class="line">L = [d <span class="keyword">for</span> d <span class="keyword">in</span> os.listdir(<span class="string">'.'</span>)]</span><br><span class="line"></span><br><span class="line">d = &#123;<span class="string">'x'</span>: <span class="string">'A'</span>, <span class="string">'y'</span>: <span class="string">'B'</span>, <span class="string">'z'</span>: <span class="string">'C'</span>&#125;</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> d.items():</span><br><span class="line">    <span class="built_in">print</span>(k, <span class="string">'='</span>, v)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>([k + <span class="string">'='</span> + v <span class="keyword">for</span> k, v <span class="keyword">in</span> d.items()])</span><br><span class="line"></span><br><span class="line">生成器</span><br><span class="line">第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator：</span><br><span class="line">第二种方法：如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator</span><br><span class="line">变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。</span><br><span class="line"></span><br><span class="line">可以直接作用于<span class="keyword">for</span>循环的数据类型有</span><br><span class="line"><span class="number">1.</span> 集合数据类型，list,tuple,dict,<span class="literal">set</span>,str等</span><br><span class="line"><span class="number">2.</span> generator，包括生成器和带yield的generator function</span><br><span class="line">这些可以直接作用于<span class="keyword">for</span>循环的对象统称为可迭代对象，<span class="built_in">Iterable</span></span><br><span class="line">可以使用 isinstance()判断一个对象是否是<span class="built_in">Iterable</span>对象</span><br><span class="line">可以被next()函数调用并不断返回下一个值的对象称为迭代器：<span class="built_in">Iterator</span>。</span><br><span class="line"></span><br><span class="line">生成器都是<span class="built_in">Iterator</span>对象，但list、dict、str虽然是<span class="built_in">Iterable</span>，却不是<span class="built_in">Iterator</span></span><br><span class="line">把list、dict、str等<span class="built_in">Iterable</span>变成<span class="built_in">Iterator</span>可以使用iter()函数：</span><br><span class="line">isinstance(iter([]), <span class="built_in">Iterator</span>)</span><br><span class="line">isinstance(iter(<span class="string">'abc'</span>), <span class="built_in">Iterator</span>)</span><br><span class="line"></span><br><span class="line">凡是可作用于<span class="keyword">for</span>循环的对象都是<span class="built_in">Iterable</span>类型；</span><br><span class="line">凡是可作用于next()函数的对象都是<span class="built_in">Iterator</span>类型，它们表示一个惰性计算的序列；</span><br><span class="line">集合数据类型如list、dict、str等是<span class="built_in">Iterable</span>但不是<span class="built_in">Iterator</span>，不过可以通过iter()函数获得一个<span class="built_in">Iterator</span>对象。</span><br><span class="line"></span><br><span class="line">字符串转整数（利用高阶函数）</span><br></pre></td></tr></table></figure>
+<p>def str2int(s):<br>    def fn(x, y):<br>        return 10 * x + y</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">char2num</span><span class="params">(s)</span>:</span>
+    <span class="keyword">return</span> {<span class="string">'0'</span>: <span class="number">0</span>, <span class="string">'1'</span>: <span class="number">1</span>, <span class="string">'2'</span>: <span class="number">2</span>, <span class="string">'3'</span>: <span class="number">3</span>, <span class="string">'4'</span>: <span class="number">4</span>, <span class="string">'5'</span>: <span class="number">5</span>, <span class="string">'6'</span>: <span class="number">6</span>, <span class="string">'7'</span>: <span class="number">7</span>, <span class="string">'8'</span>: <span class="number">8</span>, <span class="string">'9'</span>: <span class="number">9</span>}[s]
+
+<span class="keyword">return</span> reduce(fn, map(char2num, s))
+</code></pre><p>print(str2int(‘153’))<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">和<span class="function"><span class="title">map</span><span class="params">()</span></span>类似，<span class="function"><span class="title">filter</span><span class="params">()</span></span>也接收一个函数和一个序列。和<span class="function"><span class="title">map</span><span class="params">()</span></span>不同的是，<span class="function"><span class="title">filter</span><span class="params">()</span></span>把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。</span><br><span class="line"></span><br><span class="line">返回函数</span><br></pre></td></tr></table></figure></p>
+<p>def lazy_sum(*args):<br>    def sum():<br>        ax = 0<br>        for n in args:<br>            ax = ax + n<br>        return ax<br>    return sum<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">理解闭包</span><br><span class="line">但一个函数返回了一个函数后，其内部的局部变量还被新函数引用</span><br><span class="line">所以： 返回函数不要引用任何循环变量，或者后续会发生变化的变量。</span><br></pre></td></tr></table></figure></p>
+<p>def count():<br>    fs = []<br>    for i in range(1, 4):<br>        def f():<br>            return i * i<br>        fs.append(f)<br>    return fs</p>
+<p>f1, f2, f3 = count();<br>print(f1())<br>print(f2())<br>print(f3())<br>```<br>输出均为9，因为i值变为了3，所以的返回函数引用的都是这个变量。</p>
+<p>匿名函数<br>lambda x: x <em> x 相当于<br>def f(x):<br>    return x </em> x<br>可以把匿名函数赋给一个变量<br>f = lambda x: x * x<br>print(f(5))</p>
+<p>装饰器<br>def log2(func):<br>    def wrapper(<em>args, **kw):<br>        print(“call %s()” % func.<strong>name</strong>)<br>        return func(</em>args, **kw)<br>    return wrapper</p>
+<p>@log2<br>def now():<br>    print(‘2015-03-25’)</p>
+<p>def log3(text):<br>    def decorator(func):<br>        @functools.wraps(func)<br>        def wrap(<em>args, **kw):<br>            print(“call %s %s “ % (func.<strong>name</strong>, text))<br>            return func(</em>args, **kw)<br>        return wrap<br>    return decorator</p>
+<p>@log3(“execute”)<br>def now():<br>    print(‘2015-03-25’)</p>
+<h4 id="编码">编码</h4><p>#!/usr/bin/env python3</p>
+<h1 id="-_coding:_utf-8_--1">-<em>- coding: utf-8 -</em>-</h1><p>python解释器默认会搜索当前目录、所有已安装的内置模块和第三方模块，搜索路径存放在sys模块的path变量中；<br>import  sys<br>sys.path<br>添加自己的搜索目录<br>方案1： import sys   -&gt; sys.path.append(“/Users/yuchuan/my_py_scripts”)<br>方案2:  设置环境变量PYTHONPATH</p>
+<p>访问属性 加上双下划线，private<br>捕获异常<br>try:<br>    stu.set_score(299)<br>except ValueError:<br>    stu.set_score(10)<br>finally:<br>    print(“finally”)</p>
+<p>要获得一个对象的所有属性和方法，可以使用dir()函数，返回一个包含字符串的list，比如获得一个str对象的所有属性和方法<br>dir(“ABC”)<br>类似<strong>xxx</strong>的属性和方法在Python中都是有特殊用途的，比如<strong>len</strong>方法返回长度。在Python中，如果你调用len()函数试图获取一个对象的长度，实际上，在len()函数内部，它自动去调用该对象的<strong>len</strong>()方法，所以，下面的代码是等价的：<br>len(“ABC”) 与 “ABC”.<strong>len</strong>()是等价的</p>
+<p>实例属性和类属性</p>
+<p>python枚举<br>from enum import Enum<br>Month = Enum(‘Month’, (‘Jan’, ‘Feb’, ‘Mar’, ‘Apr’, ‘May’, ‘Jun’, ‘Jul’, ‘Aug’, ‘Sep’, ‘Oct’, ‘Nov’, ‘Dec’))<br>for name, member in Month.<strong>members</strong>.items():<br>    print(name, ‘=’, member, ‘,’, member.value)</p>
+<p>from enum import Enum, unique<br>@unique<br>class Weekday(Enum):<br>    sun = 0<br>    mon = 1<br>    Tue = 2<br>    Wed = 3</p>
+<p>day1 = Weekday.sun<br>print(day1.value)<br>print(Weekday.Tue.value)</p>
+<p>使用日志和断言<br>import logging<br>logging.basicConfig(level=logging.INFO)</p>
+<p>def foo(s):<br>    n = int(s)<br>    assert n != 0<br>    logging.info(“n ! = 0”)<br>    return 10 / n</p>
+<p>可以在单元测试中编写两个特殊的setUp()和tearDown()方法。这两个方法会分别在每调用一个测试方法的前后分别被执行</p>
+<p>单元测试可以有效地测试某个程序模块的行为，是未来重构代码的信心保证。<br>单元测试的测试用例要覆盖常用的输入组合、边界条件和异常。<br>单元测试代码要非常简单，如果测试代码太复杂，那么测试代码本身就可能有bug。<br>单元测试通过了并不意味着程序就没有bug了，但是不通过程序肯定有bug。</p>
+<p>python单元测试<br>import unittest<br>from test.test2 import Dict<br>class TestDict(unittest.TestCase):<br>    def test<em>init(self):<br>        d = Dict(a=1, b=’test’)<br>        self.assertEqual(d.a, 1)<br>        self.assertEqual(d.b, ‘test’)<br>        self.assertTrue(isinstance(d, dict))<br>测试方法需要以test</em>开头<br>从unittest.TestCase继承。<br>以test开头的方法就是测试方法，不以test开头的方法不被认为是测试方法，测试的时候不会被执行。</p>
+<p>setUp与tearDown<br>可以在单元测试中编写两个特殊的setUp()和tearDown()方法。这两个方法会分别在每调用一个测试方法的前后分别被执行。<br>def setUp(self):<br>    print(“setup…”)</p>
+<p>def tearDown(self):<br>    print(“teardown…”)</p>
+<p>json<br>import json</p>
+<p>d = dict(name=’Bob’, age=20, score=80)<br>str = json.dumps(d)<br>print(str)</p>
+<p>d = json.loads(str)<br>print(d[‘name’])</p>
+<p>json和对象互相转换<br>import json</p>
+<p>class Student(object):</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, score)</span>:</span>
+    self.name = name
+    self.age = age
+    self.score = score
+
+<span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span>
+    <span class="keyword">return</span> self.name
+</code></pre><p>def student2dict(std):<br>    return {<br>        ‘name’: std.name,<br>        ‘age’: std.age,<br>        ‘score’: std.score<br>    }</p>
+<p>def dict2student(d):<br>    return Student(d[‘name’], d[‘age’], d[‘score’])</p>
+<p>s = Student(‘Bob’, 20, 88)<br>str = json.dumps(s, default=student2dict)<br>print(str)</p>
+<p>stu = json.loads(str, object_hook=dict2student)<br>print(stu.get_name)</p>
+<p>多线程加锁<br>import time, threading</p>
+<h1 id="假定这是你的银行存款:">假定这是你的银行存款:</h1><p>balance = 0<br>lock = threading.Lock()</p>
+<p>def change_it(n):</p>
+<pre><code># 先存后取，结果应该为<span class="number">0</span>:
+<span class="label">global</span> <span class="keyword">balance
+</span><span class="keyword">balance </span>= <span class="keyword">balance </span>+ n
+<span class="keyword">balance </span>= <span class="keyword">balance </span>- n
+</code></pre><p>def run_thread(n):<br>    for i in range(10):<br>        lock.acquire()<br>        try:<br>            change_it(n)<br>        finally:<br>            lock.release()</p>
+<p>t1 = threading.Thread(target=run_thread, args=(5,))<br>t2 = threading.Thread(target=run_thread, args=(8,))<br>t1.start()<br>t2.start()<br>t1.join()<br>t2.join()<br>print(balance)</p>
+<p>threadlocal使用<br>import threading</p>
+<p>local_school = threading.local()</p>
+<p>class Student(object):<br>    def <strong>init</strong>(self, name):<br>        self.name = name</p>
+<p>def process_student():<br>    std = local_school.student<br>    print(“hello %s (in %s)” % (std, threading.current_thread().name))</p>
+<p>def process_thread(name):<br>    local_school.student = name<br>    process_student()</p>
+<p>t1 = threading.Thread(target=process_thread, args=(‘alice’,), name=”thread_A”)<br>t2 = threading.Thread(target=process_thread, args=(“bob”, ), name=”thread_B”)<br>t1.start()<br>t2.start()<br>t1.join()<br>t2.join()</p>
+<p>异步IO用单进程单线程模型来执行多任务，这种全新的模型称为事件驱动模型<br>对应到Python语言，单进程的异步编程模型称为协程，有了协程的支持，就可以基于事件驱动编写高效的多任务程序</p>
+<h4 id="正则表达式">正则表达式</h4><p>正则表达式中，用*表示任意个字符（包括0个），用+表示至少一个字符，用?表示0个或1个字符<br>m = re.match(r’(\d{3})-(\d{3,8})$’, ‘010-12345’)<br>print(m.group(0))  group(0)表示全部字符串<br>print(m.group(1))  010<br>print(m.group(2))  12345</p>
+<p>t = ‘19:05:30’<br>m = re.match(r’^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$’, t)<br>print(m.group(1))  ==》 19<br>print(m.group(2))  ==》 05<br>print(m.group(3))  ==》 30</p>
+<p>正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。加个?就可以采用非贪婪匹配：<br>m = re.match(r’^(\d+)(0<em>)$’, ‘10230000’)<br>print(m.groups())<br>(‘10230000’, ‘’)<br>在d+后面加上？表示非贪婪匹配<br>m = re.match(r’^(\d+?)(0</em>)$’, ‘10230000’)<br>print(m.group(1)) ==》 1023<br>print(m.group(2)) ==》 0000</p>
+<p>常用內建模块<br>datetime<br>from datetime import datetime<br>转换时间<br>cday = datetime.strptime(‘2016-6-1 19:00:00’ , ‘%Y-%m-%d %H:%M:%S’)<br>创建datetime对象<br>time_d = datetime(2016, 10, 20, 16, 3)<br>print(time_d.timestamp())<br>t = 1476950580.0<br>timestamp解析datetime对象<br>print(datetime.fromtimestamp(t))</p>
+<p>时间计算<br>from datetime import datetime, timedelta<br>now = datetime.now()<br>print(now)<br>print(now+timedelta(hours=10))<br>print(now-timedelta(days=1))<br>print(now+timedelta(days=2,hours=12))</p>
+<p>collections<br>namedtuple  deque    defaultdict</p>
+<p>OrderedDict</p>
+<p>Counter<br>from collections import Counter<br>c = Counter()<br>for ch in ‘programming’:<br>    c[ch] = c[ch] + 1<br>print(c[‘m’])</p>
+<p>Base64<br>Base64是一种用64个字符来表示任意二进制数据的方法。<br>import base64<br>print(base64.urlsafe_b64encode(b’\xb7\x1d\xfb\xef\xff’))<br>print(base64.urlsafe_b64decode(b’abcd–__’))</p>
+<p>hashlib<br>import hashlib<br>md5 = hashlib.md5()<br>md5.update(“how to use md5 in “ .encode(‘utf-8’))<br>md5.update(“python programming “.encode(“utf-8”))<br>print(md5.hexdigest())</p>
+<p>sha1 = hashlib.sha1()<br>sha1.update(“how to use md5 in “ .encode(‘utf-8’))<br>sha1.update(“python programming “.encode(“utf-8”))<br>print(sha1.hexdigest())</p>
+<p>XML<br>from xml.parsers.expat import ParserCreate</p>
+<p>class DefaultSaxHandler(object):</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">start_element</span><span class="params">(self, name, attrs)</span>:</span>
+    print(<span class="string">'sax:start_element: %s, attrs: %s'</span> % (name, str(attrs)))
+
+<span class="function"><span class="keyword">def</span> <span class="title">end_element</span><span class="params">(self, name)</span>:</span>
+    print(<span class="string">'sax:end_element: %s'</span> % name)
+
+<span class="function"><span class="keyword">def</span> <span class="title">char_data</span><span class="params">(self, text)</span>:</span>
+    print(<span class="string">'sax:char_data: %s'</span> % text)
+</code></pre><p>xml = r’’’&lt;?xml version=”1.0”?&gt;</p>
+<p><ol><br>    <li><a href="/python">Python</a></li><br>    <li><a href="/ruby">Ruby</a></li><br></ol><br>‘’’</p>
+<p>handler = DefaultSaxHandler()<br>parser = ParserCreate()<br>parser.StartElementHandler = handler.start_element<br>parser.EndElementHandler = handler.end_element<br>parser.CharacterDataHandler = handler.char_data<br>parser.Parse(xml)</p>
+<p>python连接mysql<br>安装包  pip install PyMySQL  <a href="https://github.com/PyMySQL/PyMySQL" target="_blank" rel="external">PyMySQL github</a><br>import pymysql<br>try:<br>    conn = pymysql.connect(host=’localhost’, user=’root’, passwd=’888999’, db=’yuchuan’)<br>    cur = conn.cursor()<br>    cur.execute(‘select * from info’)<br>    data = cur.fetchall()<br>    for d in data:<br>        print(“ID:”+str(d[0])+’ name:’+str(d[1])+” age:”+str(d[2]))<br>    cur.close()<br>    conn.close()<br>except Exception as e:<br>    print(e)</p>
+<p>或者使用mysql官方驱动<br><a href="http://dev.mysql.com/downloads/connector/python/" target="_blank" rel="external">mysql github</a></p>
+<p>import mysql.connector<br>conn = mysql.connector.connect(user=’root’, password=’888999’, database=’yuchuan’)<br>cursor = conn.cursor()<br>cursor.execute(‘select * from info’)<br>data = cursor.fetchall()<br>for d in data:<br>    print(“ID “+str(d[0])+”,name “+str(d[1])+”,age”+str(d[2]))<br>cursor.close()<br>conn.close()</p>
+<p>orm 框架 ，安装 SQLAlchemy<br>pip install SQLAlchemy</p>
+<p>from sqlalchemy import Column, String, create_engine<br>from sqlalchemy.orm import sessionmaker<br>from sqlalchemy.ext.declarative import declarative_base</p>
+<p>Base = declarative_base()</p>
+<p>class User(Base):<br>    <strong>tablename</strong> = ‘user’<br>    id = Column(String(20), primary_key=True)<br>    name = Column(String(20))</p>
+<p>engine = create_engine(‘mysql+mysqlconnector://root:888999@localhost:3306/yuchuan’)<br>DBSession = sessionmaker(bind=engine)<br>session = DBSession()<br>new_user = User(id=’5’, name=’Bob’)<br>session.add(new_user)<br>session.commit()<br>session.close()</p>
+<h4 id="协程">协程</h4><p>def consumer():<br>    r = ‘’<br>    while True:<br>        n = yield r<br>        if not n:<br>            return<br>        print(‘Consumer %s..’ % n)<br>        r = ‘200 OK’</p>
+<p>def produce(c):<br>    c.send(None)<br>    n = 0<br>    while n &lt; 5:<br>        n += 1<br>        print(“Producer %s…” % n)<br>        r = c.send(n)<br>        print(“produce return %s” % r)<br>    c.close()</p>
+<p>c = consumer()<br>produce(c)<br>整个流程无锁，由一个线程执行，produce和consumer协作完成任务，所以称为“协程”，而非线程的抢占式多任务。</p>
+<p>使用协程读取网页<br>import asyncio</p>
+<p>@asyncio.coroutine<br>def wget(host):<br>    print(‘wget %s…’ % host)<br>    connect = asyncio.open_connection(host, 80)<br>    reader, writer = yield from connect<br>    header = ‘GET / HTTP/1.0\r\nHost: %s\r\n\r\n’ % host<br>    writer.write(header.encode(‘utf-8’))<br>    yield from writer.drain()<br>    while True:<br>        line = yield from reader.readline()<br>        if line == b’\r\n’:<br>            break<br>        print(‘%s header &gt; %s’ % (host, line.decode(‘utf-8’).rstrip()))</p>
+<pre><code><span class="comment"># Ignore the body, close the socket</span>
+writer.<span class="built_in">close</span>()
+</code></pre><p>loop = asyncio.get_event_loop()<br>tasks = [wget(host) for host in [‘www.sina.com.cn’, ‘www.sohu.com’, ‘www.163.com’]]<br>loop.run_until_complete(asyncio.wait(tasks))<br>loop.close()</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python3/">python3</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python3/">python3</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/10/21/python3-note/" data-title="python3_note | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/09/28/mongodb学习/"  title="mongodb学习">
+ <strong>下一篇：</strong><br/> 
+ <span>mongodb学习
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/21/python3-note/" data-title="python3_note" data-url="http://yoursite.com/2016/10/21/python3-note/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python3-4基础"><span class="toc-number">1.</span> <span class="toc-text">python3.4基础</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-_coding:_utf-8_-"><span class="toc-number"></span> <span class="toc-text">-- coding: utf-8 --</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编码"><span class="toc-number">0.1.</span> <span class="toc-text">编码</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-_coding:_utf-8_--1"><span class="toc-number"></span> <span class="toc-text">-- coding: utf-8 --</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#假定这是你的银行存款:"><span class="toc-number"></span> <span class="toc-text">假定这是你的银行存款:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则表达式"><span class="toc-number">0.1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协程"><span class="toc-number">0.2.</span> <span class="toc-text">协程</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/" title="interview">interview<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python3/" title="python3">python3<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python3/" title="python3">python3<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

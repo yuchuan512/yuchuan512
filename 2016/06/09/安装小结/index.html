@@ -25,7 +25,7 @@
 安装软件命令： apt-get install softname1 softname2 softname3……
 卸载软件命令： apt-get remove softname1 softname2 softname3……
 卸载">
-<meta property="og:updated_time" content="2016-09-28T02:00:01.777Z">
+<meta property="og:updated_time" content="2016-10-13T09:23:42.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装小结">
 <meta name="twitter:description" content="Ubuntu 中apt-get用法：查找软件命令： apt-cache search keyword
@@ -108,7 +108,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS_升级python3"><span class="toc-number">7.</span> <span class="toc-text">CentOS 升级python3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sublime_text"><span class="toc-number">8.</span> <span class="toc-text">sublime text</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS_升级python3"><span class="toc-number">7.</span> <span class="toc-text">CentOS 升级python3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sublime_text"><span class="toc-number">8.</span> <span class="toc-text">sublime text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS7安装"><span class="toc-number">9.</span> <span class="toc-text">CentOS7安装</span></a></li></ol>
 		
 		</div>
 		
@@ -133,6 +133,7 @@
 <p>解决方法：<br><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/bin/yum</span><br><span class="line">首行由 #!/usr/bin/python 改为</span><br><span class="line"><span class="shebang">#!/usr/bin/python2.6</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="sublime_text">sublime text</h3><p>C:\Windows\System32\drivers\etc\host中写入127.0.0.1 www.sublimetext.com 来屏蔽讨厌的更新提示框</p>
 <p>North369<br>19920421</p>
+<h3 id="CentOS7安装">CentOS7安装</h3><p>/dev/root not exist<br>解决方法<br>在报错页面  cd /dev；  ls 查看U盘盘符。此处是 sdb4<br>在开始安装时候 tab键修改参数<br>initrd=initrd.imginst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rd.live.check quiet 改为：vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 quite</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -194,7 +195,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS_升级python3"><span class="toc-number">7.</span> <span class="toc-text">CentOS 升级python3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sublime_text"><span class="toc-number">8.</span> <span class="toc-text">sublime text</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu_中apt-get用法："><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 中apt-get用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeNet4_的安装"><span class="toc-number">2.</span> <span class="toc-text">TimeNet4 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-3安装"><span class="toc-number">3.</span> <span class="toc-text">Qt5.3安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装java"><span class="toc-number">4.</span> <span class="toc-text">安装java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centso安装pip_下载源码安装"><span class="toc-number">5.</span> <span class="toc-text">centso安装pip 下载源码安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gitbook"><span class="toc-number">6.</span> <span class="toc-text">安装gitbook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS_升级python3"><span class="toc-number">7.</span> <span class="toc-text">CentOS 升级python3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sublime_text"><span class="toc-number">8.</span> <span class="toc-text">sublime text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS7安装"><span class="toc-number">9.</span> <span class="toc-text">CentOS7安装</span></a></li></ol>
  
   </div>
 
@@ -251,7 +252,7 @@
 		  
 		
 		  
-			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -259,7 +260,7 @@
 		  
 		
 		  
-			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
 		  
 		
 		  
@@ -288,6 +289,10 @@
 		
 		  
 			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python3/" title="python3">python3<sup>1</sup></a></li>
 		  
 		
 		  
@@ -383,15 +388,15 @@
 		  
 		
 		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
 		  
 		
 		  
@@ -403,11 +408,11 @@
 		  
 		
 		  
-			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 		  
 		
 		  
@@ -456,7 +461,7 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/python3/" title="python3">python3<sup>1</sup></a></li>
 			
 		
 			
@@ -473,6 +478,10 @@
 		
 			
 				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
@@ -505,10 +514,6 @@
 		
 			
 				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>

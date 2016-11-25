@@ -4,35 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>internship | Flow</title>
+    <title>常见的非阻塞队列 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description" content="实习小记 
-
-克服了面对新技术时的恐惧感，现在如果公司里有了新的任务，是我以前从来没接触过的，我反而会感到特别的兴奋迫不及待的想要开始编码。另外这次也第一次体会到了用 git 合作开发项目，虽然之前也用 git 但更多是单纯的把自己的代码传到 github，像 merge、rebase 这些操作是完全没有用过的。也算积累了一些合作开发项目的经验。
-
-每次公司开会的时候对公司的主要业务有足够的了解，">
+    <meta name="description" content="常见的非阻塞队列1) ConcurrentHashMap2) ConcurrentSkipListMap3) ConcurrentSkipListSet4) ConcurrentLinkedQueue5) ConcurrentLinkedDeque6) CopyOnWriteArrayList7) CopyOnWriteArraySet
+HashTable、Vector调用iterator()方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="internship">
-<meta property="og:url" content="http://yoursite.com/2015/09/16/internship小记/index.html">
+<meta property="og:title" content="常见的非阻塞队列">
+<meta property="og:url" content="http://yoursite.com/2016/11/25/常见的非阻塞队列/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description" content="实习小记 
-
-克服了面对新技术时的恐惧感，现在如果公司里有了新的任务，是我以前从来没接触过的，我反而会感到特别的兴奋迫不及待的想要开始编码。另外这次也第一次体会到了用 git 合作开发项目，虽然之前也用 git 但更多是单纯的把自己的代码传到 github，像 merge、rebase 这些操作是完全没有用过的。也算积累了一些合作开发项目的经验。
-
-每次公司开会的时候对公司的主要业务有足够的了解，">
-<meta property="og:updated_time" content="2016-03-03T14:16:17.146Z">
+<meta property="og:description" content="常见的非阻塞队列1) ConcurrentHashMap2) ConcurrentSkipListMap3) ConcurrentSkipListSet4) ConcurrentLinkedQueue5) ConcurrentLinkedDeque6) CopyOnWriteArrayList7) CopyOnWriteArraySet
+HashTable、Vector调用iterator()方法">
+<meta property="og:updated_time" content="2016-11-25T09:35:17.603Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="internship">
-<meta name="twitter:description" content="实习小记 
-
-克服了面对新技术时的恐惧感，现在如果公司里有了新的任务，是我以前从来没接触过的，我反而会感到特别的兴奋迫不及待的想要开始编码。另外这次也第一次体会到了用 git 合作开发项目，虽然之前也用 git 但更多是单纯的把自己的代码传到 github，像 merge、rebase 这些操作是完全没有用过的。也算积累了一些合作开发项目的经验。
-
-每次公司开会的时候对公司的主要业务有足够的了解，">
+<meta name="twitter:title" content="常见的非阻塞队列">
+<meta name="twitter:description" content="常见的非阻塞队列1) ConcurrentHashMap2) ConcurrentSkipListMap3) ConcurrentSkipListSet4) ConcurrentLinkedQueue5) ConcurrentLinkedDeque6) CopyOnWriteArrayList7) CopyOnWriteArraySet
+HashTable、Vector调用iterator()方法">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -92,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/16/internship小记/" title="internship" itemprop="url">internship</a>
+      <a href="/2016/11/25/常见的非阻塞队列/" title="常见的非阻塞队列" itemprop="url">常见的非阻塞队列</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-16T14:03:34.000Z" itemprop="datePublished"> 发表于 2015-09-16</time>
+    <time datetime="2016-11-25T03:53:00.000Z" itemprop="datePublished"> 发表于 2016-11-25</time>
     
   </p>
 </header>
@@ -112,34 +103,16 @@
 		
 		</div>
 		
-		<p><strong> 实习小记 </strong></p>
-<ul>
-<li><p>克服了面对新技术时的恐惧感，现在如果公司里有了新的任务，是我以前从来没接触过的，我反而会感到特别的兴奋迫不及待的想要开始编码。另外这次也第一次体会到了用 git 合作开发项目，虽然之前也用 git 但更多是单纯的把自己的代码传到 github，像 merge、rebase 这些操作是完全没有用过的。也算积累了一些合作开发项目的经验。</p>
-</li>
-<li><p>每次公司开会的时候对公司的主要业务有足够的了解，也能对公司业务发展提出一些自己的见解</p>
-</li>
-<li>聪明的人，会根据每个tip自驱动扩展</li>
-<li><p>在认同公司理念且能够给公司创造足够价值的基础上，为个人发展而工作</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The biggest mistake <span class="keyword">that</span> you can make <span class="keyword">is</span> <span class="keyword">to</span> believe <span class="keyword">that</span> you are working <span class="keyword">for</span> somebody <span class="keyword">else</span>. Job security <span class="keyword">is</span> gone. The driving force <span class="keyword">of</span> a career must come <span class="keyword">from</span> <span class="keyword">the</span> individual. Remember: Jobs are owned <span class="keyword">by</span> <span class="keyword">the</span> company, you own your career!</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发邮件： 收件人、抄送、密送 邮件正文明确点名谁需要做什么以及需要完成的时间点</p>
-</li>
-<li>周报&amp;周会认真去做，是可以涨很多技能的：总结、计划、分享、观察、表达能力</li>
-<li>提问前，我们拒绝“伸手党”，利用已有的信息反推解决问题！<br>提问时，我们拒绝“挤牙膏”。注意表述清楚，特别是自己所做的尝试。免去了别人一些无谓的重复尝试，同时也会觉得你是一番努力之后实属无奈才来求救</li>
-<li>解决后，要尽可能的做分享（可以积累FAQ共享等），同时要注意反馈，因为可能对方告诉你的方案对你的情况并不适用，但是给了思路，你因此挖掘出了最终方案，可以反馈给对方，大家互助互惠的，彼此丰富对方的经验知识库。</li>
-<li>古语有云：授人与鱼不如授人以渔。 所以，尽可能的教会对方方法，而不是单纯的某个特例问题的答案。</li>
-<li>比如变量名，一个好的变量名一定要有清晰的含义，让人一看就能明白，否则日后的修改维护必然要花费更多的时间去识别这些变量名的含义</li>
-<li>接触学习到了很多新知识，web service,pureMVC，存储过程等</li>
-</ul>
+		<p>常见的非阻塞队列<br>1) ConcurrentHashMap<br>2) ConcurrentSkipListMap<br>3) ConcurrentSkipListSet<br>4) ConcurrentLinkedQueue<br>5) ConcurrentLinkedDeque<br>6) CopyOnWriteArrayList<br>7) CopyOnWriteArraySet</p>
+<p>HashTable、Vector调用iterator()方法返回Iterator对象后，再调用remove()时会出现ConcurrentModificationException异常，也就是并不支持Iterator并发的删除。<br>1) ConcurrentHashMap是 弱一致性模型<br>2) ConcurrentSkipListMap 并发程序中可以保证顺序<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MyService &#123;</span><br><span class="line">    <span class="keyword">public</span> ConcurrentSkipListMap <span class="built_in">map</span> = <span class="keyword">new</span> ConcurrentSkipListMap();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserInfo user1 = <span class="keyword">new</span> UserInfo(<span class="number">1</span>, <span class="string">"user1"</span>);</span><br><span class="line">        UserInfo user2 = <span class="keyword">new</span> UserInfo(<span class="number">2</span>, <span class="string">"user2"</span>);</span><br><span class="line">        UserInfo user3 = <span class="keyword">new</span> UserInfo(<span class="number">3</span>, <span class="string">"user3"</span>);</span><br><span class="line">        UserInfo user4 = <span class="keyword">new</span> UserInfo(<span class="number">4</span>, <span class="string">"user4"</span>);</span><br><span class="line">        UserInfo user5 = <span class="keyword">new</span> UserInfo(<span class="number">5</span>, <span class="string">"user5"</span>);</span><br><span class="line">        <span class="built_in">map</span>.put(user1, <span class="string">"value1"</span>);</span><br><span class="line">        <span class="built_in">map</span>.put(user4, <span class="string">"value4"</span>);</span><br><span class="line">        <span class="built_in">map</span>.put(user2, <span class="string">"value2"</span>);</span><br><span class="line">        <span class="built_in">map</span>.put(user5, <span class="string">"value5"</span>);</span><br><span class="line">        <span class="built_in">map</span>.put(user3, <span class="string">"value3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ThreadA extends Thread &#123;</span><br><span class="line">    <span class="keyword">private</span> MyService myservice;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadA</span><span class="params">(MyService myservice)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.myservice = myservice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!myservice.<span class="built_in">map</span>.isEmpty())&#123;</span><br><span class="line">            Map.Entry entry = myservice.<span class="built_in">map</span>.pollFirstEntry();</span><br><span class="line">            UserInfo userInfo = (UserInfo) entry.getKey();</span><br><span class="line">            System.out.println(<span class="string">"key = "</span> + userInfo.getId() + entry.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3) ConcurrentSkipListSet 支持排序且不允许重复的元素<br>4) ConcurrentLinkedQueue 提供了并发环境的队列操作<br>方法poll当没有获得数据时返回null，如果有数据则移除表头，并将表头进行返回<br>方法element当没有数据时，出现NoSuchElementExcepiton异常，如果有数据则返回表头项<br>方法peek当没有数据时返回null，有数据则不移除表头，返回表头项</p>
+<p>5) ConcurrentLinkedDeque<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> AddTask implements Runnable &#123;</span><br><span class="line">    <span class="keyword">private</span> ConcurrentLinkedDeque&lt;String&gt; <span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AddTask</span><span class="params">(ConcurrentLinkedDeque&lt;String&gt; <span class="built_in">list</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.<span class="built_in">list</span> = <span class="built_in">list</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String name = Thread.currentThread().getName();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++)&#123;</span><br><span class="line">            <span class="built_in">list</span>.add(name+<span class="string">"--"</span> + (i+<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> RemoveTask implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ConcurrentLinkedDeque <span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RemoveTask</span><span class="params">(ConcurrentLinkedDeque <span class="built_in">list</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.<span class="built_in">list</span> = <span class="built_in">list</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String name = Thread.currentThread().getName();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">500</span>;i++)&#123;</span><br><span class="line">            <span class="built_in">list</span>.pollFirst();</span><br><span class="line">            <span class="built_in">list</span>.pollLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Main &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        ConcurrentLinkedDeque&lt;String&gt; <span class="built_in">list</span> = <span class="keyword">new</span> ConcurrentLinkedDeque&lt;&gt;();</span><br><span class="line">        Thread[] threads = <span class="keyword">new</span> Thread[<span class="number">100</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;threads.length;i++)&#123;</span><br><span class="line">            AddTask task = <span class="keyword">new</span> AddTask(<span class="built_in">list</span>);</span><br><span class="line">            threads[i] = <span class="keyword">new</span> Thread(task);</span><br><span class="line">            threads[i].start();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.<span class="built_in">printf</span>(<span class="string">"Main %d AddTask have been launched\n"</span>, threads.length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;threads.length;i++)&#123;</span><br><span class="line">            threads[i].join();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.<span class="built_in">printf</span>(<span class="string">"Main size of threads %d\n"</span>, <span class="built_in">list</span>.size());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;threads.length;i++)&#123;</span><br><span class="line">            RemoveTask removeTask = <span class="keyword">new</span> RemoveTask(<span class="built_in">list</span>);</span><br><span class="line">            threads[i] = <span class="keyword">new</span> Thread(removeTask);</span><br><span class="line">            threads[i].start();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.<span class="built_in">printf</span>(<span class="string">"Main %d RemoveTask have been launched\n"</span>, threads.length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;threads.length;i++)&#123;</span><br><span class="line">            threads[i].join();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.<span class="built_in">printf</span>(<span class="string">"Main size of threads %d\n"</span>, <span class="built_in">list</span>.size());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>6) CopyOnWriteArrayList</p>
+<p>7) CopyOnWriteArraySet</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/internship/">internship</a>
-</div>
 
 
 </div>
@@ -148,7 +121,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/09/16/internship小记/" data-title="internship | Flow" data-tsina="2237166075" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/25/常见的非阻塞队列/" data-title="常见的非阻塞队列 | Flow" data-tsina="2237166075" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -162,18 +135,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/27/工控/" title="工控">
+ <a href="/2016/11/25/Semaphore-CountDownLatch-CyclicBarrier/" title="Semaphore CountDownLatch CyclicBarrier">
   <strong>上一篇：</strong><br/>
   <span>
-  工控</span>
+  Semaphore CountDownLatch CyclicBarrier</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/15/sybase学习小记/"  title="sybase学习小记">
+<a href="/2016/10/23/mysql绿色版安装/"  title="mysql绿色版安装">
  <strong>下一篇：</strong><br/> 
- <span>sybase学习小记
+ <span>mysql绿色版安装
 </span>
 </a>
 </div>
@@ -182,7 +155,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/16/internship小记/" data-title="internship" data-url="http://yoursite.com/2015/09/16/internship小记/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/25/常见的非阻塞队列/" data-title="常见的非阻塞队列" data-url="http://yoursite.com/2016/11/25/常见的非阻塞队列/"></div>
 </section>
 
 

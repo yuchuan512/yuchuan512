@@ -4,22 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Flow</title>
+    <title>mysql绿色版安装 | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Flow">
-<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+    <meta name="description" content="window mysql绿色版安装
+
+my.ini，将配置文件放在c:\window目录下
+12345678910[client]port=3306default-character-set=utf8[mysqld]basedir = F:\green\mysql64datadir = F:\green\mysql64\dataport = 3306character_set_server=utf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql绿色版安装">
+<meta property="og:url" content="http://yoursite.com/2016/10/23/mysql绿色版安装/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description">
+<meta property="og:description" content="window mysql绿色版安装
+
+my.ini，将配置文件放在c:\window目录下
+12345678910[client]port=3306default-character-set=utf8[mysqld]basedir = F:\green\mysql64datadir = F:\green\mysql64\dataport = 3306character_set_server=utf">
+<meta property="og:updated_time" content="2016-10-23T11:19:06.854Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flow">
-<meta name="twitter:description">
+<meta name="twitter:title" content="mysql绿色版安装">
+<meta name="twitter:description" content="window mysql绿色版安装
+
+my.ini，将配置文件放在c:\window目录下
+12345678910[client]port=3306default-character-set=utf8[mysqld]basedir = F:\green\mysql64datadir = F:\green\mysql64\dataport = 3306character_set_server=utf">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -73,223 +83,105 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/04/06/CocurrentHashMap源码理解/" title="CocurrentHashMap源码理解" itemprop="url">
-  
-    <h1 itemprop="name">CocurrentHashMap源码理解</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >CurrentHashMap 笔记
-ConcurrentHashMap可以做到读取数据不加锁，并且其内部的结构可以让其在进行写操作的时候能够将锁的粒度保持地尽量地小，不用对整个ConcurrentHashMap加锁。
-ConcurrentHashMap定位一个元素的过程需要进行两</p>
-        
+      <a href="/2016/10/23/mysql绿色版安装/" title="mysql绿色版安装" itemprop="url">mysql绿色版安装</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-23T11:18:09.000Z" itemprop="datePublished"> 发表于 2016-10-23</time>
     
-    <time datetime="2016-04-06T01:44:17.000Z" itemprop="datePublished">2016-04-06</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>window mysql绿色版安装</p>
+<ol>
+<li><p>my.ini，将配置文件放在c:\window目录下</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[client]</span></span><br><span class="line"><span class="setting">port=<span class="value"><span class="number">3306</span></span></span></span><br><span class="line"><span class="setting">default-character-set=<span class="value">utf8</span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysqld]</span></span><br><span class="line"><span class="setting">basedir = <span class="value">F:\green\mysql64</span></span></span><br><span class="line"><span class="setting">datadir = <span class="value">F:\green\mysql64\data</span></span></span><br><span class="line"><span class="setting">port = <span class="value"><span class="number">3306</span></span></span></span><br><span class="line"><span class="setting">character_set_server=<span class="value">utf8</span></span></span><br><span class="line"><span class="setting">sql_mode=<span class="value">NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加环境变量<br>变量名：MYSQL_HOME<br>变量值：D:\Program Files\mysql-5.6.14-winx64<br>即为mysql的自定义解压目录。<br>再在Path中添加  %MYSQL_HOME%\bin</p>
+</li>
+<li><p>安装注册<br>mysqld -install<br>如果出现Install/Remove of the Service Denied! 切换为管理员进行操作<br>移除服务命令为：mysqld remove</p>
+</li>
+<li><p>启动mysql服务<br>net start mysql</p>
+</li>
+<li><p>修改root密码<br>use mysql<br>update user set password=PASSWORD(“888999”) where user=’root’<br>flush privileges</p>
+</li>
+</ol>
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/15/计算机网络/" title="计算机网络" itemprop="url">
-  
-    <h1 itemprop="name">计算机网络</h1>
-    
-     
-           <p itemprop="description" >分组交换的要点分组交换采用存储转发技术，路由器每收到一个分组，先临时存储下来，再检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去，把这个分组转交给下一个路由器。这样一步一步的经过若干个或几十个不同的路由器，以存储转发的方式，把分组交付最终的目的主机。各路由器之</p>
-        
-    
-    <time datetime="2016-03-15T00:51:05.000Z" itemprop="datePublished">2016-03-15</time>
-  </a>
-</section>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/14/java面试0312/" title="java面试0312" itemprop="url">
-  
-    <h1 itemprop="name">java面试0312</h1>
-    
-     
-           <p itemprop="description" >利用StringBuilder 重写toString()方法123456789101112131415161718public String toString() &amp;#123;        StringBuilder sb = new StringBuilder(&quot;[&quot;);  </p>
-        
-    
-    <time datetime="2016-03-14T13:26:32.000Z" itemprop="datePublished">2016-03-14</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/11/多线程笔记/" title="多线程笔记" itemprop="url">
-  
-    <h1 itemprop="name">多线程笔记</h1>
-    
-     
-           <p itemprop="description" >ThreadLocal12345678910111213141516171819202122232425262728293031323334353637383940414243public class ThreadLocalTest &amp;#123;	private static T</p>
-        
-    
-    <time datetime="2016-03-11T14:20:00.000Z" itemprop="datePublished">2016-03-11</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/11/java面试/" title="java面试" itemprop="url">
-  
-    <h1 itemprop="name">java面试</h1>
-    
-     
-           <p itemprop="description" >并行计算与分布式计算1.并行计算借助并行算法和并行编程语言能够实现进程及并行和线程级并行；而分布式计算只是将任务分成小块到各个计算机分别计算各自执行2.粒度方面，并行计算中，处理器间的交互一般很频繁，往往具有细粒度和的开销的特征并且被认为是可靠的；分布式计算中，处理器间的交互不频</p>
-        
-    
-    <time datetime="2016-03-11T06:50:54.000Z" itemprop="datePublished">2016-03-11</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/11/排序总结/" title="堆排序" itemprop="url">
-  
-    <h1 itemprop="name">堆排序</h1>
-    
-     
-           <p itemprop="description" >堆排序
-
-堆是一种重要的数据结构，为一棵完全二叉树, 底层如果用数组存储数据的话，假设某个元素为序号为i(Java数组从0开始,i为0到n-1), 如果它有左子树，那么左子树的位置是2i+1，如果有右子树，右子树的位置是2i+2，如果有父节点，父节点的位置是(n-1)/2取整。分</p>
-        
-    
-    <time datetime="2016-03-11T06:48:07.000Z" itemprop="datePublished">2016-03-11</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/08/java线程池/" title="java线程池" itemprop="url">
-  
-    <h1 itemprop="name">java线程池</h1>
-    
-     
-           <p itemprop="description" >1、线程池简介：多线程技术主要解决处理器单元内多个线程执行的问题，它可以显著减少处理器单元的闲置时间，增加处理器单元的吞吐能力。假设一个服务器完成一项任务所需时间为：T1 创建线程时间，T2 在线程中执行任务的时间，T3 销毁线程时间。如果：T1 + T3 远大于 T2，则可以采</p>
-        
-    
-    <time datetime="2016-03-08T13:35:23.000Z" itemprop="datePublished">2016-03-08</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/07/字符串算法/" title="字符串算法" itemprop="url">
-  
-    <h1 itemprop="name">字符串算法</h1>
-    
-     
-           <p itemprop="description" >字符串算法字符串变形词1234567891011121314151617181920212223242526272829/** * 判断两个字符串是否互为变形词 * 如果str1和str2中出现的字符种类一样且每种字符出现的次数也一样,则互为变形词 * @author flyyc</p>
-        
-    
-    <time datetime="2016-03-07T12:11:16.000Z" itemprop="datePublished">2016-03-07</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/07/矩阵的加速乘法-斐波那契、台阶、农场母牛问题/" title="矩阵的加速乘法(斐波那契、台阶、农场母牛问题)" itemprop="url">
-  
-    <h1 itemprop="name">矩阵的加速乘法(斐波那契、台阶、农场母牛问题)</h1>
-    
-     
-           <p itemprop="description" >矩阵相乘的加速算法实现复杂度为O(logN)的算法
-
-给定整数N，返回斐波那契数列的第N项
-一次可以跨2个或1个台阶，返回有多少种走法
-农场成熟的母牛每年只会生一头小母牛，假设不死。第一年农场有一只成熟的母牛，从第二年开始，母牛生小母牛，每只小母牛3年之后成熟生小母牛，求N年之后</p>
-        
-    
-    <time datetime="2016-03-07T12:10:59.000Z" itemprop="datePublished">2016-03-07</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/05/死锁简单例子/" title="死锁简单例子" itemprop="url">
-  
-    <h1 itemprop="name">死锁简单例子</h1>
-    
-     
-           <p itemprop="description" >12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455/** * 写出一个死锁例子 * @author flyyc */public</p>
-        
-    
-    <time datetime="2016-03-05T14:26:45.000Z" itemprop="datePublished">2016-03-05</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/6/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next<span></span></a>
-  </nav>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/10/23/mysql绿色版安装/" data-title="mysql绿色版安装 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/11/25/常见的非阻塞队列/" title="常见的非阻塞队列">
+  <strong>上一篇：</strong><br/>
+  <span>
+  常见的非阻塞队列</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/10/21/python3-note/"  title="python3_note">
+ <strong>下一篇：</strong><br/> 
+ <span>python3_note
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/23/mysql绿色版安装/" data-title="mysql绿色版安装" data-url="http://yoursite.com/2016/10/23/mysql绿色版安装/"></div>
+</section>
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -753,12 +645,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -836,4 +805,4 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>

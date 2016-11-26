@@ -1,0 +1,853 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Executors用法 | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="Executors123456789101112131415161718192021222324public class ExecutorTest &amp;#123;    public static void main(String[] args) throws InterruptedException &amp;#123;        ExecutorService executorService = E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Executors用法">
+<meta property="og:url" content="http://yoursite.com/2016/11/26/Executors用法/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="Executors123456789101112131415161718192021222324public class ExecutorTest &amp;#123;    public static void main(String[] args) throws InterruptedException &amp;#123;        ExecutorService executorService = E">
+<meta property="og:updated_time" content="2016-11-26T13:32:11.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Executors用法">
+<meta name="twitter:description" content="Executors123456789101112131415161718192021222324public class ExecutorTest &amp;#123;    public static void main(String[] args) throws InterruptedException &amp;#123;        ExecutorService executorService = E">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/11/26/Executors用法/" title="Executors用法" itemprop="url">Executors用法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-26T10:31:52.000Z" itemprop="datePublished"> 发表于 2016-11-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#shutdown()_VS_shutdownNow()"><span class="toc-number">1.</span> <span class="toc-text">shutdown() VS shutdownNow()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadFactory+execute()+UncaughtExceptionHandler处理异常"><span class="toc-number">2.</span> <span class="toc-text">ThreadFactory+execute()+UncaughtExceptionHandler处理异常</span></a></li></ol>
+		
+		</div>
+		
+		<p>Executors<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ExecutorTest &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">            final <span class="keyword">int</span> k = i;</span><br><span class="line">            executorService.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @<span class="function">Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">" user"</span>+(k+<span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">            final <span class="keyword">int</span> k = i;</span><br><span class="line">            executorService.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @<span class="function">Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">" user"</span>+(k+<span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以观察到线程池里面的线程得到了复用，因为线程池线程名称唯一（从源码可以看出默认新创建的线程会保持60秒)<br>使用Executors的静态方法底层都是调用了ThreadPoolExecutor类<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                      <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                      <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用newCachedThreadPool(ThreadFactory) 定制线程工厂<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThreadFactory</span> <span class="keyword">implements</span> <span class="title">ThreadFactory</span></span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Thread <span class="title">newThread</span><span class="params">(Runnable r)</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(r);</span><br><span class="line">        thread.setName(<span class="string">"yuchuan-thread-"</span> + random.nextInt(<span class="number">100</span>));</span><br><span class="line">        <span class="keyword">return</span> thread;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExecutorTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        MyThreadFactory myThreadFactory = <span class="keyword">new</span> MyThreadFactory();</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool(myThreadFactory);</span><br><span class="line">        executorService.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"running "</span> + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>限制线程池里面的数量，使用固定线程池线程数量的方式，保证最大不超过3个<br>ExecutorService executorService = Executors.newFixedThreadPool(3);</p>
+<p>创建单一线程的线程池<br>ExecutorService executorService = Executors.newSingleThreadExecutor();</p>
+<p>ThreadPoolExecutor 使用Executors的静态方法底层都是调用了ThreadPoolExecutor类 ThreadPoolExecutor(int corePoolSize, int maximumPoolSize,<br>long keepAliveTime, TimeUnit unit, BlockingQueue<runnable> workQueue) 如果线程数量 &lt; corePoolSize 则直接执行任务，不放入扩展队列Queue中ThreadPoolEx executor = new ThreadPoolExecutor(7,8,5,TimeUnit.SECONDS,new LinkedBlockingDeque<runnable>())<br>如果corePoolSize &lt; 线程数量 &lt; maximumPoolSize<br>且队列使用LinkedBlockingDeque，则放入队列；如果队列使用SynchronousQueue类，会立即执行，且当时间keepAliveTime超过5秒时，清除空闲线程。 BlockingQueue 常用的实现类<br>LinkedBlockingQueue 和ArrayBlockingQueue。用 LinkedBlockingQueue<br>的好处在于没有大小限制，所以执行execute()不会抛出异常。线程池中运行的线程数也永远不会超过corePoolSize，因为其他多于的线程被放入LinkedBlockingQueue队列，keepAliveTime参数也就没有意义。</runnable></runnable></p>
+<p>如果线程数量 &gt; maximumPoolSize 且队列使用 LinkedBlockingQueue 则会放入队列；若队列使用 SynchronousQueue 则会抛出拒绝异常</p>
+<h3 id="shutdown()_VS_shutdownNow()">shutdown() VS shutdownNow()</h3><blockquote>
+<p>方法shutdown()的作用是使当前未执行完的线程继续执行，而不再添加新的任务task，还有shutdown()方法不会阻塞，调用shutdown()方法后，主线程main就马上结束了，而线程池会继续运行直到所有任务执行完才会停止。如果不调用shutdown()方法，那么线程池会一直保持下去，以便随时执行被添加的task任务。<br>方法shutdownNow()的作用是中断所有的任务task，并且抛出InterruptedException异常，前提是在Runnable中使用if(Thread.currentThread.isInterrupted()==true)语句来判断当前线程的中断状态，而未执行的线程不再执行，也就是从执行队列中清除。如果没有if(Thread.currentThread.isInterrupted()==true)语句及抛出异常的代码，则池中正在运行的线程直到执行完毕，而未执行的线程将不再执行，也从执行队列中清除。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable1</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">" "</span> + System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">" end"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExecutorTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        MyRunnable1 myRunnable1 = <span class="keyword">new</span> MyRunnable1();</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, TimeUnit.SECONDS, <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;());</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        pool.shutdown();</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        System.out.println(<span class="string">"main end!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>结果线程池执行shutdown()关闭之后，状态变为SHUTDOWN状态。此时如果再添加任务会抛出RejectedExecutionException异常，但线程池中的任务不会立刻退出，直到任务处理完成，线程池退出。说明 shutdown关闭线程池之后，线程（正在执行或是在队列中）还会正常执行</p>
+<p>shutdownNow()方法是使线程池的状态变为STOP状态，并试图停止所有正在执行的线程（如果有if判断则认为的抛出异常），不在处理还在队列中等待的任务，可以通过List<runnable> list = pool.shutdownNow()返回那些未执行的任务。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MyRunnable1 implements Runnable &#123;</span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Integer.MAX_VALUE/<span class="number">50</span>;i++)&#123;</span><br><span class="line">                Math.random();</span><br><span class="line">                Math.random();</span><br><span class="line">                Math.random();</span><br><span class="line">                Math.random();</span><br><span class="line">                <span class="comment">// 被中断线程时候抛出异常并执行异常操作</span></span><br><span class="line">                <span class="keyword">if</span>(Thread.currentThread().isInterrupted()==<span class="literal">true</span>)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"is interrupted!"</span>);</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> InterruptedException();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"complete!"</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">"catch interrupted!"</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ExecutorTest &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws InterruptedException </span>&#123;</span><br><span class="line">        MyRunnable1 myRunnable1 = <span class="keyword">new</span> MyRunnable1();</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, TimeUnit.SECONDS, <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;());</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        pool.execute(myRunnable1);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        <span class="comment">// 执行shutdownNow()可以返回List&lt;Runnable&gt;,存储的是未运行的任务</span></span><br><span class="line">        List&lt;Runnable&gt; <span class="built_in">list</span> = pool.shutdownNow();</span><br><span class="line">        System.out.println(<span class="string">"main end! "</span> + <span class="built_in">list</span>.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></runnable></p>
+<p>使用isShutdown()判断线程池是否关闭,判断这个命令发出或未发出。<br>pool.isTerminating()和pool.isTerminated()判断线程池正在停止还是已停止状态<br>如果线程池关闭后，也就是所有任务都已完成，则方法isTerminated()返回true<br>awaitTermination(long timeout, TimeUnit unit)作用就是查看在制定的时间之间，线程池是否已经终止工作，也就是最多等待多少时间去判断线程是否已经终止工作，此方法需要<strong>shutdown()</strong>方法的配合<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MyRunnable1 implements Runnable &#123;</span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ExecutorTest &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws InterruptedException </span>&#123;</span><br><span class="line">        MyRunnable1 myRunnable = <span class="keyword">new</span> MyRunnable1();</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, TimeUnit.SECONDS, <span class="keyword">new</span> LinkedBlockingDeque&lt;Runnable&gt;());</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.shutdown();</span><br><span class="line">        System.out.println(<span class="string">"main begin"</span>);</span><br><span class="line">        System.out.println(pool.awaitTermination(<span class="number">1</span>, TimeUnit.SECONDS));</span><br><span class="line">        System.out.println(pool.awaitTermination(<span class="number">1</span>, TimeUnit.SECONDS));</span><br><span class="line">        System.out.println(pool.awaitTermination(<span class="number">1</span>, TimeUnit.SECONDS));</span><br><span class="line">        System.out.println(pool.awaitTermination(<span class="number">1</span>, TimeUnit.SECONDS));</span><br><span class="line">        System.out.println(pool.awaitTermination(<span class="number">1</span>, TimeUnit.SECONDS));</span><br><span class="line">        System.out.println(<span class="string">"main end"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果 </span><br><span class="line">main begin</span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">main end</span><br></pre></td></tr></table></figure></p>
+<p>方法awaitTermination()与shutdown()结合可以实现<strong>等待执行完毕</strong>的效果。原理就是应用awaitTermination()方法具有阻塞性，如果awaitTermination()方法正在阻塞的过程中任务执行完毕，则awaitTerminal()取消阻塞继续执行后面的代码，如下所示。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExecutorTest</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws InterruptedException </span>&#123;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"begin"</span>);</span><br><span class="line">        MyRunnable1 myRunnable = <span class="keyword">new</span> MyRunnable1();</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, TimeUnit.SECONDS, <span class="keyword">new</span> LinkedBlockingDeque&lt;Runnable&gt;());</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.shutdown();</span><br><span class="line">        System.<span class="keyword">out</span>.println(pool.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS));</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"main end"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="ThreadFactory+execute()+UncaughtExceptionHandler处理异常">ThreadFactory+execute()+UncaughtExceptionHandler处理异常</h3><p>ThreadPoolExecutor通过设置ThreadFactory，实现UncaughtExceptionHandler来处理异常<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable1</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">5</span>/<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThreadFactoryB</span> <span class="keyword">implements</span> <span class="title">ThreadFactory</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Thread <span class="title">newThread</span><span class="params">(Runnable r)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(r);</span><br><span class="line">        thread.setName(<span class="string">"my name "</span>);</span><br><span class="line">        thread.setUncaughtExceptionHandler(<span class="keyword">new</span> Thread.UncaughtExceptionHandler() &#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uncaughtException</span><span class="params">(Thread t, Throwable e)</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"自定义处理异常 "</span> +t.getName()+<span class="string">" "</span> + e.getMessage());</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> thread;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExecutorTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        MyRunnable1 myRunnable = <span class="keyword">new</span> MyRunnable1();</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, TimeUnit.SECONDS, <span class="keyword">new</span> LinkedBlockingDeque&lt;Runnable&gt;());</span><br><span class="line">        pool.setThreadFactory(<span class="keyword">new</span> MyThreadFactoryB());</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>set/getRejectedExcutionHandler()<br>实现RejectedExecutionHandler接口来处理任务被拒绝执行时的行为。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ExecutorTest &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws InterruptedException </span>&#123;</span><br><span class="line">        MyRunnable1 one = <span class="keyword">new</span> MyRunnable1(<span class="string">"one"</span>);</span><br><span class="line">        MyRunnable1 two = <span class="keyword">new</span> MyRunnable1(<span class="string">"two"</span>);</span><br><span class="line">        MyRunnable1 three = <span class="keyword">new</span> MyRunnable1(<span class="string">"three"</span>);</span><br><span class="line">        MyRunnable1 four = <span class="keyword">new</span> MyRunnable1(<span class="string">"four"</span>);</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">3</span>, <span class="number">10</span>, TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">        <span class="comment">// 匿名函数处理拒绝执行行为</span></span><br><span class="line">        pool.setRejectedExecutionHandler(<span class="keyword">new</span> RejectedExecutionHandler() &#123;</span><br><span class="line">            @<span class="function">Override</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor executor)</span> </span>&#123;</span><br><span class="line">                System.out.println(((MyRunnable1)r).getUsername()+<span class="string">" is rejected!"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        pool.execute(one);</span><br><span class="line">        pool.execute(two);</span><br><span class="line">        pool.execute(three);</span><br><span class="line">        pool.execute(four);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果</span><br><span class="line">four is rejected!</span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">1</span> begin <span class="number">1480148850840</span></span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">2</span> begin <span class="number">1480148850840</span></span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">3</span> begin <span class="number">1480148850840</span></span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">2</span> end <span class="number">1480148853845</span></span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">3</span> end <span class="number">1480148853845</span></span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">1</span> end <span class="number">1480148853845</span></span><br></pre></td></tr></table></figure></p>
+<p>allowsCoreThreadTimeOut()(boolean) 配置核心线程是否超时，超时则和其他线程一样清除</p>
+<p>getCompletedTaskCount()取得已经执行完成的任务数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> ExecutorTest &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> throws InterruptedException </span>&#123;</span><br><span class="line">        Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            @<span class="function">Override</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">" print "</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingDeque&lt;Runnable&gt;());</span><br><span class="line">        pool.execute(runnable);</span><br><span class="line">        pool.execute(runnable);</span><br><span class="line">        pool.execute(runnable);</span><br><span class="line">        pool.execute(runnable);</span><br><span class="line">        pool.execute(runnable);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(pool.getCompletedTaskCount());</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(pool.getCompletedTaskCount());</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(pool.getCompletedTaskCount());</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(pool.getCompletedTaskCount());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>线程池ThreadPoolExecutor的拒绝策略<br>线程池中的资源全部被占用的时候，读新添加的Task任务有不同的处理策略，在默认情况下，有四种处理方式：</p>
+<ol>
+<li>AbortPolicy：当任务添加到线程池被拒绝时，抛出RejectExecutionException异常</li>
+<li>CallerRunsPolicy：使用调用线程池的Thread线程对象处理被拒绝的任务</li>
+<li>DiscardOldestPolicy：线程池会放弃等待队列中最旧的未处理任务，然后将被拒绝的任务添加到等待队列中</li>
+<li><p>DiscardPolicy：线程池将丢弃被拒绝的任务</p>
+</li>
+<li><p>AbortPolicy</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, TimeUnit.SECONDS, <span class="built_in">queue</span>,</span><br><span class="line">                <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CallerRunsPolicy<br>由调用者处理被拒绝的任务</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MyRunnable2 myRunnable = <span class="keyword">new</span> MyRunnable2();</span><br><span class="line">        LinkedBlockingDeque&lt;Runnable&gt; <span class="built_in">queue</span> = <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;(<span class="number">2</span>);</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, TimeUnit.SECONDS, <span class="built_in">queue</span>,</span><br><span class="line">                <span class="keyword">new</span> ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line">        System.out.println(<span class="string">"a begin "</span>);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        pool.execute(myRunnable);</span><br><span class="line">        System.out.println(<span class="string">"a end"</span>);</span><br><span class="line">        pool.shutdown();</span><br><span class="line">        pool.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);</span><br><span class="line">结果</span><br><span class="line">a begin </span><br><span class="line">end main</span><br><span class="line">end pool-<span class="number">1</span>-thread-<span class="number">3</span></span><br><span class="line">end pool-<span class="number">1</span>-thread-<span class="number">1</span></span><br><span class="line">end pool-<span class="number">1</span>-thread-<span class="number">2</span></span><br><span class="line">end main</span><br><span class="line">a end</span><br><span class="line">end pool-<span class="number">1</span>-thread-<span class="number">3</span></span><br><span class="line">end pool-<span class="number">1</span>-thread-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DiscardOldestPolicy</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">ExecutorTest</span> &#123;</span><br><span class="line">    public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) throws <span class="type">InterruptedException</span> &#123;</span><br><span class="line">        <span class="type">ArrayBlockingQueue</span> queue = new <span class="type">ArrayBlockingQueue</span>(<span class="number">2</span>);</span><br><span class="line">        <span class="type">ThreadPoolExecutor</span> pool = new <span class="type">ThreadPoolExecutor</span>(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="type">TimeUnit</span>.<span class="type">SECONDS</span>, queue,</span><br><span class="line">                new <span class="type">ThreadPoolExecutor</span>.<span class="type">DiscardOldestPolicy</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">            <span class="type">MyRunnable</span> myRunnable = new <span class="type">MyRunnable</span>(<span class="string">"Runnable"</span>+(i+<span class="number">1</span>));</span><br><span class="line">            pool.execute(myRunnable);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Thread</span>.sleep(<span class="number">500</span>);</span><br><span class="line">        <span class="type">Iterator</span> <span class="keyword">iterator</span> = queue.<span class="keyword">iterator</span>();</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">iterator</span>.hasNext())&#123;</span><br><span class="line">            <span class="type">MyRunnable</span> mr = (<span class="type">MyRunnable</span>) <span class="keyword">iterator</span>.next();</span><br><span class="line">            <span class="type">System</span>.<span class="keyword">out</span>.println(mr.getUsername());</span><br><span class="line">        &#125;</span><br><span class="line">        pool.execute(new <span class="type">MyRunnable</span>(<span class="string">"Runnable6"</span>));</span><br><span class="line">        pool.execute(new <span class="type">MyRunnable</span>(<span class="string">"Runnable7"</span>));</span><br><span class="line">        <span class="keyword">iterator</span> = queue.<span class="keyword">iterator</span>();</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">iterator</span>.hasNext())&#123;</span><br><span class="line">            <span class="type">MyRunnable</span> mr2 = (<span class="type">MyRunnable</span>) <span class="keyword">iterator</span>.next();</span><br><span class="line">            <span class="type">System</span>.<span class="keyword">out</span>.println(mr2.getUsername());</span><br><span class="line">        &#125;</span><br><span class="line">        pool.shutdown();</span><br><span class="line">        pool.awaitTermination(<span class="type">Integer</span>.<span class="type">MAX_VALUE</span>, <span class="type">TimeUnit</span>.<span class="type">SECONDS</span>);</span><br><span class="line">    &#125;</span><br><span class="line">结果</span><br><span class="line"><span class="type">Runnable1</span> run</span><br><span class="line"><span class="type">Runnable5</span> run</span><br><span class="line"><span class="type">Runnable2</span> run</span><br><span class="line"><span class="type">Runnable3</span></span><br><span class="line"><span class="type">Runnable4</span></span><br><span class="line"><span class="type">Runnable6</span></span><br><span class="line"><span class="type">Runnable7</span></span><br><span class="line"><span class="type">Runnable6</span> run</span><br><span class="line"><span class="type">Runnable7</span> run</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DiscardPolicy<br>``<br>public class ExecutorTest {<br> public static void main(String[] args) throws InterruptedException {</p>
+<pre><code>MyRunnable2 myrunnable = new MyRunnable2()<span class="comment">;</span>
+ArrayBlockingQueue&lt;Runnable&gt; queue = new ArrayBlockingQueue&lt;&gt;(2)<span class="comment">;</span>
+ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 3, 5, TimeUnit.SECONDS, queue, new ThreadPoolExecutor.DiscardPolicy())<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+executor.execute(myrunnable)<span class="comment">;</span>
+Thread.sleep(1000)<span class="comment">;</span>
+executor.shutdown()<span class="comment">;</span>
+executor.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS)<span class="comment">;</span>
+</code></pre><p> }<br>}<br>结果<br>end pool-1-thread-1<br>end pool-1-thread-3<br>end pool-1-thread-2<br>end pool-1-thread-1<br>end pool-1-thread-3</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="title">afterExecute</span><span class="params">()</span></span>和<span class="function"><span class="title">beforeExecute</span><span class="params">()</span></span></span><br><span class="line">重写这两个方法可以对线程池中执行的线程对象实施监控。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>public class MyThreadPoolExecutor extends ThreadPoolExecutor {<br>    public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<runnable> workQueue) {<br>        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);<br>    }</runnable></p>
+<pre><code><span class="at_rule">@<span class="keyword">Override</span>
+protected void <span class="function">afterExecute</span>(Runnable r, Throwable t) </span>{
+    <span class="tag">super</span><span class="class">.afterExecute</span>(<span class="tag">r</span>, <span class="tag">t</span>);
+    <span class="tag">System</span><span class="class">.out</span><span class="class">.println</span>(((<span class="tag">MyRunnable</span>)<span class="tag">r</span>)<span class="class">.getUsername</span>()+" <span class="tag">execute</span> <span class="tag">finish</span>!");
+}
+
+<span class="at_rule">@<span class="keyword">Override</span>
+protected void <span class="function">beforeExecute</span>(Thread t, Runnable r) </span>{
+    <span class="tag">super</span><span class="class">.beforeExecute</span>(<span class="tag">t</span>, <span class="tag">r</span>);
+    <span class="tag">System</span><span class="class">.out</span><span class="class">.println</span>(((<span class="tag">MyRunnable</span>)<span class="tag">r</span>)<span class="class">.getUsername</span>()+" <span class="tag">prepare</span> <span class="tag">to</span> <span class="tag">execute</span>!");
+}
+</code></pre><p>}</p>
+<p>public static void main(String[] args) throws InterruptedException {<br>        MyThreadPoolExecutor executor = new MyThreadPoolExecutor(2, 2, Integer.MAX_VALUE, TimeUnit.SECONDS, new LinkedBlockingDeque&lt;&gt;());<br>        executor.execute(new MyRunnable(“thread1”));<br>        executor.execute(new MyRunnable(“thread2”));<br>        executor.execute(new MyRunnable(“thread3”));<br>        executor.execute(new MyRunnable(“thread4”));<br>    }<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ExecutorService可以使用remove方法移除未被执行的任务，前提是任务是使用execute()方式提交的；如果使用submit提交的任务，未被执行也不能删除此任务。</span><br><span class="line"></span><br><span class="line">ExecutorService中submit和execute的区别</span><br><span class="line">1. 接受的参数不一样</span><br><span class="line"> <span class="keyword">*</span> ExecutorService中的方法</span><br><span class="line">  <span class="keyword">*</span> Future<span class="variable">&lt;?&gt;</span> submit(Runnable task);</span><br><span class="line">  <span class="keyword">*</span> <span class="variable">&lt;T&gt;</span> Future<span class="variable">&lt;T&gt;</span> submit(Runnable task, T result);</span><br><span class="line">  <span class="keyword">*</span> <span class="variable">&lt;T&gt;</span> Future<span class="variable">&lt;T&gt;</span> submit(Callable<span class="variable">&lt;T&gt;</span> task);</span><br><span class="line"> <span class="keyword">*</span> Executor 接口唯一方法</span><br><span class="line">  <span class="keyword">*</span> void execute(Runnable command);</span><br><span class="line">2. submit有返回值，而execute没有</span><br><span class="line">3. submit方便Exception处理</span><br></pre></td></tr></table></figure></p>
+<p>public class ExecutorTest {<br>    public static void main(String[] args) throws InterruptedException {<br>        ExecutorService pool = Executors.newFixedThreadPool(2);<br>        // execute方式<br>        pool.execute(new RunnableTest(“Task1”));<br>        // submit方式<br>        Future&lt;?&gt; future = pool.submit(new RunnableTest(“Task2”));<br>        try{<br>            if(future.get()==null){<br>                System.out.println(“任务完成”);<br>            }<br>        } catch (ExecutionException e) {<br>            System.out.println(e.getCause().getMessage());<br>            e.printStackTrace();<br>        }<br>    }<br>    static class RunnableTest implements Runnable{<br>        private String taskName;<br>        public RunnableTest(String taskName){<br>            this.taskName = taskName;<br>        }<br>        @Override<br>        public void run() {<br>            System.out.println(“inside “+taskName);<br>            throw new RuntimeException(“Runtime Exception from inside “ + taskName);<br>        }<br>    }<br>}<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">get方法测试</span><br><span class="line"><span class="function"><span class="title">getActiveCount</span><span class="params">()</span></span>正在执行任务的线程</span><br><span class="line"><span class="function"><span class="title">getPoolSize</span><span class="params">()</span></span> 线程池中总共的线程</span><br><span class="line"><span class="function"><span class="title">getCompletedTaskCount</span><span class="params">()</span></span>  已经任务执行完毕的线程</span><br></pre></td></tr></table></figure></p>
+<p>public class ExecutorTest {<br>    public static void main(String[] args) throws InterruptedException {<br>        try{<br>            MyRunnable2 myrunnable = new MyRunnable2();<br>            SynchronousQueue<runnable> queue = new SynchronousQueue&lt;&gt;();<br>            ThreadPoolExecutor pool = new ThreadPoolExecutor(2, 5, 5, TimeUnit.SECONDS, queue);<br>            pool.execute(myrunnable);<br>            pool.execute(myrunnable);<br>            pool.execute(myrunnable);<br>            System.out.println(pool.getActiveCount()+”  “ + pool.getPoolSize());<br>            Thread.sleep(7000);<br>            System.out.println(pool.getActiveCount()+”  “ + pool.getPoolSize());<br>        }catch (InterruptedException e){<br>            e.printStackTrace();<br>        }<br>    }<br>}<br>```</runnable></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/11/26/Executors用法/" data-title="Executors用法 | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/11/26/Future-and-Callable/" title="Future and Callable">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Future and Callable</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/11/25/BootStrap学习笔记/"  title="BootStrap学习笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>BootStrap学习笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/11/26/Executors用法/" data-title="Executors用法" data-url="http://yoursite.com/2016/11/26/Executors用法/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#shutdown()_VS_shutdownNow()"><span class="toc-number">1.</span> <span class="toc-text">shutdown() VS shutdownNow()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadFactory+execute()+UncaughtExceptionHandler处理异常"><span class="toc-number">2.</span> <span class="toc-text">ThreadFactory+execute()+UncaughtExceptionHandler处理异常</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/" title="interview">interview<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python3/" title="python3">python3<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python3/" title="python3">python3<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

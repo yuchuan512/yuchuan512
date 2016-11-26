@@ -4,22 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Flow</title>
+    <title>Future and Callable | Flow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yuchuan">
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Flow">
-<meta property="og:url" content="http://yoursite.com/page/8/index.html">
+    <meta name="description" content="Callable和Runnable的区别？1) Callable接口的call()方法有返回值，而Runnable接口的run()方法没有返回值2) Callable接口的call()方法可以声明抛出异常，而Runnable接口的run()方法不可以声明抛出异常
+
+get()方法阻塞性123456789101112131415161718192021222324public class MyCal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Future and Callable">
+<meta property="og:url" content="http://yoursite.com/2016/11/26/Future-and-Callable/index.html">
 <meta property="og:site_name" content="Flow">
-<meta property="og:description">
+<meta property="og:description" content="Callable和Runnable的区别？1) Callable接口的call()方法有返回值，而Runnable接口的run()方法没有返回值2) Callable接口的call()方法可以声明抛出异常，而Runnable接口的run()方法不可以声明抛出异常
+
+get()方法阻塞性123456789101112131415161718192021222324public class MyCal">
+<meta property="og:updated_time" content="2016-11-26T14:44:44.095Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flow">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Future and Callable">
+<meta name="twitter:description" content="Callable和Runnable的区别？1) Callable接口的call()方法有返回值，而Runnable接口的run()方法没有返回值2) Callable接口的call()方法可以声明抛出异常，而Runnable接口的run()方法不可以声明抛出异常
+
+get()方法阻塞性123456789101112131415161718192021222324public class MyCal">
 
     
     <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
@@ -73,231 +80,88 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/07/字符串算法/" title="字符串算法" itemprop="url">
-  
-    <h1 itemprop="name">字符串算法</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >字符串算法字符串变形词1234567891011121314151617181920212223242526272829/** * 判断两个字符串是否互为变形词 * 如果str1和str2中出现的字符种类一样且每种字符出现的次数也一样,则互为变形词 * @author flyyc</p>
-        
+      <a href="/2016/11/26/Future-and-Callable/" title="Future and Callable" itemprop="url">Future and Callable</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-26T14:44:35.000Z" itemprop="datePublished"> 发表于 2016-11-26</time>
     
-    <time datetime="2016-03-07T12:11:16.000Z" itemprop="datePublished">2016-03-07</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ol>
+<li>Callable和Runnable的区别？<br>1) Callable接口的call()方法有返回值，而Runnable接口的run()方法没有返回值<br>2) Callable接口的call()方法可以声明抛出异常，而Runnable接口的run()方法不可以声明抛出异常</li>
+</ol>
+<p>get()方法阻塞性<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCallable</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"return value is "</span> + age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        MyCallable callable = <span class="keyword">new</span> MyCallable(<span class="number">100</span>);</span><br><span class="line">        ExecutorService executor = Executors.newCachedThreadPool();</span><br><span class="line">        Future&lt;String&gt; future = executor.submit(callable);</span><br><span class="line">        System.out.println(<span class="string">"main A"</span>);</span><br><span class="line">        System.out.println(future.get());</span><br><span class="line">        System.out.println(<span class="string">"main B"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>submit()不仅可以传入Callable对象，还可以传入Runnable对象，说明submit()方法支持有返回值和五返回值的功能。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> UserInfo userInfo;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRunnable</span><span class="params">(UserInfo userInfo)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userInfo = userInfo;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        userInfo.setUsername(<span class="string">"usernameValue"</span>);</span><br><span class="line">        userInfo.setPassword(<span class="string">"passwordValue"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        UserInfo userInfo = <span class="keyword">new</span> UserInfo();</span><br><span class="line">        MyRunnable myRunnable = <span class="keyword">new</span> MyRunnable(userInfo);</span><br><span class="line">        ThreadPoolExecutor pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,TimeUnit.SECONDS,<span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;());</span><br><span class="line">        Future&lt;UserInfo&gt; future = pool.submit(myRunnable, userInfo);</span><br><span class="line">        System.out.println(<span class="string">"begin time "</span> + System.currentTimeMillis());</span><br><span class="line">        userInfo = future.get();</span><br><span class="line">        System.out.println(userInfo.getUsername()+<span class="string">" "</span> + userInfo.getPassword());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/07/矩阵的加速乘法-斐波那契、台阶、农场母牛问题/" title="矩阵的加速乘法(斐波那契、台阶、农场母牛问题)" itemprop="url">
-  
-    <h1 itemprop="name">矩阵的加速乘法(斐波那契、台阶、农场母牛问题)</h1>
-    
-     
-           <p itemprop="description" >矩阵相乘的加速算法实现复杂度为O(logN)的算法
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-给定整数N，返回斐波那契数列的第N项
-一次可以跨2个或1个台阶，返回有多少种走法
-农场成熟的母牛每年只会生一头小母牛，假设不死。第一年农场有一只成熟的母牛，从第二年开始，母牛生小母牛，每只小母牛3年之后成熟生小母牛，求N年之后</p>
-        
-    
-    <time datetime="2016-03-07T12:10:59.000Z" itemprop="datePublished">2016-03-07</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/05/死锁简单例子/" title="死锁简单例子" itemprop="url">
-  
-    <h1 itemprop="name">死锁简单例子</h1>
-    
-     
-           <p itemprop="description" >12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455/** * 写出一个死锁例子 * @author flyyc */public</p>
-        
-    
-    <time datetime="2016-03-05T14:26:45.000Z" itemprop="datePublished">2016-03-05</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/05/Map接口及子类总结/" title="Map接口及子类总结" itemprop="url">
-  
-    <h1 itemprop="name">Map接口及子类总结</h1>
-    
-     
-           <p itemprop="description" >转自 Hsuxu的专栏
-子接口Bindings、ConcurrentMap、ConcurrentNavigableMap、MessageContext、LogicMessageContext、NavigableMap、SOAPMessageMap、SortedMap
-实现类Abs</p>
-        
-    
-    <time datetime="2016-03-05T14:23:02.000Z" itemprop="datePublished">2016-03-05</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/05/一张图看懂Java多线程/" title="一张图看懂Java多线程" itemprop="url">
-  
-    <h1 itemprop="name">一张图看懂Java多线程</h1>
-    
-     
-           <p itemprop="description" >一张图看懂Java多线程
-转自 Hsuxu的专栏
-
-
-Thread t = new Thread()，初始化一个线程，实际上就是一个普通对象，此时他的状态为New
-
-t.start(); 线程处于就绪状态（可运行状态），也就是随时等待着运行， 不要小看这个start，这个star</p>
-        
-    
-    <time datetime="2016-03-05T14:22:28.000Z" itemprop="datePublished">2016-03-05</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/05/Cmd-Markdown参考/" title="Cmd Markdown参考" itemprop="url">
-  
-    <h1 itemprop="name">Cmd Markdown参考</h1>
-    
-     
-           <p itemprop="description" >欢迎使用 Cmd Markdown 编辑阅读器
-我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：
-
-
-整理知</p>
-        
-    
-    <time datetime="2016-03-05T13:44:37.000Z" itemprop="datePublished">2016-03-05</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/04/动态规划-最长公共子序列/" title="最长公共子序列" itemprop="url">
-  
-    <h1 itemprop="name">最长公共子序列</h1>
-    
-     
-           <p itemprop="description" >1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465/** * 最长公共子序列问题 * 给</p>
-        
-    
-    <time datetime="2016-03-04T06:04:24.000Z" itemprop="datePublished">2016-03-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/04/动态规划-最长公共子串/" title="动态规划(最长公共子串)" itemprop="url">
-  
-    <h1 itemprop="name">动态规划(最长公共子串)</h1>
-    
-     
-           <p itemprop="description" >123456789101112131415161718192021222324252627282930313233343536373839404142/** * 最长公共子串 * dp[i][j] 的值只可能有两种情况 * 1.如果str1[i]!=str2[j],说明在必须把s</p>
-        
-    
-    <time datetime="2016-03-04T06:04:13.000Z" itemprop="datePublished">2016-03-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/04/算法一/" title="基础算法" itemprop="url">
-  
-    <h1 itemprop="name">基础算法</h1>
-    
-     
-           <p itemprop="description" >裴波那契3659612345678910111213141516171819202122232425262728/** * 裴波那契 * */public class PeiBoNaQi &amp;#123;	public static void main(String[] args) </p>
-        
-    
-    <time datetime="2016-03-04T06:03:21.000Z" itemprop="datePublished">2016-03-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/03/04/约瑟夫两种解法-数组和链表/" title="约瑟夫两种解法(数组和链表)" itemprop="url">
-  
-    <h1 itemprop="name">约瑟夫两种解法(数组和链表)</h1>
-    
-     
-           <p itemprop="description" >数组实现12345678910111213141516171819202122232425262728293031323334353637/** * 有n个人围成一圈，顺序排号。从第一个人开始报数（从1到3报数），凡报到3的人退出圈子， * 问最后留下的是原来第几号的那位 */p</p>
-        
-    
-    <time datetime="2016-03-04T06:02:40.000Z" itemprop="datePublished">2016-03-04</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/7/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/">Next<span></span></a>
-  </nav>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/11/26/Future-and-Callable/" data-title="Future and Callable | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/11/26/Executors用法/"  title="Executors用法">
+ <strong>下一篇：</strong><br/> 
+ <span>Executors用法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/11/26/Future-and-Callable/" data-title="Future and Callable" data-url="http://yoursite.com/2016/11/26/Future-and-Callable/"></div>
+</section>
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -761,12 +625,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -844,4 +785,4 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>

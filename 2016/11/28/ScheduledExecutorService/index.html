@@ -1,0 +1,807 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>ScheduledExecutorService | Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yuchuan">
+    
+
+    
+    <meta name="description" content="ScheduleExecutorServicejava中的计划任务Timer工具类提供了以计时器或计划任务的功能来实现按指定时间或时间间隔执行任务，但由于Timer不是以池pool，而是以队列的方式来管理线程的，所以在高并发的情况下运行效率较低，在新版JDK中提供了ScheduledExecutorService对象来解决效率与定时任务的功能ScheduledExecutorService 的主要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ScheduledExecutorService">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/ScheduledExecutorService/index.html">
+<meta property="og:site_name" content="Flow">
+<meta property="og:description" content="ScheduleExecutorServicejava中的计划任务Timer工具类提供了以计时器或计划任务的功能来实现按指定时间或时间间隔执行任务，但由于Timer不是以池pool，而是以队列的方式来管理线程的，所以在高并发的情况下运行效率较低，在新版JDK中提供了ScheduledExecutorService对象来解决效率与定时任务的功能ScheduledExecutorService 的主要">
+<meta property="og:updated_time" content="2016-11-28T14:34:15.579Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ScheduledExecutorService">
+<meta name="twitter:description" content="ScheduleExecutorServicejava中的计划任务Timer工具类提供了以计时器或计划任务的功能来实现按指定时间或时间间隔执行任务，但由于Timer不是以池pool，而是以队列的方式来管理线程的，所以在高并发的情况下运行效率较低，在新版JDK中提供了ScheduledExecutorService对象来解决效率与定时任务的功能ScheduledExecutorService 的主要">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Flow" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Flow" title="Flow"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Flow">Flow</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/11/28/ScheduledExecutorService/" title="ScheduledExecutorService" itemprop="url">ScheduledExecutorService</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Yuchuan" target="_blank" itemprop="author">Yuchuan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-28T14:33:38.000Z" itemprop="datePublished"> 发表于 2016-11-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleExecutorService"><span class="toc-number">1.</span> <span class="toc-text">ScheduleExecutorService</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Runnable延迟执行"><span class="toc-number">2.</span> <span class="toc-text">使用Runnable延迟执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Callable延迟运行并取得返回值"><span class="toc-number">3.</span> <span class="toc-text">使用Callable延迟运行并取得返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleAtFixedRate_实现周期性执行"><span class="toc-number">4.</span> <span class="toc-text">ScheduleAtFixedRate 实现周期性执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleWithFixedDelay()_实现周期性执行"><span class="toc-number">5.</span> <span class="toc-text">ScheduleWithFixedDelay() 实现周期性执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getQueue()与remove()"><span class="toc-number">6.</span> <span class="toc-text">getQueue()与remove()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setExecuteExistingDelayedTasksAfterShutdownPolicy"><span class="toc-number">7.</span> <span class="toc-text">setExecuteExistingDelayedTasksAfterShutdownPolicy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setContinueExistingPeriodicTasksAfterShutdownPolicy"><span class="toc-number">8.</span> <span class="toc-text">setContinueExistingPeriodicTasksAfterShutdownPolicy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消队列中的任务"><span class="toc-number">9.</span> <span class="toc-text">取消队列中的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消队列中正在执行的任务"><span class="toc-number">10.</span> <span class="toc-text">取消队列中正在执行的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">11.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在一个线程中中断另一个睡眠的线程"><span class="toc-number">12.</span> <span class="toc-text">在一个线程中中断另一个睡眠的线程</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="ScheduleExecutorService">ScheduleExecutorService</h3><p>java中的计划任务Timer工具类提供了以计时器或计划任务的功能来实现按指定时间或时间间隔执行任务，但<strong>由于Timer不是以池pool，而是以队列的方式来管理线程的，所以在高并发的情况下运行效率较低</strong>，在新版JDK中提供了ScheduledExecutorService对象来解决效率与定时任务的功能<br><strong>ScheduledExecutorService 的主要作用就是可以将定时任务与线程池功能结合使用</strong><br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class RunTest &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">        ArrayList&lt;Callable&gt; callableList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        callableList.<span class="built_in">add</span>(<span class="keyword">new</span> MyCallableA());</span><br><span class="line">        callableList.<span class="built_in">add</span>(<span class="keyword">new</span> MyCallableB());</span><br><span class="line">        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span><br><span class="line">        ScheduledFuture futureA = executor.schedule(callableList.<span class="built_in">get</span>(<span class="number">0</span>), <span class="number">4</span>, TimeUnit.SECONDS);</span><br><span class="line">        ScheduledFuture futureB = executor.schedule(callableList.<span class="built_in">get</span>(<span class="number">1</span>), <span class="number">4</span>, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        System.out.<span class="built_in">println</span>(futureA.<span class="built_in">get</span>()+<span class="string">" "</span> + futureB.<span class="built_in">get</span>());</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"time "</span> + (end-start)/<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果</span><br><span class="line">callA begin </span><br><span class="line">callA end</span><br><span class="line">callB begin </span><br><span class="line">callB end</span><br><span class="line">returnA returnB</span><br><span class="line">time <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
+<p>默认是单任务的，等待的时间是同时在消耗的，所以第一个任务4s时候执行，执行完后，第二个任务立马执行。源码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newSingleThreadScheduledExecutor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	 <span class="comment">// 默认产生一个线程来执行任务</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DelegatedScheduledExecutorService(<span class="keyword">new</span> ScheduledThreadPoolExecutor(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>改为多任务即线程池类型<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ScheduledExecutorService executor = Executors.newScheduledThreadPool(<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
+<p>源码<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">ScheduledExecutorService <span class="title">newScheduledThreadPool</span><span class="params">(<span class="keyword">int</span> corePoolSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ScheduledThreadPoolExecutor(corePoolSize);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>ScheduledThreadPoolExecutor 实现了ScheduledExecutorService接口</strong></p>
+<h3 id="使用Runnable延迟执行">使用Runnable延迟执行</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        ArrayList&lt;Callable&gt; callableList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ScheduledExecutorService executor = Executors.newScheduledThreadPool(<span class="number">2</span>);</span><br><span class="line">        executor.schedule(<span class="keyword">new</span> MyRunnable(), <span class="number">1</span>, TimeUnit.SECONDS);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用Callable延迟运行并取得返回值">使用Callable延迟运行并取得返回值</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RunTest</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        ScheduledExecutorService executor = Executors.newScheduledThreadPool(<span class="number">2</span>);</span><br><span class="line">        ScheduledFuture futureA = executor.schedule(<span class="keyword">new</span> MyCallableA(), <span class="number">0</span>, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        System.<span class="keyword">out</span>.println(futureA.<span class="keyword">get</span>());</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"time "</span> + (end-start)/<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ScheduleAtFixedRate_实现周期性执行">ScheduleAtFixedRate 实现周期性执行</h3><p>若执行时间大于周期时间，相当于每次都按照周期时间叠加，上一次与下一次开始时间相差实际运行的时间而不是周期时间，下一次开始会紧接着上一次结束开始；<br>例如,任务执行4s，周期2s。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Running ... begin <span class="number">1480335883</span> s</span><br><span class="line">Running ... enden <span class="number">1480335887</span> s</span><br><span class="line">Running ... begin <span class="number">1480335887</span> s</span><br><span class="line">Running ... enden <span class="number">1480335891</span> s</span><br><span class="line">Running ... begin <span class="number">1480335891</span> s</span><br><span class="line">Running ... enden <span class="number">1480335895</span> s</span><br><span class="line">Running ... begin <span class="number">1480335895</span> s</span><br><span class="line">Running ... enden <span class="number">1480335899</span> s</span><br><span class="line">Running ... begin <span class="number">1480335899</span> s</span><br></pre></td></tr></table></figure></p>
+<p>若执行时间小于周期时间，则每次执行完会间隔(周期时间-任务执行时间)，才开始下一次任务的执行。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Running ... begin <span class="number">1480335930</span> s</span><br><span class="line">Running ... enden <span class="number">1480335931</span> s</span><br><span class="line">Running ... begin <span class="number">1480335932</span> s</span><br><span class="line">Running ... enden <span class="number">1480335933</span> s</span><br><span class="line">Running ... begin <span class="number">1480335934</span> s</span><br><span class="line">Running ... enden <span class="number">1480335935</span> s</span><br><span class="line">Running ... begin <span class="number">1480335936</span> s</span><br><span class="line">Running ... enden <span class="number">1480335937</span> s</span><br><span class="line">Running ... begin <span class="number">1480335938</span> s</span><br><span class="line">Running ... enden <span class="number">1480335939</span> s</span><br></pre></td></tr></table></figure></p>
+<h3 id="ScheduleWithFixedDelay()_实现周期性执行">ScheduleWithFixedDelay() 实现周期性执行</h3><p>不管执行时间大于或者小于周期时间，都会执行完任务，间隔一个周期时间，再执行下一个任务。相当于两个任务之间有一个固定的间隔时间</p>
+<h3 id="getQueue()与remove()">getQueue()与remove()</h3><p>获取队列中任务（未运行的任务）<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BlockingQueue</span>&lt;<span class="type">Runnable</span>&gt; queue = executor.getQueue();</span><br><span class="line"><span class="type">Iterator</span>&lt;<span class="type">Runnable</span>&gt; <span class="keyword">iterator</span> = queue.<span class="keyword">iterator</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">iterator</span>.hasNext())&#123;</span><br><span class="line">	<span class="type">Runnable</span> runnable = (<span class="type">Runnable</span>)<span class="keyword">iterator</span>.next()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>移除队列中未运行的任务<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ScheduleFuture future2 = executor.scheduleAtFixedRate(runnable,<span class="number">10</span>,<span class="number">2</span>,TimeUnit.SECOND);</span><br><span class="line">executor.remove((Runnable)future2)</span><br></pre></td></tr></table></figure></p>
+<h3 id="setExecuteExistingDelayedTasksAfterShutdownPolicy">setExecuteExistingDelayedTasksAfterShutdownPolicy</h3><p>线程池关闭是否停止任务执行<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ScheduledThreadPoolExecutor executor = <span class="keyword">new</span> ScheduledThreadPoolExecutor(<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"main begin "</span> + System.currentTimeMillis());</span><br><span class="line">        executor.schedule(<span class="keyword">new</span> MyRunnable(<span class="string">"A"</span>),<span class="number">3</span>,TimeUnit.SECONDS);</span><br><span class="line">        <span class="comment">// 若为false，则线程池关闭，调度的任务不再继续；默认为true</span></span><br><span class="line">        executor.setExecuteExistingDelayedTasksAfterShutdownPolicy(<span class="literal">false</span>);</span><br><span class="line">        executor.shutdown();</span><br><span class="line">        System.out.println(<span class="string">"main ended "</span>+System.currentTimeMillis());</span><br></pre></td></tr></table></figure></p>
+<h3 id="setContinueExistingPeriodicTasksAfterShutdownPolicy">setContinueExistingPeriodicTasksAfterShutdownPolicy</h3><p>线程池关闭是否停止固定周期或固定延迟的任务<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RunTest</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        ScheduledThreadPoolExecutor executor = <span class="keyword">new</span> ScheduledThreadPoolExecutor(<span class="number">1</span>);</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"main begin "</span> + System.currentTimeMillis());</span><br><span class="line">        executor.scheduleWithFixedDelay(<span class="keyword">new</span> MyRunnable(<span class="string">"A"</span>),<span class="number">1</span>,<span class="number">2</span>,TimeUnit.SECONDS);</span><br><span class="line">        <span class="comment">// 若为false，则线程池关闭，scheduleWithFixedDelay或scheduleAtFixedRate</span></span><br><span class="line">        <span class="comment">// 的任务都关闭；默认为false</span></span><br><span class="line">        executor.setContinueExistingPeriodicTasksAfterShutdownPolicy(<span class="keyword">true</span>);</span><br><span class="line">        executor.shutdown();</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"main ended "</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="取消队列中的任务">取消队列中的任务</h3><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">MyRunnable</span> implements <span class="type">Runnable</span> &#123;</span><br><span class="line">    @<span class="type">Override</span></span><br><span class="line">    public <span class="type">void</span> run() &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="type">Thread</span>.currentThread().isInterrupted()==<span class="literal">true</span>)&#123;</span><br><span class="line">                    throw new <span class="type">InterruptedException</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"run.. "</span> + userName +<span class="string">" "</span> + <span class="type">System</span>.currentTimeMillis());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (<span class="type">InterruptedException</span> e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"中断了"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="type">RunTest</span> &#123;</span><br><span class="line">    public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) throws <span class="type">ExecutionException</span>, <span class="type">InterruptedException</span> &#123;</span><br><span class="line">        <span class="type">ScheduledThreadPoolExecutor</span> executor = new <span class="type">ScheduledThreadPoolExecutor</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"main begin "</span> + <span class="type">System</span>.currentTimeMillis());</span><br><span class="line">        <span class="type">ScheduledFuture</span>&lt;?&gt; future = executor.schedule(new <span class="type">MyRunnable</span>(<span class="string">"A"</span>), <span class="number">1</span>, <span class="type">TimeUnit</span>.<span class="type">SECONDS</span>);</span><br><span class="line">        // 取消队列中未执行的任务，任务不执行，但不会从队列中删除任务</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(future.cancel(<span class="literal">true</span>));</span><br><span class="line">        <span class="type">BlockingQueue</span>&lt;<span class="type">Runnable</span>&gt; queue = executor.getQueue();</span><br><span class="line">        <span class="type">Iterator</span>&lt;<span class="type">Runnable</span>&gt; <span class="keyword">iterator</span> = queue.<span class="keyword">iterator</span>();</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">iterator</span>.hasNext())&#123;</span><br><span class="line">            <span class="type">Runnable</span> runnable = (<span class="type">Runnable</span>)<span class="keyword">iterator</span>.next();</span><br><span class="line">            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"队列中..."</span>+runnable);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"main ended "</span>+<span class="type">System</span>.currentTimeMillis());</span><br><span class="line">    &#125;</span><br><span class="line">结果</span><br><span class="line">main begin <span class="number">1480338668742</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">队列中...java.util.concurrent.<span class="type">ScheduledThreadPoolExecutor</span>$<span class="type">ScheduledFutureTask</span>@<span class="number">677327</span>b6</span><br><span class="line">main ended <span class="number">1480338668758</span></span><br></pre></td></tr></table></figure>
+<h3 id="取消队列中正在执行的任务">取消队列中正在执行的任务</h3><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class <span class="type">RunTest</span> &#123;</span><br><span class="line">    public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) throws <span class="type">ExecutionException</span>, <span class="type">InterruptedException</span> &#123;</span><br><span class="line">        <span class="type">ScheduledThreadPoolExecutor</span> executor = new <span class="type">ScheduledThreadPoolExecutor</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"main begin "</span> + <span class="type">System</span>.currentTimeMillis());</span><br><span class="line">        <span class="type">ScheduledFuture</span>&lt;?&gt; future = executor.schedule(new <span class="type">MyRunnable</span>(<span class="string">"A"</span>), <span class="number">1</span>, <span class="type">TimeUnit</span>.<span class="type">SECONDS</span>);</span><br><span class="line">        <span class="type">Thread</span>.sleep(<span class="number">2000</span>);</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(future.cancel(<span class="literal">true</span>));</span><br><span class="line">        <span class="type">BlockingQueue</span>&lt;<span class="type">Runnable</span>&gt; queue = executor.getQueue();</span><br><span class="line">        <span class="type">Iterator</span>&lt;<span class="type">Runnable</span>&gt; <span class="keyword">iterator</span> = queue.<span class="keyword">iterator</span>();</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">iterator</span>.hasNext())&#123;</span><br><span class="line">            <span class="type">Runnable</span> runnable = (<span class="type">Runnable</span>)<span class="keyword">iterator</span>.next();</span><br><span class="line">            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"队列中..."</span>+runnable);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"main ended "</span>+<span class="type">System</span>.currentTimeMillis());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果</span><br><span class="line">run.. A <span class="number">1480338842708</span></span><br><span class="line">run.. A <span class="number">1480338842708</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">java.lang.<span class="type">InterruptedException</span></span><br><span class="line">	at com.<span class="type">MyRunnable</span>.run(<span class="type">MyRunnable</span>.java:<span class="number">26</span>)</span><br><span class="line">	at java.util.concurrent.<span class="type">Executors</span>$<span class="type">RunnableAdapter</span>.call(<span class="type">Executors</span>.java:<span class="number">511</span>)</span><br><span class="line">main ended <span class="number">1480338842708</span></span><br><span class="line">中断了</span><br></pre></td></tr></table></figure>
+<h3 id="说明">说明</h3><ol>
+<li>在队列中的任务可以取消，任务也不再运行</li>
+<li>正在运行的任务可以停止，但要结合 if(Thread.currentThread.isInterrupted()==true)判断</li>
+</ol>
+<p>使用 executor.setRemoveOnCancelPolicy(true)配合future.cancel(true)，在取消任务运行的时候，将任务从队列中删除。</p>
+<h3 id="在一个线程中中断另一个睡眠的线程">在一个线程中中断另一个睡眠的线程</h3><p>currentThread().是静态方法，也就是说 Thread.currentThread().interrupt()和 rThread.currentThread().interrupt();调用的都是vmThread对象。中断睡眠的就是主线程的那个睡眠，rThread.interrupt();就是直指rThread这个线程，中断的也是它。<br>源码如下：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">Thread <span class="title">currentThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">return</span> VMThread.<span class="title">currentThread</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">interrupt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        checkAccess();</span><br><span class="line">        <span class="keyword">if</span> (interruptAction != <span class="keyword">null</span>) &#123;</span><br><span class="line">            interruptAction.run();</span><br><span class="line">        &#125;</span><br><span class="line">        VMThread vmt = <span class="keyword">this</span>.vmThread;</span><br><span class="line">        <span class="keyword">if</span> (vmt != <span class="keyword">null</span>) &#123;</span><br><span class="line">            vmt.interrupt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/11/28/ScheduledExecutorService/" data-title="ScheduledExecutorService | Flow" data-tsina="2237166075" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/11/28/CompletionService/" title="CompletionService">
+  <strong>上一篇：</strong><br/>
+  <span>
+  CompletionService</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/11/28/ExecutorService/"  title="ExecutorService">
+ <strong>下一篇：</strong><br/> 
+ <span>ExecutorService
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/11/28/ScheduledExecutorService/" data-title="ScheduledExecutorService" data-url="http://yoursite.com/2016/11/28/ScheduledExecutorService/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleExecutorService"><span class="toc-number">1.</span> <span class="toc-text">ScheduleExecutorService</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Runnable延迟执行"><span class="toc-number">2.</span> <span class="toc-text">使用Runnable延迟执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Callable延迟运行并取得返回值"><span class="toc-number">3.</span> <span class="toc-text">使用Callable延迟运行并取得返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleAtFixedRate_实现周期性执行"><span class="toc-number">4.</span> <span class="toc-text">ScheduleAtFixedRate 实现周期性执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScheduleWithFixedDelay()_实现周期性执行"><span class="toc-number">5.</span> <span class="toc-text">ScheduleWithFixedDelay() 实现周期性执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getQueue()与remove()"><span class="toc-number">6.</span> <span class="toc-text">getQueue()与remove()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setExecuteExistingDelayedTasksAfterShutdownPolicy"><span class="toc-number">7.</span> <span class="toc-text">setExecuteExistingDelayedTasksAfterShutdownPolicy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setContinueExistingPeriodicTasksAfterShutdownPolicy"><span class="toc-number">8.</span> <span class="toc-text">setContinueExistingPeriodicTasksAfterShutdownPolicy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消队列中的任务"><span class="toc-number">9.</span> <span class="toc-text">取消队列中的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消队列中正在执行的任务"><span class="toc-number">10.</span> <span class="toc-text">取消队列中正在执行的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">11.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在一个线程中中断另一个睡眠的线程"><span class="toc-number">12.</span> <span class="toc-text">在一个线程中中断另一个睡眠的线程</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/java/CocurrentHashMap/" title="CocurrentHashMap">CocurrentHashMap<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/Guava/" title="Guava">Guava<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/IntelliJ/" title="IntelliJ">IntelliJ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/Map/" title="Map">Map<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/development/" title="development">development<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/internship/" title="internship">internship<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/" title="interview">interview<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/interview/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/junit/" title="junit">junit<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/markdown/" title="markdown">markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/network/" title="network">network<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python3/" title="python3">python3<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/spring/" title="spring">spring<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/springMVC/" title="springMVC">springMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sql/" title="sql">sql<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tool/" title="tool">tool<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/中间件/" title="中间件">中间件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/六大原则/" title="六大原则">六大原则<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/分布式/" title="分布式">分布式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/反射/" title="反射">反射<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安全/" title="安全">安全<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安装/" title="安装">安装<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/" title="并发">并发<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/底层/" title="底层">底层<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/" title="排序">排序<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/接口/" title="接口">接口<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mysql/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/架构/" title="架构">架构<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/死锁/" title="死锁">死锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/源码/" title="源码">源码<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/程序库/" title="程序库">程序库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/排序/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/算法/" title="算法">算法<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/线程/" title="线程">线程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络攻击/" title="网络攻击">网络攻击<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/并发/锁/" title="锁">锁<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/面试/" title="面试">面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/面试/" title="面试">面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>19</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bigdata/" title="bigdata">bigdata<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql/" title="sql">sql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试/" title="面试">面试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python3/" title="python3">python3<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sybase/" title="sybase">sybase<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/poetry/" title="poetry">poetry<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DesignPattern/" title="DesignPattern">DesignPattern<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/myBatis/" title="myBatis">myBatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/interview/" title="interview">interview<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/并发，锁/" title="并发，锁">并发，锁<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2237166075&verifier=f873c807&dpc=1"></iframe>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I Am An IT Dog <br/>
+			Welcome to you</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2237166075" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:yuchuan512@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yuchuan">Yuchuan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"topzyc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fnull' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

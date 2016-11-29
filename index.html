@@ -123,7 +123,7 @@
     <h1 itemprop="name">ExecutorService</h1>
     
      
-           <p itemprop="description" >invokeAny()和invokeAll()具有阻塞性在ThreadPoolExecutor中使用ExecutorService中的方法invokeAny()取得第一个完成任务的结果值，当第一个任务执行完成后，会调用interrupte()方法将其他任务中断，所有这些任务重可以</p>
+           <p itemprop="description" >invokeAny()和invokeAll()具有阻塞性在ThreadPoolExecutor中使用ExecutorService中的方法invokeAny()取得第一个完成任务的结果值，当第一个任务执行完成后，会调用interrupt()方法将其他任务中断，所以这些任务可以结合</p>
         
     
     <time datetime="2016-11-28T14:33:24.000Z" itemprop="datePublished">2016-11-28</time>
@@ -144,8 +144,7 @@
     
      
            <p itemprop="description" >Callable和Runnable的区别？1) Callable接口的call()方法有返回值，而Runnable接口的run()方法没有返回值2) Callable接口的call()方法可以声明抛出异常，而Runnable接口的run()方法不可以声明抛出异常
-
-get()方法</p>
+get()方法阻</p>
         
     
     <time datetime="2016-11-26T14:44:35.000Z" itemprop="datePublished">2016-11-26</time>
@@ -160,12 +159,17 @@ get()方法</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/11/26/Executors用法/" title="Executors用法" itemprop="url">
+    <a href="/2016/11/26/Executor与ThreadPoolExecutor/" title="Executor与ThreadPoolExecutor" itemprop="url">
   
-    <h1 itemprop="name">Executors用法</h1>
+    <h1 itemprop="name">Executor与ThreadPoolExecutor</h1>
     
      
-           <p itemprop="description" >Executors123456789101112131415161718192021222324public class ExecutorTest &amp;#123;    public static void main(String[] args) throws Interrupte</p>
+           <p itemprop="description" >创建线程池
+创建无界线程池
+1ExecutorService executor = Executors.newCachedThreadPool();
+
+创建固定数量的线程池
+1ExecutorService executorService = Executors.newFixed</p>
         
     
     <time datetime="2016-11-26T10:31:52.000Z" itemprop="datePublished">2016-11-26</time>
@@ -206,13 +210,9 @@ get()方法</p>
     <h1 itemprop="name">阻塞队列</h1>
     
      
-           <p itemprop="description" >整体类图1) ArrayBlockingQueue
-2) PriorityBlockingQueue
-3) LinkedBlockingQueue
-4) LinkedBlockingDeque
-5) SynchronousQueue
-6) DelayQueue
-7) Linked</p>
+           <p itemprop="description" >整体类图
+常见的几种阻塞队列有
+1) ArrayBlockingQueue2) PriorityBlockingQueue3) LinkedBlockingQueue4) LinkedBlockingDeque5) SynchronousQueue6) DelayQueue7) </p>
         
     
     <time datetime="2016-11-25T13:02:35.000Z" itemprop="datePublished">2016-11-25</time>
@@ -232,7 +232,7 @@ get()方法</p>
     <h1 itemprop="name">Semaphore CountDownLatch CyclicBarrier</h1>
     
      
-           <p itemprop="description" >Semaphore 可以控制线程的数量semaphore.acquire()semaphore.release()semaphore.availablePermits()  可用许可证数量semaphore.acquireUniterruptibly()  获取许可证过程中不允许</p>
+           <p itemprop="description" >Semaphore 可以控制线程的数量Semaphore [ˈseməfɔ:(r)] 信号、信号系统acquire和release获取释放许可证。Semaphore semaphore = new Semaphore(n) 同一时刻可以有n个线程并发执行semaphore.acq</p>
         
     
     <time datetime="2016-11-25T03:54:28.000Z" itemprop="datePublished">2016-11-25</time>
